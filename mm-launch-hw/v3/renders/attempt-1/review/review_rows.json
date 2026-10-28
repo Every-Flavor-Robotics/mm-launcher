@@ -1,0 +1,43 @@
+{
+  "_about": "v3 A1 review rows (R1). The four allow overrides below are only for the captive rows: the designer's bounded allows (beam x turntable 8.5, crown x beam 12) would otherwise hide the barb catch. Run with --only slide,sightlines --overlay-only.",
+  "allow": [
+    {"a": "PRT_beam", "b": "PRT_turntable", "max_mm3": 0.02, "why": "review: captive row must see the beam-hook barbs under the post ledges"},
+    {"a": "PRT_feeder_crown", "b": "PRT_beam", "max_mm3": 0.02, "why": "review: captive row must see the crown-hook barbs under the beam pocket roof"}
+  ],
+  "slide_out": [
+    {"name": "R1 v3-A1-01 beam hooks hold: beam +Z (crown, disc, jar ignored) stopped by the post ledges within 0.3", "object": "PRT_beam",
+     "ignore": ["CAB_*", "PRT_feeder_*", "BUY_servo_feeder", "BUY_horn_feeder", "PRT_jar_*", "BUY_jar*", "BUY_mm_fill"],
+     "dir": [0, 0, 1], "dist": 3, "step": 0.05, "min_clearance": 0.0, "expect": "blocked", "blocked_by": ["PRT_turntable"], "at_mm": [0.0, 0.3]},
+    {"name": "R1 v3-A1-01 crown hooks hold: crown group +Z (jar ignored) stopped by the beam pocket roofs within 0.3", "objects": ["PRT_feeder_crown", "BUY_servo_feeder", "BUY_horn_feeder", "PRT_feeder_pinion"],
+     "ignore": ["CAB_*", "PRT_jar_*", "BUY_jar*", "BUY_mm_fill", "PRT_feeder_disc"],
+     "dir": [0, 0, 1], "dist": 3, "step": 0.05, "min_clearance": 0.0, "expect": "blocked", "blocked_by": ["PRT_beam"], "at_mm": [0.0, 0.3]},
+    {"name": "R1 v3-A1-01 hub fingers hold: hub gear -Z stopped by the turntable socket ledge within 0.3", "object": "PRT_hub_gear",
+     "ignore": ["CAB_*", "BUY_bus_junction", "PRT_pan_pinion"],
+     "dir": [0, 0, -1], "dist": 3, "step": 0.05, "min_clearance": 0.0, "expect": "blocked", "blocked_by": ["PRT_turntable"], "at_mm": [0.0, 0.3]},
+    {"name": "R1 v3-A1-01 valve fingers hold: valve + gate -Z off the spout (jar group lifted) stopped by the adapter within 0.3", "objects": ["PRT_jar_valve", "PRT_jar_gate"],
+     "ignore": ["CAB_*", "PRT_feeder_*", "PRT_beam", "BUY_servo_feeder", "BUY_horn_feeder", "BUY_mm_fill"],
+     "dir": [0, 0, -1], "dist": 3, "step": 0.05, "min_clearance": 0.0, "expect": "blocked", "blocked_by": ["PRT_jar_adapter"], "at_mm": [0.0, 0.3]},
+    {"name": "R1 v3-A1-04 journal plate captive on its 3 crush-rib pegs: +X stopped within 1.5 at home", "object": "PRT_journal_plate",
+     "ignore": ["CAB_*"], "dir": [1, 0, 0], "dist": 5, "step": 0.1, "min_clearance": 0.0, "expect": "blocked",
+     "blocked_by": ["PRT_turntable", "PRT_tilt_horn_adapter", "BUY_horn_tilt", "BUY_servo_tilt", "FST_tilt_horn_ctr", "PRT_hood"], "at_mm": [0.0, 1.5]},
+    {"name": "R1 v3-A1-04 journal plate captive on its 3 crush-rib pegs: +X stopped within 1.5 at tilt 45", "object": "PRT_journal_plate", "pose": {"PIV_tilt": 45},
+     "ignore": ["CAB_*"], "dir": [1, 0, 0], "dist": 5, "step": 0.1, "min_clearance": 0.0, "expect": "blocked",
+     "blocked_by": ["PRT_turntable", "PRT_tilt_horn_adapter", "BUY_horn_tilt", "BUY_servo_tilt", "FST_tilt_horn_ctr", "PRT_hood"], "at_mm": [0.0, 1.5]},
+    {"name": "R1 v3-A1-03 gate held open: from the open stop (PIV_gate 52) the blade is stopped -X within 1.0 (v2 A7 had an open notch)", "object": "PRT_jar_gate", "pose": {"PIV_gate": 52},
+     "dir": [-1, 0, 0], "dist": 10, "step": 0.1, "min_clearance": 0.0, "expect": "blocked", "blocked_by": ["PRT_jar_valve", "PRT_jar_adapter"], "at_mm": [0.0, 1.0]}
+  ],
+  "sightlines": [
+    {"name": "R1 flat-screwdriver line from the front opening reaches the right-post front beam-hook barb (25 deg off X, level)",
+     "poses": [{}, {"PIV_tilt": 45}, {"PIV_tilt": -3}],
+     "origins": [["=BEAM_HOOK['pos'][2][0] - 150*0.906", "=BEAM_HOOK['pos'][2][1] + 150*0.423", "=IF_BEAM_Z0 - BEAM_HOOK['L'] + 0.3"]],
+     "dir": [0.906, -0.423, 0], "first_hit": "PRT_beam", "max_mm": 155},
+    {"name": "R1 flat-screwdriver line from the rear opening reaches the right-post rear beam-hook barb (15 deg off X, level)",
+     "poses": [{}, {"PIV_tilt": 45}],
+     "origins": [["=BEAM_HOOK['pos'][3][0] - 150*0.966", "=BEAM_HOOK['pos'][3][1] - 150*0.259", "=IF_BEAM_Z0 - BEAM_HOOK['L'] + 0.3"]],
+     "dir": [0.966, 0.259, 0], "first_hit": "PRT_beam", "max_mm": 155},
+    {"name": "R1 tool line from the front opening reaches the +X crown hook tip under the beam (30 deg up)",
+     "poses": [{}, {"PIV_tilt": 45}],
+     "origins": [[37.25, "=150*0.866", "=IF_BEAM_Z0 + 0.5 - 150*0.5"]],
+     "dir": [0, -0.866, 0.5], "first_hit": "PRT_feeder_crown", "max_mm": 155}
+  ]
+}

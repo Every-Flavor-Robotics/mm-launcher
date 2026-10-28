@@ -1,0 +1,54 @@
+"""M&M launcher turret v2 assembly build. Headless Blender 5.1+:
+
+    cad build blender/build_assembly.py                 # build, STLs, manifest, .blend
+    cad build blender/build_assembly.py -- --render     # + preview renders (960 px)
+    CAD_RENDER_FINAL=1 cad build blender/build_assembly.py -- --render --out-renders renders/attempt-N
+    cad check blender/model.blend blender/checks.json
+
+Parameters live in params.py; each subsystem is one module in parts/ with a build(P) function.
+Edit the module you are changing; rebuild; check. Keep each module small enough to edit in place.
+"""
+import importlib, os, sys, time
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+SKILL = os.environ.get("CAD_SKILL", os.path.expanduser("~/code-stuff/alex-3d-skills-pin/skills/print-cad-blender"))
+sys.path.insert(0, os.path.join(SKILL, "scripts"))
+sys.path.insert(0, HERE)
+sys.path.insert(0, os.path.join(SKILL, "..", "..", "components"))   # placeholders.py (purchased parts from components.json)
+from cadlib import asm, export, render  # noqa: E402
+import params as P  # noqa: E402
+
+SUBSYSTEMS = ["base", "pan_stage", "launcher", "feeder", "finish"]   # build order; each is parts/<name>.py with build(P);
+                                                                     # finish = colour map + jar glass (no geometry)
+
+argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
+
+
+def arg(name, default=None):
+    return argv[argv.index(name) + 1] if name in argv else default
+
+
+t0 = time.time()
+asm.new_scene(params={k: getattr(P, k) for k in dir(P) if k.isupper()})
+P.joints()                              # joints first: parts parent to them
+for name in (arg("--only", "") or ",".join(SUBSYSTEMS)).split(","):
+    mod = importlib.import_module("parts." + name)
+    importlib.reload(mod)
+    t = time.time()
+    mod.build(P)
+    print("SUBSYSTEM %s built in %.1f s" % (name, time.time() - t))
+
+qty = export.export_stls(os.path.join(ROOT, "stl"))
+asm.write_manifest(os.path.join(HERE, "manifest.json"))
+# v3 brief section 1: every attempt reports printed parts and metal pieces (screws + nuts + metal pins) on one line.
+_prt = sorted(n for n, i in asm.PARTS.items() if i.get("kind") == "PRT")
+_fst = [n for n, i in asm.PARTS.items() if i.get("kind") == "FST"]
+_nuts = [n for n in _fst if "nut" in n.lower() or asm.PARTS[n].get("fst_kind") == "nut"]
+print("PARTS %d printed, %d metal (%d screws, %d nuts/pins)" % (len(_prt), len(_fst), len(_fst) - len(_nuts), len(_nuts)))
+if "--render" in argv:
+    out = arg("--out-renders", os.path.join(ROOT, "renders", "preview"))
+    render.view_set(out, poses=P.RENDER_POSES)
+    importlib.import_module("parts.finish").elevations(out)   # v2-A5-05: front / side framed on the whole machine
+    render.exploded(out)
+export.save_blend(os.path.join(HERE, "model.blend"))
+print("BUILD_DONE %.1f s, stls %s" % (time.time() - t0, qty))

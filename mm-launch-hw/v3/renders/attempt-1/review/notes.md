@@ -1,0 +1,24 @@
+# v3 A1 review notes
+
+- copy at /tmp/v3r1/model.blend; tool = ~/code-stuff/alex-3d-skills-pin/skills/print-cad-blender/scripts/cad (c2c282d)
+- counts (manifest FST_ rows): 11 screws (M3 pan10 x6, M3 cap6 x2, M3 cap20 x2, M3 hex16 x1) + 3 nuts = 14 metal, 4 specs; 25 PRT_ objects (cad q list PRT_*) = 25 STLs
+- floor z 0..85.5, shell z 3..90 -> machine stands on the floor; shell walls bear on the floor (compression)
+- hub stack: gear top z 85, deck underside z 86 (cad q ray 25,0,85.01 +Z -> base_shell 0.99); hub gear x turntable 0.05; thrust ring 0.0 both faces. HUB_FINGER catch 98.55 / ledge 98.5 (0.05), dogs 0.2 under pockets -> 0.25 up-play, tolerance OK; the fingers carry the base weight when the robot is lifted by the turret (gear rises 1.0 onto the deck underside)
+- Z catch clearances (params): BEAM_HOOK catch 233.8 vs ledge 233.85 = 0.05; CROWN_HOOK 0.1 under z 254 roof; VALVE_SNAP groove lower wall 0.1 under barb; all < one 0.2 layer
+- cross-layer flexures: hub x3 12.6, beam x4 12.9 release, crown x3 12.3 release, valve x2 11.0 (12 of 24 rows) vs 15 interlayer limit
+- full cad check on copy: CADCHECK PASS 0 fail 61 warn (0 untriaged), 0 config; same as designer (review/cadcheck.json)
+- printcheck stl --manifest: PASS 25 parts 0F/9W (review/printcheck.json)
+- v2 A7 gate: detent at closed AND open notch (v2 BOM refill row); v3 closed notch only, open = positive stop + friction (DESIGN_LOG feeder)
+- beam-hook release slots: cad q ray from the slot mouths along +-X at z 232: clear 130.5 to the opposite hook at tilt 0/45/-3 (horizontal line exists between the posts, but a tool must come in from the front/back opening)
+- review rows (review_rows.json -> cadcheck_review.json, --only slide,sightlines --overlay-only): crown hooks hold blocked 0.15 by beam; hub fingers hold blocked 0.15; valve fingers hold blocked 0.2; journal plate +X blocked 0.4 by turntable (home, tilt 45); gate held open FAIL (slides 10 free, min 0.35); beam hooks hold FAIL "slides full 3 mm" because the beam overlaps the turntable AT REST (overlapping_at_rest) -> pair skipped
+- beam x turntable at rest: cad q dist = -0.531 mm3 at (-90.9,-22.5,232.1) and (42.9,19.5,233.8); interference.allowed_max shows volume 0.53 at home under the 8.5 allow. cad q inside 42.7,19.45,233.5 -> [PRT_turntable, PRT_beam]: barb (w 3.0) wider than the release slot it sits in (slot_hw 1.4 -> 2.8): barb corners 0.1 into the post wall each side
+- sightlines: beam-hook tool lines from front/rear opening OK at home; right-front at tilt 45 blocked by PRT_nacelle at 9.55 (rear line OK at 45); crown +X hook line from the front OK home + tilt 45
+- render r01 (section x 42.7) wasted: camera wrong, deleted (1 of 12 used)
+- cad q inside 42.7,16.55,233.5 and 42.7,19.45,233.5 -> [PRT_turntable, PRT_beam]; 42.7,19.35 -> beam only: barb y 16.5..19.5 vs release slot 16.6..19.4 (BEAM_HOOK w 3.0, slot_hw 1.4)
+- r02_sec_x42.7_beam_barb_in_release_slot.png: barb section fills the release-slot window edge to edge (2 of 12 renders)
+- valve x adapter (both PIV_jar, no allow, not in interference): cad q dist -0.485 mm3 at (-8.4,25.6,335.5)/(-5.4,26.9,336.0); inside -7,26.0,335.7 -> [adapter, valve]; -7,26.0,335.2 -> valve only: key rib top 0.5 runs into the adapter above the groove
+- rest gaps OK: cover x jp 0.2, nip cover x body 0.141, gate x valve 0.1, horn adapter x jp 0.169, feeder pinion x beam 0.3, hub gear x turntable 0.05, crown x beam 0.0
+- allowed_max at rest: encoder cap x nacelle 0.18 mm3 (designer said 0 at rest), beam x turntable 0.53
+- cad bom PASS 5 rows; stl/tools/tilt45_prop.stl is a v2 leftover (Oct 25), encoder_jig rebuilt 04:05
+- v2-A2-02 bundle/base 0.929 @ pan -90 (max 1.0; v2 A7 0.916); entry arc 8.098/8.222/8.415 unchanged; drops 31/31 flattest 34.5; index 1/1 windows; payload min pair margin 0.06, max flat 0.14; stability 29.6 (v2 31.2)
+- lift-by-jar path: band -> adapter -> 2 valve fingers (t1.0 x w6 cross-layer) -> valve lugs -> crown L-slots -> 3 crown hooks (t1.0 x w5) -> beam -> 4 beam hooks (not seated) -> turntable -> 3 hub fingers -> base. Hand calc valve fingers: ~32 N / 2 = 16 N each, axial 2.7 + catch-moment bending 6*16*0.6/(6*1^2)=9.6 -> ~12.3 MPa static across layers (82% of 15); crown hooks ~30 N/3: 2 + 6*10*0.8/(5*1)=9.6 -> 11.6 MPa
