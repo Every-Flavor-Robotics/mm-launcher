@@ -257,7 +257,8 @@ TILT_TONGUE_Z0 = 232.5          # beam tongue underside over the tilt servo (ser
 # v3-A1 beam hooks (SNAP-V, 2 per post, L 20, t 1.4 in x, barb 0.5 toward the post inner face; 3 E t d / 2 L^2 = 9.2 MPa at
 # the 0.5 engage, 12.9 at the 0.7 release) into slots in the post tops; a flat screwdriver through a slot in the post's
 # inner face pushes the barb outboard. (x of the hook's barb-side face, y centre)
-BEAM_HOOK = {"t": 1.4, "w": 3.0, "L": 20.0, "barb": 0.5, "release": 0.7, "slot_hw": 1.4,   # slot_hw: screwdriver slot half width
+BEAM_HOOK = {"t": 1.4, "w": 2.2,   # A2 hotfix (v3-A1-01): 3.0 -> 2.2, 0.3 a side in the 2.8 release slot
+              "L": 20.0, "barb": 0.5, "release": 0.7, "slot_hw": 1.4, "post_slot_w": 3.0,   # slot_hw: screwdriver slot half width; post_slot_w: post-top hook slot = this + 0.3 a side (A1 value, kept so the turntable needs no reprint)
              "pos": [(-91.0, 18.0, 1), (-91.0, -21.0, 1), (43.0, 18.0, -1), (43.0, -21.0, -1)]}     # (x barb face, y, s): s = +1 barb toward +X (left post), -1 toward -X
 IF_CROWN_HOOKS = [(36.5, 0.0), (-36.0, -22.0), (-36.0, 22.0)]   # v3-A1 crown hook slot centres through the beam (feeder item:
                                 # hooks L 16, t 1.0, barb 0.5 radial outward, catching the pocket roof at z 254)
@@ -663,6 +664,21 @@ GATE_FINGER = {
     "free": 1.5,                # finger runs this far past the bump centre to its free end
 }
 GATE_FINGER_STRESS = 3 * 3500.0 * GATE_FINGER["w"] * GATE_FINGER["bump_d"] / (2 * GATE_FINGER["L"] ** 2)   # 14.0 MPa
+# A2 hotfix (v3-A1-03) OPEN detent: the +Y 1.5 of the stop lug sits on a SNAP-IP finger cut in the blade's -X end
+# (beam along x, root at x GATE_X0 + L, free end at the blade's -X edge, bends in y: in the layer plane). A R0.6 bump on
+# its +Y face stands 0.65 proud (0.3 into the spout notch's +Y side wall at y GATE_STOP_LUG hw + GATE_STOP_CLR) and drops
+# into a R(0.6 + clr) dimple in that wall at PIV_gate 52, slotted to 52 + GATE_STOP_CLR so the positive stop still works.
+GATE_OPEN_DETENT = {
+    "y": (1.5, 3.0),            # finger y span (the lug's +Y part); inner relief slot 1.0..1.5, outer slot 3.0..4.2
+    "slot_in": 0.5, "slot_out": 1.2,
+    "L": 16.0,                  # root at GATE_X0 + L (closed frame); bump centre at GATE_X0 + lug x / 2
+    "bump_r": 0.6, "bump_d": 0.3,   # bump radius, interference with the notch side wall (= finger deflection)
+    "dimple_clr": 0.05,         # dimple = bump + this; 0.05 seated (distances row)
+    "closed_clr": 0.35,         # the closed through-notch is widened on +Y so the bump clears it by this
+}
+GATE_OPEN_DETENT_L = GATE_OPEN_DETENT["L"] - GATE_STOP_LUG[0] / 2          # 15.25 root -> bump
+GATE_OPEN_DETENT_STRESS = 3 * 3500.0 * (GATE_OPEN_DETENT["y"][1] - GATE_OPEN_DETENT["y"][0]) * GATE_OPEN_DETENT["bump_d"] / (
+    2 * GATE_OPEN_DETENT_L ** 2)  # 10.2 MPa
 ADAPTER_SPOUT_Z0 = GATE_Z[1] + 0.35     # 290.7: spout bottom = blade roof (0.35 over the blade)
 # v3-A1 valve to adapter spout (FST_valve x3 deleted), option (b) push fit: the spout goes straight down into the
 # cheeks (its tip notch over the gate's stop lug), a 3 mm key rib on the +Y cheek pad runs in a groove in the spout OD
@@ -683,6 +699,7 @@ VALVE_SNAP_STRESS = 3 * 3500.0 * VALVE_SNAP["t"] * 0.4 / (2 * VALVE_SNAP_L ** 2)
 SPOUT_SHOULDER_R = 28.3         # spout root R28.3 from the cheek tops to the lid disc (band lip ID R29: 0.7 radial)
 VALVE_PAD_X = (-13.0, -1.0)     # centring pads on the +/-Y cheek faces (above the blade; 45 deg undersides), 0.15 to the spout
 VALVE_KEY = (-7.0, 3.0, 0.75)   # key rib on the +Y pad: x centre, width, radial height; spout groove +0.2 a side, +0.1 deep
+VALVE_KEY_GROOVE_OVER = 1.0     # A2 hotfix (v3-A1-01): the spout key groove runs this far past the rib top (cheek top); A1 stopped 0.5 short
 BAFFLE_R = (10.5, 30.4)         # baffle on the VALVE (jar locked at 0 -> over the outlet sector); outer edge buried in the
                                 # skirt (A1 ended on the skirt's own R31 face: coincident facets left 0.02 slivers)
 BAFFLE_FLAT = 0.8               # v2-A1-08: the underside ramps stop 0.8 above the baffle bottom (vertical flat at the foot)

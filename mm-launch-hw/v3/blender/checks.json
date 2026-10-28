@@ -53,7 +53,13 @@
       "a": "PRT_jar_gate",
       "b": "PRT_jar_valve",
       "max_mm3": 1.0,
-      "why": "v3-A1 the gate's own in-plane detent finger (bump R1 x 0.4) rides the +Y cheek between its closed and open notches; replaces PRT_gate_detent + FST_detent. Bounded: a slide row keeps the pair as an obstacle up to 1.0 mm3"
+      "why": "v3-A1 the gate's own in-plane detent finger (bump R1 x 0.4) rides the +Y cheek into its CLOSED notch (the open position has its own detent on the adapter, A2 hotfix); replaces PRT_gate_detent + FST_detent. Bounded: a slide row keeps the pair as an obstacle up to 1.0 mm3"
+    },
+    {
+      "a": "PRT_jar_gate",
+      "b": "PRT_jar_adapter",
+      "max_mm3": 0.02,
+      "why": "A2 hotfix (v3-A1-03) open detent: the stop lug's +Y finger bump (R0.6, 0.3 into the +X notch wall) rides the spout notch wall over PIV_gate 50.5..51.9 (cad q sweep: max 0.084 mm3) and drops into the R0.65 dimple at 52 (0.05 seated). Sampled poses (0, 13, 26, 39, 52) measure 0; bounded at 0.02 so the 'gate held open' row sees the dimple flank as a stop, and the opening rows carry the ride in their flex. The lug-to-notch 0.35 is held by the hard-stop distances row and the sweep above"
     },
     {
       "a": "PRT_launcher_cover",
@@ -82,8 +88,8 @@
     {
       "a": "PRT_beam",
       "b": "PRT_turntable",
-      "max_mm3": 8.5,
-      "why": "v3-A1 the 4 beam snap-hook barbs (0.5 engage over a 3.6 wide ledge) ride the post-top ledges as the beam lifts: slide 'beam + feeder lift +Z' measures 7.97 mm3 for the four together (replaces FST_beam x7)"
+      "max_mm3": 0.0,
+      "why": "A2 hotfix (v3-A1-01): bounded to the rest overlap, now 0 (cad q dist PRT_beam PRT_turntable 0.0: the 2.2 barbs sit 0.3 a side in the 2.8 release slots, A1 3.0 barbs overlapped 0.531 mm3 under the old 8.5 bound). The ride as the beam lifts off is in that slide row's flex; the 'beam hooks hold' row keeps the pair as an obstacle at 0"
     },
     {
       "a": "PRT_feeder_crown",
@@ -444,7 +450,8 @@
       "objects": [
         "PRT_beam",
         "CAB_launcher*"
-      ]
+      ],
+      "insert_ok": "A2 hotfix: 4 SNAP-V beam hooks: the barbs (0.5) flex past the post-top ledges on the way down (flexures rows 'v3-A1 beam hook post *'; slide 'beam + feeder lift +Z' flexes 5.84 mm3 on the same path). Insertion now sees them because the beam x turntable allow is bounded to 0 at rest (A1: 8.5)"
     },
     {
       "step": "10a disc laid on the beam's feed floor",
@@ -1203,7 +1210,7 @@
       "min_clearance": 0.0
     },
     {
-      "name": "v3-A1 gate opens +X 52 in its guides; its own detent finger rides the +Y cheek (bounded allow gate x valve 1.0 mm3, replaces the clip + flex)",
+      "name": "v3-A1 gate opens +X 52 in its guides; its closed-detent finger rides the +Y cheek (bounded allow gate x valve 1.0 mm3) and the A2 open-detent bump rides the spout notch wall into its dimple (flex adapter 0.5; min clearance 0 for that ride)",
       "object": "PRT_jar_gate",
       "dir": [
         1,
@@ -1212,7 +1219,10 @@
       ],
       "dist": 52,
       "step": 2,
-      "min_clearance": 0.05
+      "min_clearance": 0.0,
+      "flex": {
+        "PRT_jar_adapter": 0.5
+      }
     },
     {
       "name": "v2-A1-06 step 7 reversed: pod lifts +Z out of the post U-slots, nose-up 20 deg",
@@ -1265,7 +1275,7 @@
       "min_clearance": 0.1
     },
     {
-      "name": "v3-A1 gate open stop: the blade's stop lug meets the spout shoulder at +52.35 (finger detent bounded by the gate x valve allow)",
+      "name": "v3-A1 gate open stop: the blade's stop lug meets the spout shoulder at +52.35 (closed finger bounded by the gate x valve allow; A2 open-detent bump rides into its dimple, flex adapter 0.5)",
       "object": "PRT_jar_gate",
       "dir": [
         1,
@@ -1282,7 +1292,10 @@
       "at_mm": [
         52.0,
         53.0
-      ]
+      ],
+      "flex": {
+        "PRT_jar_adapter": 0.5
+      }
     },
     {
       "name": "v3-A1 tilt servo + adapter lift +Z out of the open-top post pocket at tilt 0 (beam, feeder and jar off; the key leaves the journal plate's top-open fork with 0.15 a side)",
@@ -1345,7 +1358,7 @@
       ]
     },
     {
-      "name": "v3-A1 beam + feeder lift +Z off the posts after the jar (4 hooks bounded by the beam x turntable allow)",
+      "name": "v3-A1 beam + feeder lift +Z off the posts after the jar (A2: the 4 hook barbs ride the post ledges in this row's flex, turntable 8.5 mm3; the allow is bounded to 0 at rest)",
       "objects": [
         "PRT_beam",
         "PRT_feeder_c*",
@@ -1370,7 +1383,10 @@
       ],
       "dist": 120,
       "step": 2,
-      "min_clearance": 0.0
+      "min_clearance": 0.0,
+      "flex": {
+        "PRT_turntable": 8.5
+      }
     },
     {
       "name": "v3-A1 crown group lifts +Z off the beam after the jar (3 hooks bounded by the crown x beam allow); the disc stays on the feed floor",
@@ -1721,6 +1737,59 @@
       "dist": 60,
       "step": 2,
       "min_clearance": 0.0
+    },
+    {
+      "name": "A2 hotfix (v3-A1-01) beam hooks hold: beam +Z (crown, disc, jar ignored) stopped by the post ledges within 0.3 (review row R1; allow bounded to 0)",
+      "object": "PRT_beam",
+      "ignore": [
+        "CAB_*",
+        "PRT_feeder_*",
+        "BUY_servo_feeder",
+        "BUY_horn_feeder",
+        "PRT_jar_*",
+        "BUY_jar*",
+        "BUY_mm_fill"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "dist": 3,
+      "step": 0.05,
+      "min_clearance": 0.0,
+      "expect": "blocked",
+      "blocked_by": [
+        "PRT_turntable"
+      ],
+      "at_mm": [
+        0.0,
+        0.3
+      ]
+    },
+    {
+      "name": "A2 hotfix (v3-A1-03) gate held open: from the open stop (PIV_gate 52) the blade is stopped -X within 1.0 by the open-detent dimple flank (review row R1; v2 A7 had an open notch)",
+      "object": "PRT_jar_gate",
+      "pose": {
+        "PIV_gate": 52
+      },
+      "dir": [
+        -1,
+        0,
+        0
+      ],
+      "dist": 10,
+      "step": 0.1,
+      "min_clearance": 0.0,
+      "expect": "blocked",
+      "blocked_by": [
+        "PRT_jar_valve",
+        "PRT_jar_adapter"
+      ],
+      "at_mm": [
+        0.0,
+        1.0
+      ]
     }
   ],
   "distances": [
@@ -2603,6 +2672,42 @@
         ]
       },
       "why": "v3-A1 the gate's detent finger bump (R1, apex y 28.8) seated in the +Y cheek's R1.1 closed notch at x 12: ray from the gap (y 28.85) along the bump's centre line (+Y to the notch, -Y to the bump apex) reads the 0.1 notch clearance (params GATE_FINGER notch_clr); was PRT_gate_detent's seated-bump row"
+    },
+    {
+      "a": "PRT_beam",
+      "b": "PRT_turntable",
+      "min": 0.05,
+      "ray": {
+        "origin": [
+          42.7,
+          19.25,
+          233.0
+        ],
+        "dir": [
+          0,
+          1,
+          0
+        ]
+      },
+      "why": "A2 hotfix (v3-A1-01) same-body snap pair at rest: right-post front beam-hook barb (BEAM_HOOK w 2.2, y 16.9..19.1) to its release-slot jamb (slot_hw 1.4, y 19.4) reads 0.3 a side (A1: the 3.0 barb sat 0.1 inside the jamb, 0.531 mm3)"
+    },
+    {
+      "a": "PRT_jar_valve",
+      "b": "PRT_jar_adapter",
+      "min": 0.05,
+      "ray": {
+        "origin": [
+          -7.0,
+          26.39,
+          336.5
+        ],
+        "dir": [
+          0,
+          0,
+          1
+        ]
+      },
+      "why": "A2 hotfix (v3-A1-01) same-body snap pair at rest: the valve key rib top (cheek top z 336) to the end of the spout key groove (VALVE_KEY_GROOVE_OVER 1.0 past it, z 337) along the rib centre line at R27.3 (A1: the groove stopped 0.5 short, 0.485 mm3)"
     }
   ],
   "stacks": [
@@ -2848,7 +2953,7 @@
         232.0
       ],
       "stress_mpa": 12.9,
-      "why": "v3-A1 SNAP-V hook on the beam underside into the left post top (L 20, t 1.4 in x, w 3.0; barb 0.6 toward the inner face with 0.1 slot clearance = 0.5 engage, catch face z 233.8 under a ledge at 233.85): 3 E t d / 2 L^2 = 9.2 MPa engage, 12.9 at the 0.7 release (flat screwdriver through the inner-face slot pushes the barb outboard) < 15; params BEAM_HOOK"
+      "why": "v3-A1 SNAP-V hook on the beam underside into the left post top (L 20, t 1.4 in x, w 2.2 (A2 hotfix, was 3.0: 0.3 a side in the 2.8 release slot); barb 0.6 toward the inner face with 0.1 slot clearance = 0.5 engage, catch face z 233.8 under a ledge at 233.85): 3 E t d / 2 L^2 = 9.2 MPa engage, 12.9 at the 0.7 release (flat screwdriver through the inner-face slot pushes the barb outboard) < 15; params BEAM_HOOK"
     },
     {
       "part": "PRT_beam",
@@ -2864,7 +2969,7 @@
         232.0
       ],
       "stress_mpa": 12.9,
-      "why": "v3-A1 SNAP-V hook on the beam underside into the left post top (L 20, t 1.4 in x, w 3.0; barb 0.6 toward the inner face with 0.1 slot clearance = 0.5 engage, catch face z 233.8 under a ledge at 233.85): 3 E t d / 2 L^2 = 9.2 MPa engage, 12.9 at the 0.7 release (flat screwdriver through the inner-face slot pushes the barb outboard) < 15; params BEAM_HOOK"
+      "why": "v3-A1 SNAP-V hook on the beam underside into the left post top (L 20, t 1.4 in x, w 2.2 (A2 hotfix, was 3.0: 0.3 a side in the 2.8 release slot); barb 0.6 toward the inner face with 0.1 slot clearance = 0.5 engage, catch face z 233.8 under a ledge at 233.85): 3 E t d / 2 L^2 = 9.2 MPa engage, 12.9 at the 0.7 release (flat screwdriver through the inner-face slot pushes the barb outboard) < 15; params BEAM_HOOK"
     },
     {
       "part": "PRT_beam",
@@ -2880,7 +2985,7 @@
         232.0
       ],
       "stress_mpa": 12.9,
-      "why": "v3-A1 SNAP-V hook on the beam underside into the right post top (L 20, t 1.4 in x, w 3.0; barb 0.6 toward the inner face with 0.1 slot clearance = 0.5 engage, catch face z 233.8 under a ledge at 233.85): 3 E t d / 2 L^2 = 9.2 MPa engage, 12.9 at the 0.7 release (flat screwdriver through the inner-face slot pushes the barb outboard) < 15; params BEAM_HOOK"
+      "why": "v3-A1 SNAP-V hook on the beam underside into the right post top (L 20, t 1.4 in x, w 2.2 (A2 hotfix, was 3.0: 0.3 a side in the 2.8 release slot); barb 0.6 toward the inner face with 0.1 slot clearance = 0.5 engage, catch face z 233.8 under a ledge at 233.85): 3 E t d / 2 L^2 = 9.2 MPa engage, 12.9 at the 0.7 release (flat screwdriver through the inner-face slot pushes the barb outboard) < 15; params BEAM_HOOK"
     },
     {
       "part": "PRT_beam",
@@ -2896,7 +3001,7 @@
         232.0
       ],
       "stress_mpa": 12.9,
-      "why": "v3-A1 SNAP-V hook on the beam underside into the right post top (L 20, t 1.4 in x, w 3.0; barb 0.6 toward the inner face with 0.1 slot clearance = 0.5 engage, catch face z 233.8 under a ledge at 233.85): 3 E t d / 2 L^2 = 9.2 MPa engage, 12.9 at the 0.7 release (flat screwdriver through the inner-face slot pushes the barb outboard) < 15; params BEAM_HOOK"
+      "why": "v3-A1 SNAP-V hook on the beam underside into the right post top (L 20, t 1.4 in x, w 2.2 (A2 hotfix, was 3.0: 0.3 a side in the 2.8 release slot); barb 0.6 toward the inner face with 0.1 slot clearance = 0.5 engage, catch face z 233.8 under a ledge at 233.85): 3 E t d / 2 L^2 = 9.2 MPa engage, 12.9 at the 0.7 release (flat screwdriver through the inner-face slot pushes the barb outboard) < 15; params BEAM_HOOK"
     },
     {
       "part": "PRT_feeder_crown",
@@ -3121,6 +3226,22 @@
       ],
       "stress_mpa": 11.0,
       "why": "v3-A1 valve to adapter spout (FST_valve x3 deleted): vertical SNAP-V finger cut in the -Y cheek (params VALVE_SNAP; across layers in the valve's bottom-down print), x 2..8, t 1.0, relief 1.0 behind / 0.6 at the sides / 1.0 in front below the gate floor, root z 321 -> barb z 334.8 (L 13.8): barb tip R27.1 is 0.4 inside the R27.5 spout OD, 3 E t d / 2 L^2 = 11.0 MPa <= 12 at the install deflection; seated in the spout groove (R27.0, 0.1 clear). Takes the lift only (jar weight bears on the spout shoulder over the cheek tops); permanent joint (no service op opens it)"
+    },
+    {
+      "part": "PRT_jar_gate",
+      "name": "A2 gate open-detent finger",
+      "from": [
+        -11.0,
+        2.25,
+        325.35
+      ],
+      "to": [
+        -26.25,
+        2.25,
+        325.35
+      ],
+      "stress_mpa": 10.2,
+      "why": "A2 hotfix (v3-A1-03) SNAP-IP finger cut in the flat-printed blade's -X end (params GATE_OPEN_DETENT): the +Y 1.5 of the stop lug (y 1.5..3.0) on a beam along x, root x -11 -> bump x -26.25 (L 15.25), 0.5 / 1.2 relief slots, R0.6 bump 0.3 into the spout notch's +Y wall: 3 E w d / 2 L^2 = 3 x 3500 x 1.5 x 0.3 / (2 x 15.25^2) = 10.2 MPa in the layer plane. The rigid -Y 4.0 of the lug keeps the positive stop"
     }
   ],
   "accepted_warns": [
@@ -3493,8 +3614,8 @@
       "check": "parts",
       "kind": "wall samples",
       "object": "PRT_jar_gate",
-      "match": "PRT_jar_gate: 8 wall samples < 1.6 mm (min 1.49)",
-      "why": "v3-A1 the 1.5 detent finger (params GATE_FINGER w) and the 1.5 x 6 stop lug at the knife end (GATE_STOP_LUG); infill 100, flat print"
+      "match": "PRT_jar_gate: 18 wall samples < 1.6 mm (min 1.49)",
+      "why": "A2 hotfix: 18 (A1 8) with the 1.5 open-detent finger under the stop lug (GATE_OPEN_DETENT y 1.5..3.0). v3-A1 the 1.5 detent finger (params GATE_FINGER w) and the 1.5 x 6 stop lug at the knife end (GATE_STOP_LUG); infill 100, flat print"
     },
     {
       "check": "parts",
@@ -3593,6 +3714,20 @@
       ],
       "match": "at pan=90 that point is 5.7 mm further away",
       "why": "v3-A1 finish: the bundle/base hand-over at params BUS_LB_JCT (az 235, r 4, z 70) swings a 2 x 4 x sin 45 = 5.66 chord over +/-90 pan; the v2 R7 A6-02 item, kept by decision because the pan axis below z 72 carries the pan-bus tail (BUS_PAN_AX). The two sleeves overlap at every pan (distances v2-A2-02 rows <= 1.0); BOM: join with the sleeve loose over the hand-over, no tie"
+    },
+    {
+      "check": "flexures",
+      "kind": "flexes in slide_out",
+      "object": "PRT_jar_adapter",
+      "match": "PRT_jar_adapter flexes in slide_out",
+      "why": "A2 hotfix: the spring is the gate's open-detent finger (flexures row 'A2 gate open-detent finger'); the adapter's notch wall and dimple are rigid"
+    },
+    {
+      "check": "flexures",
+      "kind": "flexes in slide_out",
+      "object": "PRT_turntable",
+      "match": "PRT_turntable flexes in slide_out",
+      "why": "A2 hotfix: the springs are the 4 beam hooks (flexures rows 'v3-A1 beam hook post *'); the post ledges are rigid"
     }
   ],
   "payload_fit": [

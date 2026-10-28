@@ -337,15 +337,23 @@ def build_jar(P):
     V = P.VALVE_SNAP
     zg0, zg1 = V["barb_z"] - 0.1, V["barb_z"] + 1.0
     kx, kw, kh = P.VALVE_KEY
+    OD = P.GATE_OPEN_DETENT
+    # A2 hotfix (v3-A1-03) open detent: bump centre (closed frame) on the lug's +Y finger, dimple in the +X notch's +Y wall
+    odx = P.GATE_X0 + lx / 2
+    ody = lhy + gc + OD["bump_d"] - OD["bump_r"]                    # 3.05: apex at the wall (3.35) + 0.3
+    odr = OD["bump_r"] + OD["dimple_clr"]
     rk_ = rso + 0.15 - kh                                           # key rib tip radius (26.9): 0.75 off the pad face
     ka = math.degrees(math.atan2(math.sqrt(rso ** 2 - kx ** 2), kx))   # key azimuth (+Y pad)
     kd = math.degrees(math.asin((kw / 2 + 0.2) / rso))
     ad = G.csg(ad, sub=[
-        G.box("adn0", P.GATE_X0 - 3.0, -ri + 0.5, -lhy - gc, lhy + gc, sz0 - 1.0, nz1),
+        G.box("adn0", P.GATE_X0 - 3.0, -ri + 0.5, -lhy - gc, ody + OD["bump_r"] + OD["closed_clr"], sz0 - 1.0, nz1),   # +Y side 4.0: the open-detent bump clears 0.35
         G.box("adn1", ri - 2.0, xs, -lhy - gc, lhy + gc, sz0 - 1.0, nz1),
         G.revolve("adg", [(V["groove_r"], zg0), (rso + 1.0, zg0), (rso + 1.0, zg1 + 1.0), (V["groove_r"], zg1)],
                   center=(c[0], c[1], 0), n=256),                   # flat catch wall (0.5 ledge), 45 deg upper flank
-        sector("adk", rk_ - 0.1, rso + 1.0, sz0 - 1.0, zsh - 0.5, ka - kd, ka + kd, c=c)])
+        sector("adk", rk_ - 0.1, rso + 1.0, sz0 - 1.0, P.IF_VALVE_Z1 + P.VALVE_KEY_GROOVE_OVER, ka - kd, ka + kd, c=c),
+        G.cyl("adod0", (odx + P.GATE_TRAVEL, ody), odr, sz0 - 1.0, nz1, n=48),
+        G.cyl("adod1", (odx + P.GATE_TRAVEL + gc, ody), odr, sz0 - 1.0, nz1, n=48),
+        G.box("adodb", odx + P.GATE_TRAVEL, odx + P.GATE_TRAVEL + gc, ody - odr, ody + odr, sz0 - 1.0, nz1)])
     A.part(ad, "PRT_jar_adapter", 'PRT', "pla_b", joint="PIV_jar", stl="jar_adapter", print_rot=A.R_FLIP,
            orient="lid disc (glass side) on the bed, spout up", supports="no", infill=40)
     # valve
@@ -459,6 +467,17 @@ def build_jar(P):
                         G.box("gfe", xf, xf + sw, yi - sw, hw + 1, g0 - 1, g1 + 1)])
     bump = G.prism("gfb", G.circle((GF["x_bump"], ybc), GF["bump_r"], n=48), g0, g1 - 0.4)
     bl = G.csg(bl, add=[bump])
+    # A2 hotfix (v3-A1-03) open detent finger: relief slots through the blade and lug on both sides of the lug's +Y
+    # part (free end = the blade's -X edge), then the R0.6 bump on its +Y face, full height so it prints from the bed
+    OD = P.GATE_OPEN_DETENT
+    oy0, oy1 = OD["y"]
+    oxr = x0 + OD["L"]
+    bl = G.csg(bl, sub=[G.box("gos0", x0 - 1.0, oxr, oy0 - OD["slot_in"], oy0, g0 - 1, g1 + ld + 1),
+                        G.box("gos1", x0 - 1.0, oxr, oy1, oy1 + OD["slot_out"], g0 - 1, g1 + ld + 1)])
+    ody = lhy + P.GATE_STOP_CLR + OD["bump_d"] - OD["bump_r"]
+    obump = G.csg(G.prism("gob", G.circle((x0 + lx / 2, ody), OD["bump_r"], n=48), g0, g1 + ld),
+                  inter=[G.box("gobi", x0, x0 + lx, oy0, oy1 + 1.0, g0 - 1, g1 + ld + 1)])
+    bl = G.csg(bl, add=[obump])
     A.part(bl, "PRT_jar_gate", 'PRT', "pla_a", joint="PIV_gate", stl="jar_gate", print_rot=A.R_ID,
            orient="flat, chamfer, tab and stop lug up; the detent finger bends in the layer plane", supports="no",
            infill=100)
@@ -466,6 +485,9 @@ def build_jar(P):
           (round(GF["x_bump"], 2), round(hw - GF["w"] / 2, 2), round(0.5 * (g0 + g1), 2)))
     vf = [((round(0.5 * (fx0 + fx1), 2), round(sg * (yc + t / 2), 2), zr0), (round(0.5 * (fx0 + fx1), 2), round(sg * (yc + t / 2), 2),
                                                                              round(zb_ + 0.2, 2))) for sg in (1, -1)]
+    ofl = ((round(x0 + OD["L"], 2), round(0.5 * (oy0 + oy1), 2), round(0.5 * (g0 + g1), 2)),
+           (round(x0 + lx / 2, 2), round(0.5 * (oy0 + oy1), 2), round(0.5 * (g0 + g1), 2)))
+    print("GATE_OPEN_DETENT flex", ofl, "stress %.2f" % P.GATE_OPEN_DETENT_STRESS)
     return fl, vf
 
 

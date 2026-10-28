@@ -264,3 +264,22 @@ substring entries were converted with `summary.accept_suggestions` (the config w
   step; 50 straight insertions; 24 flexures against print orientation; stability over 3456 poses; 15 cable routes.
 - Final `cadcheck.json` is copied to `renders/attempt-1/cadcheck.json`; the STL contact sheet is
   `renders/attempt-1/stl_sheet.png` (`cad sheet stl`).
+
+## Attempt 2 (hotfix) notes
+
+These notes override sections 3-5 where they differ. See DESIGN_LOG "Attempt 2 (hotfix)".
+
+- **Gate holds open and closed again.** Pull the tab +X: about 1 mm before the stop, the stop lug's small finger
+  clicks into a dimple in the spout notch, and the gate stays open [slide: A2 hotfix (v3-A1-03) gate held open,
+  blocked at 0.2 by PRT_jar_adapter]. It still stops hard at 52.35 [slide: v3-A1 gate open stop, blocked 52.5]. Push
+  it back -X past that click to close: the existing cheek finger clicks into the closed notch as before
+  [distances: v3-A1 gate detent finger seated]. Open-detent finger 10.2 MPa in the layer plane [flexures: A2 gate
+  open-detent finger]. Step 14 is unchanged: the gate goes in -X from the open side, and the bump clears the widened
+  closed notch.
+- **Beam hooks** are now 2.2 wide and catch under the post ledges [slide: A2 hotfix (v3-A1-01) beam hooks hold,
+  blocked at 0.1], 0.3 a side in the release slot [distances: ... beam-hook barb ... release-slot jamb, 0.3]. The
+  screwdriver release is the same.
+- **Jar adapter** seats fully on the valve. The key groove now runs 1.0 past the key rib [distances: ... valve key rib
+  top ... spout key groove, 1.0].
+- **Reprint list (from attempt 1):** `stl/beam.stl` (93.8 g), `stl/jar_adapter.stl` (8 g), `stl/jar_gate.stl` (8.9 g).
+  The other 22 STLs are geometrically unchanged. No change to fasteners or purchased parts: 25 printed, 14 metal (11 screws, 3 nuts/pins); 4 specs. Full check 0 fail / 69 warn (`renders/attempt-2/cadcheck.json`).

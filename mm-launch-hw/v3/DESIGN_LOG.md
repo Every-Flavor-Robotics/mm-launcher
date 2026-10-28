@@ -357,3 +357,67 @@ Rows -> values (cadcheck subset run on the built model; full run in `blender/cad
   acceleration), friction/sliding"; "cables: bend radius of a lead that is not modelled as a route, slack across
   joints, connector positions"; "not geometric: teardown step count, alignment-jig datums, aesthetics, BOM correctness".
 - Snap release forces, crush-rib fits and hook creep are calculated (flexures stress_mpa), not measured on a print.
+
+## Attempt 2 (hotfix): v3-A1-01 and v3-A1-03 only
+
+Scope: the two tool-catchable review majors, as parameter and small geometry edits. The bayonet re-plan in
+`renders/attempt-2/progress.md` (v3-A1-02, -04 to -07) is **not** started; those issues stand as reviewed.
+
+**v3-A1-01 beam hooks.** `BEAM_HOOK.w` 3.0 -> 2.2, so the barb sits 0.3 a side in the 2.8 release slot (`slot_hw`
+1.4, unchanged). The post-top hook slot keeps its A1 width through a new `BEAM_HOOK.post_slot_w` 3.0 (+0.3 a side
+= 3.6), so the turntable geometry doesn't change. Bending stress is width-independent (3 E t d / 2 L^2): the 4
+flexures rows stay at 9.2 / 12.9 MPa.
+- `cad q dist PRT_beam PRT_turntable`: **0.0** (contact on the post tops, no overlap; A1 -0.531 mm3).
+  `cad q inside 42.7,19.45,233.5` -> [PRT_turntable] only (A1: [turntable, beam]).
+- distances `A2 hotfix (v3-A1-01) ... beam-hook barb ... release-slot jamb`: **0.3** along the ray (min 0.05).
+- `allow PRT_beam x PRT_turntable` max_mm3 8.5 -> **0** (the rest overlap). The lift-off ride moved into that slide
+  row's `flex` (`PRT_turntable` 8.5): slide `v3-A1 beam + feeder lift +Z` flexed 5.84 mm3 at 16 mm, passes.
+- slide `A2 hotfix (v3-A1-01) beam hooks hold` (review row R1): beam +Z **blocked at 0.1** by PRT_turntable
+  (over_allow 0.22 > 0), within 0.3. The barbs now catch under the ledges.
+
+**v3-A1-01 valve key rib.** The adapter's spout key groove now runs to cheek top + `VALVE_KEY_GROOVE_OVER` 1.0 (z 337).
+In A1 it stopped 0.5 under the cheek top (z 335.5). The rib on the valve is unchanged, so the valve needs no reprint.
+The groove opens a 3.4 x 1.0 notch through the R28.3 shoulder at the +Y pad azimuth; the shoulder still bears on
+the rest of the cheek tops.
+- `cad q dist PRT_jar_valve PRT_jar_adapter`: **0.028** (the shoulder over the cheek tops, 0.02 modelled; A1 -0.485).
+- distances `A2 hotfix (v3-A1-01) ... valve key rib top ... spout key groove`: **1.0** along the ray (min 0.05).
+
+**v3-A1-03 gate open detent.** I didn't add a part. I took the review's idea of a detent on the stop lug and gave it a
+spring, because a bump on a rigid lug against a rigid spout can't click. The lug's +Y 1.5 (y 1.5..3.0) is now the
+free end of a SNAP-IP finger cut in the blade's -X end (params `GATE_OPEN_DETENT`): beam along x, root x -11 (closed
+frame), 0.5 / 1.2 relief slots, bending in y in the layer plane. A R0.6 bump on its +Y face stands 0.3 into the +X
+notch's +Y side wall (y 3.35). It drops into a R0.65 dimple in that wall at PIV_gate 52, and the dimple is slotted
+to 52.35 so the positive stop is unchanged. The rigid -Y 4.0 of the lug still takes the stop. The closed through
+notch is widened on +Y to y 4.0 (the bump clears it by 0.35). Reprint: gate and adapter.
+- `cad q sweep PRT_jar_gate PRT_jar_adapter PIV_gate 49 53 0.25`: clear (0.35) up to 50.0. The bump rides the wall
+  50.5..51.75 (max **0.084 mm3** at 51.25). It is seated with **0.05** at 52 and 52.25, and the lug meets the shoulder
+  past 52.35 (-0.718 at 52.5).
+- slide `A2 hotfix (v3-A1-03) gate held open` (review row R1, PIV_gate 52, -X): **blocked at 0.2** by
+  PRT_jar_adapter (the dimple flank), within 1.0. A1: not blocked over 10 mm.
+- New `allow PRT_jar_gate x PRT_jar_adapter` max_mm3 **0.02**. The sampled gate poses (0, 13, 26, 39, 52) measure 0,
+  and the bound is below the dimple-flank overlap, so the held-open row sees a stop. The two opening rows carry the
+  ride in `flex` (`PRT_jar_adapter` 0.5): `gate open stop` flexed 0.08 at 51.5, blocked 52.5 by PRT_jar_adapter (in
+  52..53); `gate opens +X 52` passes (its min_clearance went from 0.05 to 0 for the ride, measured 0.05).
+- flexures `A2 gate open-detent finger`: 3 x 3500 x 1.5 x 0.3 / (2 x 15.25^2) = **10.2 MPa** in the layer plane
+  (gate printed flat), < 15.
+- Not checked: the allow stops the interference check from refining gate x adapter between samples. The lug-in-notch
+  0.35 between samples is covered by the sweep above and the 52.35 hard-stop distances row, not re-run each check.
+- Fixed the stale `why` on `allow PRT_jar_gate x PRT_jar_valve` (it named an open notch on the valve).
+
+**New accepted warns (2):** `PRT_jar_adapter` and `PRT_turntable` "flex in slide_out but have no flexures row". In
+both cases the spring is on the moving part (gate open-detent finger, beam hooks), and the named part is the rigid
+track.
+
+**Reprint list (STL triangle geometry vs attempt 1):** `beam` (93.8 g), `jar_adapter` (8 g), `jar_gate` (8.9 g).
+Every other STL is geometrically identical. The turntable and valve are untouched.
+
+**Full check** (`renders/attempt-2/cadcheck.json`): **0 fail, 69 warn (58 accepted, 11 untriaged), 1 config warn.**
+- The 11 untriaged warns are the same ones the planner baseline found when it re-ran attempt 1 under tools 64c5947
+  (nip wheel x cover clearance 0.64, plus 10 same-step insertion warns: 6b, 6e, 6g, 11, 12, 13, 14 x4). None is
+  from this hotfix, and they're left for the full attempt 2.
+- The hotfix added two warns and triaged both: the beam step-9 insertion (`insert_ok`, a snap) and the gate's wall
+  samples, now 18 (accept updated for the open-detent finger).
+- Config warn: `allow PRT_launcher_cover x PRT_journal_plate` unused (0 mm3). It isn't touched here.
+- 5 stale accepts (nip clearance and 4 "not proven" cells) were already stale in the planner baseline.
+- FASTENERS 11 screws, 4 distinct spec x length: M3_cap x 20 (2), M3_cap x 6 (2), M3_hex x 16 (1), M3_pan x 10 (6).
+  PARTS 25 printed, 14 metal (11 screws, 3 nuts/pins). Both unchanged from attempt 1.

@@ -154,7 +154,7 @@ def hook_slot_cuts(P):
     zc = zt + 1.8                                       # barb catch face (ledge underside 0.05 above)
     cut = []
     for i, (xb, y, s) in enumerate(hk["pos"]):
-        hw = hk["w"] / 2 + 0.3
+        hw = hk["post_slot_w"] / 2 + 0.3                  # A2: decoupled from the 2.2 hook width (turntable unchanged)
         xa, xf = xb - s * (hk["t"] + 1.0), xb + s * 0.1       # back gap 1.0 (release 0.7), front 0.1
         cut.append(G.box("hks%d" % i, min(xa, xf), max(xa, xf), y - hw, y + hw, zt - 1.5, P.IF_BEAM_Z0 + 1))
         x_in = P.IF_ARM_L_IN if s > 0 else P.IF_ARM_R_IN
