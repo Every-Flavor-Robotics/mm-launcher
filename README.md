@@ -9,13 +9,46 @@ browser shows the CAD moving live.
   <img src="docs/images/v2-exploded.png" width="38%" alt="v2 assembly, exploded">
 </p>
 
+## This branch: v3, minimal hardware
+
+v3 is the v2 machine reworked to assemble with as little metal as possible. Snaps, dovetail slides, printed pins and
+merged parts replace the screws. The only metal left is what mounts the motors and holds the adjusters: the BLDC face
+screws, the flywheel's shaft clamp, the nip-gap stud and the servo centre screws, plus 2 battery-adapter screws.
+
+| | v2 (attempt 7) | v3 (attempt 1 + hotfix) |
+|---|---|---|
+| Screws + nuts | 103 + 4 | **11 + 3** |
+| Distinct screw specs | 18 | **4** |
+| Printed parts | 36 | **25** |
+| `cad check` | 0 fails | 0 fails, 69 warns (11 untriaged) |
+| Review (F/M/A) | 9/8/9 | 8/8/8 (attempt 1, before the hotfix) |
+
+**Not print-ready yet.** The jar-to-base stack hangs on snap fingers that bend across print layers, so lift the machine by
+the base only. The bayonet redesign that fixes this is planned in
+[`renders/attempt-2/progress.md`](mm-launch-hw/v3/renders/attempt-2/progress.md). The fit-test plates (0a/0b in the
+[print plan](mm-launch-hw/v3/BUILD/PRINT_PLAN.md)) print first.
+
+<p align="center"><img src="docs/images/v3-iso.png" width="46%" alt="v3 assembly, iso view"></p>
+
+- Brief: [`mm-launch-hw/v3/DESIGN_BRIEF.md`](mm-launch-hw/v3/DESIGN_BRIEF.md). Design log and joint table:
+  [`DESIGN_LOG.md`](mm-launch-hw/v3/DESIGN_LOG.md). Review: [`renders/attempt-1/review.md`](mm-launch-hw/v3/renders/attempt-1/review.md),
+  hotfix review: [`renders/attempt-2/hotfix_review.md`](mm-launch-hw/v3/renders/attempt-2/hotfix_review.md).
+- Build package: [`mm-launch-hw/v3/BUILD/`](mm-launch-hw/v3/BUILD): [`ASSEMBLY.md`](mm-launch-hw/v3/BUILD/ASSEMBLY.md)
+  (each snap step says how it seats and how to release it), `MEASURE_FIRST.md`, `SHOPPING_LIST.md`, `PRINT_PLAN.md`
+  (8 plates, about 29.5 h and 1.8 kg, geometry estimates), and the interactive guide
+  [`guide/assembly_guide.html`](mm-launch-hw/v3/BUILD/guide/assembly_guide.html) (25 steps).
+
+![v3 interactive assembly guide, step 9](docs/images/v3-assembly-guide.png)
+
+The rest of this README describes v2, which is on `main`.
+
 | Path | What |
 |---|---|
 | [`mm-launch-hw/v2/`](mm-launch-hw/v2) | **Current hardware.** v2: modular Blender/cadlib model, BOM, design log, review renders, and the bench build package in [`BUILD/`](mm-launch-hw/v2/BUILD) |
 | [`mm-launch-hw/`](mm-launch-hw) | v1 (attempts 1-3), the original design brief, purchased-part references, and the launch test rig in [`test-prints/launch-rig/`](mm-launch-hw/test-prints/launch-rig) |
 | [`mm-launch-fw/`](mm-launch-fw) | MotorGo Axis (ESP32-S3) firmware and the WebUSB control panel |
 | [`orchestration/`](orchestration) | The design/review loop that produced v2 |
-| branch [`min-hardware`](../../tree/min-hardware) | v3: the same machine, assembled with snaps, slides and printed pins instead of screws |
+| [`mm-launch-hw/v3/`](mm-launch-hw/v3) | v3 (this branch): the same machine, assembled with snaps, slides and printed pins instead of screws |
 
 ## Hardware
 
