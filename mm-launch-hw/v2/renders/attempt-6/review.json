@@ -1,0 +1,28 @@
+{
+ "functionality": 9,
+ "manufacturability": 8,
+ "aesthetics": 9,
+ "anchors": {
+  "functionality": "9: minor polish only, 0 fails, every warn explained; drops 31/31 at both stops and tilt -3..46 (flattest 34.5), swept full-lift entry arc >= 8.0 at 3 settings (min 8.099), splice modelled and clear; remaining items minor",
+  "manufacturability": "8: works, one major (A6-01: BOM step 10d places the bus splice in a hub bore closed by the groove cap and the floor), fix is BOM text + rows, < 1 h, no reprint",
+  "aesthetics": "9: every item true; flat-topped detent tab with EB 1.0 and a flush head reads deliberate (review/r01_detent_tab_flat_top_closeup.png); one EB 1.0 / CR 6 set; side.png re-framed"
+ },
+ "issues": [
+  {"id": "A6-01", "metric": "manufacturability", "severity": "major", "subsystem": "pan_stage / bus junction assembly", "problem": "BOM step 10d splices and seats BUY_bus_junction in the hub bore, but at that step the bore is closed above by PRT_groove_cap (step 2c, 2.5 above the splice top) and below by the base floor (step 3); the step gives no access or soldering location, and the splice is retained only by a tie", "evidence": "review/cadcheck_review.json FAIL slide 'R6 A6-01 bus junction placed/removed from above' blocked by PRT_groove_cap at 4 mm; cad q ray +Z from (5.73,4.02,99.5) -> PRT_groove_cap 2.5, -Z from (5.73,4.02,73.5) -> PRT_base_floor 70.5; assembly.step_of junction 10d / groove cap 2c / floor 3; review/r02_sec_x5.73_hub_bore_junction_closed.png", "fix": "Rewrite 10d: tilt 45, remove the groove cap (6 x M3 x 10 csk, straight 14; cap lifts +Z 40 at 0.2 to post_L), pull the pan lead up (62 spare) and the tilt/feeder leads down, solder above the turntable, lower the Ø10 x 25 splice to z 74 at az 35, tie it, refit the cap. Adopt the review service + slide rows and add a junction -Z 25 seat slide row with the cap ignored; optional 2 mm tie slot in the hub-gear bore at az 35", "tool_catchable": true},
+  {"id": "A6-02", "metric": "functionality", "severity": "minor", "subsystem": "cables / pan hub", "problem": "Static CAB_bus_pan ends 1.2 under the splice, but the splice sits at r 7 and its bottom centre moves 9.9 mm over ±90 pan; the last stretch of the pan lead swings and twists under the hub gear with no row (the base-lead meeting point at r 4 does the same, its row passes only because the sleeves overlap)", "evidence": "cad q sweep CAB_bus_pan BUY_bus_junction PIV_pan: 1.2 at -25..+42.5, 2.717 at -70, 3.951 / 4.375 at +87.5 / -92.5; cad q list CAB_bus_pan top z 72.8 static", "fix": "Split CAB_bus_pan at z 70 into a static loop and a PIV_pan tail ending on the splice bottom, with a distances row (max 1.0) between loop end and tail start at pan -90/0/90; or set BUS_JCT r 7 -> 0 and move the bundle to r 7 with the same tail treatment for the base lead", "tool_catchable": true},
+  {"id": "A6-03", "metric": "functionality", "severity": "minor", "subsystem": "check config / nip rows", "problem": "Swept full-lift and hood-to-tape rows at home and at the max stop drop their psi 0 station (missed_deg [0]); BDC is covered by other rows, but a silently missed station would hide a real miss", "evidence": "cad rows review/cadcheck.json v2-A5: profile=0:- missed_deg=[0] on 4 rows (hood 0 and -0.558)", "fix": "Start the sweeps at psi 1 or move the ray origin 0.5 radially inward; require all 53 stations to hit at all 3 settings", "tool_catchable": true}
+ ],
+ "previous_issue_status": [
+  {"id": "A5-01", "status": "FIXED", "evidence": "distances BUY_jar_band>PRT_gate_detent 1.000 (min 1.0; A5 0.322); tab top z 299.5; stack v2-A5-01 WC 0.8 / RSS 0.418 vs 1.0; FST_detent_0 standoff 0, engagement 4.0; tip 2.652 / 14.867"},
+  {"id": "A5-02", "status": "FIXED", "evidence": "Margin unchanged (8.099 @ psi 90 min stop, tape 7.599) but the requested fix is in: step 6f butt-join + caliper <= 0.5, section 8 thickest-candy rule (> 7.3 -> home or above), swept rows psi 0..104 replace the point rows"},
+  {"id": "A5-03", "status": "FIXED", "evidence": "BUY_bus_junction Ø10 x 25 on PIV_pan at (5.73,4.02) z 74..99, step 10d; to turntable 1.945, hub gear 1.000, bundle 2.846, base lead 3.548/5.130/4.206 (swept min 3.536); 0 junction warns. Access to place it is a new issue, A6-01"},
+  {"id": "A5-04", "status": "FIXED", "evidence": "BOM: 2 leaves (spare), day-0 / 1-week preload log with thresholds (6.4 N, 0.12 set), LEAF_L 34 -> 40 trigger; 40 leaf unmodelled as the review allowed"},
+  {"id": "A5-05", "status": "FIXED", "evidence": "Item 12: 1 in tape trimmed to the 13.8 land (BUY_tape x 14.1..27.9); side.png z 0..432.6 in a 467.2 window, jar top and base bottom in frame"},
+  {"id": "A5-06", "status": "FIXED", "evidence": "allow deleted; fits detent x gate contact_normal [0,0,1], min_clearance 0.05: interference min 0.10 at gate 39; gate slide min 0.08, flexed {}"}
+ ],
+ "check_config_disputes": [
+  "No row covers placing BUY_bus_junction in its bore at step 10d; review slide row fails (blocked by PRT_groove_cap at 4 mm) - A6-01",
+  "distances v2-A2-02 bundle/base meeting (max 1.0) passes only because the two Ø6 sleeves overlap once the meeting point is off-axis at r 4; it does not prove the static and moving ends meet - A6-02",
+  "swept v2-A5-02 rows at hood 0 and -0.558 report missed_deg [0]: the psi 0 station is silently unmeasured - A6-03"
+ ]
+}

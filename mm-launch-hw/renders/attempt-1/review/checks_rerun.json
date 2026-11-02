@@ -1,0 +1,1793 @@
+{
+ "generated": "2026-10-24 18:53:21",
+ "printer_volumes_mm": {
+  "P1S": [
+   256.0,
+   256.0,
+   256.0
+  ],
+  "H2D": [
+   325.0,
+   320.0,
+   325.0
+  ]
+ },
+ "parts": [
+  {
+   "object": "PRT_arm_cap_L",
+   "stl": "arm_cap_l.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 8709.1,
+   "print_bbox_mm": [
+    22.0,
+    48.0,
+    14.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 116.7,
+   "orientation": "lying on its side face",
+   "supports": "no",
+   "wall_samples": 306,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 2.13,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 30,
+   "est_filament_g": 6.1,
+   "est_print_h": 0.21
+  },
+  {
+   "object": "PRT_arm_cap_R",
+   "stl": "arm_cap_r.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 9116.1,
+   "print_bbox_mm": [
+    22.0,
+    48.0,
+    14.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 116.7,
+   "orientation": "lying on its side face",
+   "supports": "no",
+   "wall_samples": 386,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 2.45,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 30,
+   "est_filament_g": 6.3,
+   "est_print_h": 0.22
+  },
+  {
+   "object": "PRT_arm_cover_L",
+   "stl": "arm_cover_l.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 15359.5,
+   "print_bbox_mm": [
+    133.5,
+    41.0,
+    8.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 2707.2,
+   "orientation": "flange (arm side) down, channel open to the bed",
+   "supports": "no",
+   "wall_samples": 405,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 2.0,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 20,
+   "est_filament_g": 16.3,
+   "est_print_h": 0.41
+  },
+  {
+   "object": "PRT_arm_cover_R",
+   "stl": "arm_cover_r.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 7022.5,
+   "print_bbox_mm": [
+    65.5,
+    41.0,
+    8.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 1411.8,
+   "orientation": "flange (arm side) down, channel open to the bed",
+   "supports": "no",
+   "wall_samples": 199,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 1.88,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 20,
+   "est_filament_g": 7.6,
+   "est_print_h": 0.24
+  },
+  {
+   "object": "PRT_base_floor",
+   "stl": "base_floor.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 172006.3,
+   "print_bbox_mm": [
+    240.0,
+    240.0,
+    11.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 602.6,
+   "orientation": "flat, bosses up",
+   "supports": "no",
+   "wall_samples": 1657,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 1.6,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 15,
+   "est_filament_g": 136.7,
+   "est_print_h": 2.65
+  },
+  {
+   "object": "PRT_base_shell",
+   "stl": "base_shell.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 541823.0,
+   "print_bbox_mm": [
+    240.0,
+    240.0,
+    87.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 2742.3,
+   "orientation": "upside down: deck face on the bed, walls up",
+   "supports": "no",
+   "wall_samples": 5895,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 1.74,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 15,
+   "est_filament_g": 385.9,
+   "est_print_h": 7.3
+  },
+  {
+   "object": "PRT_encoder_cap",
+   "stl": "encoder_cap.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 6662.0,
+   "print_bbox_mm": [
+    41.2,
+    58.0,
+    8.5
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 0.0,
+   "orientation": "back face on the bed, spigot and pegs up",
+   "supports": "no",
+   "wall_samples": 1246,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 2.0,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 40,
+   "est_filament_g": 6.1,
+   "est_print_h": 0.21
+  },
+  {
+   "object": "PRT_feeder_disc",
+   "stl": "feeder_disc.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 53015.3,
+   "print_bbox_mm": [
+    100.0,
+    100.0,
+    13.8
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 465.1,
+   "orientation": "upside down: top face on the bed, drive boss up",
+   "supports": "no",
+   "wall_samples": 2147,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 1.87,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 30,
+   "est_filament_g": 33.4,
+   "est_print_h": 0.72
+  },
+  {
+   "object": "PRT_feeder_plate",
+   "stl": "feeder_plate.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 94011.6,
+   "print_bbox_mm": [
+    187.0,
+    127.4,
+    6.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 633.3,
+   "orientation": "flat",
+   "supports": "no",
+   "wall_samples": 1348,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 2.24,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 25,
+   "est_filament_g": 57.9,
+   "est_print_h": 1.18
+  },
+  {
+   "object": "PRT_flywheel",
+   "stl": "flywheel.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 26464.3,
+   "print_bbox_mm": [
+    72.0,
+    72.0,
+    17.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 253.6,
+   "orientation": "web face on the bed; rim and hub grow up",
+   "supports": "no",
+   "wall_samples": 3116,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 1.6,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 100,
+   "est_filament_g": 32.8,
+   "est_print_h": 0.71
+  },
+  {
+   "object": "PRT_hood",
+   "stl": "hood.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 13586.3,
+   "print_bbox_mm": [
+    10.3,
+    79.2,
+    22.5
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 9.6,
+   "orientation": "on its side face",
+   "supports": "no",
+   "wall_samples": 544,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 2.83,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 40,
+   "est_filament_g": 9.9,
+   "est_print_h": 0.29
+  },
+  {
+   "object": "PRT_hood_shim_0",
+   "stl": "hood_shim.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 684.6,
+   "print_bbox_mm": [
+    5.5,
+    19.7,
+    21.5
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 0.0,
+   "orientation": "on its side face (1.6 mm shim; print 3)",
+   "supports": "no",
+   "wall_samples": 104,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 1.6,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 100,
+   "est_filament_g": 0.8,
+   "est_print_h": 0.12
+  },
+  {
+   "object": "PRT_hood_shim_1",
+   "stl": "hood_shim.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 704.7,
+   "print_bbox_mm": [
+    5.6,
+    20.3,
+    21.5
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 0.0,
+   "orientation": "on its side face (1.6 mm shim; print 3)",
+   "supports": "no",
+   "wall_samples": 104,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 1.6,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 100,
+   "est_filament_g": 0.9,
+   "est_print_h": 0.12
+  },
+  {
+   "object": "PRT_hopper",
+   "stl": "hopper.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 55202.7,
+   "print_bbox_mm": [
+    134.9,
+    134.9,
+    43.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 0.0,
+   "orientation": "upside down: top rim on the bed (flare leans 30 deg, baffle top 45 deg)",
+   "supports": "no",
+   "wall_samples": 2424,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 1.94,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 15,
+   "est_filament_g": 45.4,
+   "est_print_h": 0.95
+  },
+  {
+   "object": "PRT_hopper_lid",
+   "stl": "hopper_lid.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 47034.3,
+   "print_bbox_mm": [
+    136.9,
+    149.9,
+    5.8
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 0.0,
+   "orientation": "upside down: top face on the bed, locating ring up",
+   "supports": "no",
+   "wall_samples": 1937,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 2.0,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 15,
+   "est_filament_g": 38.2,
+   "est_print_h": 0.81
+  },
+  {
+   "object": "PRT_horn_adapter_feeder",
+   "stl": "horn_adapter.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 2698.5,
+   "print_bbox_mm": [
+    25.9,
+    26.0,
+    12.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 321.3,
+   "orientation": "recess side down, hex key up",
+   "supports": "no",
+   "wall_samples": 541,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 2.65,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 40,
+   "est_filament_g": 2.4,
+   "est_print_h": 0.15
+  },
+  {
+   "object": "PRT_horn_adapter_pan",
+   "stl": "horn_adapter.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 2698.5,
+   "print_bbox_mm": [
+    25.9,
+    26.0,
+    12.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 321.3,
+   "orientation": "recess side down, hex key up",
+   "supports": "no",
+   "wall_samples": 541,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 2.65,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 40,
+   "est_filament_g": 2.4,
+   "est_print_h": 0.15
+  },
+  {
+   "object": "PRT_horn_adapter_tilt",
+   "stl": "horn_adapter.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 2698.5,
+   "print_bbox_mm": [
+    25.9,
+    26.0,
+    12.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 321.3,
+   "orientation": "recess side down, hex key up",
+   "supports": "no",
+   "wall_samples": 541,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 2.65,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 40,
+   "est_filament_g": 2.4,
+   "est_print_h": 0.15
+  },
+  {
+   "object": "PRT_launcher_body",
+   "stl": "launcher_body.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 113918.2,
+   "print_bbox_mm": [
+    121.5,
+    108.0,
+    27.5
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 19.1,
+   "orientation": "left (motor) wall outer face on the bed; profile is extruded so all walls are vertical",
+   "supports": "no",
+   "wall_samples": 2009,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 2.0,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 25,
+   "est_filament_g": 65.8,
+   "est_print_h": 1.33
+  },
+  {
+   "object": "PRT_launcher_cover",
+   "stl": "launcher_cover.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 53543.2,
+   "print_bbox_mm": [
+    121.5,
+    108.0,
+    22.2
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 3.3,
+   "orientation": "inner face on the bed, journal boss up",
+   "supports": "no",
+   "wall_samples": 1294,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 1.65,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 25,
+   "est_filament_g": 35.6,
+   "est_print_h": 0.76
+  },
+  {
+   "object": "PRT_lead_duct",
+   "stl": "lead_duct.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 5643.4,
+   "print_bbox_mm": [
+    22.2,
+    47.9,
+    28.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 528.9,
+   "orientation": "end cap down (the far cap bridges 15 mm)",
+   "supports": "no",
+   "wall_samples": 168,
+   "wall_samples_below_1.6mm": 1,
+   "min_wall_ray_mm": 0.9,
+   "thin_samples_world_xyz": [
+    [
+     0.9,
+     [
+      -74.5,
+      24.4,
+      195.2
+     ]
+    ]
+   ],
+   "infill_pct": 20,
+   "est_filament_g": 6.3,
+   "est_print_h": 0.22
+  },
+  {
+   "object": "PRT_motor_cradle",
+   "stl": "motor_cradle.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 51173.1,
+   "print_bbox_mm": [
+    42.2,
+    58.0,
+    84.3
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 0.0,
+   "orientation": "front plate on the bed, tube vertical",
+   "supports": "no",
+   "wall_samples": 1100,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 2.97,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 30,
+   "est_filament_g": 36.8,
+   "est_print_h": 0.79
+  },
+  {
+   "object": "PRT_pan_hub",
+   "stl": "pan_hub.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 16565.7,
+   "print_bbox_mm": [
+    57.0,
+    57.0,
+    14.5
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 0.6,
+   "orientation": "gear face down",
+   "supports": "no",
+   "wall_samples": 2427,
+   "wall_samples_below_1.6mm": 72,
+   "min_wall_ray_mm": 1.54,
+   "thin_samples_world_xyz": [
+    [
+     1.54,
+     [
+      -28.3,
+      -0.6,
+      82.5
+     ]
+    ],
+    [
+     1.54,
+     [
+      -28.3,
+      0.6,
+      80.0
+     ]
+    ],
+    [
+     1.54,
+     [
+      -28.0,
+      -4.4,
+      80.0
+     ]
+    ],
+    [
+     1.54,
+     [
+      -28.0,
+      4.4,
+      82.5
+     ]
+    ],
+    [
+     1.54,
+     [
+      -27.8,
+      -5.5,
+      82.5
+     ]
+    ],
+    [
+     1.54,
+     [
+      -27.8,
+      5.5,
+      80.0
+     ]
+    ]
+   ],
+   "infill_pct": 40,
+   "est_filament_g": 13.4,
+   "est_print_h": 0.35
+  },
+  {
+   "object": "PRT_pan_pinion",
+   "stl": "pan_pinion.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 15877.1,
+   "print_bbox_mm": [
+    56.9,
+    56.9,
+    7.5
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 0.0,
+   "orientation": "flat",
+   "supports": "no",
+   "wall_samples": 1887,
+   "wall_samples_below_1.6mm": 72,
+   "min_wall_ray_mm": 1.54,
+   "thin_samples_world_xyz": [
+    [
+     1.54,
+     [
+      -28.3,
+      52.1,
+      80.0
+     ]
+    ],
+    [
+     1.54,
+     [
+      -28.3,
+      55.9,
+      82.5
+     ]
+    ],
+    [
+     1.54,
+     [
+      -28.2,
+      51.0,
+      82.5
+     ]
+    ],
+    [
+     1.54,
+     [
+      -28.2,
+      57.0,
+      80.0
+     ]
+    ],
+    [
+     1.54,
+     [
+      -27.5,
+      47.2,
+      80.0
+     ]
+    ],
+    [
+     1.54,
+     [
+      -27.5,
+      60.8,
+      82.5
+     ]
+    ]
+   ],
+   "infill_pct": 40,
+   "est_filament_g": 12.4,
+   "est_print_h": 0.33
+  },
+  {
+   "object": "PRT_servo_clamp_feeder",
+   "stl": "servo_clamp.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 5452.3,
+   "print_bbox_mm": [
+    45.4,
+    38.7,
+    4.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 0.0,
+   "orientation": "flat",
+   "supports": "no",
+   "wall_samples": 311,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 3.27,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 30,
+   "est_filament_g": 4.5,
+   "est_print_h": 0.18
+  },
+  {
+   "object": "PRT_servo_clamp_pan",
+   "stl": "servo_clamp.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 5452.3,
+   "print_bbox_mm": [
+    45.4,
+    38.7,
+    4.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 0.0,
+   "orientation": "flat",
+   "supports": "no",
+   "wall_samples": 311,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 3.27,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 30,
+   "est_filament_g": 4.5,
+   "est_print_h": 0.18
+  },
+  {
+   "object": "PRT_servo_clamp_tilt",
+   "stl": "servo_clamp.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 5452.3,
+   "print_bbox_mm": [
+    45.4,
+    38.7,
+    4.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 0.0,
+   "orientation": "flat",
+   "supports": "no",
+   "wall_samples": 311,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 3.27,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 30,
+   "est_filament_g": 4.5,
+   "est_print_h": 0.18
+  },
+  {
+   "object": "PRT_servo_pocket_feeder",
+   "stl": "servo_pocket.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 23389.9,
+   "print_bbox_mm": [
+    63.0,
+    35.9,
+    47.7
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 142.4,
+   "orientation": "mount face down, walls up",
+   "supports": "no",
+   "wall_samples": 1069,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 1.7,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 30,
+   "est_filament_g": 21.0,
+   "est_print_h": 0.49
+  },
+  {
+   "object": "PRT_servo_pocket_pan",
+   "stl": "servo_pocket_pan.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 46074.8,
+   "print_bbox_mm": [
+    80.0,
+    80.0,
+    47.7
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 114.6,
+   "orientation": "mount face down, walls up",
+   "supports": "no",
+   "wall_samples": 1050,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 1.7,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 30,
+   "est_filament_g": 36.2,
+   "est_print_h": 0.78
+  },
+  {
+   "object": "PRT_servo_pocket_tilt",
+   "stl": "servo_pocket.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 23389.9,
+   "print_bbox_mm": [
+    63.0,
+    35.9,
+    47.7
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 142.4,
+   "orientation": "mount face down, walls up",
+   "supports": "no",
+   "wall_samples": 1068,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 1.7,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 30,
+   "est_filament_g": 21.0,
+   "est_print_h": 0.49
+  },
+  {
+   "object": "PRT_trunnion_L",
+   "stl": "trunnion_l.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 50948.3,
+   "print_bbox_mm": [
+    40.0,
+    40.0,
+    106.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 95.3,
+   "orientation": "flange on the bed, tube vertical",
+   "supports": "no",
+   "wall_samples": 872,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 2.65,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 30,
+   "est_filament_g": 32.9,
+   "est_print_h": 0.71
+  },
+  {
+   "object": "PRT_turntable",
+   "stl": "turntable.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 385595.6,
+   "print_bbox_mm": [
+    224.0,
+    224.0,
+    12.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 2206.7,
+   "orientation": "upside down: top face on the bed (grooves open at the bed), bearing ring up",
+   "supports": "no",
+   "wall_samples": 2547,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 2.0,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 15,
+   "est_filament_g": 150.6,
+   "est_print_h": 2.91
+  },
+  {
+   "object": "PRT_turntable_spine",
+   "stl": "turntable_spine.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 14049.1,
+   "print_bbox_mm": [
+    114.0,
+    32.0,
+    4.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 0.0,
+   "orientation": "flat",
+   "supports": "no",
+   "wall_samples": 586,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 3.24,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 30,
+   "est_filament_g": 11.2,
+   "est_print_h": 0.31
+  },
+  {
+   "object": "PRT_yoke_arm_L",
+   "stl": "yoke_arm_l.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 85892.2,
+   "print_bbox_mm": [
+    110.0,
+    64.0,
+    28.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 196.1,
+   "orientation": "lying on its outer face (foot grows up)",
+   "supports": "no",
+   "wall_samples": 670,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 3.41,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 30,
+   "est_filament_g": 45.9,
+   "est_print_h": 0.96
+  },
+  {
+   "object": "PRT_yoke_arm_R",
+   "stl": "yoke_arm_r.stl",
+   "non_manifold_edges": 0,
+   "boundary_edges": 0,
+   "volume_mm3": 83310.2,
+   "print_bbox_mm": [
+    110.0,
+    64.0,
+    28.0
+   ],
+   "fits_P1S": true,
+   "fits_H2D": true,
+   "overhang_area_gt45_mm2": 168.9,
+   "orientation": "lying on its inner face (foot grows up)",
+   "supports": "no",
+   "wall_samples": 677,
+   "wall_samples_below_1.6mm": 0,
+   "min_wall_ray_mm": 2.39,
+   "thin_samples_world_xyz": [],
+   "infill_pct": 30,
+   "est_filament_g": 44.4,
+   "est_print_h": 0.93
+  }
+ ],
+ "interference": {
+  "pan-90_tilt0": {
+   "touching_pairs_zero_volume": 64,
+   "overlaps": [
+    {
+     "a": "BUY_servo_pan",
+     "b": "BUY_horn_pan",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -3.0,
+      51.0,
+      69.5
+     ],
+     "region_max": [
+      3.0,
+      57.0,
+      72.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_tilt",
+     "b": "BUY_horn_tilt",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 24,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -3.0,
+      -61.5,
+      209.0
+     ],
+     "region_max": [
+      3.0,
+      -58.4,
+      215.0
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_feeder",
+     "b": "BUY_horn_feeder",
+     "volume_mm3": 85.42,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -42.0,
+      -24.0,
+      226.5
+     ],
+     "region_max": [
+      -36.0,
+      -18.0,
+      229.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_battery",
+     "b": "BUY_dewalt_adapter",
+     "volume_mm3": 36859.86,
+     "tri_overlaps": 14,
+     "solver": "MANIFOLD",
+     "region_min": [
+      30.0,
+      -99.5,
+      62.6
+     ],
+     "region_max": [
+      104.6,
+      -56.5,
+      74.6
+     ],
+     "whitelisted": "battery rail stem slides into the adapter"
+    }
+   ]
+  },
+  "pan-90_tilt22.5": {
+   "touching_pairs_zero_volume": 63,
+   "overlaps": [
+    {
+     "a": "BUY_servo_pan",
+     "b": "BUY_horn_pan",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -3.0,
+      51.0,
+      69.5
+     ],
+     "region_max": [
+      3.0,
+      57.0,
+      72.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_tilt",
+     "b": "BUY_horn_tilt",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 25,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -3.0,
+      -61.5,
+      209.0
+     ],
+     "region_max": [
+      3.0,
+      -58.4,
+      215.0
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_feeder",
+     "b": "BUY_horn_feeder",
+     "volume_mm3": 85.42,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -42.0,
+      -24.0,
+      226.5
+     ],
+     "region_max": [
+      -36.0,
+      -18.0,
+      229.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_battery",
+     "b": "BUY_dewalt_adapter",
+     "volume_mm3": 36859.86,
+     "tri_overlaps": 14,
+     "solver": "MANIFOLD",
+     "region_min": [
+      30.0,
+      -99.5,
+      62.6
+     ],
+     "region_max": [
+      104.6,
+      -56.5,
+      74.6
+     ],
+     "whitelisted": "battery rail stem slides into the adapter"
+    }
+   ]
+  },
+  "pan-90_tilt45": {
+   "touching_pairs_zero_volume": 67,
+   "overlaps": [
+    {
+     "a": "BUY_servo_pan",
+     "b": "BUY_horn_pan",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -3.0,
+      51.0,
+      69.5
+     ],
+     "region_max": [
+      3.0,
+      57.0,
+      72.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_tilt",
+     "b": "BUY_horn_tilt",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 27,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -3.0,
+      -61.5,
+      209.0
+     ],
+     "region_max": [
+      3.0,
+      -58.4,
+      215.0
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_feeder",
+     "b": "BUY_horn_feeder",
+     "volume_mm3": 85.42,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -42.0,
+      -24.0,
+      226.5
+     ],
+     "region_max": [
+      -36.0,
+      -18.0,
+      229.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_battery",
+     "b": "BUY_dewalt_adapter",
+     "volume_mm3": 36859.86,
+     "tri_overlaps": 14,
+     "solver": "MANIFOLD",
+     "region_min": [
+      30.0,
+      -99.5,
+      62.6
+     ],
+     "region_max": [
+      104.6,
+      -56.5,
+      74.6
+     ],
+     "whitelisted": "battery rail stem slides into the adapter"
+    }
+   ]
+  },
+  "pan+0_tilt0": {
+   "touching_pairs_zero_volume": 48,
+   "overlaps": [
+    {
+     "a": "BUY_servo_pan",
+     "b": "BUY_horn_pan",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -3.0,
+      51.0,
+      69.5
+     ],
+     "region_max": [
+      3.0,
+      57.0,
+      72.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_tilt",
+     "b": "BUY_horn_tilt",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      58.4,
+      -3.0,
+      209.0
+     ],
+     "region_max": [
+      61.5,
+      3.0,
+      215.0
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_feeder",
+     "b": "BUY_horn_feeder",
+     "volume_mm3": 85.42,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      18.0,
+      -42.0,
+      226.5
+     ],
+     "region_max": [
+      24.0,
+      -36.0,
+      229.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_battery",
+     "b": "BUY_dewalt_adapter",
+     "volume_mm3": 36859.86,
+     "tri_overlaps": 14,
+     "solver": "MANIFOLD",
+     "region_min": [
+      30.0,
+      -99.5,
+      62.6
+     ],
+     "region_max": [
+      104.6,
+      -56.5,
+      74.6
+     ],
+     "whitelisted": "battery rail stem slides into the adapter"
+    }
+   ]
+  },
+  "pan+0_tilt22.5": {
+   "touching_pairs_zero_volume": 48,
+   "overlaps": [
+    {
+     "a": "BUY_servo_pan",
+     "b": "BUY_horn_pan",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -3.0,
+      51.0,
+      69.5
+     ],
+     "region_max": [
+      3.0,
+      57.0,
+      72.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_tilt",
+     "b": "BUY_horn_tilt",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      58.4,
+      -3.0,
+      209.0
+     ],
+     "region_max": [
+      61.5,
+      3.0,
+      215.0
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_feeder",
+     "b": "BUY_horn_feeder",
+     "volume_mm3": 85.42,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      18.0,
+      -42.0,
+      226.5
+     ],
+     "region_max": [
+      24.0,
+      -36.0,
+      229.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_battery",
+     "b": "BUY_dewalt_adapter",
+     "volume_mm3": 36859.86,
+     "tri_overlaps": 14,
+     "solver": "MANIFOLD",
+     "region_min": [
+      30.0,
+      -99.5,
+      62.6
+     ],
+     "region_max": [
+      104.6,
+      -56.5,
+      74.6
+     ],
+     "whitelisted": "battery rail stem slides into the adapter"
+    }
+   ]
+  },
+  "pan+0_tilt45": {
+   "touching_pairs_zero_volume": 48,
+   "overlaps": [
+    {
+     "a": "BUY_servo_pan",
+     "b": "BUY_horn_pan",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -3.0,
+      51.0,
+      69.5
+     ],
+     "region_max": [
+      3.0,
+      57.0,
+      72.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_tilt",
+     "b": "BUY_horn_tilt",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      58.4,
+      -3.0,
+      209.0
+     ],
+     "region_max": [
+      61.5,
+      3.0,
+      215.0
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_feeder",
+     "b": "BUY_horn_feeder",
+     "volume_mm3": 85.42,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      18.0,
+      -42.0,
+      226.5
+     ],
+     "region_max": [
+      24.0,
+      -36.0,
+      229.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_battery",
+     "b": "BUY_dewalt_adapter",
+     "volume_mm3": 36859.86,
+     "tri_overlaps": 14,
+     "solver": "MANIFOLD",
+     "region_min": [
+      30.0,
+      -99.5,
+      62.6
+     ],
+     "region_max": [
+      104.6,
+      -56.5,
+      74.6
+     ],
+     "whitelisted": "battery rail stem slides into the adapter"
+    }
+   ]
+  },
+  "pan+90_tilt0": {
+   "touching_pairs_zero_volume": 62,
+   "overlaps": [
+    {
+     "a": "BUY_servo_pan",
+     "b": "BUY_horn_pan",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -3.0,
+      51.0,
+      69.5
+     ],
+     "region_max": [
+      3.0,
+      57.0,
+      72.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_tilt",
+     "b": "BUY_horn_tilt",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 28,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -3.0,
+      58.4,
+      209.0
+     ],
+     "region_max": [
+      3.0,
+      61.5,
+      215.0
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_feeder",
+     "b": "BUY_horn_feeder",
+     "volume_mm3": 85.42,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      36.0,
+      18.0,
+      226.5
+     ],
+     "region_max": [
+      42.0,
+      24.0,
+      229.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_battery",
+     "b": "BUY_dewalt_adapter",
+     "volume_mm3": 36859.86,
+     "tri_overlaps": 14,
+     "solver": "MANIFOLD",
+     "region_min": [
+      30.0,
+      -99.5,
+      62.6
+     ],
+     "region_max": [
+      104.6,
+      -56.5,
+      74.6
+     ],
+     "whitelisted": "battery rail stem slides into the adapter"
+    }
+   ]
+  },
+  "pan+90_tilt22.5": {
+   "touching_pairs_zero_volume": 62,
+   "overlaps": [
+    {
+     "a": "BUY_servo_pan",
+     "b": "BUY_horn_pan",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -3.0,
+      51.0,
+      69.5
+     ],
+     "region_max": [
+      3.0,
+      57.0,
+      72.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_tilt",
+     "b": "BUY_horn_tilt",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 32,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -3.0,
+      58.4,
+      209.0
+     ],
+     "region_max": [
+      3.0,
+      61.5,
+      215.0
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_feeder",
+     "b": "BUY_horn_feeder",
+     "volume_mm3": 85.42,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      36.0,
+      18.0,
+      226.5
+     ],
+     "region_max": [
+      42.0,
+      24.0,
+      229.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_battery",
+     "b": "BUY_dewalt_adapter",
+     "volume_mm3": 36859.86,
+     "tri_overlaps": 14,
+     "solver": "MANIFOLD",
+     "region_min": [
+      30.0,
+      -99.5,
+      62.6
+     ],
+     "region_max": [
+      104.6,
+      -56.5,
+      74.6
+     ],
+     "whitelisted": "battery rail stem slides into the adapter"
+    }
+   ]
+  },
+  "pan+90_tilt45": {
+   "touching_pairs_zero_volume": 64,
+   "overlaps": [
+    {
+     "a": "BUY_servo_pan",
+     "b": "BUY_horn_pan",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -3.0,
+      51.0,
+      69.5
+     ],
+     "region_max": [
+      3.0,
+      57.0,
+      72.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_tilt",
+     "b": "BUY_horn_tilt",
+     "volume_mm3": 85.41,
+     "tri_overlaps": 32,
+     "solver": "MANIFOLD",
+     "region_min": [
+      -3.0,
+      58.4,
+      209.0
+     ],
+     "region_max": [
+      3.0,
+      61.5,
+      215.0
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_servo_feeder",
+     "b": "BUY_horn_feeder",
+     "volume_mm3": 85.42,
+     "tri_overlaps": 16,
+     "solver": "MANIFOLD",
+     "region_min": [
+      36.0,
+      18.0,
+      226.5
+     ],
+     "region_max": [
+      42.0,
+      24.0,
+      229.6
+     ],
+     "whitelisted": "spline inside horn hub"
+    },
+    {
+     "a": "BUY_battery",
+     "b": "BUY_dewalt_adapter",
+     "volume_mm3": 36859.86,
+     "tri_overlaps": 14,
+     "solver": "MANIFOLD",
+     "region_min": [
+      30.0,
+      -99.5,
+      62.6
+     ],
+     "region_max": [
+      104.6,
+      -56.5,
+      74.6
+     ],
+     "whitelisted": "battery rail stem slides into the adapter"
+    }
+   ]
+  }
+ },
+ "summary": {
+  "printed_objects": 35,
+  "unique_stls": 29,
+  "purchased_objects": 15,
+  "non_manifold_printed_parts": [],
+  "parts_not_fitting_any_printer": [],
+  "parts_not_fitting_P1S": [],
+  "unintended_interferences": 0,
+  "unintended_list": [],
+  "parts_with_thin_wall_samples": [
+   [
+    "PRT_lead_duct",
+    1,
+    0.9
+   ],
+   [
+    "PRT_pan_hub",
+    72,
+    1.54
+   ],
+   [
+    "PRT_pan_pinion",
+    72,
+    1.54
+   ]
+  ],
+  "est_total_filament_g": 1303.0,
+  "est_total_print_h": 27.2,
+  "min_tip_angle_deg": 44.1,
+  "hopper_mms": 307,
+  "notes": [
+   "gear tooth tips (m1.5 involute) read ~1.5 mm in the ray wall probe; they are teeth, not walls",
+   "single lead_duct sample is a ray grazing a 2.2 mm slanted wall at its top cut"
+  ],
+  "all_pass": true,
+  "runtime_s": 3.6
+ },
+ "stability": {
+  "pan-90_tilt0": {
+   "mass_g": 2698,
+   "cg_mm": [
+    13.3,
+    -20.4,
+    97.6
+   ],
+   "edge_margin_mm": 99.6,
+   "static_tip_angle_deg": 45.6
+  },
+  "pan-90_tilt22.5": {
+   "mass_g": 2698,
+   "cg_mm": [
+    15.5,
+    -20.4,
+    99.8
+   ],
+   "edge_margin_mm": 99.6,
+   "static_tip_angle_deg": 44.9
+  },
+  "pan-90_tilt45": {
+   "mass_g": 2698,
+   "cg_mm": [
+    16.8,
+    -20.4,
+    102.7
+   ],
+   "edge_margin_mm": 99.6,
+   "static_tip_angle_deg": 44.1
+  },
+  "pan+0_tilt0": {
+   "mass_g": 2698,
+   "cg_mm": [
+    13.1,
+    -19.3,
+    97.6
+   ],
+   "edge_margin_mm": 100.7,
+   "static_tip_angle_deg": 45.9
+  },
+  "pan+0_tilt22.5": {
+   "mass_g": 2698,
+   "cg_mm": [
+    13.1,
+    -17.0,
+    99.8
+   ],
+   "edge_margin_mm": 103.0,
+   "static_tip_angle_deg": 45.9
+  },
+  "pan+0_tilt45": {
+   "mass_g": 2698,
+   "cg_mm": [
+    13.1,
+    -15.8,
+    102.7
+   ],
+   "edge_margin_mm": 104.2,
+   "static_tip_angle_deg": 45.4
+  },
+  "pan+90_tilt0": {
+   "mass_g": 2698,
+   "cg_mm": [
+    11.9,
+    -19.5,
+    97.6
+   ],
+   "edge_margin_mm": 100.5,
+   "static_tip_angle_deg": 45.9
+  },
+  "pan+90_tilt22.5": {
+   "mass_g": 2698,
+   "cg_mm": [
+    9.7,
+    -19.5,
+    99.8
+   ],
+   "edge_margin_mm": 100.5,
+   "static_tip_angle_deg": 45.2
+  },
+  "pan+90_tilt45": {
+   "mass_g": 2698,
+   "cg_mm": [
+    8.4,
+    -19.5,
+    102.7
+   ],
+   "edge_margin_mm": 100.5,
+   "static_tip_angle_deg": 44.4
+  }
+ },
+ "hopper_capacity": {
+  "usable_volume_cm3": 317.8,
+  "mms_at_0.6_packing": 307,
+  "required": 60
+ }
+}

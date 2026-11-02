@@ -1,0 +1,58 @@
+{
+  "functionality": 8,
+  "manufacturability": 8,
+  "aesthetics": 8,
+  "anchors": {
+    "functionality": "8: Works. At most 2 major issues, each with a known fix under 1 hour of CAD and no reprint of a big part (one major: A2-01, thick-candy full-lift gap)",
+    "manufacturability": "8: 9 not met (BOM errors change the assembly: nip stud length, non-stock M3 x 9, missing encoder lead); 0 fastener fails, all warns explained, no supports, P1S fit",
+    "aesthetics": "8: each failed item costs a point from 10; 2 failed (detent clip edge break 0.3 vs EB 1.0; detent pan head proud, not counterbored)"
+  },
+  "issues": [
+    {"id": "A2-01", "metric": "functionality", "severity": "major", "subsystem": "launcher nip",
+     "problem": "Min-gap stop sized for the nominal 7.0 candy (NIP_PASS = MM_T_NOM + TAPE_T) although params declare MM_T up to 7.5: a 7.5 candy is rigidly squeezed 0.07-0.39 mm with the leaf solid over hood +0.327..-0.07 (settings 6.2..~6.57, 46% of the window); a nominal candy uses 1.38 of 1.5 mm leaf travel at the min stop. Window 6.2..7.0 is also far narrower than the rig's 5..12 thumbwheel range.",
+     "evidence": "review/cadcheck_review.json distances: PRT_hood-PRT_flywheel along PIV_hood ray y34 at nip_lift -1.493 = 7.613 (hood 0.327) FAIL, 7.928 (0) FAIL, 8.12 (-0.2), 8.461 (-0.558), wanted >= 8.0; params.py line 393 NIP_PASS = MM_T_NOM + TAPE_T",
+     "fix": "Assert HOOD_GAP_LIFT >= MM_T[1] + TAPE_T and adopt the review row (min 8.0). Caliper 20 candies; if MM_T max > 7.1 raise the nip cover roof 0.5 along the stud axis (LEAF_TRAVEL 1.5 -> 2.0, full-lift gap ~8.08 at the min stop), relieve the body bay 0.5 at hood -2.6 deg effective, re-run the leaf flexures row (~36 MPa; LEAF_T 2.5 -> 2.3 to bring it near 31).",
+     "tool_catchable": true},
+    {"id": "A2-02", "metric": "functionality", "severity": "minor", "subsystem": "cables",
+     "problem": "The encoder signal has no purchased lead from the journal bore to the MotorGo: CAB_encoder (150 mm) ends at the left journal; the ~430 mm on through the bundle and base lead is only 16 AWG phase wire in the BOM, sharing a sleeve with the BLDC phases. CAB_bus_pan has only 9.5 mm spare.",
+     "evidence": "checks.cables: CAB_encoder 84.1/150 (route ends at IF_JOURNAL_L_X1+0.5, parts/launcher.py:589), CAB_launcher_bundle 265.4/350, CAB_launcher_base 164.8/250, CAB_bus_pan 290.5/300; BOM items 13 and 15",
+     "fix": "Add a BOM row for a one-piece 5-wire encoder lead >= 550 mm (Plink to MotorGo encoder JST, no splice at either joint), model CAB_encoder as one route with lead_len 550, use twisted/shielded wire on the far side of the sleeve from the phases; list a 350 mm bus lead for the pan servo.",
+     "tool_catchable": false},
+    {"id": "A1-03", "metric": "functionality", "severity": "minor", "subsystem": "feeder",
+     "problem": "Pocket Ø13.9 blocks the min-size (12.5 x 6.3) edge-on pair by only 0.016 mm3 (the cad q dist reporting floor is 0.01), i.e. ~0.05 radial; nominal and leaning pairs are blocked well, and the flat 13.5 candy has 0.198 radial. Both edges of the window depend on print shrink and real candy spread.",
+     "evidence": "cad q dist ZMM_a PRT_feeder_disc on /tmp/rv3probe/mm_12.5x6.3_t00.blend = -0.016; t10 -0.095, t20 -1.28, t30 -16.9; mm_13.0x7.0_t00 -6.134; designer lentil probe flat 13.5x7.5 +0.198",
+     "fix": "Caliper 20 candies and set MM_D/MM_T min/max; print a 3-pocket coupon disc Ø13.7/13.9/14.1, pick the pocket that passes the flat max and blocks a min pair, set POCKET_D and keep the 4 ray rows at +/-0.1.",
+     "tool_catchable": false},
+    {"id": "A3-01", "metric": "aesthetics", "severity": "minor", "subsystem": "feeder gate detent",
+     "problem": "PRT_gate_detent uses EB 0.3 on the whole clip including its 2.6-6 mm tab (declared EB 1.0 +/-0.5), its square 1.2 plate stands ~14 mm proud of the R34 valve OD and reads as a stray grey plate in iso.png (snag point beside the gate tab), FST_detent_0 is a proud pan head (head='none'), and M3 x 9 is not a stock length.",
+     "evidence": "params.py GATE_DETENT edge 0.3, plate_x/plate_y corner at r 48; parts/feeder.py:113 head='none'; renders/attempt-3/review/r01_valve_gate_detent_closeup_+x+y.png, r02_valve_gate_closeup_+x-y.png; renders/attempt-3/iso.png",
+     "fix": "Bevel the tab EB 1.0 and the plate 0.6, round the plate's free end R3 in plan; counterbore the head Ø6.5 x 1.0 into the tab (clamp 3.2 -> 2.2) and use a stock M3 x 10 pan self-tap (tip lands where the x 9 tip is now, 2.65 above the blade); optionally colour B as a gate touch point.",
+     "tool_catchable": false},
+    {"id": "A3-02", "metric": "manufacturability", "severity": "minor", "subsystem": "launcher nip / BOM",
+     "problem": "BOM fastener table lists FST_nip_stud as 'M3 x 20 hex head' but the model and params use STUD_L 16 (tip 2.4 under the cover roof at full lift on the 7.0 setting); an x 20 stud sits 4 mm further out. The model also uses a cap-head spec in the hex pocket, so the head key is never measured.",
+     "evidence": "manifest.json FST_nip_stud part 'M3_cap x 16', length 16.0; params.py STUD_L = 16.0; BOM section 2 row 'M3 x 20 hex head (stud)'",
+     "fix": "Change the BOM row to 'M3 x 16 hex head, ISO 4017' and give FST_nip_stud a hex-head spec (AF 5.5 x 2.0) so the pocket fit is checked.",
+     "tool_catchable": false},
+    {"id": "A3-03", "metric": "functionality", "severity": "minor", "subsystem": "check config",
+     "problem": "The BOM 'Base floor' service has a service row but no slide_out row; the full-lift gap row asserts the nominal 7.5 rather than the declared max; the detent's open-notch claim has no row (gate is not a joint).",
+     "evidence": "checks.json service 'base floor off' (no slide_out); review/cadcheck_review.json slide 'base floor plate ... -Z' not blocked; gate probe /tmp/rv3probe/gate_+52.00.blend PRT_gate_detent-PRT_jar_gate 0.10",
+     "fix": "Adopt review/review_rows.json as is (floor slide -Z 40, full-lift min 8.0 at 4 hood settings, 7.5-payload drop); add a prismatic PIV_gate 0..52.35 if the tool supports it and make the detent a distances row at both ends.",
+     "tool_catchable": true}
+  ],
+  "previous_issue_status": [
+    {"id": "A2-01", "status": "PARTIAL", "evidence": "Full-lift bare gap 7.613/7.928/8.461 at hood +0.327/0/-0.558 passes the nominal 7.5; fails the declared MM_T max (needs 8.0) at +0.327 and 0 (review/cadcheck_review.json)"},
+    {"id": "A1-03", "status": "PARTIAL", "evidence": "Ø13.9 (ray rows 13.90 x4); 12.5x6.3 pair -0.016 mm3 (at the 0.01 floor), 13x7 pair -6.13, leaning pairs worse; flat 13.5 +0.198"},
+    {"id": "A1-09", "status": "FIXED", "evidence": "Detent 0.10 seated closed and 0.10 at gate +52 (moved-gate probe), riding -0.43 mm3 at +26, flexure 16.1 MPa at 0.0 deg, open stop 52.35"},
+    {"id": "A1-08", "status": "FIXED", "evidence": "launcher_body min wall 1.59, 0 thin samples (A2 1.12); nip_cover overhang 19.5 mm2 (A2 171); remaining thin samples located and accepted"},
+    {"id": "A2-02", "status": "PARTIAL", "evidence": "14/14 cables with lead_len, U-loops +51.4/+59.9; encoder lead (150) ends at the journal bore with ~430 mm onward not in the BOM; bus_pan 9.5 spare"},
+    {"id": "A2-03", "status": "FIXED", "evidence": "distances: rim crest 24.511, fingertip vs shelf 25.578/25.032/23.634 (>= 24.9/24.4/22.7); review/r03_nip_thumbwheel_closeup_tilt0.png"},
+    {"id": "A2-04", "status": "FIXED", "evidence": "unordered_solids_assumed_present []; 10a M2 x 8; leaf flexures 2.2 deg pass; nip rays in PIV_hood frame; hood x nip_wheel min_clearance 0.5"},
+    {"id": "A2-05", "status": "FIXED", "evidence": "flattest slide 33.3 at gap 6.2 tilt 46 (>= 33); 34.2 with a 7.5 payload (review drop row)"}
+  ],
+  "check_config_disputes": [
+    "distances 'v2-A2-01 bare gap at FULL leaf lift' min 7.5 should be 8.0 (MM_T max 7.5 + 0.5 tape); params NIP_PASS uses MM_T_NOM instead of MM_T[1]",
+    "service 'base floor off' has no slide_out row (review row added: passes)",
+    "detent open-notch claim (BOM refill row) has no check row; gate is not a joint (review probe 0.10 at +52)",
+    "fits PRT_post_R x PRT_journal_plate contact still hides the journal (0.156 audit row stands; deferred tool limit, accepted)"
+  ]
+}

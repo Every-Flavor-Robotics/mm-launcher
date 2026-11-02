@@ -1,0 +1,4329 @@
+{
+ "tool": "cadcheck",
+ "blend": "/tmp/rv1/model.blend",
+ "generated": "2026-10-25 01:02:19",
+ "config": {
+  "collections": {
+   "printed": "Printed",
+   "purchased": "Purchased",
+   "fasteners": "Fasteners",
+   "cables": "Cables"
+  },
+  "printers": {
+   "P1S": [
+    256,
+    256,
+    256
+   ],
+   "H2D": [
+    325,
+    320,
+    325
+   ]
+  },
+  "prefer_printer": "P1S",
+  "min_wall": 1.6,
+  "overhang_deg": 45.0,
+  "joints": {},
+  "couplings": {},
+  "overtravel_deg": 2.5,
+  "max_poses_per_group": 48,
+  "allow": [
+   {
+    "a": "BUY_servo_*",
+    "b": "BUY_horn_*",
+    "why": "spline inside the horn hub"
+   },
+   {
+    "a": "BUY_motor",
+    "b": "PRT_flywheel",
+    "why": "motor shaft (modelled with the stator) sits in the clamping D-bore"
+   },
+   {
+    "a": "BUY_motor",
+    "b": "BUY_magnet",
+    "why": "magnet glued to the rear shaft end"
+   },
+   {
+    "a": "BUY_battery",
+    "b": "BUY_dewalt_adapter",
+    "why": "battery rail stem slides into the adapter"
+   },
+   {
+    "a": "FST_adapter_*",
+    "b": "BUY_dewalt_adapter",
+    "why": "self-tap M3 into the adapter's own corner holes (not modelled in the envelope)"
+   },
+   {
+    "a": "BUY_horn_*",
+    "b": "PRT_*horn_adapter",
+    "why": "horn disc sits in its 1.0 mm recess"
+   },
+   {
+    "a": "BUY_horn_feeder",
+    "b": "PRT_feeder_pinion",
+    "why": "horn disc sits in the pinion recess"
+   },
+   {
+    "a": "PRT_nip_leaf",
+    "b": "PRT_nip_wheel",
+    "why": "leaf drawn in its free (as-printed, flat) state: the two pads stand LEAF_PRE 1.2 into the thumbwheel top = the ~9 N preload (A3-M1)"
+   },
+   {
+    "a": "FST_nip_stud",
+    "b": "PRT_nip_wheel",
+    "why": "stud threads through the thumbwheel's captive nut; the wheel rides the stud, drawn static at the 6.5 setting, so the stud's swing shows as overlap in its bore"
+   },
+   {
+    "a": "FST_nip_stud",
+    "b": "FST_tw_nut",
+    "why": "stud runs in the thumbwheel's captive nut (thread); the nut is drawn static at the 6.5 setting"
+   }
+  ],
+  "vol_tol": 0.5,
+  "moving_min_clearance": 0.5,
+  "moving_warn_clearance": 1.0,
+  "fasteners": {
+   "driver_r": 3.0,
+   "hand_r": 14.0,
+   "max_reach": 60.0,
+   "max_reach_ext": 150.0,
+   "min_engagement": 4.0,
+   "lkey_short": 18.0,
+   "lkey_insert": 2.5,
+   "lkey_long": 56.0,
+   "lkey_r": 1.25,
+   "lkey_swing_deg": 60.0,
+   "max_standoff": 2.0,
+   "max_protrusion": 3.0
+  },
+  "service": [
+   {
+    "op": "REVIEW feeder servo swap: centre screw out (holds pinion+horn to the spline)",
+    "fasteners": [
+     "FST_fhorn_ctr"
+    ],
+    "remove": [
+     "PRT_feeder_cover",
+     "FST_fcover_*"
+    ]
+   },
+   {
+    "op": "REVIEW feeder servo swap at tilt 45",
+    "pose": {
+     "PIV_tilt": 45
+    },
+    "fasteners": [
+     "FST_fhorn_ctr"
+    ],
+    "remove": [
+     "PRT_feeder_cover",
+     "FST_fcover_*"
+    ]
+   }
+  ],
+  "index_tests": [
+   {
+    "name": "REVIEW column never open, jar drifted to 5 (no detent)",
+    "joint": "PIV_feeder",
+    "sequence": [
+     0,
+     60,
+     0,
+     -60,
+     0
+    ],
+    "step": 2,
+    "probe": {
+     "frame": "PIV_pan",
+     "center": [
+      21.0,
+      0.0,
+      287.5
+     ],
+     "dir": [
+      0,
+      0,
+      -1
+     ],
+     "radius": 3,
+     "depth": 27.5
+    },
+    "blockers": [
+     "PRT_feeder_disc",
+     "PRT_feeder_housing",
+     "PRT_feeder_crown",
+     "PRT_jar_valve"
+    ],
+    "expect_windows": 0,
+    "pose": {
+     "PIV_jar": 5
+    }
+   },
+   {
+    "name": "REVIEW +60 fire at jar 5",
+    "joint": "PIV_feeder",
+    "sequence": [
+     0,
+     60,
+     0
+    ],
+    "step": 2,
+    "probe": {
+     "frame": "PIV_pan",
+     "center": [
+      21.0,
+      0.0,
+      271.0
+     ],
+     "dir": [
+      0,
+      0,
+      -1
+     ],
+     "radius": 3,
+     "depth": 11
+    },
+    "blockers": [
+     "PRT_feeder_disc",
+     "PRT_feeder_housing"
+    ],
+    "expect_windows": 1,
+    "pose": {
+     "PIV_jar": 5
+    }
+   },
+   {
+    "name": "REVIEW column never open, jar drifted to 10 (no detent)",
+    "joint": "PIV_feeder",
+    "sequence": [
+     0,
+     60,
+     0,
+     -60,
+     0
+    ],
+    "step": 2,
+    "probe": {
+     "frame": "PIV_pan",
+     "center": [
+      21.0,
+      0.0,
+      287.5
+     ],
+     "dir": [
+      0,
+      0,
+      -1
+     ],
+     "radius": 3,
+     "depth": 27.5
+    },
+    "blockers": [
+     "PRT_feeder_disc",
+     "PRT_feeder_housing",
+     "PRT_feeder_crown",
+     "PRT_jar_valve"
+    ],
+    "expect_windows": 0,
+    "pose": {
+     "PIV_jar": 10
+    }
+   },
+   {
+    "name": "REVIEW +60 fire at jar 10",
+    "joint": "PIV_feeder",
+    "sequence": [
+     0,
+     60,
+     0
+    ],
+    "step": 2,
+    "probe": {
+     "frame": "PIV_pan",
+     "center": [
+      21.0,
+      0.0,
+      271.0
+     ],
+     "dir": [
+      0,
+      0,
+      -1
+     ],
+     "radius": 3,
+     "depth": 11
+    },
+    "blockers": [
+     "PRT_feeder_disc",
+     "PRT_feeder_housing"
+    ],
+    "expect_windows": 1,
+    "pose": {
+     "PIV_jar": 10
+    }
+   },
+   {
+    "name": "REVIEW column never open, jar drifted to 15 (no detent)",
+    "joint": "PIV_feeder",
+    "sequence": [
+     0,
+     60,
+     0,
+     -60,
+     0
+    ],
+    "step": 2,
+    "probe": {
+     "frame": "PIV_pan",
+     "center": [
+      21.0,
+      0.0,
+      287.5
+     ],
+     "dir": [
+      0,
+      0,
+      -1
+     ],
+     "radius": 3,
+     "depth": 27.5
+    },
+    "blockers": [
+     "PRT_feeder_disc",
+     "PRT_feeder_housing",
+     "PRT_feeder_crown",
+     "PRT_jar_valve"
+    ],
+    "expect_windows": 0,
+    "pose": {
+     "PIV_jar": 15
+    }
+   },
+   {
+    "name": "REVIEW +60 fire at jar 15",
+    "joint": "PIV_feeder",
+    "sequence": [
+     0,
+     60,
+     0
+    ],
+    "step": 2,
+    "probe": {
+     "frame": "PIV_pan",
+     "center": [
+      21.0,
+      0.0,
+      271.0
+     ],
+     "dir": [
+      0,
+      0,
+      -1
+     ],
+     "radius": 3,
+     "depth": 11
+    },
+    "blockers": [
+     "PRT_feeder_disc",
+     "PRT_feeder_housing"
+    ],
+    "expect_windows": 1,
+    "pose": {
+     "PIV_jar": 15
+    }
+   }
+  ],
+  "stacks": [
+   {
+    "name": "magnet centring on the rear shaft (A1-#7, A2-#6)",
+    "limit": 0.3,
+    "terms": [
+     {
+      "what": "jig spigot 7.8 in the motor's 8.0 rear access hole",
+      "tol": 0.1
+     },
+     {
+      "what": "magnet in its 6.1 jig pocket",
+      "tol": 0.05
+     },
+     {
+      "what": "encoder cap spigot crush ribs in the nacelle bore",
+      "tol": 0.05
+     },
+     {
+      "what": "motor can crush ribs in the nacelle bore",
+      "tol": 0.05
+     },
+     {
+      "what": "Plink PCB pegs 2.3 in 2.5 holes",
+      "tol": 0.1
+     },
+     {
+      "what": "MT6701 IC position on the PCB",
+      "tol": 0.05
+     }
+    ]
+   },
+   {
+    "name": "jar band clears the housing (designed radial clearance 3.0)",
+    "limit": 3.0,
+    "terms": [
+     {
+      "what": "glass thread / band (nominal jar)",
+      "tol": 1.0
+     },
+     {
+      "what": "adapter disc in the band",
+      "tol": 0.75
+     },
+     {
+      "what": "spout in the valve bore",
+      "tol": 0.15
+     },
+     {
+      "what": "valve in the socket",
+      "tol": 0.3
+     },
+     {
+      "what": "bayonet lug in its slot",
+      "tol": 0.2
+     }
+    ]
+   },
+   {
+    "name": "pocket over outlet at fire (outlet 16, pocket 15, candy 13)",
+    "limit": 1.0,
+    "terms": [
+     {
+      "what": "gear backlash at the pocket circle",
+      "tol": 0.15
+     },
+     {
+      "what": "servo deadband +/-0.5 deg at the pinion -> 0.34 deg at r 21",
+      "tol": 0.12
+     },
+     {
+      "what": "disc land R31 in the crown bore R31.3 (radial play)",
+      "tol": 0.3
+     },
+     {
+      "what": "outlet position in the housing",
+      "tol": 0.1
+     }
+    ]
+   }
+  ],
+  "exposure": {
+   "max_cable_mm": 5,
+   "cables_ok": [
+    "CAB_usb*"
+   ],
+   "min_escape": 8
+  },
+  "slide_out": [
+   {
+    "name": "REVIEW encoder cap off -X 45 mm at tilt 45",
+    "objects": [
+     "PRT_encoder_cap",
+     "BUY_plink_encoder"
+    ],
+    "pose": {
+     "PIV_tilt": 45
+    },
+    "dir": [
+     -1,
+     0,
+     0
+    ],
+    "dist": 45,
+    "step": 1,
+    "ignore": [
+     "FST_enc_*",
+     "CAB_*"
+    ]
+   },
+   {
+    "name": "REVIEW encoder cap off -X 45 mm at tilt 0",
+    "objects": [
+     "PRT_encoder_cap",
+     "BUY_plink_encoder"
+    ],
+    "pose": {
+     "PIV_tilt": 0
+    },
+    "dir": [
+     -1,
+     0,
+     0
+    ],
+    "dist": 45,
+    "step": 1,
+    "ignore": [
+     "FST_enc_*",
+     "CAB_*"
+    ]
+   },
+   {
+    "name": "REVIEW gate +X 52 with the valve present",
+    "object": "PRT_jar_gate",
+    "dir": [
+     1,
+     0,
+     0
+    ],
+    "dist": 52,
+    "step": 2,
+    "min_clearance": 0.3
+   },
+   {
+    "name": "REVIEW gate +X 110 (what retains it open?)",
+    "object": "PRT_jar_gate",
+    "dir": [
+     1,
+     0,
+     0
+    ],
+    "dist": 110,
+    "step": 2,
+    "ignore": [
+     "PRT_jar_valve"
+    ]
+   },
+   {
+    "name": "REVIEW nip cover + leaf off down at tilt 0",
+    "objects": [
+     "PRT_nip_cover",
+     "PRT_nip_leaf",
+     "FST_leaf_*"
+    ],
+    "dir": [
+     0,
+     0,
+     -1
+    ],
+    "dist": 30,
+    "step": 2,
+    "ignore": [
+     "FST_nipcover_*"
+    ]
+   },
+   {
+    "name": "REVIEW feeder servo lifts +Z after the lobe cover",
+    "objects": [
+     "BUY_servo_feeder"
+    ],
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 60,
+    "step": 2,
+    "ignore": [
+     "PRT_feeder_cover",
+     "FST_fcover_*",
+     "CAB_bus_feeder*",
+     "BUY_horn_feeder",
+     "FST_fhorn_ctr"
+    ]
+   },
+   {
+    "name": "REVIEW step 7 reverse: pod lifts +Z out of the post U-slots",
+    "objects": [
+     "PRT_nacelle",
+     "PRT_launcher_body",
+     "PRT_launcher_cover",
+     "PRT_journal_plate",
+     "PRT_encoder_cap",
+     "PRT_hood",
+     "PRT_nip_*",
+     "PRT_flywheel",
+     "BUY_motor",
+     "BUY_magnet",
+     "BUY_plink_encoder",
+     "FST_motor_*",
+     "FST_nacelle_*",
+     "FST_enc_*",
+     "FST_jp_*",
+     "FST_hinge*",
+     "FST_nip_stud",
+     "FST_tw_nut",
+     "FST_leaf_*",
+     "FST_nipcover_*",
+     "FST_fw_*",
+     "FST_cover_*",
+     "CAB_phase_*",
+     "CAB_encoder*"
+    ],
+    "ignore": [
+     "PRT_beam",
+     "FST_beam_*",
+     "PRT_feeder_*",
+     "PRT_jar_*",
+     "BUY_jar*",
+     "BUY_mm_fill",
+     "FST_feedmount_*",
+     "FST_fplate_*",
+     "FST_fcover_*",
+     "FST_valve_*",
+     "FST_fhorn_*",
+     "BUY_servo_feeder",
+     "BUY_horn_feeder",
+     "CAB_bus_feeder*",
+     "CAB_launcher*",
+     "BUY_servo_tilt",
+     "BUY_horn_tilt",
+     "PRT_tilt_horn_adapter",
+     "FST_tilt_horn_*",
+     "PRT_post_R_cover",
+     "FST_postcover_*",
+     "CAB_bus_tilt*"
+    ],
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 150,
+    "step": 2
+   },
+   {
+    "name": "REVIEW step 11 reverse: feeder lifts +Z off the beam (jar off)",
+    "objects": [
+     "PRT_feeder_*",
+     "FST_fplate_*",
+     "FST_fcover_*",
+     "FST_fhorn_*",
+     "BUY_servo_feeder",
+     "BUY_horn_feeder",
+     "CAB_bus_feeder*"
+    ],
+    "ignore": [
+     "PRT_jar_*",
+     "BUY_jar*",
+     "BUY_mm_fill",
+     "FST_valve_*",
+     "FST_feedmount_*"
+    ],
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 80,
+    "step": 2
+   },
+   {
+    "name": "REVIEW pod lift at tilt -3",
+    "objects": [
+     "PRT_nacelle",
+     "PRT_launcher_body",
+     "PRT_launcher_cover",
+     "PRT_journal_plate",
+     "PRT_encoder_cap",
+     "PRT_hood",
+     "PRT_nip_*",
+     "PRT_flywheel",
+     "BUY_motor",
+     "BUY_magnet",
+     "BUY_plink_encoder",
+     "FST_motor_*",
+     "FST_nacelle_*",
+     "FST_enc_*",
+     "FST_jp_*",
+     "FST_hinge*",
+     "FST_nip_stud",
+     "FST_tw_nut",
+     "FST_leaf_*",
+     "FST_nipcover_*",
+     "FST_fw_*",
+     "FST_cover_*",
+     "CAB_phase_*",
+     "CAB_encoder*"
+    ],
+    "ignore": [
+     "PRT_beam",
+     "FST_beam_*",
+     "PRT_feeder_*",
+     "PRT_jar_*",
+     "BUY_jar*",
+     "BUY_mm_fill",
+     "FST_feedmount_*",
+     "FST_fplate_*",
+     "FST_fcover_*",
+     "FST_valve_*",
+     "FST_fhorn_*",
+     "BUY_servo_feeder",
+     "BUY_horn_feeder",
+     "CAB_bus_feeder*",
+     "CAB_launcher*",
+     "BUY_servo_tilt",
+     "BUY_horn_tilt",
+     "PRT_tilt_horn_adapter",
+     "FST_tilt_horn_*",
+     "PRT_post_R_cover",
+     "FST_postcover_*",
+     "CAB_bus_tilt*"
+    ],
+    "pose": {
+     "PIV_tilt": -3
+    },
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 150,
+    "step": 2
+   },
+   {
+    "name": "REVIEW pod lift at tilt 10",
+    "objects": [
+     "PRT_nacelle",
+     "PRT_launcher_body",
+     "PRT_launcher_cover",
+     "PRT_journal_plate",
+     "PRT_encoder_cap",
+     "PRT_hood",
+     "PRT_nip_*",
+     "PRT_flywheel",
+     "BUY_motor",
+     "BUY_magnet",
+     "BUY_plink_encoder",
+     "FST_motor_*",
+     "FST_nacelle_*",
+     "FST_enc_*",
+     "FST_jp_*",
+     "FST_hinge*",
+     "FST_nip_stud",
+     "FST_tw_nut",
+     "FST_leaf_*",
+     "FST_nipcover_*",
+     "FST_fw_*",
+     "FST_cover_*",
+     "CAB_phase_*",
+     "CAB_encoder*"
+    ],
+    "ignore": [
+     "PRT_beam",
+     "FST_beam_*",
+     "PRT_feeder_*",
+     "PRT_jar_*",
+     "BUY_jar*",
+     "BUY_mm_fill",
+     "FST_feedmount_*",
+     "FST_fplate_*",
+     "FST_fcover_*",
+     "FST_valve_*",
+     "FST_fhorn_*",
+     "BUY_servo_feeder",
+     "BUY_horn_feeder",
+     "CAB_bus_feeder*",
+     "CAB_launcher*",
+     "BUY_servo_tilt",
+     "BUY_horn_tilt",
+     "PRT_tilt_horn_adapter",
+     "FST_tilt_horn_*",
+     "PRT_post_R_cover",
+     "FST_postcover_*",
+     "CAB_bus_tilt*"
+    ],
+    "pose": {
+     "PIV_tilt": 10
+    },
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 150,
+    "step": 2
+   },
+   {
+    "name": "REVIEW pod lift at tilt 22.5",
+    "objects": [
+     "PRT_nacelle",
+     "PRT_launcher_body",
+     "PRT_launcher_cover",
+     "PRT_journal_plate",
+     "PRT_encoder_cap",
+     "PRT_hood",
+     "PRT_nip_*",
+     "PRT_flywheel",
+     "BUY_motor",
+     "BUY_magnet",
+     "BUY_plink_encoder",
+     "FST_motor_*",
+     "FST_nacelle_*",
+     "FST_enc_*",
+     "FST_jp_*",
+     "FST_hinge*",
+     "FST_nip_stud",
+     "FST_tw_nut",
+     "FST_leaf_*",
+     "FST_nipcover_*",
+     "FST_fw_*",
+     "FST_cover_*",
+     "CAB_phase_*",
+     "CAB_encoder*"
+    ],
+    "ignore": [
+     "PRT_beam",
+     "FST_beam_*",
+     "PRT_feeder_*",
+     "PRT_jar_*",
+     "BUY_jar*",
+     "BUY_mm_fill",
+     "FST_feedmount_*",
+     "FST_fplate_*",
+     "FST_fcover_*",
+     "FST_valve_*",
+     "FST_fhorn_*",
+     "BUY_servo_feeder",
+     "BUY_horn_feeder",
+     "CAB_bus_feeder*",
+     "CAB_launcher*",
+     "BUY_servo_tilt",
+     "BUY_horn_tilt",
+     "PRT_tilt_horn_adapter",
+     "FST_tilt_horn_*",
+     "PRT_post_R_cover",
+     "FST_postcover_*",
+     "CAB_bus_tilt*"
+    ],
+    "pose": {
+     "PIV_tilt": 22.5
+    },
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 150,
+    "step": 2
+   },
+   {
+    "name": "REVIEW pod lift at tilt 35",
+    "objects": [
+     "PRT_nacelle",
+     "PRT_launcher_body",
+     "PRT_launcher_cover",
+     "PRT_journal_plate",
+     "PRT_encoder_cap",
+     "PRT_hood",
+     "PRT_nip_*",
+     "PRT_flywheel",
+     "BUY_motor",
+     "BUY_magnet",
+     "BUY_plink_encoder",
+     "FST_motor_*",
+     "FST_nacelle_*",
+     "FST_enc_*",
+     "FST_jp_*",
+     "FST_hinge*",
+     "FST_nip_stud",
+     "FST_tw_nut",
+     "FST_leaf_*",
+     "FST_nipcover_*",
+     "FST_fw_*",
+     "FST_cover_*",
+     "CAB_phase_*",
+     "CAB_encoder*"
+    ],
+    "ignore": [
+     "PRT_beam",
+     "FST_beam_*",
+     "PRT_feeder_*",
+     "PRT_jar_*",
+     "BUY_jar*",
+     "BUY_mm_fill",
+     "FST_feedmount_*",
+     "FST_fplate_*",
+     "FST_fcover_*",
+     "FST_valve_*",
+     "FST_fhorn_*",
+     "BUY_servo_feeder",
+     "BUY_horn_feeder",
+     "CAB_bus_feeder*",
+     "CAB_launcher*",
+     "BUY_servo_tilt",
+     "BUY_horn_tilt",
+     "PRT_tilt_horn_adapter",
+     "FST_tilt_horn_*",
+     "PRT_post_R_cover",
+     "FST_postcover_*",
+     "CAB_bus_tilt*"
+    ],
+    "pose": {
+     "PIV_tilt": 35
+    },
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 150,
+    "step": 2
+   },
+   {
+    "name": "REVIEW pod lift at tilt 46",
+    "objects": [
+     "PRT_nacelle",
+     "PRT_launcher_body",
+     "PRT_launcher_cover",
+     "PRT_journal_plate",
+     "PRT_encoder_cap",
+     "PRT_hood",
+     "PRT_nip_*",
+     "PRT_flywheel",
+     "BUY_motor",
+     "BUY_magnet",
+     "BUY_plink_encoder",
+     "FST_motor_*",
+     "FST_nacelle_*",
+     "FST_enc_*",
+     "FST_jp_*",
+     "FST_hinge*",
+     "FST_nip_stud",
+     "FST_tw_nut",
+     "FST_leaf_*",
+     "FST_nipcover_*",
+     "FST_fw_*",
+     "FST_cover_*",
+     "CAB_phase_*",
+     "CAB_encoder*"
+    ],
+    "ignore": [
+     "PRT_beam",
+     "FST_beam_*",
+     "PRT_feeder_*",
+     "PRT_jar_*",
+     "BUY_jar*",
+     "BUY_mm_fill",
+     "FST_feedmount_*",
+     "FST_fplate_*",
+     "FST_fcover_*",
+     "FST_valve_*",
+     "FST_fhorn_*",
+     "BUY_servo_feeder",
+     "BUY_horn_feeder",
+     "CAB_bus_feeder*",
+     "CAB_launcher*",
+     "BUY_servo_tilt",
+     "BUY_horn_tilt",
+     "PRT_tilt_horn_adapter",
+     "FST_tilt_horn_*",
+     "PRT_post_R_cover",
+     "FST_postcover_*",
+     "CAB_bus_tilt*"
+    ],
+    "pose": {
+     "PIV_tilt": 46
+    },
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 150,
+    "step": 2
+   },
+   {
+    "name": "REVIEW lift member PRT_journal_plate",
+    "objects": [
+     "PRT_journal_plate"
+    ],
+    "ignore": [
+     "PRT_beam",
+     "FST_beam_*",
+     "PRT_feeder_*",
+     "PRT_jar_*",
+     "BUY_jar*",
+     "BUY_mm_fill",
+     "FST_feedmount_*",
+     "FST_fplate_*",
+     "FST_fcover_*",
+     "FST_valve_*",
+     "FST_fhorn_*",
+     "BUY_servo_feeder",
+     "BUY_horn_feeder",
+     "CAB_bus_feeder*",
+     "CAB_launcher*",
+     "BUY_servo_tilt",
+     "BUY_horn_tilt",
+     "PRT_tilt_horn_adapter",
+     "FST_tilt_horn_*",
+     "PRT_post_R_cover",
+     "FST_postcover_*",
+     "CAB_bus_tilt*",
+     "PRT_nacelle",
+     "PRT_launcher_body",
+     "PRT_launcher_cover",
+     "PRT_encoder_cap",
+     "PRT_hood",
+     "PRT_nip_*",
+     "PRT_flywheel",
+     "BUY_motor",
+     "BUY_magnet",
+     "BUY_plink_encoder",
+     "FST_motor_*",
+     "FST_nacelle_*",
+     "FST_enc_*",
+     "FST_jp_*",
+     "FST_hinge*",
+     "FST_nip_stud",
+     "FST_tw_nut",
+     "FST_leaf_*",
+     "FST_nipcover_*",
+     "FST_fw_*",
+     "FST_cover_*",
+     "CAB_phase_*",
+     "CAB_encoder*"
+    ],
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 150,
+    "step": 2
+   },
+   {
+    "name": "REVIEW lift member PRT_launcher_body",
+    "objects": [
+     "PRT_launcher_body"
+    ],
+    "ignore": [
+     "PRT_beam",
+     "FST_beam_*",
+     "PRT_feeder_*",
+     "PRT_jar_*",
+     "BUY_jar*",
+     "BUY_mm_fill",
+     "FST_feedmount_*",
+     "FST_fplate_*",
+     "FST_fcover_*",
+     "FST_valve_*",
+     "FST_fhorn_*",
+     "BUY_servo_feeder",
+     "BUY_horn_feeder",
+     "CAB_bus_feeder*",
+     "CAB_launcher*",
+     "BUY_servo_tilt",
+     "BUY_horn_tilt",
+     "PRT_tilt_horn_adapter",
+     "FST_tilt_horn_*",
+     "PRT_post_R_cover",
+     "FST_postcover_*",
+     "CAB_bus_tilt*",
+     "PRT_nacelle",
+     "PRT_launcher_cover",
+     "PRT_journal_plate",
+     "PRT_encoder_cap",
+     "PRT_hood",
+     "PRT_nip_*",
+     "PRT_flywheel",
+     "BUY_motor",
+     "BUY_magnet",
+     "BUY_plink_encoder",
+     "FST_motor_*",
+     "FST_nacelle_*",
+     "FST_enc_*",
+     "FST_jp_*",
+     "FST_hinge*",
+     "FST_nip_stud",
+     "FST_tw_nut",
+     "FST_leaf_*",
+     "FST_nipcover_*",
+     "FST_fw_*",
+     "FST_cover_*",
+     "CAB_phase_*",
+     "CAB_encoder*"
+    ],
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 150,
+    "step": 2
+   },
+   {
+    "name": "REVIEW lift member PRT_launcher_cover",
+    "objects": [
+     "PRT_launcher_cover"
+    ],
+    "ignore": [
+     "PRT_beam",
+     "FST_beam_*",
+     "PRT_feeder_*",
+     "PRT_jar_*",
+     "BUY_jar*",
+     "BUY_mm_fill",
+     "FST_feedmount_*",
+     "FST_fplate_*",
+     "FST_fcover_*",
+     "FST_valve_*",
+     "FST_fhorn_*",
+     "BUY_servo_feeder",
+     "BUY_horn_feeder",
+     "CAB_bus_feeder*",
+     "CAB_launcher*",
+     "BUY_servo_tilt",
+     "BUY_horn_tilt",
+     "PRT_tilt_horn_adapter",
+     "FST_tilt_horn_*",
+     "PRT_post_R_cover",
+     "FST_postcover_*",
+     "CAB_bus_tilt*",
+     "PRT_nacelle",
+     "PRT_launcher_body",
+     "PRT_journal_plate",
+     "PRT_encoder_cap",
+     "PRT_hood",
+     "PRT_nip_*",
+     "PRT_flywheel",
+     "BUY_motor",
+     "BUY_magnet",
+     "BUY_plink_encoder",
+     "FST_motor_*",
+     "FST_nacelle_*",
+     "FST_enc_*",
+     "FST_jp_*",
+     "FST_hinge*",
+     "FST_nip_stud",
+     "FST_tw_nut",
+     "FST_leaf_*",
+     "FST_nipcover_*",
+     "FST_fw_*",
+     "FST_cover_*",
+     "CAB_phase_*",
+     "CAB_encoder*"
+    ],
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 150,
+    "step": 2
+   },
+   {
+    "name": "REVIEW lift member PRT_nacelle",
+    "objects": [
+     "PRT_nacelle"
+    ],
+    "ignore": [
+     "PRT_beam",
+     "FST_beam_*",
+     "PRT_feeder_*",
+     "PRT_jar_*",
+     "BUY_jar*",
+     "BUY_mm_fill",
+     "FST_feedmount_*",
+     "FST_fplate_*",
+     "FST_fcover_*",
+     "FST_valve_*",
+     "FST_fhorn_*",
+     "BUY_servo_feeder",
+     "BUY_horn_feeder",
+     "CAB_bus_feeder*",
+     "CAB_launcher*",
+     "BUY_servo_tilt",
+     "BUY_horn_tilt",
+     "PRT_tilt_horn_adapter",
+     "FST_tilt_horn_*",
+     "PRT_post_R_cover",
+     "FST_postcover_*",
+     "CAB_bus_tilt*",
+     "PRT_launcher_body",
+     "PRT_launcher_cover",
+     "PRT_journal_plate",
+     "PRT_encoder_cap",
+     "PRT_hood",
+     "PRT_nip_*",
+     "PRT_flywheel",
+     "BUY_motor",
+     "BUY_magnet",
+     "BUY_plink_encoder",
+     "FST_motor_*",
+     "FST_nacelle_*",
+     "FST_enc_*",
+     "FST_jp_*",
+     "FST_hinge*",
+     "FST_nip_stud",
+     "FST_tw_nut",
+     "FST_leaf_*",
+     "FST_nipcover_*",
+     "FST_fw_*",
+     "FST_cover_*",
+     "CAB_phase_*",
+     "CAB_encoder*"
+    ],
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 150,
+    "step": 2
+   },
+   {
+    "name": "REVIEW lift member PRT_hood",
+    "objects": [
+     "PRT_hood"
+    ],
+    "ignore": [
+     "PRT_beam",
+     "FST_beam_*",
+     "PRT_feeder_*",
+     "PRT_jar_*",
+     "BUY_jar*",
+     "BUY_mm_fill",
+     "FST_feedmount_*",
+     "FST_fplate_*",
+     "FST_fcover_*",
+     "FST_valve_*",
+     "FST_fhorn_*",
+     "BUY_servo_feeder",
+     "BUY_horn_feeder",
+     "CAB_bus_feeder*",
+     "CAB_launcher*",
+     "BUY_servo_tilt",
+     "BUY_horn_tilt",
+     "PRT_tilt_horn_adapter",
+     "FST_tilt_horn_*",
+     "PRT_post_R_cover",
+     "FST_postcover_*",
+     "CAB_bus_tilt*",
+     "PRT_nacelle",
+     "PRT_launcher_body",
+     "PRT_launcher_cover",
+     "PRT_journal_plate",
+     "PRT_encoder_cap",
+     "PRT_nip_*",
+     "PRT_flywheel",
+     "BUY_motor",
+     "BUY_magnet",
+     "BUY_plink_encoder",
+     "FST_motor_*",
+     "FST_nacelle_*",
+     "FST_enc_*",
+     "FST_jp_*",
+     "FST_hinge*",
+     "FST_nip_stud",
+     "FST_tw_nut",
+     "FST_leaf_*",
+     "FST_nipcover_*",
+     "FST_fw_*",
+     "FST_cover_*",
+     "CAB_phase_*",
+     "CAB_encoder*"
+    ],
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 150,
+    "step": 2
+   },
+   {
+    "name": "REVIEW lift member FST_hinge*",
+    "objects": [
+     "FST_hinge*"
+    ],
+    "ignore": [
+     "PRT_beam",
+     "FST_beam_*",
+     "PRT_feeder_*",
+     "PRT_jar_*",
+     "BUY_jar*",
+     "BUY_mm_fill",
+     "FST_feedmount_*",
+     "FST_fplate_*",
+     "FST_fcover_*",
+     "FST_valve_*",
+     "FST_fhorn_*",
+     "BUY_servo_feeder",
+     "BUY_horn_feeder",
+     "CAB_bus_feeder*",
+     "CAB_launcher*",
+     "BUY_servo_tilt",
+     "BUY_horn_tilt",
+     "PRT_tilt_horn_adapter",
+     "FST_tilt_horn_*",
+     "PRT_post_R_cover",
+     "FST_postcover_*",
+     "CAB_bus_tilt*",
+     "PRT_nacelle",
+     "PRT_launcher_body",
+     "PRT_launcher_cover",
+     "PRT_journal_plate",
+     "PRT_encoder_cap",
+     "PRT_hood",
+     "PRT_nip_*",
+     "PRT_flywheel",
+     "BUY_motor",
+     "BUY_magnet",
+     "BUY_plink_encoder",
+     "FST_motor_*",
+     "FST_nacelle_*",
+     "FST_enc_*",
+     "FST_jp_*",
+     "FST_nip_stud",
+     "FST_tw_nut",
+     "FST_leaf_*",
+     "FST_nipcover_*",
+     "FST_fw_*",
+     "FST_cover_*",
+     "CAB_phase_*",
+     "CAB_encoder*"
+    ],
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 150,
+    "step": 2
+   },
+   {
+    "name": "REVIEW lift member FST_jp_*",
+    "objects": [
+     "FST_jp_*"
+    ],
+    "ignore": [
+     "PRT_beam",
+     "FST_beam_*",
+     "PRT_feeder_*",
+     "PRT_jar_*",
+     "BUY_jar*",
+     "BUY_mm_fill",
+     "FST_feedmount_*",
+     "FST_fplate_*",
+     "FST_fcover_*",
+     "FST_valve_*",
+     "FST_fhorn_*",
+     "BUY_servo_feeder",
+     "BUY_horn_feeder",
+     "CAB_bus_feeder*",
+     "CAB_launcher*",
+     "BUY_servo_tilt",
+     "BUY_horn_tilt",
+     "PRT_tilt_horn_adapter",
+     "FST_tilt_horn_*",
+     "PRT_post_R_cover",
+     "FST_postcover_*",
+     "CAB_bus_tilt*",
+     "PRT_nacelle",
+     "PRT_launcher_body",
+     "PRT_launcher_cover",
+     "PRT_journal_plate",
+     "PRT_encoder_cap",
+     "PRT_hood",
+     "PRT_nip_*",
+     "PRT_flywheel",
+     "BUY_motor",
+     "BUY_magnet",
+     "BUY_plink_encoder",
+     "FST_motor_*",
+     "FST_nacelle_*",
+     "FST_enc_*",
+     "FST_hinge*",
+     "FST_nip_stud",
+     "FST_tw_nut",
+     "FST_leaf_*",
+     "FST_nipcover_*",
+     "FST_fw_*",
+     "FST_cover_*",
+     "CAB_phase_*",
+     "CAB_encoder*"
+    ],
+    "dir": [
+     0,
+     0,
+     1
+    ],
+    "dist": 150,
+    "step": 2
+   }
+  ],
+  "distances": [
+   {
+    "a": "PRT_hood",
+    "b": "PRT_flywheel",
+    "min": 5.0,
+    "max": 13.0,
+    "why": "REVIEW nip ray at hood hi=min gap",
+    "ray": {
+     "frame": "PIV_tilt",
+     "origin": [
+      21.0,
+      37.0,
+      131.75
+     ],
+     "dir": [
+      0,
+      0,
+      1
+     ]
+    },
+    "payload_mm": 7.0,
+    "tape_mm": 0.5,
+    "compliant": "PRT_nip_leaf: flat-printed leaf spring, ~9 N preload, backplate lifts 1.5 mm (A3-M1)",
+    "poses": [
+     {
+      "PIV_hood": 1.094568692616755
+     }
+    ]
+   },
+   {
+    "a": "PRT_hood",
+    "b": "PRT_flywheel",
+    "min": 5.0,
+    "max": 13.0,
+    "why": "REVIEW nip ray at hood lo=max gap",
+    "ray": {
+     "frame": "PIV_tilt",
+     "origin": [
+      21.0,
+      37.0,
+      131.75
+     ],
+     "dir": [
+      0,
+      0,
+      1
+     ]
+    },
+    "payload_mm": 7.0,
+    "tape_mm": 0.5,
+    "compliant": "PRT_nip_leaf: flat-printed leaf spring, ~9 N preload, backplate lifts 1.5 mm (A3-M1)",
+    "poses": [
+     {
+      "PIV_hood": -6.509483182306732
+     }
+    ]
+   },
+   {
+    "a": "PRT_hood",
+    "b": "PRT_launcher_body",
+    "min": 0.3,
+    "poses": [
+     {
+      "PIV_hood": 1.094568692616755
+     }
+    ],
+    "why": "REVIEW hood to body near min gap"
+   },
+   {
+    "a": "PRT_hood",
+    "b": "PRT_launcher_body",
+    "min": 0.3,
+    "poses": [
+     {
+      "PIV_hood": 2.0
+     }
+    ],
+    "why": "REVIEW hood to body near min gap"
+   },
+   {
+    "a": "PRT_hood",
+    "b": "PRT_launcher_body",
+    "min": 0.3,
+    "poses": [
+     {
+      "PIV_hood": 3.0
+     }
+    ],
+    "why": "REVIEW hood to body near min gap"
+   },
+   {
+    "a": "PRT_hood",
+    "b": "PRT_flywheel",
+    "min": 0,
+    "max": 20,
+    "why": "REVIEW nip ray hood -1.5",
+    "ray": {
+     "frame": "PIV_tilt",
+     "origin": [
+      21.0,
+      37.0,
+      131.75
+     ],
+     "dir": [
+      0,
+      0,
+      1
+     ]
+    },
+    "payload_mm": 7.0,
+    "tape_mm": 0.5,
+    "compliant": "PRT_nip_leaf: flat-printed leaf spring, ~9 N preload, backplate lifts 1.5 mm (A3-M1)",
+    "poses": [
+     {
+      "PIV_hood": -0.55
+     }
+    ]
+   },
+   {
+    "a": "PRT_hood",
+    "b": "PRT_flywheel",
+    "min": 0,
+    "max": 20,
+    "why": "REVIEW nip ray hood -3",
+    "ray": {
+     "frame": "PIV_tilt",
+     "origin": [
+      21.0,
+      37.0,
+      131.75
+     ],
+     "dir": [
+      0,
+      0,
+      1
+     ]
+    },
+    "payload_mm": 7.0,
+    "tape_mm": 0.5,
+    "compliant": "PRT_nip_leaf: flat-printed leaf spring, ~9 N preload, backplate lifts 1.5 mm (A3-M1)",
+    "poses": [
+     {
+      "PIV_hood": -1.0
+     }
+    ]
+   },
+   {
+    "a": "PRT_hood",
+    "b": "PRT_flywheel",
+    "min": 0,
+    "max": 20,
+    "why": "REVIEW nip ray hood -1.5",
+    "ray": {
+     "frame": "PIV_tilt",
+     "origin": [
+      21.0,
+      37.0,
+      131.75
+     ],
+     "dir": [
+      0,
+      0,
+      1
+     ]
+    },
+    "payload_mm": 7.0,
+    "tape_mm": 0.5,
+    "compliant": "PRT_nip_leaf: flat-printed leaf spring, ~9 N preload, backplate lifts 1.5 mm (A3-M1)",
+    "poses": [
+     {
+      "PIV_hood": -1.5
+     }
+    ]
+   },
+   {
+    "a": "PRT_hood",
+    "b": "PRT_flywheel",
+    "min": 0,
+    "max": 20,
+    "why": "REVIEW nip ray hood -3",
+    "ray": {
+     "frame": "PIV_tilt",
+     "origin": [
+      21.0,
+      37.0,
+      131.75
+     ],
+     "dir": [
+      0,
+      0,
+      1
+     ]
+    },
+    "payload_mm": 7.0,
+    "tape_mm": 0.5,
+    "compliant": "PRT_nip_leaf: flat-printed leaf spring, ~9 N preload, backplate lifts 1.5 mm (A3-M1)",
+    "poses": [
+     {
+      "PIV_hood": -3.0
+     }
+    ]
+   },
+   {
+    "a": "PRT_hood",
+    "b": "PRT_flywheel",
+    "min": 0,
+    "max": 20,
+    "why": "REVIEW nip ray hood -4.5",
+    "ray": {
+     "frame": "PIV_tilt",
+     "origin": [
+      21.0,
+      37.0,
+      131.75
+     ],
+     "dir": [
+      0,
+      0,
+      1
+     ]
+    },
+    "payload_mm": 7.0,
+    "tape_mm": 0.5,
+    "compliant": "PRT_nip_leaf: flat-printed leaf spring, ~9 N preload, backplate lifts 1.5 mm (A3-M1)",
+    "poses": [
+     {
+      "PIV_hood": -4.5
+     }
+    ]
+   },
+   {
+    "a": "PRT_hood",
+    "b": "PRT_flywheel",
+    "min": 0,
+    "max": 20,
+    "why": "REVIEW nip ray hood -6.50948",
+    "ray": {
+     "frame": "PIV_tilt",
+     "origin": [
+      21.0,
+      37.0,
+      131.75
+     ],
+     "dir": [
+      0,
+      0,
+      1
+     ]
+    },
+    "payload_mm": 7.0,
+    "tape_mm": 0.5,
+    "compliant": "PRT_nip_leaf: flat-printed leaf spring, ~9 N preload, backplate lifts 1.5 mm (A3-M1)",
+    "poses": [
+     {
+      "PIV_hood": -6.509483182306732
+     }
+    ]
+   }
+  ],
+  "masses_g": {
+   "BUY_battery": 620,
+   "BUY_dewalt_adapter": 90,
+   "BUY_buck_12v": 180,
+   "BUY_motorgo_axis": 25,
+   "BUY_servo_controller": 30,
+   "BUY_servo_*": 66,
+   "BUY_horn_*": 4,
+   "BUY_motor": 200,
+   "BUY_magnet": 1,
+   "BUY_plink_encoder": 3,
+   "BUY_usbc_plug": 10,
+   "BUY_jar": 350,
+   "BUY_mm_fill": 400,
+   "BUY_jar_band": 15
+  },
+  "pla_density": 0.00124,
+  "flow_mm3_s": 12.0,
+  "cable_leads": {
+   "CAB_phase_*": 80
+  },
+  "_about": "Review-added rows only (attempt 1 review). Run: cad check model.blend checks_review.json out.json --only index,slide,service,distances,drop",
+  "fits": [
+   {
+    "a": "PRT_base_shell",
+    "b": "PRT_turntable",
+    "contact": true,
+    "why": "plain thrust ring on the deck + hub journal in the deck hole"
+   },
+   {
+    "a": "PRT_base_shell",
+    "b": "PRT_thrust_ring",
+    "contact": true,
+    "why": "thrust ring rides with the turntable and slides on the deck top"
+   },
+   {
+    "a": "PRT_base_*",
+    "b": "PRT_pan_pinion",
+    "min_clearance": 0.2,
+    "why": "pinion turns in its deck opening"
+   },
+   {
+    "a": "PRT_turntable",
+    "b": "PRT_pan_pinion",
+    "min_clearance": 0.1,
+    "why": "1:1 hub gear mesh"
+   },
+   {
+    "a": "PRT_hub_gear",
+    "b": "PRT_pan_pinion",
+    "min_clearance": 0.1,
+    "why": "1:1 hub gear mesh (gear screwed up into the hub)"
+   },
+   {
+    "a": "PRT_post_L",
+    "b": "PRT_nacelle",
+    "min_clearance": 0.1,
+    "why": "left tilt journal R15 in R15.2 bore"
+   },
+   {
+    "a": "PRT_beam",
+    "b": "PRT_nacelle",
+    "min_clearance": 0.1,
+    "why": "beam tongue closes the left journal U-slot"
+   },
+   {
+    "a": "PRT_post_R",
+    "b": "PRT_journal_plate",
+    "contact": true,
+    "why": "right journal + printed hard-stop lugs touch at -3 / +46 (A1-#5)"
+   },
+   {
+    "a": "PRT_beam",
+    "b": "PRT_journal_plate",
+    "min_clearance": 0.1,
+    "why": "beam tongue closes the right journal U-slot"
+   },
+   {
+    "a": "PRT_post_R",
+    "b": "PRT_tilt_horn_adapter",
+    "min_clearance": 0.2,
+    "why": "horn adapter turns in the post's inner-wall hole"
+   },
+   {
+    "a": "BUY_servo_tilt",
+    "b": "PRT_tilt_horn_adapter",
+    "min_clearance": 0.2,
+    "why": "adapter face runs 0.3 off the servo case"
+   },
+   {
+    "a": "BUY_servo_tilt",
+    "b": "BUY_horn_tilt",
+    "min_clearance": 0.0,
+    "why": "horn on the spline"
+   },
+   {
+    "a": "PRT_feeder_housing",
+    "b": "PRT_feeder_disc",
+    "min_clearance": 0.3,
+    "why": "disc runs on the housing floor under the gear-ring lip"
+   },
+   {
+    "a": "PRT_feeder_housing",
+    "b": "PRT_feeder_pinion",
+    "min_clearance": 0.3,
+    "why": "pinion in its chamber"
+   },
+   {
+    "a": "PRT_feeder_disc",
+    "b": "PRT_feeder_pinion",
+    "min_clearance": 0.1,
+    "why": "gear mesh 44:30"
+   },
+   {
+    "a": "PRT_feeder_housing",
+    "b": "PRT_jar_gate",
+    "min_clearance": 0.3,
+    "why": "gate handle stub passes over the housing top as the jar twists"
+   },
+   {
+    "a": "PRT_feeder_crown",
+    "b": "PRT_feeder_disc",
+    "min_clearance": 0.3,
+    "why": "disc land R31 journals in the crown bore R31.3; gear band under the lip (cavity R35, 0.3 below the lip)"
+   },
+   {
+    "a": "PRT_feeder_crown",
+    "b": "PRT_feeder_pinion",
+    "min_clearance": 0.3,
+    "why": "pinion in its chamber R24.3"
+   },
+   {
+    "a": "PRT_feeder_crown",
+    "b": "PRT_jar_valve",
+    "contact": true,
+    "why": "bayonet lugs bear on the L-slot leg floors (jar weight) and twist 30 deg; valve skirt 0.3 inside the chamber bore"
+   },
+   {
+    "a": "PRT_feeder_crown",
+    "b": "PRT_jar_gate",
+    "min_clearance": 0.3,
+    "why": "gate blade and tab pass over the crown top as the jar twists"
+   },
+   {
+    "a": "PRT_hood",
+    "b": "PRT_launcher_body",
+    "min_clearance": 0.3,
+    "why": "backplate swings in its bay (bay = swept band + 0.5)"
+   },
+   {
+    "a": "PRT_hood",
+    "b": "PRT_journal_plate",
+    "min_clearance": 0.3,
+    "why": "backplate swings next to the journal plate"
+   },
+   {
+    "a": "FST_hinge",
+    "b": "PRT_hood",
+    "contact": true,
+    "why": "hinge axle through the backplate boss"
+   },
+   {
+    "a": "PRT_hood",
+    "b": "PRT_nip_wheel",
+    "contact": true,
+    "why": "thumbwheel is the minimum-gap stop the backplate rests on (via the stud)"
+   },
+   {
+    "a": "PRT_hood",
+    "b": "FST_nip_stud",
+    "contact": true,
+    "why": "stud head in the backplate's hex pocket"
+   }
+  ],
+  "assembly_order": [
+   {
+    "step": "1 base shell upside down: adapter into its fence, M3 x 20 self-tappers from the deck top",
+    "objects": [
+     "PRT_base_shell",
+     "BUY_dewalt_adapter",
+     "FST_adapter_*"
+    ]
+   },
+   {
+    "step": "1a pan drive on the bench: horn screwed into the pinion recess",
+    "bench": "pandrive",
+    "objects": [
+     "PRT_pan_pinion",
+     "BUY_horn_pan",
+     "FST_pinion_?"
+    ]
+   },
+   {
+    "step": "1b pan drive on the bench: servo into the pocket + clamp, pinion onto the spline, centre screw through the pinion",
+    "bench": "pandrive",
+    "objects": [
+     "PRT_pan_servo_*",
+     "BUY_servo_pan",
+     "FST_panclamp_*",
+     "FST_pinion_ctr"
+    ]
+   },
+   {
+    "step": "1c pan drive onto the deck posts",
+    "merge": "pandrive",
+    "objects": [
+     "FST_panservo_*"
+    ]
+   },
+   {
+    "step": "2a floor plate on the bench: partition, MotorGo on its standoffs",
+    "bench": "floor",
+    "objects": [
+     "PRT_base_floor",
+     "PRT_base_partition",
+     "FST_partition_*",
+     "BUY_motorgo_axis",
+     "FST_mg_*"
+    ]
+   },
+   {
+    "step": "2b floor plate on the bench: buck, servo controller",
+    "bench": "floor",
+    "objects": [
+     "BUY_buck_12v",
+     "FST_buck_*",
+     "BUY_servo_controller",
+     "FST_ctrl_*"
+    ]
+   },
+   {
+    "step": "2c turntable on the bench: groove cap, posts from the turntable underside",
+    "bench": "turntable",
+    "objects": [
+     "PRT_turntable",
+     "PRT_groove_cap",
+     "FST_gcap_*",
+     "PRT_post_L",
+     "PRT_post_R",
+     "FST_post_*"
+    ]
+   },
+   {
+    "step": "2d thrust ring on the hub, turntable assembly into the deck hole; hub gear meshed under the deck and screwed up into the hub (floor still off)",
+    "merge": "turntable",
+    "objects": [
+     "PRT_thrust_ring",
+     "PRT_hub_*",
+     "FST_hub_*",
+     "FST_tt_*"
+    ]
+   },
+   {
+    "step": "3 floor into the shell, cables",
+    "merge": "floor",
+    "objects": [
+     "FST_floor_*",
+     "CAB_12v*",
+     "CAB_uart*",
+     "CAB_usb*",
+     "CAB_bus_pan*",
+     "BUY_usbc_plug"
+    ]
+   },
+   {
+    "step": "6a pod on the bench: motor into the nacelle bore (crush ribs), body onto the nacelle plate; motor + nacelle screws from inside the guard; phase leads into the journal bore",
+    "bench": "pod",
+    "objects": [
+     "PRT_nacelle",
+     "PRT_launcher_body",
+     "BUY_motor",
+     "FST_motor_*",
+     "FST_nacelle_*",
+     "CAB_phase_*"
+    ]
+   },
+   {
+    "step": "6b magnet glued on the rear shaft with the jig (spigot in the 8 mm access hole); Plink on the cap pegs; encoder cap into the bore",
+    "bench": "pod",
+    "objects": [
+     "BUY_magnet",
+     "BUY_plink_encoder",
+     "PRT_encoder_cap",
+     "FST_enc_*",
+     "CAB_encoder*"
+    ]
+   },
+   {
+    "step": "6c hex stud head dropped into the backplate pocket (captive hex, never driven)",
+    "bench": "pod",
+    "objects": [
+     "FST_nip_stud"
+    ]
+   },
+   {
+    "step": "6d backplate into its bay, journal plate on (3 csk), hinge axle through wall + boss + plate into its trapped nut",
+    "bench": "pod",
+    "objects": [
+     "PRT_hood",
+     "PRT_journal_plate",
+     "FST_jp_*",
+     "FST_hinge",
+     "FST_hinge_nut"
+    ]
+   },
+   {
+    "step": "6e thumbwheel onto the stud (set the gap), leaf screwed under the nip cover from outside, cover onto the land",
+    "bench": "pod",
+    "objects": [
+     "PRT_nip_wheel",
+     "FST_tw_*",
+     "PRT_nip_leaf",
+     "PRT_nip_cover",
+     "FST_leaf_*",
+     "FST_nipcover_*"
+    ]
+   },
+   {
+    "step": "6f flywheel onto the D-shaft, two pinch bolts through their nuts (L-key from +X)",
+    "bench": "pod",
+    "objects": [
+     "PRT_flywheel",
+     "FST_fw_*"
+    ]
+   },
+   {
+    "step": "6g wheel-side cover (4 csk)",
+    "bench": "pod",
+    "objects": [
+     "PRT_launcher_cover",
+     "FST_cover_*"
+    ]
+   },
+   {
+    "step": "7 pod drops into the post U-slots",
+    "merge": "pod",
+    "objects": []
+   },
+   {
+    "step": "8a tilt drive on the bench: horn screwed to the adapter",
+    "bench": "tiltdrive",
+    "objects": [
+     "PRT_tilt_horn_adapter",
+     "BUY_horn_tilt",
+     "FST_tilt_horn_?"
+    ]
+   },
+   {
+    "step": "8b tilt drive on the bench: adapter + horn onto the servo spline, centre screw through the 6.5 key hole",
+    "bench": "tiltdrive",
+    "objects": [
+     "BUY_servo_tilt",
+     "FST_tilt_horn_ctr"
+    ]
+   },
+   {
+    "step": "8 tilt servo + horn adapter slide in -X through the right post (key into the journal-plate socket), cover",
+    "merge": "tiltdrive",
+    "objects": [
+     "PRT_post_R_cover",
+     "FST_postcover_*",
+     "CAB_bus_tilt*"
+    ]
+   },
+   {
+    "step": "9 beam closes the journal U-slots",
+    "objects": [
+     "PRT_beam",
+     "FST_beam_*",
+     "CAB_launcher*"
+    ]
+   },
+   {
+    "step": "10a feeder drive on the bench: horn screwed into the pinion recess (M2 x 4)",
+    "bench": "feeder",
+    "objects": [
+     "PRT_feeder_pinion",
+     "BUY_horn_feeder",
+     "FST_fhorn_?"
+    ]
+   },
+   {
+    "step": "10b crown upside down: pinion + horn in from below, servo #3 into its pocket from the top (spline into the horn), centre screw up through the pinion",
+    "bench": "feeder",
+    "objects": [
+     "PRT_feeder_crown",
+     "BUY_servo_feeder",
+     "FST_fhorn_ctr"
+    ]
+   },
+   {
+    "step": "10c disc in from below (band meshes with the pinion), floor plate on with 2 csk from below",
+    "bench": "feeder",
+    "objects": [
+     "PRT_feeder_disc",
+     "PRT_feeder_housing",
+     "FST_fplate_*"
+    ]
+   },
+   {
+    "step": "10d feeder upright: bus into the channel, servo cover (2 csk)",
+    "bench": "feeder",
+    "objects": [
+     "PRT_feeder_cover",
+     "FST_fcover_*",
+     "CAB_bus_feeder*"
+    ]
+   },
+   {
+    "step": "11 feeder onto the beam",
+    "merge": "feeder",
+    "objects": [
+     "FST_feedmount_*"
+    ]
+   },
+   {
+    "step": "12 jar on the bench: adapter in the band, valve on the spout, gate",
+    "bench": "jar",
+    "objects": [
+     "BUY_jar",
+     "BUY_jar_band",
+     "BUY_mm_fill",
+     "PRT_jar_adapter",
+     "PRT_jar_valve",
+     "PRT_jar_gate",
+     "FST_valve_*"
+    ]
+   },
+   {
+    "step": "13 jar onto the feeder: drop in at +30, twist to 0",
+    "merge": "jar",
+    "objects": []
+   }
+  ]
+ },
+ "checks": {
+  "service": {
+   "findings": [
+    {
+     "status": "fail",
+     "msg": "'REVIEW feeder servo swap: centre screw out (holds pinion+horn to the spline)': FST_fhorn_ctr cannot be reached (straight bit blocked by PRT_feeder_housing at 8.0 mm; L-key short leg blocked 8.0 mm out (elbow at 15.5)) at home, feeder=-60, feeder=60, hood=-6.50948, hood=1.09457, jar=30, pan=-90, pan=90, tilt=45",
+     "object": "FST_fhorn_ctr",
+     "op": "REVIEW feeder servo swap: centre screw out (holds pinion+horn to the spline)"
+    },
+    {
+     "status": "fail",
+     "msg": "'REVIEW feeder servo swap at tilt 45': FST_fhorn_ctr cannot be reached (straight bit blocked by PRT_feeder_housing at 8.0 mm; L-key short leg blocked 8.0 mm out (elbow at 15.5)) at tilt=45",
+     "object": "FST_fhorn_ctr",
+     "op": "REVIEW feeder servo swap at tilt 45"
+    }
+   ],
+   "rows": [
+    {
+     "op": "REVIEW feeder servo swap: centre screw out (holds pinion+horn to the spline)",
+     "object": "FST_fhorn_ctr",
+     "access": {
+      "home": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 8.0,
+       "blocked_by": "PRT_feeder_housing",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 8.0 mm out (elbow at 15.5)"
+      },
+      "feeder=-60": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 8.0,
+       "blocked_by": "PRT_feeder_housing",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 8.0 mm out (elbow at 15.5)"
+      },
+      "feeder=60": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 8.0,
+       "blocked_by": "PRT_feeder_housing",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 8.0 mm out (elbow at 15.5)"
+      },
+      "hood=-6.50948": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 8.0,
+       "blocked_by": "PRT_feeder_housing",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 8.0 mm out (elbow at 15.5)"
+      },
+      "hood=1.09457": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 8.0,
+       "blocked_by": "PRT_feeder_housing",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 8.0 mm out (elbow at 15.5)"
+      },
+      "jar=30": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 8.0,
+       "blocked_by": "PRT_feeder_housing",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 8.0 mm out (elbow at 15.5)"
+      },
+      "pan=-90": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 8.0,
+       "blocked_by": "PRT_feeder_housing",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 8.0 mm out (elbow at 15.5)"
+      },
+      "pan=90": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 8.0,
+       "blocked_by": "PRT_feeder_housing",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 8.0 mm out (elbow at 15.5)"
+      },
+      "tilt=45": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 8.0,
+       "blocked_by": "PRT_feeder_housing",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 8.0 mm out (elbow at 15.5)"
+      }
+     }
+    },
+    {
+     "op": "REVIEW feeder servo swap at tilt 45",
+     "object": "FST_fhorn_ctr",
+     "access": {
+      "tilt=45": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 8.0,
+       "blocked_by": "PRT_feeder_housing",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 8.0 mm out (elbow at 15.5)"
+      }
+     }
+    }
+   ],
+   "runtime_s": 2.1
+  },
+  "drop": {
+   "findings": [
+    {
+     "status": "fail",
+     "msg": "REVIEW drop at hood extremes at hood=-6.50948, tilt=0: 18/31 rays end at ['stall'], not ['PRT_flywheel']",
+     "test": "REVIEW drop at hood extremes",
+     "pose": "hood=-6.50948, tilt=0"
+    },
+    {
+     "status": "fail",
+     "msg": "REVIEW drop at hood extremes at hood=-6.50948, tilt=46: 31/31 rays end at ['stall'], not ['PRT_flywheel']",
+     "test": "REVIEW drop at hood extremes",
+     "pose": "hood=-6.50948, tilt=46"
+    },
+    {
+     "status": "fail",
+     "msg": "REVIEW drop at top of working window at hood=-1, tilt=0: 8/31 rays end at ['stall'], not ['PRT_flywheel']",
+     "test": "REVIEW drop at top of working window",
+     "pose": "hood=-1, tilt=0"
+    },
+    {
+     "status": "fail",
+     "msg": "REVIEW drop threshold vs hood at hood=-1.5, tilt=0: 13/31 rays end at ['stall'], not ['PRT_flywheel']",
+     "test": "REVIEW drop threshold vs hood",
+     "pose": "hood=-1.5, tilt=0"
+    },
+    {
+     "status": "fail",
+     "msg": "REVIEW drop threshold vs hood at hood=-1.5, tilt=46: 23/31 rays end at ['stall'], not ['PRT_flywheel']",
+     "test": "REVIEW drop threshold vs hood",
+     "pose": "hood=-1.5, tilt=46"
+    },
+    {
+     "status": "fail",
+     "msg": "REVIEW drop threshold vs hood at hood=-3, tilt=0: 18/31 rays end at ['stall'], not ['PRT_flywheel']",
+     "test": "REVIEW drop threshold vs hood",
+     "pose": "hood=-3, tilt=0"
+    },
+    {
+     "status": "fail",
+     "msg": "REVIEW drop threshold vs hood at hood=-3, tilt=46: 31/31 rays end at ['stall'], not ['PRT_flywheel']",
+     "test": "REVIEW drop threshold vs hood",
+     "pose": "hood=-3, tilt=46"
+    },
+    {
+     "status": "fail",
+     "msg": "REVIEW drop threshold vs hood at hood=-4.5, tilt=0: 18/31 rays end at ['stall'], not ['PRT_flywheel']",
+     "test": "REVIEW drop threshold vs hood",
+     "pose": "hood=-4.5, tilt=0"
+    },
+    {
+     "status": "fail",
+     "msg": "REVIEW drop threshold vs hood at hood=-4.5, tilt=46: 31/31 rays end at ['stall'], not ['PRT_flywheel']",
+     "test": "REVIEW drop threshold vs hood",
+     "pose": "hood=-4.5, tilt=46"
+    }
+   ],
+   "tests": [
+    {
+     "name": "REVIEW drop at hood extremes",
+     "mode": "slide",
+     "rows": [
+      {
+       "pose": "hood=-6.50948, tilt=0",
+       "rays": 31,
+       "first_hit": {
+        "stall": 18,
+        "PRT_flywheel": 13
+       },
+       "outcomes": {
+        "stall": 18,
+        "hit": 13
+       },
+       "stall_points": [
+        [
+         25.5,
+         14.9,
+         127.6
+        ],
+        [
+         23.5,
+         14.9,
+         127.6
+        ],
+        [
+         21.5,
+         14.9,
+         127.6
+        ],
+        [
+         19.5,
+         14.9,
+         127.6
+        ],
+        [
+         17.5,
+         14.9,
+         127.6
+        ]
+       ],
+       "angle_deg": [
+        103.3,
+        104.0
+       ]
+      },
+      {
+       "pose": "hood=-6.50948, tilt=46",
+       "rays": 31,
+       "first_hit": {
+        "stall": 31
+       },
+       "outcomes": {
+        "stall": 31
+       },
+       "stall_points": [
+        [
+         25.5,
+         46.3,
+         169.7
+        ],
+        [
+         23.5,
+         46.3,
+         169.7
+        ],
+        [
+         21.5,
+         46.3,
+         169.7
+        ],
+        [
+         19.5,
+         46.3,
+         169.7
+        ],
+        [
+         17.5,
+         46.3,
+         169.7
+        ]
+       ]
+      },
+      {
+       "pose": "hood=1.09457, tilt=0",
+       "rays": 31,
+       "first_hit": {
+        "PRT_flywheel": 31
+       },
+       "outcomes": {
+        "hit": 31
+       },
+       "stall_points": [],
+       "angle_deg": [
+        69.6,
+        104.0
+       ]
+      },
+      {
+       "pose": "hood=1.09457, tilt=46",
+       "rays": 31,
+       "first_hit": {
+        "PRT_flywheel": 31
+       },
+       "outcomes": {
+        "hit": 31
+       },
+       "stall_points": [],
+       "angle_deg": [
+        90.0,
+        95.0
+       ]
+      }
+     ]
+    },
+    {
+     "name": "REVIEW drop at top of working window",
+     "mode": "slide",
+     "rows": [
+      {
+       "pose": "hood=-0.55, tilt=0",
+       "rays": 31,
+       "first_hit": {
+        "PRT_flywheel": 31
+       },
+       "outcomes": {
+        "hit": 31
+       },
+       "stall_points": [],
+       "angle_deg": [
+        65.6,
+        104.0
+       ]
+      },
+      {
+       "pose": "hood=-0.55, tilt=22.5",
+       "rays": 31,
+       "first_hit": {
+        "PRT_flywheel": 31
+       },
+       "outcomes": {
+        "hit": 31
+       },
+       "stall_points": [],
+       "angle_deg": [
+        84.4,
+        92.3
+       ]
+      },
+      {
+       "pose": "hood=-0.55, tilt=46",
+       "rays": 31,
+       "first_hit": {
+        "PRT_flywheel": 31
+       },
+       "outcomes": {
+        "hit": 31
+       },
+       "stall_points": [],
+       "angle_deg": [
+        85.5,
+        92.1
+       ]
+      },
+      {
+       "pose": "hood=-1, tilt=0",
+       "rays": 31,
+       "first_hit": {
+        "PRT_flywheel": 23,
+        "stall": 8
+       },
+       "outcomes": {
+        "hit": 23,
+        "stall": 8
+       },
+       "stall_points": [
+        [
+         23.5,
+         18.2,
+         132.0
+        ],
+        [
+         21.5,
+         18.2,
+         132.0
+        ],
+        [
+         19.5,
+         18.2,
+         132.0
+        ],
+        [
+         23.5,
+         17.7,
+         132.2
+        ],
+        [
+         21.5,
+         17.7,
+         132.2
+        ]
+       ],
+       "angle_deg": [
+        64.9,
+        104.0
+       ]
+      },
+      {
+       "pose": "hood=-1, tilt=22.5",
+       "rays": 31,
+       "first_hit": {
+        "PRT_flywheel": 31
+       },
+       "outcomes": {
+        "hit": 31
+       },
+       "stall_points": [],
+       "angle_deg": [
+        80.1,
+        90.8
+       ]
+      },
+      {
+       "pose": "hood=-1, tilt=46",
+       "rays": 31,
+       "first_hit": {
+        "PRT_flywheel": 31
+       },
+       "outcomes": {
+        "hit": 31
+       },
+       "stall_points": [],
+       "angle_deg": [
+        79.7,
+        90.4
+       ]
+      }
+     ]
+    },
+    {
+     "name": "REVIEW drop threshold vs hood",
+     "mode": "slide",
+     "rows": [
+      {
+       "pose": "hood=-1.5, tilt=0",
+       "rays": 31,
+       "first_hit": {
+        "PRT_flywheel": 18,
+        "stall": 13
+       },
+       "outcomes": {
+        "hit": 18,
+        "stall": 13
+       },
+       "stall_points": [
+        [
+         23.5,
+         17.6,
+         131.7
+        ],
+        [
+         21.5,
+         17.6,
+         131.7
+        ],
+        [
+         19.5,
+         17.6,
+         131.7
+        ],
+        [
+         17.5,
+         17.6,
+         131.7
+        ],
+        [
+         23.5,
+         17.7,
+         131.7
+        ]
+       ],
+       "angle_deg": [
+        63.6,
+        104.0
+       ]
+      },
+      {
+       "pose": "hood=-1.5, tilt=46",
+       "rays": 31,
+       "first_hit": {
+        "PRT_flywheel": 8,
+        "stall": 23
+       },
+       "outcomes": {
+        "hit": 8,
+        "stall": 23
+       },
+       "stall_points": [
+        [
+         23.5,
+         44.8,
+         174.2
+        ],
+        [
+         21.5,
+         44.8,
+         174.2
+        ],
+        [
+         19.5,
+         44.8,
+         174.2
+        ],
+        [
+         17.5,
+         44.8,
+         174.2
+        ],
+        [
+         23.5,
+         44.8,
+         174.2
+        ]
+       ],
+       "angle_deg": [
+        86.3,
+        89.1
+       ]
+      },
+      {
+       "pose": "hood=-3, tilt=0",
+       "rays": 31,
+       "first_hit": {
+        "stall": 18,
+        "PRT_flywheel": 13
+       },
+       "outcomes": {
+        "stall": 18,
+        "hit": 13
+       },
+       "stall_points": [
+        [
+         25.5,
+         17.0,
+         130.4
+        ],
+        [
+         23.5,
+         17.0,
+         130.4
+        ],
+        [
+         21.5,
+         17.0,
+         130.4
+        ],
+        [
+         19.5,
+         17.0,
+         130.4
+        ],
+        [
+         17.5,
+         17.0,
+         130.4
+        ]
+       ],
+       "angle_deg": [
+        103.3,
+        104.0
+       ]
+      },
+      {
+       "pose": "hood=-3, tilt=46",
+       "rays": 31,
+       "first_hit": {
+        "stall": 31
+       },
+       "outcomes": {
+        "stall": 31
+       },
+       "stall_points": [
+        [
+         25.5,
+         45.4,
+         172.9
+        ],
+        [
+         23.5,
+         45.4,
+         172.9
+        ],
+        [
+         21.5,
+         45.4,
+         172.9
+        ],
+        [
+         19.5,
+         45.4,
+         172.9
+        ],
+        [
+         17.5,
+         45.4,
+         172.9
+        ]
+       ]
+      },
+      {
+       "pose": "hood=-4.5, tilt=0",
+       "rays": 31,
+       "first_hit": {
+        "stall": 18,
+        "PRT_flywheel": 13
+       },
+       "outcomes": {
+        "stall": 18,
+        "hit": 13
+       },
+       "stall_points": [
+        [
+         25.5,
+         15.9,
+         129.3
+        ],
+        [
+         23.5,
+         15.9,
+         129.3
+        ],
+        [
+         21.5,
+         15.9,
+         129.3
+        ],
+        [
+         19.5,
+         15.9,
+         129.3
+        ],
+        [
+         17.5,
+         15.9,
+         129.3
+        ]
+       ],
+       "angle_deg": [
+        103.3,
+        104.0
+       ]
+      },
+      {
+       "pose": "hood=-4.5, tilt=46",
+       "rays": 31,
+       "first_hit": {
+        "stall": 31
+       },
+       "outcomes": {
+        "stall": 31
+       },
+       "stall_points": [
+        [
+         25.5,
+         45.0,
+         171.9
+        ],
+        [
+         23.5,
+         45.0,
+         171.9
+        ],
+        [
+         21.5,
+         45.0,
+         171.9
+        ],
+        [
+         19.5,
+         45.0,
+         171.9
+        ],
+        [
+         17.5,
+         45.0,
+         171.9
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "runtime_s": 2.5
+  },
+  "index": {
+   "findings": [],
+   "rows": [
+    {
+     "name": "REVIEW column never open, jar drifted to 5 (no detent)",
+     "joint": "PIV_feeder",
+     "sequence": [
+      0,
+      60,
+      0,
+      -60,
+      0
+     ],
+     "windows": 0,
+     "open_ranges_deg": [],
+     "open_at_start": false,
+     "why": null
+    },
+    {
+     "name": "REVIEW +60 fire at jar 5",
+     "joint": "PIV_feeder",
+     "sequence": [
+      0,
+      60,
+      0
+     ],
+     "windows": 1,
+     "open_ranges_deg": [
+      [
+       48.0,
+       60.0
+      ]
+     ],
+     "open_at_start": false,
+     "why": null
+    },
+    {
+     "name": "REVIEW column never open, jar drifted to 10 (no detent)",
+     "joint": "PIV_feeder",
+     "sequence": [
+      0,
+      60,
+      0,
+      -60,
+      0
+     ],
+     "windows": 0,
+     "open_ranges_deg": [],
+     "open_at_start": false,
+     "why": null
+    },
+    {
+     "name": "REVIEW +60 fire at jar 10",
+     "joint": "PIV_feeder",
+     "sequence": [
+      0,
+      60,
+      0
+     ],
+     "windows": 1,
+     "open_ranges_deg": [
+      [
+       48.0,
+       60.0
+      ]
+     ],
+     "open_at_start": false,
+     "why": null
+    },
+    {
+     "name": "REVIEW column never open, jar drifted to 15 (no detent)",
+     "joint": "PIV_feeder",
+     "sequence": [
+      0,
+      60,
+      0,
+      -60,
+      0
+     ],
+     "windows": 0,
+     "open_ranges_deg": [],
+     "open_at_start": false,
+     "why": null
+    },
+    {
+     "name": "REVIEW +60 fire at jar 15",
+     "joint": "PIV_feeder",
+     "sequence": [
+      0,
+      60,
+      0
+     ],
+     "windows": 1,
+     "open_ranges_deg": [
+      [
+       48.0,
+       60.0
+      ]
+     ],
+     "open_at_start": false,
+     "why": null
+    }
+   ],
+   "runtime_s": 2.8
+  },
+  "slide": {
+   "findings": [
+    {
+     "status": "warn",
+     "msg": "REVIEW encoder cap off -X 45 mm at tilt 45 slides out but with only 0.00 mm to PRT_nacelle",
+     "object": "REVIEW encoder cap off -X 45 mm at tilt 45",
+     "members": [
+      "BUY_plink_encoder",
+      "PRT_encoder_cap"
+     ],
+     "dir": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "dist": 45,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.0,
+     "closest": "PRT_nacelle",
+     "pose": "tilt=45"
+    },
+    {
+     "status": "fail",
+     "msg": "REVIEW encoder cap off -X 45 mm at tilt 0 slide-out blocked by ['PRT_post_L'] at 4 mm",
+     "object": "REVIEW encoder cap off -X 45 mm at tilt 0",
+     "members": [
+      "BUY_plink_encoder",
+      "PRT_encoder_cap"
+     ],
+     "dir": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "dist": 45,
+     "blocked_at_mm": 4,
+     "blocked_by": [
+      "PRT_post_L"
+     ],
+     "min_clearance_mm": 0.0,
+     "closest": "PRT_nacelle",
+     "pose": "tilt=0"
+    },
+    {
+     "status": "warn",
+     "msg": "REVIEW gate +X 52 with the valve present slides out but with only 0.20 mm to PRT_jar_valve",
+     "object": "REVIEW gate +X 52 with the valve present",
+     "members": [
+      "PRT_jar_gate"
+     ],
+     "dir": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "dist": 52,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.2,
+     "closest": "PRT_jar_valve",
+     "pose": "home"
+    },
+    {
+     "status": "warn",
+     "msg": "REVIEW gate +X 110 (what retains it open?) slides out but with only 0.64 mm to PRT_jar_adapter",
+     "object": "REVIEW gate +X 110 (what retains it open?)",
+     "members": [
+      "PRT_jar_gate"
+     ],
+     "dir": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "dist": 110,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.64,
+     "closest": "PRT_jar_adapter",
+     "pose": "home"
+    },
+    {
+     "status": "fail",
+     "msg": "REVIEW nip cover + leaf off down at tilt 0 slide-out blocked by ['PRT_groove_cap'] at 14 mm",
+     "object": "REVIEW nip cover + leaf off down at tilt 0",
+     "members": [
+      "FST_leaf_0",
+      "FST_leaf_1",
+      "PRT_nip_cover",
+      "PRT_nip_leaf"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      -1.0
+     ],
+     "dist": 30,
+     "blocked_at_mm": 14,
+     "blocked_by": [
+      "PRT_groove_cap"
+     ],
+     "min_clearance_mm": 0.0,
+     "closest": "PRT_launcher_body",
+     "pose": "home"
+    },
+    {
+     "status": "warn",
+     "msg": "REVIEW feeder servo lifts +Z after the lobe cover slides out but with only 0.00 mm to PRT_feeder_crown",
+     "object": "REVIEW feeder servo lifts +Z after the lobe cover",
+     "members": [
+      "BUY_servo_feeder"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 60,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.0,
+     "closest": "PRT_feeder_crown",
+     "pose": "home"
+    },
+    {
+     "status": "fail",
+     "msg": "REVIEW step 7 reverse: pod lifts +Z out of the post U-slots slide-out blocked by ['PRT_post_R'] at 2 mm",
+     "object": "REVIEW step 7 reverse: pod lifts +Z out of the post U-slots",
+     "members": [
+      "BUY_magnet",
+      "BUY_motor",
+      "BUY_plink_encoder",
+      "FST_cover_0",
+      "FST_cover_1",
+      "FST_cover_2",
+      "FST_cover_3",
+      "FST_enc_0",
+      "FST_enc_1",
+      "FST_fw_bolt_0",
+      "FST_fw_bolt_1",
+      "FST_fw_nut_0",
+      "FST_fw_nut_1",
+      "FST_hinge",
+      "FST_hinge_nut",
+      "FST_jp_0",
+      "FST_jp_1",
+      "FST_jp_2",
+      "FST_leaf_0",
+      "FST_leaf_1",
+      "FST_motor_0",
+      "FST_motor_1",
+      "FST_motor_2",
+      "FST_motor_3",
+      "FST_nacelle_0",
+      "FST_nacelle_1",
+      "FST_nip_stud",
+      "FST_nipcover_0",
+      "FST_nipcover_1",
+      "FST_tw_nut",
+      "PRT_encoder_cap",
+      "PRT_flywheel",
+      "PRT_hood",
+      "PRT_journal_plate",
+      "PRT_launcher_body",
+      "PRT_launcher_cover",
+      "PRT_nacelle",
+      "PRT_nip_cover",
+      "PRT_nip_leaf",
+      "PRT_nip_wheel"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": 2,
+     "blocked_by": [
+      "PRT_post_R"
+     ],
+     "min_clearance_mm": 0.2,
+     "closest": "PRT_post_L",
+     "pose": "home"
+    },
+    {
+     "status": "warn",
+     "msg": "REVIEW step 11 reverse: feeder lifts +Z off the beam (jar off) slides out but with only 0.00 mm to PRT_beam",
+     "object": "REVIEW step 11 reverse: feeder lifts +Z off the beam (jar off)",
+     "members": [
+      "BUY_horn_feeder",
+      "BUY_servo_feeder",
+      "FST_fcover_0",
+      "FST_fcover_1",
+      "FST_fhorn_0",
+      "FST_fhorn_1",
+      "FST_fhorn_2",
+      "FST_fhorn_3",
+      "FST_fhorn_ctr",
+      "FST_fplate_0",
+      "FST_fplate_1",
+      "PRT_feeder_cover",
+      "PRT_feeder_crown",
+      "PRT_feeder_disc",
+      "PRT_feeder_housing",
+      "PRT_feeder_pinion"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 80,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.0,
+     "closest": "PRT_beam",
+     "pose": "home"
+    },
+    {
+     "status": "fail",
+     "msg": "REVIEW pod lift at tilt -3 slide-out blocked by ['PRT_post_R'] at 2 mm",
+     "object": "REVIEW pod lift at tilt -3",
+     "members": [
+      "BUY_magnet",
+      "BUY_motor",
+      "BUY_plink_encoder",
+      "FST_cover_0",
+      "FST_cover_1",
+      "FST_cover_2",
+      "FST_cover_3",
+      "FST_enc_0",
+      "FST_enc_1",
+      "FST_fw_bolt_0",
+      "FST_fw_bolt_1",
+      "FST_fw_nut_0",
+      "FST_fw_nut_1",
+      "FST_hinge",
+      "FST_hinge_nut",
+      "FST_jp_0",
+      "FST_jp_1",
+      "FST_jp_2",
+      "FST_leaf_0",
+      "FST_leaf_1",
+      "FST_motor_0",
+      "FST_motor_1",
+      "FST_motor_2",
+      "FST_motor_3",
+      "FST_nacelle_0",
+      "FST_nacelle_1",
+      "FST_nip_stud",
+      "FST_nipcover_0",
+      "FST_nipcover_1",
+      "FST_tw_nut",
+      "PRT_encoder_cap",
+      "PRT_flywheel",
+      "PRT_hood",
+      "PRT_journal_plate",
+      "PRT_launcher_body",
+      "PRT_launcher_cover",
+      "PRT_nacelle",
+      "PRT_nip_cover",
+      "PRT_nip_leaf",
+      "PRT_nip_wheel"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": 2,
+     "blocked_by": [
+      "PRT_post_R"
+     ],
+     "min_clearance_mm": 0.15,
+     "closest": "PRT_post_R",
+     "pose": "tilt=-3"
+    },
+    {
+     "status": "warn",
+     "msg": "REVIEW pod lift at tilt 10 slides out but with only 0.20 mm to PRT_post_L",
+     "object": "REVIEW pod lift at tilt 10",
+     "members": [
+      "BUY_magnet",
+      "BUY_motor",
+      "BUY_plink_encoder",
+      "FST_cover_0",
+      "FST_cover_1",
+      "FST_cover_2",
+      "FST_cover_3",
+      "FST_enc_0",
+      "FST_enc_1",
+      "FST_fw_bolt_0",
+      "FST_fw_bolt_1",
+      "FST_fw_nut_0",
+      "FST_fw_nut_1",
+      "FST_hinge",
+      "FST_hinge_nut",
+      "FST_jp_0",
+      "FST_jp_1",
+      "FST_jp_2",
+      "FST_leaf_0",
+      "FST_leaf_1",
+      "FST_motor_0",
+      "FST_motor_1",
+      "FST_motor_2",
+      "FST_motor_3",
+      "FST_nacelle_0",
+      "FST_nacelle_1",
+      "FST_nip_stud",
+      "FST_nipcover_0",
+      "FST_nipcover_1",
+      "FST_tw_nut",
+      "PRT_encoder_cap",
+      "PRT_flywheel",
+      "PRT_hood",
+      "PRT_journal_plate",
+      "PRT_launcher_body",
+      "PRT_launcher_cover",
+      "PRT_nacelle",
+      "PRT_nip_cover",
+      "PRT_nip_leaf",
+      "PRT_nip_wheel"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.2,
+     "closest": "PRT_post_L",
+     "pose": "tilt=10"
+    },
+    {
+     "status": "warn",
+     "msg": "REVIEW pod lift at tilt 22.5 slides out but with only 0.16 mm to PRT_post_L",
+     "object": "REVIEW pod lift at tilt 22.5",
+     "members": [
+      "BUY_magnet",
+      "BUY_motor",
+      "BUY_plink_encoder",
+      "FST_cover_0",
+      "FST_cover_1",
+      "FST_cover_2",
+      "FST_cover_3",
+      "FST_enc_0",
+      "FST_enc_1",
+      "FST_fw_bolt_0",
+      "FST_fw_bolt_1",
+      "FST_fw_nut_0",
+      "FST_fw_nut_1",
+      "FST_hinge",
+      "FST_hinge_nut",
+      "FST_jp_0",
+      "FST_jp_1",
+      "FST_jp_2",
+      "FST_leaf_0",
+      "FST_leaf_1",
+      "FST_motor_0",
+      "FST_motor_1",
+      "FST_motor_2",
+      "FST_motor_3",
+      "FST_nacelle_0",
+      "FST_nacelle_1",
+      "FST_nip_stud",
+      "FST_nipcover_0",
+      "FST_nipcover_1",
+      "FST_tw_nut",
+      "PRT_encoder_cap",
+      "PRT_flywheel",
+      "PRT_hood",
+      "PRT_journal_plate",
+      "PRT_launcher_body",
+      "PRT_launcher_cover",
+      "PRT_nacelle",
+      "PRT_nip_cover",
+      "PRT_nip_leaf",
+      "PRT_nip_wheel"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.16,
+     "closest": "PRT_post_L",
+     "pose": "tilt=22.5"
+    },
+    {
+     "status": "warn",
+     "msg": "REVIEW pod lift at tilt 35 slides out but with only 0.14 mm to PRT_post_R",
+     "object": "REVIEW pod lift at tilt 35",
+     "members": [
+      "BUY_magnet",
+      "BUY_motor",
+      "BUY_plink_encoder",
+      "FST_cover_0",
+      "FST_cover_1",
+      "FST_cover_2",
+      "FST_cover_3",
+      "FST_enc_0",
+      "FST_enc_1",
+      "FST_fw_bolt_0",
+      "FST_fw_bolt_1",
+      "FST_fw_nut_0",
+      "FST_fw_nut_1",
+      "FST_hinge",
+      "FST_hinge_nut",
+      "FST_jp_0",
+      "FST_jp_1",
+      "FST_jp_2",
+      "FST_leaf_0",
+      "FST_leaf_1",
+      "FST_motor_0",
+      "FST_motor_1",
+      "FST_motor_2",
+      "FST_motor_3",
+      "FST_nacelle_0",
+      "FST_nacelle_1",
+      "FST_nip_stud",
+      "FST_nipcover_0",
+      "FST_nipcover_1",
+      "FST_tw_nut",
+      "PRT_encoder_cap",
+      "PRT_flywheel",
+      "PRT_hood",
+      "PRT_journal_plate",
+      "PRT_launcher_body",
+      "PRT_launcher_cover",
+      "PRT_nacelle",
+      "PRT_nip_cover",
+      "PRT_nip_leaf",
+      "PRT_nip_wheel"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.14,
+     "closest": "PRT_post_R",
+     "pose": "tilt=35"
+    },
+    {
+     "status": "fail",
+     "msg": "REVIEW pod lift at tilt 46 slide-out blocked by ['PRT_post_R'] at 2 mm",
+     "object": "REVIEW pod lift at tilt 46",
+     "members": [
+      "BUY_magnet",
+      "BUY_motor",
+      "BUY_plink_encoder",
+      "FST_cover_0",
+      "FST_cover_1",
+      "FST_cover_2",
+      "FST_cover_3",
+      "FST_enc_0",
+      "FST_enc_1",
+      "FST_fw_bolt_0",
+      "FST_fw_bolt_1",
+      "FST_fw_nut_0",
+      "FST_fw_nut_1",
+      "FST_hinge",
+      "FST_hinge_nut",
+      "FST_jp_0",
+      "FST_jp_1",
+      "FST_jp_2",
+      "FST_leaf_0",
+      "FST_leaf_1",
+      "FST_motor_0",
+      "FST_motor_1",
+      "FST_motor_2",
+      "FST_motor_3",
+      "FST_nacelle_0",
+      "FST_nacelle_1",
+      "FST_nip_stud",
+      "FST_nipcover_0",
+      "FST_nipcover_1",
+      "FST_tw_nut",
+      "PRT_encoder_cap",
+      "PRT_flywheel",
+      "PRT_hood",
+      "PRT_journal_plate",
+      "PRT_launcher_body",
+      "PRT_launcher_cover",
+      "PRT_nacelle",
+      "PRT_nip_cover",
+      "PRT_nip_leaf",
+      "PRT_nip_wheel"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": 2,
+     "blocked_by": [
+      "PRT_post_R"
+     ],
+     "min_clearance_mm": 0.14,
+     "closest": "PRT_post_L",
+     "pose": "tilt=46"
+    },
+    {
+     "status": "fail",
+     "msg": "REVIEW lift member PRT_journal_plate slide-out blocked by ['PRT_post_R'] at 2 mm",
+     "object": "REVIEW lift member PRT_journal_plate",
+     "members": [
+      "PRT_journal_plate"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": 2,
+     "blocked_by": [
+      "PRT_post_R"
+     ],
+     "min_clearance_mm": 0.2,
+     "closest": "PRT_post_R",
+     "pose": "home"
+    },
+    {
+     "status": "warn",
+     "msg": "REVIEW lift member PRT_launcher_cover slides out but with only 1.40 mm to PRT_post_R",
+     "object": "REVIEW lift member PRT_launcher_cover",
+     "members": [
+      "PRT_launcher_cover"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 1.4,
+     "closest": "PRT_post_R",
+     "pose": "home"
+    },
+    {
+     "status": "warn",
+     "msg": "REVIEW lift member PRT_nacelle slides out but with only 0.20 mm to PRT_post_L",
+     "object": "REVIEW lift member PRT_nacelle",
+     "members": [
+      "PRT_nacelle"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.2,
+     "closest": "PRT_post_L",
+     "pose": "home"
+    },
+    {
+     "status": "fail",
+     "msg": "REVIEW lift member FST_hinge* slide-out blocked by ['PRT_post_R'] at 14 mm",
+     "object": "REVIEW lift member FST_hinge*",
+     "members": [
+      "FST_hinge",
+      "FST_hinge_nut"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": 14,
+     "blocked_by": [
+      "PRT_post_R"
+     ],
+     "min_clearance_mm": 0.09,
+     "closest": "PRT_post_R",
+     "pose": "home"
+    },
+    {
+     "status": "warn",
+     "msg": "REVIEW lift member FST_jp_* slides out but with only 1.40 mm to PRT_post_R",
+     "object": "REVIEW lift member FST_jp_*",
+     "members": [
+      "FST_jp_0",
+      "FST_jp_1",
+      "FST_jp_2"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 1.4,
+     "closest": "PRT_post_R",
+     "pose": "home"
+    }
+   ],
+   "rows": [
+    {
+     "object": "REVIEW encoder cap off -X 45 mm at tilt 45",
+     "members": [
+      "BUY_plink_encoder",
+      "PRT_encoder_cap"
+     ],
+     "dir": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "dist": 45,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.0,
+     "closest": "PRT_nacelle",
+     "pose": "tilt=45"
+    },
+    {
+     "object": "REVIEW encoder cap off -X 45 mm at tilt 0",
+     "members": [
+      "BUY_plink_encoder",
+      "PRT_encoder_cap"
+     ],
+     "dir": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "dist": 45,
+     "blocked_at_mm": 4,
+     "blocked_by": [
+      "PRT_post_L"
+     ],
+     "min_clearance_mm": 0.0,
+     "closest": "PRT_nacelle",
+     "pose": "tilt=0"
+    },
+    {
+     "object": "REVIEW gate +X 52 with the valve present",
+     "members": [
+      "PRT_jar_gate"
+     ],
+     "dir": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "dist": 52,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.2,
+     "closest": "PRT_jar_valve",
+     "pose": "home"
+    },
+    {
+     "object": "REVIEW gate +X 110 (what retains it open?)",
+     "members": [
+      "PRT_jar_gate"
+     ],
+     "dir": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "dist": 110,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.64,
+     "closest": "PRT_jar_adapter",
+     "pose": "home"
+    },
+    {
+     "object": "REVIEW nip cover + leaf off down at tilt 0",
+     "members": [
+      "FST_leaf_0",
+      "FST_leaf_1",
+      "PRT_nip_cover",
+      "PRT_nip_leaf"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      -1.0
+     ],
+     "dist": 30,
+     "blocked_at_mm": 14,
+     "blocked_by": [
+      "PRT_groove_cap"
+     ],
+     "min_clearance_mm": 0.0,
+     "closest": "PRT_launcher_body",
+     "pose": "home"
+    },
+    {
+     "object": "REVIEW feeder servo lifts +Z after the lobe cover",
+     "members": [
+      "BUY_servo_feeder"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 60,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.0,
+     "closest": "PRT_feeder_crown",
+     "pose": "home"
+    },
+    {
+     "object": "REVIEW step 7 reverse: pod lifts +Z out of the post U-slots",
+     "members": [
+      "BUY_magnet",
+      "BUY_motor",
+      "BUY_plink_encoder",
+      "FST_cover_0",
+      "FST_cover_1",
+      "FST_cover_2",
+      "FST_cover_3",
+      "FST_enc_0",
+      "FST_enc_1",
+      "FST_fw_bolt_0",
+      "FST_fw_bolt_1",
+      "FST_fw_nut_0",
+      "FST_fw_nut_1",
+      "FST_hinge",
+      "FST_hinge_nut",
+      "FST_jp_0",
+      "FST_jp_1",
+      "FST_jp_2",
+      "FST_leaf_0",
+      "FST_leaf_1",
+      "FST_motor_0",
+      "FST_motor_1",
+      "FST_motor_2",
+      "FST_motor_3",
+      "FST_nacelle_0",
+      "FST_nacelle_1",
+      "FST_nip_stud",
+      "FST_nipcover_0",
+      "FST_nipcover_1",
+      "FST_tw_nut",
+      "PRT_encoder_cap",
+      "PRT_flywheel",
+      "PRT_hood",
+      "PRT_journal_plate",
+      "PRT_launcher_body",
+      "PRT_launcher_cover",
+      "PRT_nacelle",
+      "PRT_nip_cover",
+      "PRT_nip_leaf",
+      "PRT_nip_wheel"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": 2,
+     "blocked_by": [
+      "PRT_post_R"
+     ],
+     "min_clearance_mm": 0.2,
+     "closest": "PRT_post_L",
+     "pose": "home"
+    },
+    {
+     "object": "REVIEW step 11 reverse: feeder lifts +Z off the beam (jar off)",
+     "members": [
+      "BUY_horn_feeder",
+      "BUY_servo_feeder",
+      "FST_fcover_0",
+      "FST_fcover_1",
+      "FST_fhorn_0",
+      "FST_fhorn_1",
+      "FST_fhorn_2",
+      "FST_fhorn_3",
+      "FST_fhorn_ctr",
+      "FST_fplate_0",
+      "FST_fplate_1",
+      "PRT_feeder_cover",
+      "PRT_feeder_crown",
+      "PRT_feeder_disc",
+      "PRT_feeder_housing",
+      "PRT_feeder_pinion"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 80,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.0,
+     "closest": "PRT_beam",
+     "pose": "home"
+    },
+    {
+     "object": "REVIEW pod lift at tilt -3",
+     "members": [
+      "BUY_magnet",
+      "BUY_motor",
+      "BUY_plink_encoder",
+      "FST_cover_0",
+      "FST_cover_1",
+      "FST_cover_2",
+      "FST_cover_3",
+      "FST_enc_0",
+      "FST_enc_1",
+      "FST_fw_bolt_0",
+      "FST_fw_bolt_1",
+      "FST_fw_nut_0",
+      "FST_fw_nut_1",
+      "FST_hinge",
+      "FST_hinge_nut",
+      "FST_jp_0",
+      "FST_jp_1",
+      "FST_jp_2",
+      "FST_leaf_0",
+      "FST_leaf_1",
+      "FST_motor_0",
+      "FST_motor_1",
+      "FST_motor_2",
+      "FST_motor_3",
+      "FST_nacelle_0",
+      "FST_nacelle_1",
+      "FST_nip_stud",
+      "FST_nipcover_0",
+      "FST_nipcover_1",
+      "FST_tw_nut",
+      "PRT_encoder_cap",
+      "PRT_flywheel",
+      "PRT_hood",
+      "PRT_journal_plate",
+      "PRT_launcher_body",
+      "PRT_launcher_cover",
+      "PRT_nacelle",
+      "PRT_nip_cover",
+      "PRT_nip_leaf",
+      "PRT_nip_wheel"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": 2,
+     "blocked_by": [
+      "PRT_post_R"
+     ],
+     "min_clearance_mm": 0.15,
+     "closest": "PRT_post_R",
+     "pose": "tilt=-3"
+    },
+    {
+     "object": "REVIEW pod lift at tilt 10",
+     "members": [
+      "BUY_magnet",
+      "BUY_motor",
+      "BUY_plink_encoder",
+      "FST_cover_0",
+      "FST_cover_1",
+      "FST_cover_2",
+      "FST_cover_3",
+      "FST_enc_0",
+      "FST_enc_1",
+      "FST_fw_bolt_0",
+      "FST_fw_bolt_1",
+      "FST_fw_nut_0",
+      "FST_fw_nut_1",
+      "FST_hinge",
+      "FST_hinge_nut",
+      "FST_jp_0",
+      "FST_jp_1",
+      "FST_jp_2",
+      "FST_leaf_0",
+      "FST_leaf_1",
+      "FST_motor_0",
+      "FST_motor_1",
+      "FST_motor_2",
+      "FST_motor_3",
+      "FST_nacelle_0",
+      "FST_nacelle_1",
+      "FST_nip_stud",
+      "FST_nipcover_0",
+      "FST_nipcover_1",
+      "FST_tw_nut",
+      "PRT_encoder_cap",
+      "PRT_flywheel",
+      "PRT_hood",
+      "PRT_journal_plate",
+      "PRT_launcher_body",
+      "PRT_launcher_cover",
+      "PRT_nacelle",
+      "PRT_nip_cover",
+      "PRT_nip_leaf",
+      "PRT_nip_wheel"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.2,
+     "closest": "PRT_post_L",
+     "pose": "tilt=10"
+    },
+    {
+     "object": "REVIEW pod lift at tilt 22.5",
+     "members": [
+      "BUY_magnet",
+      "BUY_motor",
+      "BUY_plink_encoder",
+      "FST_cover_0",
+      "FST_cover_1",
+      "FST_cover_2",
+      "FST_cover_3",
+      "FST_enc_0",
+      "FST_enc_1",
+      "FST_fw_bolt_0",
+      "FST_fw_bolt_1",
+      "FST_fw_nut_0",
+      "FST_fw_nut_1",
+      "FST_hinge",
+      "FST_hinge_nut",
+      "FST_jp_0",
+      "FST_jp_1",
+      "FST_jp_2",
+      "FST_leaf_0",
+      "FST_leaf_1",
+      "FST_motor_0",
+      "FST_motor_1",
+      "FST_motor_2",
+      "FST_motor_3",
+      "FST_nacelle_0",
+      "FST_nacelle_1",
+      "FST_nip_stud",
+      "FST_nipcover_0",
+      "FST_nipcover_1",
+      "FST_tw_nut",
+      "PRT_encoder_cap",
+      "PRT_flywheel",
+      "PRT_hood",
+      "PRT_journal_plate",
+      "PRT_launcher_body",
+      "PRT_launcher_cover",
+      "PRT_nacelle",
+      "PRT_nip_cover",
+      "PRT_nip_leaf",
+      "PRT_nip_wheel"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.16,
+     "closest": "PRT_post_L",
+     "pose": "tilt=22.5"
+    },
+    {
+     "object": "REVIEW pod lift at tilt 35",
+     "members": [
+      "BUY_magnet",
+      "BUY_motor",
+      "BUY_plink_encoder",
+      "FST_cover_0",
+      "FST_cover_1",
+      "FST_cover_2",
+      "FST_cover_3",
+      "FST_enc_0",
+      "FST_enc_1",
+      "FST_fw_bolt_0",
+      "FST_fw_bolt_1",
+      "FST_fw_nut_0",
+      "FST_fw_nut_1",
+      "FST_hinge",
+      "FST_hinge_nut",
+      "FST_jp_0",
+      "FST_jp_1",
+      "FST_jp_2",
+      "FST_leaf_0",
+      "FST_leaf_1",
+      "FST_motor_0",
+      "FST_motor_1",
+      "FST_motor_2",
+      "FST_motor_3",
+      "FST_nacelle_0",
+      "FST_nacelle_1",
+      "FST_nip_stud",
+      "FST_nipcover_0",
+      "FST_nipcover_1",
+      "FST_tw_nut",
+      "PRT_encoder_cap",
+      "PRT_flywheel",
+      "PRT_hood",
+      "PRT_journal_plate",
+      "PRT_launcher_body",
+      "PRT_launcher_cover",
+      "PRT_nacelle",
+      "PRT_nip_cover",
+      "PRT_nip_leaf",
+      "PRT_nip_wheel"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.14,
+     "closest": "PRT_post_R",
+     "pose": "tilt=35"
+    },
+    {
+     "object": "REVIEW pod lift at tilt 46",
+     "members": [
+      "BUY_magnet",
+      "BUY_motor",
+      "BUY_plink_encoder",
+      "FST_cover_0",
+      "FST_cover_1",
+      "FST_cover_2",
+      "FST_cover_3",
+      "FST_enc_0",
+      "FST_enc_1",
+      "FST_fw_bolt_0",
+      "FST_fw_bolt_1",
+      "FST_fw_nut_0",
+      "FST_fw_nut_1",
+      "FST_hinge",
+      "FST_hinge_nut",
+      "FST_jp_0",
+      "FST_jp_1",
+      "FST_jp_2",
+      "FST_leaf_0",
+      "FST_leaf_1",
+      "FST_motor_0",
+      "FST_motor_1",
+      "FST_motor_2",
+      "FST_motor_3",
+      "FST_nacelle_0",
+      "FST_nacelle_1",
+      "FST_nip_stud",
+      "FST_nipcover_0",
+      "FST_nipcover_1",
+      "FST_tw_nut",
+      "PRT_encoder_cap",
+      "PRT_flywheel",
+      "PRT_hood",
+      "PRT_journal_plate",
+      "PRT_launcher_body",
+      "PRT_launcher_cover",
+      "PRT_nacelle",
+      "PRT_nip_cover",
+      "PRT_nip_leaf",
+      "PRT_nip_wheel"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": 2,
+     "blocked_by": [
+      "PRT_post_R"
+     ],
+     "min_clearance_mm": 0.14,
+     "closest": "PRT_post_L",
+     "pose": "tilt=46"
+    },
+    {
+     "object": "REVIEW lift member PRT_journal_plate",
+     "members": [
+      "PRT_journal_plate"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": 2,
+     "blocked_by": [
+      "PRT_post_R"
+     ],
+     "min_clearance_mm": 0.2,
+     "closest": "PRT_post_R",
+     "pose": "home"
+    },
+    {
+     "object": "REVIEW lift member PRT_launcher_body",
+     "members": [
+      "PRT_launcher_body"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": null,
+     "closest": null,
+     "pose": "home"
+    },
+    {
+     "object": "REVIEW lift member PRT_launcher_cover",
+     "members": [
+      "PRT_launcher_cover"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 1.4,
+     "closest": "PRT_post_R",
+     "pose": "home"
+    },
+    {
+     "object": "REVIEW lift member PRT_nacelle",
+     "members": [
+      "PRT_nacelle"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.2,
+     "closest": "PRT_post_L",
+     "pose": "home"
+    },
+    {
+     "object": "REVIEW lift member PRT_hood",
+     "members": [
+      "PRT_hood"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": null,
+     "closest": null,
+     "pose": "home"
+    },
+    {
+     "object": "REVIEW lift member FST_hinge*",
+     "members": [
+      "FST_hinge",
+      "FST_hinge_nut"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": 14,
+     "blocked_by": [
+      "PRT_post_R"
+     ],
+     "min_clearance_mm": 0.09,
+     "closest": "PRT_post_R",
+     "pose": "home"
+    },
+    {
+     "object": "REVIEW lift member FST_jp_*",
+     "members": [
+      "FST_jp_0",
+      "FST_jp_1",
+      "FST_jp_2"
+     ],
+     "dir": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "dist": 150,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 1.4,
+     "closest": "PRT_post_R",
+     "pose": "home"
+    }
+   ],
+   "runtime_s": 7.6
+  },
+  "distances": {
+   "findings": [
+    {
+     "status": "fail",
+     "msg": "PRT_hood to PRT_flywheel: the ray missed one of them at hood=-6.50948",
+     "a": "PRT_hood",
+     "b": "PRT_flywheel",
+     "pose": "hood=-6.50948",
+     "mm": null,
+     "how": "along ray",
+     "min": 5.0,
+     "max": 13.0,
+     "why": "REVIEW nip ray at hood lo=max gap"
+    },
+    {
+     "status": "fail",
+     "msg": "PRT_hood to PRT_launcher_body = 0.29 mm (nearest) at hood=2, wanted 0.3..None (REVIEW hood to body near min gap)",
+     "a": "PRT_hood",
+     "b": "PRT_launcher_body",
+     "pose": "hood=2",
+     "mm": 0.291,
+     "how": "nearest",
+     "min": 0.3,
+     "max": null,
+     "why": "REVIEW hood to body near min gap"
+    },
+    {
+     "status": "fail",
+     "msg": "PRT_hood to PRT_launcher_body = 0.09 mm (nearest) at hood=3, wanted 0.3..None (REVIEW hood to body near min gap)",
+     "a": "PRT_hood",
+     "b": "PRT_launcher_body",
+     "pose": "hood=3",
+     "mm": 0.091,
+     "how": "nearest",
+     "min": 0.3,
+     "max": null,
+     "why": "REVIEW hood to body near min gap"
+    },
+    {
+     "status": "fail",
+     "msg": "PRT_hood to PRT_flywheel: payload 7.0 mm is not gripped (gap 7.34 after 0.5 mm liner)",
+     "a": "PRT_hood",
+     "b": "PRT_flywheel",
+     "pose": "hood=-1.5",
+     "mm": 7.842,
+     "how": "along ray",
+     "min": 0,
+     "max": 20,
+     "why": "REVIEW nip ray hood -1.5",
+     "squeeze_mm": -0.34
+    },
+    {
+     "status": "fail",
+     "msg": "PRT_hood to PRT_flywheel: the ray missed one of them at hood=-3",
+     "a": "PRT_hood",
+     "b": "PRT_flywheel",
+     "pose": "hood=-3",
+     "mm": null,
+     "how": "along ray",
+     "min": 0,
+     "max": 20,
+     "why": "REVIEW nip ray hood -3"
+    },
+    {
+     "status": "fail",
+     "msg": "PRT_hood to PRT_flywheel: the ray missed one of them at hood=-4.5",
+     "a": "PRT_hood",
+     "b": "PRT_flywheel",
+     "pose": "hood=-4.5",
+     "mm": null,
+     "how": "along ray",
+     "min": 0,
+     "max": 20,
+     "why": "REVIEW nip ray hood -4.5"
+    },
+    {
+     "status": "fail",
+     "msg": "PRT_hood to PRT_flywheel: the ray missed one of them at hood=-6.50948",
+     "a": "PRT_hood",
+     "b": "PRT_flywheel",
+     "pose": "hood=-6.50948",
+     "mm": null,
+     "how": "along ray",
+     "min": 0,
+     "max": 20,
+     "why": "REVIEW nip ray hood -6.50948"
+    }
+   ],
+   "rows": [
+    {
+     "a": "PRT_hood",
+     "b": "PRT_flywheel",
+     "pose": "hood=1.09457",
+     "mm": 5.498,
+     "how": "along ray",
+     "min": 5.0,
+     "max": 13.0,
+     "why": "REVIEW nip ray at hood hi=min gap",
+     "squeeze_mm": 2.0
+    },
+    {
+     "a": "PRT_hood",
+     "b": "PRT_flywheel",
+     "pose": "hood=-6.50948",
+     "mm": null,
+     "how": "along ray",
+     "min": 5.0,
+     "max": 13.0,
+     "why": "REVIEW nip ray at hood lo=max gap"
+    },
+    {
+     "a": "PRT_hood",
+     "b": "PRT_launcher_body",
+     "pose": "hood=1.09457",
+     "mm": 0.459,
+     "how": "nearest",
+     "min": 0.3,
+     "max": null,
+     "why": "REVIEW hood to body near min gap"
+    },
+    {
+     "a": "PRT_hood",
+     "b": "PRT_launcher_body",
+     "pose": "hood=2",
+     "mm": 0.291,
+     "how": "nearest",
+     "min": 0.3,
+     "max": null,
+     "why": "REVIEW hood to body near min gap"
+    },
+    {
+     "a": "PRT_hood",
+     "b": "PRT_launcher_body",
+     "pose": "hood=3",
+     "mm": 0.091,
+     "how": "nearest",
+     "min": 0.3,
+     "max": null,
+     "why": "REVIEW hood to body near min gap"
+    },
+    {
+     "a": "PRT_hood",
+     "b": "PRT_flywheel",
+     "pose": "hood=-0.55",
+     "mm": 6.996,
+     "how": "along ray",
+     "min": 0,
+     "max": 20,
+     "why": "REVIEW nip ray hood -1.5",
+     "squeeze_mm": 0.5
+    },
+    {
+     "a": "PRT_hood",
+     "b": "PRT_flywheel",
+     "pose": "hood=-1",
+     "mm": 7.396,
+     "how": "along ray",
+     "min": 0,
+     "max": 20,
+     "why": "REVIEW nip ray hood -3",
+     "squeeze_mm": 0.1
+    },
+    {
+     "a": "PRT_hood",
+     "b": "PRT_flywheel",
+     "pose": "hood=-1.5",
+     "mm": 7.842,
+     "how": "along ray",
+     "min": 0,
+     "max": 20,
+     "why": "REVIEW nip ray hood -1.5",
+     "squeeze_mm": -0.34
+    },
+    {
+     "a": "PRT_hood",
+     "b": "PRT_flywheel",
+     "pose": "hood=-3",
+     "mm": null,
+     "how": "along ray",
+     "min": 0,
+     "max": 20,
+     "why": "REVIEW nip ray hood -3"
+    },
+    {
+     "a": "PRT_hood",
+     "b": "PRT_flywheel",
+     "pose": "hood=-4.5",
+     "mm": null,
+     "how": "along ray",
+     "min": 0,
+     "max": 20,
+     "why": "REVIEW nip ray hood -4.5"
+    },
+    {
+     "a": "PRT_hood",
+     "b": "PRT_flywheel",
+     "pose": "hood=-6.50948",
+     "mm": null,
+     "how": "along ray",
+     "min": 0,
+     "max": 20,
+     "why": "REVIEW nip ray hood -6.50948"
+    }
+   ],
+   "runtime_s": 0.1
+  }
+ },
+ "coverage": [
+  "service: 2 ops, 2 screw accesses with the built assembly present",
+  "drop: 3 tests (fall + slide on walls, no bounce or rolling)",
+  "index: 6 indexer timing tests (probe through the moving parts over the motion sequence)",
+  "slide: 20 slide-out sweeps"
+ ],
+ "not_checked": [
+  "not geometric: teardown step count, alignment-jig datums (declare stacks), aesthetics, BOM correctness"
+ ],
+ "summary": {
+  "pass": false,
+  "fails": 25,
+  "warns": 11,
+  "fail_list": [
+   "service: 'REVIEW feeder servo swap: centre screw out (holds pinion+horn to the spline)': FST_fhorn_ctr cannot be reached (straight bit blocked by PRT_feeder_housing at 8.0 mm; L-key short leg blocked 8.0 mm out (elbow at 15.5)) at home, feeder=-60, feeder=60, hood=-6.50948, hood=1.09457, jar=30, pan=-90, pan=90, tilt=45",
+   "service: 'REVIEW feeder servo swap at tilt 45': FST_fhorn_ctr cannot be reached (straight bit blocked by PRT_feeder_housing at 8.0 mm; L-key short leg blocked 8.0 mm out (elbow at 15.5)) at tilt=45",
+   "drop: REVIEW drop at hood extremes at hood=-6.50948, tilt=0: 18/31 rays end at ['stall'], not ['PRT_flywheel']",
+   "drop: REVIEW drop at hood extremes at hood=-6.50948, tilt=46: 31/31 rays end at ['stall'], not ['PRT_flywheel']",
+   "drop: REVIEW drop at top of working window at hood=-1, tilt=0: 8/31 rays end at ['stall'], not ['PRT_flywheel']",
+   "drop: REVIEW drop threshold vs hood at hood=-1.5, tilt=0: 13/31 rays end at ['stall'], not ['PRT_flywheel']",
+   "drop: REVIEW drop threshold vs hood at hood=-1.5, tilt=46: 23/31 rays end at ['stall'], not ['PRT_flywheel']",
+   "drop: REVIEW drop threshold vs hood at hood=-3, tilt=0: 18/31 rays end at ['stall'], not ['PRT_flywheel']",
+   "drop: REVIEW drop threshold vs hood at hood=-3, tilt=46: 31/31 rays end at ['stall'], not ['PRT_flywheel']",
+   "drop: REVIEW drop threshold vs hood at hood=-4.5, tilt=0: 18/31 rays end at ['stall'], not ['PRT_flywheel']",
+   "drop: REVIEW drop threshold vs hood at hood=-4.5, tilt=46: 31/31 rays end at ['stall'], not ['PRT_flywheel']",
+   "slide: REVIEW encoder cap off -X 45 mm at tilt 0 slide-out blocked by ['PRT_post_L'] at 4 mm",
+   "slide: REVIEW nip cover + leaf off down at tilt 0 slide-out blocked by ['PRT_groove_cap'] at 14 mm",
+   "slide: REVIEW step 7 reverse: pod lifts +Z out of the post U-slots slide-out blocked by ['PRT_post_R'] at 2 mm",
+   "slide: REVIEW pod lift at tilt -3 slide-out blocked by ['PRT_post_R'] at 2 mm",
+   "slide: REVIEW pod lift at tilt 46 slide-out blocked by ['PRT_post_R'] at 2 mm",
+   "slide: REVIEW lift member PRT_journal_plate slide-out blocked by ['PRT_post_R'] at 2 mm",
+   "slide: REVIEW lift member FST_hinge* slide-out blocked by ['PRT_post_R'] at 14 mm",
+   "distances: PRT_hood to PRT_flywheel: the ray missed one of them at hood=-6.50948",
+   "distances: PRT_hood to PRT_launcher_body = 0.29 mm (nearest) at hood=2, wanted 0.3..None (REVIEW hood to body near min gap)",
+   "distances: PRT_hood to PRT_launcher_body = 0.09 mm (nearest) at hood=3, wanted 0.3..None (REVIEW hood to body near min gap)",
+   "distances: PRT_hood to PRT_flywheel: payload 7.0 mm is not gripped (gap 7.34 after 0.5 mm liner)",
+   "distances: PRT_hood to PRT_flywheel: the ray missed one of them at hood=-3",
+   "distances: PRT_hood to PRT_flywheel: the ray missed one of them at hood=-4.5",
+   "distances: PRT_hood to PRT_flywheel: the ray missed one of them at hood=-6.50948"
+  ],
+  "warn_list": [
+   "slide: REVIEW encoder cap off -X 45 mm at tilt 45 slides out but with only 0.00 mm to PRT_nacelle",
+   "slide: REVIEW gate +X 52 with the valve present slides out but with only 0.20 mm to PRT_jar_valve",
+   "slide: REVIEW gate +X 110 (what retains it open?) slides out but with only 0.64 mm to PRT_jar_adapter",
+   "slide: REVIEW feeder servo lifts +Z after the lobe cover slides out but with only 0.00 mm to PRT_feeder_crown",
+   "slide: REVIEW step 11 reverse: feeder lifts +Z off the beam (jar off) slides out but with only 0.00 mm to PRT_beam",
+   "slide: REVIEW pod lift at tilt 10 slides out but with only 0.20 mm to PRT_post_L",
+   "slide: REVIEW pod lift at tilt 22.5 slides out but with only 0.16 mm to PRT_post_L",
+   "slide: REVIEW pod lift at tilt 35 slides out but with only 0.14 mm to PRT_post_R",
+   "slide: REVIEW lift member PRT_launcher_cover slides out but with only 1.40 mm to PRT_post_R",
+   "slide: REVIEW lift member PRT_nacelle slides out but with only 0.20 mm to PRT_post_L",
+   "slide: REVIEW lift member FST_jp_* slides out but with only 1.40 mm to PRT_post_R"
+  ],
+  "coverage": [
+   "service: 2 ops, 2 screw accesses with the built assembly present",
+   "drop: 3 tests (fall + slide on walls, no bounce or rolling)",
+   "index: 6 indexer timing tests (probe through the moving parts over the motion sequence)",
+   "slide: 20 slide-out sweeps"
+  ],
+  "not_checked": [
+   "not geometric: teardown step count, alignment-jig datums (declare stacks), aesthetics, BOM correctness"
+  ],
+  "runtime_s": 15.0
+ }
+}

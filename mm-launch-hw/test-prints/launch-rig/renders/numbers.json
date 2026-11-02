@@ -1,0 +1,109 @@
+{
+ "gap_5.0": {
+  "hinge_deg": 1.44,
+  "stud_d_mm": 13.78,
+  "stud_tip_above_seat_mm": 6.02
+ },
+ "gap_6.5": {
+  "hinge_deg": -0.0,
+  "stud_d_mm": 12.2,
+  "stud_tip_above_seat_mm": 7.6
+ },
+ "gap_8.0": {
+  "hinge_deg": -1.46,
+  "stud_d_mm": 10.59,
+  "stud_tip_above_seat_mm": 9.21
+ },
+ "gap_10.0": {
+  "hinge_deg": -3.37,
+  "stud_d_mm": 8.48,
+  "stud_tip_above_seat_mm": 11.32
+ },
+ "gap_12.0": {
+  "hinge_deg": -5.24,
+  "stud_d_mm": 6.39,
+  "stud_tip_above_seat_mm": 13.41
+ },
+ "leaf": {
+  "width": 28.0,
+  "thickness": 1.843,
+  "rate_N_mm": 3.9,
+  "preload_N": 9.0,
+  "force_at_stop_N": 18.7,
+  "root_MPa_preload": 19.2,
+  "root_MPa_stop": 40.2,
+  "a3": {
+   "width_mm": 21.9,
+   "length_mm": 34.0,
+   "thickness_mm": 2.0,
+   "rate_N_per_mm": 3.9,
+   "preload_N": 9.0,
+   "root_stress_preload_MPa": 20.9,
+   "force_at_stop_N": 18.7,
+   "root_stress_at_stop_MPa": 43.6
+  }
+ },
+ "gap_mm_per_turn": 0.47,
+ "encoder": {
+  "pcb_back_x": -80.75,
+  "ic_top_x": -77.5,
+  "magnet_face_x": -76.0,
+  "gap": 1.5
+ },
+ "rig": {
+  "tilt_deg": 20.0,
+  "axis_h": 122.0,
+  "wheel_axis": [
+   21.0,
+   52.55,
+   85.79
+  ],
+  "hinge": [
+   21.0,
+   -11.41,
+   88.02
+  ],
+  "muzzle_exit_floor": [
+   21.0,
+   127.27,
+   61.8
+  ],
+  "nip_bdc_mid": [
+   21.0,
+   65.64,
+   49.85
+  ],
+  "funnel_mouth_z": 156.0,
+  "thumbwheel_centre": [
+   19.5,
+   21.92,
+   32.51
+  ]
+ },
+ "cover_screws_launcher_pq": [
+  [
+   -12.0,
+   12.0
+  ],
+  [
+   94.0,
+   -104.0
+  ],
+  [
+   -21.0,
+   -45.0
+  ],
+  [
+   73.0,
+   -73.0
+  ],
+  [
+   95.0,
+   -78.0
+  ],
+  [
+   75.0,
+   -103.0
+  ]
+ ]
+}

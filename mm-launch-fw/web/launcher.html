@@ -1,0 +1,983 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MM Launcher · control</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="vendor/tokens.css">
+<script type="importmap">{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }</script>
+<script src="vendor/ax-charts.js"></script>
+<script src="vendor/ax-fx.js"></script>
+<style>
+  body { margin: 0; min-height: 100vh; }
+  .ax-page { max-width: 1280px; }
+  .two { grid-template-columns: 1fr 1fr; }
+  .three { grid-template-columns: 1.2fr 1fr 1fr; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
+  .row .ax-label { min-width: 74px; }
+  .ax-input.num { width: 84px; text-align: right; }
+  .ax-input.wide { flex: 1; min-width: 160px; }
+  .ax-btn.stop { background: var(--ax-critical); border-color: var(--ax-critical); color: var(--ax-on-accent); }
+  .ax-btn.stop:disabled { opacity: 0.4; }
+  .slider { display: grid; grid-template-columns: 74px 1fr 84px; gap: 10px; align-items: center; margin-top: 10px; }
+  .readout { font: 12px var(--ax-font-mono); color: var(--ax-muted); }
+  .readout b { color: var(--ax-accent); font-weight: 500; }
+  .joints td, .joints th { white-space: nowrap; }
+  .joints .ax-btn { padding: 5px 8px; font-size: 11px; }
+  .aimviz { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .aimviz figure { border: 1px solid var(--ax-rule); padding: 8px; }
+  .aimviz figcaption { margin-top: 4px; }
+  #conOut { height: 240px; overflow: auto; margin: 0; padding: 8px; background: var(--ax-bg); border: 1px solid var(--ax-rule); font: 12px/1.45 var(--ax-font-mono); white-space: pre-wrap; word-break: break-word; }
+  #conOut .err { color: var(--ax-critical); }
+  #conOut .ok { color: var(--ax-good); }
+  #conOut .at { color: var(--ax-muted); }
+  #conOut .sys { color: var(--ax-accent); }
+  .bar { height: 6px; background: var(--ax-rule); margin-top: 10px; }
+  .bar > div { height: 100%; width: 0; background: var(--ax-accent); transition: width 0.15s; }
+  .bar.done > div { background: var(--ax-good); }
+  .bar.failed > div { background: var(--ax-critical); }
+  .kv td:first-child { color: var(--ax-muted); font: 11px var(--ax-font-mono); text-transform: uppercase; letter-spacing: 0.08em; }
+  .kv td { padding: 4px 8px; }
+  .empty { color: var(--ax-muted); font-size: 12px; padding: 8px 0; }
+  .hint { color: var(--ax-muted); font-size: 12px; margin-top: 8px; }
+  #view3d { height: 460px; }
+  .view-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px; }
+  @media (max-width: 980px) { .two, .three { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body class="ax">
+<main class="ax-page">
+  <header class="ax-mast">
+    <div>
+      <h1>MM Launcher</h1>
+      <div class="ax-meta"><span id="mFw">fw ?</span><span id="mPart">partition ?</span><span id="mUp">up ?</span><span id="mLink" class="ax-status">Disconnected</span></div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="ax-btn" id="resetBtn" disabled>Reset board</button>
+      <button class="ax-btn" id="connectBtn" data-fx="ripple">Connect</button>
+      <button class="ax-btn stop" id="stopBtn" disabled title="Stops the flywheel and aborts any fire sequence">Stop</button>
+    </div>
+  </header>
+
+  <section class="ax-tiles">
+    <div class="ax-tile"><div class="ax-label">Flywheel speed</div><div class="ax-value" id="tRpm">0<small>rpm</small></div><div class="ax-sub" id="tRpmSub">encoder, filtered</div></div>
+    <div class="ax-tile"><div class="ax-label">Setpoint</div><div class="ax-value" id="tSet">0<small>rpm</small></div><div class="ax-sub">ramped</div></div>
+    <div class="ax-tile"><div class="ax-label">q-axis voltage</div><div class="ax-value" id="tUq">0.00<small>V</small></div><div class="ax-sub" id="tVlim">limit ?</div></div>
+    <div class="ax-tile"><div class="ax-label">Servo supply</div><div class="ax-value" id="tSv">0.0<small>V</small></div><div class="ax-sub">controller board input</div></div>
+    <div class="ax-tile"><div class="ax-label">State</div><div class="ax-value" id="tState" style="font-size:22px;line-height:32px">Off</div><div class="ax-sub"><span class="ax-status" id="tStateSq">Off</span></div></div>
+    <div class="ax-tile"><div class="ax-label">Shots</div><div class="ax-value" id="tShots">0</div><div class="ax-sub">since boot</div></div>
+    <div class="ax-tile"><div class="ax-label">Base tilt</div><div class="ax-value" id="tTilt">?<small>°</small></div><div class="ax-sub"><span class="ax-status" id="tTipSq">No IMU data</span></div></div>
+  </section>
+
+  <section class="ax-grid">
+    <div class="ax-panel">
+      <h2>Live model</h2>
+      <div class="ax-cap">The v2 CAD posed from telemetry: read-back angles when the servos answer, commanded angles otherwise. Offline, the sliders drive it. Flywheel spin is slowed 50 times. Click a part to jump to its control.</div>
+      <div id="view3d" data-busy="Loading model"></div>
+      <div class="view-legend readout" id="viewReadout">No pose yet.</div>
+    </div>
+  </section>
+
+  <section class="ax-grid three">
+    <div class="ax-panel" id="fwPanel">
+      <h2>Flywheel</h2>
+      <div class="ax-cap">XTI-3674 on motor channel 1, voltage-mode FOC</div>
+      <div class="slider"><span class="ax-label">Setpoint</span><input type="range" class="ax-range" id="rpmRange" min="0" max="7000" step="100" value="3000"><input class="ax-input num" id="rpmIn" type="number" min="0" max="7000" step="100" value="3000"></div>
+      <div class="row">
+        <button class="ax-btn primary" id="spinBtn" data-fx="sparks" disabled>Spin up</button>
+        <button class="ax-btn" id="spinDownBtn" disabled>Spin down</button>
+        <button class="ax-btn" id="openBtn" disabled title="Open loop at the fw vopen voltage (rig step B4)">Open loop</button>
+      </div>
+      <div class="row">
+        <button class="ax-btn" id="calBtn" disabled title="Sensor direction, pole pairs and electrical zero (rig step B3)">Calibrate</button>
+        <button class="ax-btn" id="encBtn" disabled title="1 s encoder sample with the motor off (rig step B2)">Check encoder</button>
+        <span class="readout" id="encOut">No encoder check yet.</span>
+      </div>
+      <div class="row"><span class="ax-label">kp V·s/rad</span><input class="ax-input num" id="gKp" type="number" step="0.01" value="0.1"><span class="ax-label">ki V/rad</span><input class="ax-input num" id="gKi" type="number" step="0.1" value="2"></div>
+      <div class="row"><span class="ax-label">Tf s</span><input class="ax-input num" id="gTf" type="number" step="0.001" value="0.01"><span class="ax-label">vlim V</span><input class="ax-input num" id="gVlim" type="number" step="0.1" value="4"></div>
+      <div class="row"><span class="ax-label">Ramp rpm/s</span><input class="ax-input num" id="gRamp" type="number" step="100" value="3000"><span class="ax-label">At-speed ±rpm</span><input class="ax-input num" id="gTol" type="number" step="10" value="150"></div>
+      <div class="row">
+        <button class="ax-btn" id="applyBtn" disabled>Apply</button>
+        <button class="ax-btn" id="saveBtn" disabled>Save to NVS</button>
+        <button class="ax-btn" id="cfgBtn" disabled>Read config</button>
+      </div>
+    </div>
+
+    <div class="ax-panel">
+      <h2>Aim</h2>
+      <div class="ax-cap">Pan ±90°, tilt 0 to 45°. Moves on release and at 10 Hz while dragging.</div>
+      <div class="slider"><span class="ax-label">Pan</span><input type="range" class="ax-range" id="panRange" min="-90" max="90" step="1" value="0"><input class="ax-input num" id="panIn" type="number" min="-90" max="90" step="1" value="0"></div>
+      <div class="slider"><span class="ax-label">Tilt</span><input type="range" class="ax-range" id="tiltRange" min="0" max="45" step="1" value="0"><input class="ax-input num" id="tiltIn" type="number" min="0" max="45" step="1" value="0"></div>
+      <div class="row"><button class="ax-btn" id="centerBtn" disabled>Center</button><span class="ax-label">Move ms</span><input class="ax-input num" id="aimMs" type="number" min="0" step="50" placeholder="auto"></div>
+      <div class="row"><label class="readout"><input type="checkbox" id="padOn"> Gamepad aim</label><span class="ax-status" id="padSq">No pad</span></div>
+      <div class="hint" id="padHint">Plug in a gamepad and press any button. Left stick aims, right stick fine-aims, Y centers, B stops. A fires one shot only while LB is held and the wheel is at speed.</div>
+      <div class="ax-legend" style="margin-top:12px"><span style="--c:var(--ax-s1)">Commanded</span><span style="--c:var(--ax-s2)">Read back</span></div>
+      <div class="aimviz">
+        <figure><svg id="panViz" viewBox="0 0 160 110"></svg><figcaption>Pan, top view, 0° = forward</figcaption></figure>
+        <figure><svg id="tiltViz" viewBox="0 0 160 110"></svg><figcaption>Tilt, side view, 0° = level</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="ax-panel">
+      <h2>Fire</h2>
+      <div class="ax-cap">Enabled only when the flywheel is at speed</div>
+      <div class="row"><span class="ax-label">Shots</span><input class="ax-input num" id="fireN" type="number" min="1" max="20" step="1" value="1"><button class="ax-btn primary" id="fireBtn" disabled>Fire</button></div>
+      <div class="row"><span class="ax-label">Stroke ms</span><input class="ax-input num" id="fStroke" type="number" step="10" value="350"><span class="ax-label">Dwell ms</span><input class="ax-input num" id="fDwell" type="number" step="10" value="150"></div>
+      <div class="row"><span class="ax-label">Jam tol °</span><input class="ax-input num" id="fTol" type="number" step="0.5" value="6"><button class="ax-btn" id="feedApplyBtn" disabled>Apply</button></div>
+      <div class="hint" id="fireHint">Connect, then spin up to enable Fire.</div>
+      <h2 style="margin-top:16px">Last shots</h2>
+      <table>
+        <thead><tr><th class="num">#</th><th class="num">Dir</th><th class="num">rpm before</th><th class="num">Dip</th><th class="num">Recover ms</th><th class="num">Feed err °</th></tr></thead>
+        <tbody id="shotRows"><tr><td colspan="6" class="empty">No shots yet. Spin up and press Fire.</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="ax-grid two">
+    <div class="ax-panel">
+      <h2>Flywheel speed</h2>
+      <div class="ax-cap">Encoder rpm and ramped setpoint, last 10 s</div>
+      <div class="ax-legend"><span style="--c:var(--ax-s1)">rpm</span><span style="--c:var(--ax-s2)">rpm_set</span></div>
+      <svg id="rpmChart"></svg>
+    </div>
+    <div class="ax-panel">
+      <h2>Pan and tilt</h2>
+      <div class="ax-cap">Commanded and read-back joint angles, last 10 s. Read-back arrives at the servo poll rate.</div>
+      <div class="ax-legend"><span style="--c:var(--ax-s1)">pan_cmd</span><span style="--c:var(--ax-s2)">pan</span><span style="--c:var(--ax-s3)">tilt_cmd</span><span style="--c:var(--ax-s4)">tilt</span></div>
+      <svg id="aimChart"></svg>
+    </div>
+  </section>
+
+  <section class="ax-grid two">
+    <div class="ax-panel">
+      <h2>Servos</h2>
+      <div class="ax-cap">Unload a joint, place it by hand, then Zero stores that position as 0°</div>
+      <table class="joints">
+        <thead><tr><th>Joint</th><th class="num">ID</th><th class="num">Counts</th><th class="num">Angle °</th><th></th></tr></thead>
+        <tbody>
+          <tr><td>Pan</td><td class="num">1</td><td class="num" id="sPanC">?</td><td class="num" id="sPanD">?</td><td><button class="ax-btn" data-unload="pan" disabled>Unload</button> <button class="ax-btn" data-zero="pan" disabled>Zero</button></td></tr>
+          <tr><td>Tilt</td><td class="num">2</td><td class="num" id="sTiltC">?</td><td class="num" id="sTiltD">?</td><td><button class="ax-btn" data-unload="tilt" disabled>Unload</button> <button class="ax-btn" data-zero="tilt" disabled>Zero</button></td></tr>
+          <tr><td>Feed</td><td class="num">3</td><td class="num" id="sFeedC">?</td><td class="num" id="sFeedD">?</td><td><button class="ax-btn" data-unload="feed" disabled>Unload</button> <button class="ax-btn" data-zero="feed" disabled>Zero</button></td></tr>
+        </tbody>
+      </table>
+      <div class="row"><button class="ax-btn" id="servoReadBtn" disabled>Read servos</button><button class="ax-btn" id="unloadAllBtn" disabled>Unload all</button><button class="ax-btn" id="vbatBtn" disabled>Read supply</button></div>
+      <div class="row"><button class="ax-btn" id="levelBtn" disabled title="Store the current base orientation as level (imu level), then Save to NVS">Level here</button><button class="ax-btn" id="guardBtn" disabled>Tip guard on</button><span class="readout" id="imuOut">Tip guard: no IMU data yet.</span></div>
+      <h2 style="margin-top:16px">Board status</h2>
+      <table class="kv"><tbody id="statusRows"><tr><td colspan="2" class="empty">No status yet. Connect to a board.</td></tr></tbody></table>
+    </div>
+    <div class="ax-panel">
+      <h2>Console</h2>
+      <div class="ax-cap">Board output and typed commands. Type help for the command list.</div>
+      <pre id="conOut"></pre>
+      <div class="row"><input class="ax-input wide" id="conIn" placeholder="fw spin 3000" disabled><button class="ax-btn" id="conBtn" disabled>Send</button><button class="ax-btn" id="conClr">Clear</button></div>
+    </div>
+  </section>
+
+  <section class="ax-grid two">
+    <div class="ax-panel" id="otaPanel">
+      <h2>Firmware update</h2>
+      <div class="ax-cap">OTA over WebUSB. Pick the app image from build/ (not the bootloader or partition table).</div>
+      <div class="row"><input type="file" id="fwFile" accept=".bin" class="ax-input wide"></div>
+      <div class="row"><button class="ax-btn" id="flashBtn" disabled>Flash</button><button class="ax-btn" id="abortBtn" disabled>Abort</button><button class="ax-btn" id="validBtn" disabled>Mark valid</button></div>
+      <div class="bar" id="fwBar"><div></div></div>
+      <div class="row"><span class="ax-status" id="fwStatus">No image chosen</span></div>
+    </div>
+    <div class="ax-panel">
+      <h2>Configuration</h2>
+      <div class="ax-cap">Last @cfg from the board</div>
+      <table class="kv"><tbody id="cfgRows"><tr><td colspan="2" class="empty">No config read yet. Press Read config.</td></tr></tbody></table>
+    </div>
+  </section>
+</main>
+
+<script>
+'use strict';
+// ---------------------------------------------------------------- stream_frame codec (from pace-racer dashboard.html)
+const USB_VID = 0x1209, USB_PID = 0x0d50;
+const SF_HEADER = 9, SF_CRC = 4, SF_CORR = 2, SF_MAX_PAYLOAD = 4096;
+const SF_REQUEST = 0x10, SF_REPLY_BIT = 0x01, SF_CORR_BIT = 0x02;
+const CRC_T = (() => { const t = new Uint32Array(256); for (let i = 0; i < 256; i++) { let c = i; for (let k = 0; k < 8; k++) c = (c & 1) ? ((c >>> 1) ^ 0xEDB88320) : (c >>> 1); t[i] = c >>> 0; } return t; })();
+const crc32 = b => { let c = 0xFFFFFFFF; for (let i = 0; i < b.length; i++) c = CRC_T[(c ^ b[i]) & 0xFF] ^ (c >>> 8); return (~c) >>> 0; };
+function sfBuild(module, type, payload) {
+  payload = payload || new Uint8Array(0);
+  const f = new Uint8Array(SF_HEADER + payload.length + SF_CRC), v = new DataView(f.buffer);
+  v.setUint16(0, 0x4F54, true); f[2] = SF_REQUEST; f[3] = module; f[4] = type; v.setUint32(5, payload.length, true);
+  f.set(payload, SF_HEADER); v.setUint32(SF_HEADER + payload.length, crc32(f.subarray(0, SF_HEADER + payload.length)), true);
+  return f;
+}
+class SfParser {
+  constructor() { this.buf = new Uint8Array(0); }
+  reset() { this.buf = new Uint8Array(0); }
+  feed(chunk) {
+    const m = new Uint8Array(this.buf.length + chunk.length); m.set(this.buf, 0); m.set(chunk, this.buf.length);
+    const out = []; let pos = 0;
+    for (;;) {
+      while (pos < m.length && !(m[pos] === 0x54 && (pos + 1 >= m.length || m[pos + 1] === 0x4F))) pos++;
+      if (m.length - pos < 3) break;
+      const flags = m[pos + 2], ext = (flags & SF_CORR_BIT) ? SF_CORR : 0, hs = SF_HEADER + ext;
+      if (m.length - pos < hs) break;
+      const view = new DataView(m.buffer, m.byteOffset + pos), len = view.getUint32(5 + ext, true);
+      if (len > SF_MAX_PAYLOAD) { pos++; continue; }
+      const total = hs + len + SF_CRC; if (m.length - pos < total) break;
+      if (crc32(m.subarray(pos, pos + hs + len)) !== view.getUint32(hs + len, true)) { pos++; continue; }
+      out.push({ module: m[pos + 3], type: m[pos + 4], reply: (flags & SF_REPLY_BIT) !== 0, payload: m.slice(pos + hs, pos + hs + len) });
+      pos += total;
+    }
+    this.buf = m.slice(pos); return out;
+  }
+}
+
+// ---------------------------------------------------------------- WebUSB transport (from pace-racer dashboard.html)
+class UsbTransport {
+  constructor(device) { this.device = device || null; this.iface = null; this.epIn = null; this.epOut = null; this.reading = false; }
+  async open() {
+    if (!this.device) this.device = await navigator.usb.requestDevice({ filters: [{ vendorId: USB_VID, productId: USB_PID }] });
+    await this.device.open();
+    if (this.device.configuration === null) await this.device.selectConfiguration(1);
+    let found = null;
+    for (const itf of this.device.configuration.interfaces) for (const alt of itf.alternates) {
+      if (alt.interfaceClass !== 0xFF) continue;
+      let inEp = null, outEp = null;
+      for (const ep of alt.endpoints) { if (ep.type !== 'bulk') continue; if (ep.direction === 'in' && !inEp) inEp = ep; else if (ep.direction === 'out' && !outEp) outEp = ep; }
+      if (inEp && outEp) { found = { itf: itf.interfaceNumber, alt: alt.alternateSetting, inEp, outEp }; break; }
+    }
+    if (!found) throw new Error('no vendor interface with a bulk IN+OUT pair');
+    await this.device.claimInterface(found.itf);
+    if (found.alt !== 0) await this.device.selectAlternateInterface(found.itf, found.alt);
+    this.iface = found.itf; this.epIn = found.inEp.endpointNumber; this.epOut = found.outEp.endpointNumber;
+  }
+  name() { return `${this.device.productName || 'USB'} ${this.device.serialNumber || ''}`.trim(); }
+  async send(bytes) {
+    let sent = 0;
+    while (sent < bytes.length) {
+      const out = await this.device.transferOut(this.epOut, sent === 0 ? bytes : bytes.subarray(sent));
+      if (out.status !== 'ok') throw new Error('USB OUT ' + out.status);
+      const n = out.bytesWritten || 0; if (!n) throw new Error('USB OUT made no progress'); sent += n;
+    }
+  }
+  async readLoop(onData) {
+    this.reading = true;
+    while (this.reading && this.device) {
+      let r;
+      try { r = await this.device.transferIn(this.epIn, 65536); } catch (e) { if (this.reading) throw e; return; }
+      if (!this.reading) return;
+      if (r.status === 'stall') { try { await this.device.clearHalt('in', this.epIn); } catch (e) {} continue; }
+      if (r.data && r.data.byteLength) onData(new Uint8Array(r.data.buffer, r.data.byteOffset, r.data.byteLength));
+    }
+  }
+  async close() { this.reading = false; if (this.device) { try { await this.device.releaseInterface(this.iface); } catch (e) {} try { await this.device.close(); } catch (e) {} } this.device = null; }
+}
+
+// ---------------------------------------------------------------- link: dispatcher over the vendor stream
+const M_OTA = 0, M_TM = 3, M_CON = 0x10, M_SYS = 0x20;
+const OTA = { BEGIN: 1, DATA: 2, FINISH: 3, ABORT: 4, OK: 5, ERROR: 6, PROGRESS: 7, GET_STATUS: 8, MARK_VALID: 9, MARK_INVALID: 10, STATUS: 11 };
+const TM = { GET_SCHEMA: 0x01, SET_STREAM: 0x02, SCHEMA: 0x81, SAMPLE: 0x82 };
+const $ = id => document.getElementById(id);
+const dec = new TextDecoder(), enc = new TextEncoder();
+let link = null;        // { t, parser }
+let waiters = [];       // request/reply waiters
+let lineWaiters = [];   // stdout line predicates
+let busyFlow = false;   // OTA running: pause pings and polling
+let pingTimer = null;
+
+// Every OUT transfer goes through one chain so frames never interleave.
+let txChain = Promise.resolve();
+function tx(bytes) {
+  const run = async () => { if (!link) throw new Error('not connected'); await link.t.send(bytes); };
+  const p = txChain.then(run, run); txChain = p.catch(() => {}); return p;
+}
+function onFrame(f) {
+  if (f.module === M_CON && f.type === 0x82) { onStdout(dec.decode(f.payload)); return; }
+  if (f.module === M_TM) { onTelemetry(f); if (f.type !== 0x83 && f.type !== 0x84) return; }
+  if (!f.reply) return;
+  for (const w of [...waiters]) if (w.module === f.module && w.types.includes(f.type)) {
+    if (f.module === M_OTA && f.type === OTA.PROGRESS) { w.progress && w.progress(f); continue; }
+    waiters.splice(waiters.indexOf(w), 1); clearTimeout(w.timer); w.resolve(f);
+  }
+}
+function request(module, type, payload, types, timeoutMs, progress) {
+  return new Promise(async (resolve, reject) => {
+    if (!link) return reject(new Error('not connected'));
+    const w = { module, types, resolve, reject, progress, timer: setTimeout(() => { waiters.splice(waiters.indexOf(w), 1); reject(new Error('timeout waiting for reply')); }, timeoutMs || 3000) };
+    waiters.push(w);
+    try { await tx(sfBuild(module, type, payload)); } catch (e) { waiters.splice(waiters.indexOf(w), 1); clearTimeout(w.timer); reject(e); }
+  });
+}
+// Fire-and-forget console line (aim drags, pings, stop): never waits for output.
+function sendLine(line) { return tx(sfBuild(M_CON, 0x01, enc.encode(line))); }
+// Send a line and resolve with the first stdout line matching `done` (or reject on timeout).
+function cmdUntil(line, done, timeoutMs) {
+  return new Promise(async (resolve, reject) => {
+    const w = { done, resolve, timer: setTimeout(() => { lineWaiters.splice(lineWaiters.indexOf(w), 1); reject(new Error(`no reply to "${line}"`)); }, timeoutMs || 2000) };
+    lineWaiters.push(w);
+    try { await sendLine(line); } catch (e) { lineWaiters.splice(lineWaiters.indexOf(w), 1); clearTimeout(w.timer); reject(e); }
+  });
+}
+// The completion of THIS command: its own `ok <cmd> ...` or `! <cmd>...` line.
+// Every firmware reply starts with the command's first word, so a stray
+// `ok ping`, `! TIPPED` or `! watchdog` cannot finish someone else's wait
+// (review R1-10). Usage and unknown-command errors carry no prefix.
+function replyTo(line) {
+  const head = line.trim().split(/\s+/)[0];
+  return l => (l.startsWith('ok ') && l.slice(3).startsWith(head)) ||
+    (l.startsWith('!') && (l.slice(1).trim().startsWith(head) || /^!\s*(usage:|unknown command|line too long)/.test(l)));
+}
+async function cmd(line, timeoutMs) {
+  const l = await cmdUntil(line, replyTo(line), timeoutMs);
+  if (l.startsWith('!')) throw new Error(l.slice(1).trim());
+  return l;
+}
+
+// ---------------------------------------------------------------- stdout lines
+let lineBuf = '';
+function onStdout(text) {
+  lineBuf += text;
+  let i;
+  while ((i = lineBuf.indexOf('\n')) >= 0) {
+    const l = lineBuf.slice(0, i).replace(/\r$/, ''); lineBuf = lineBuf.slice(i + 1);
+    if (!l) continue;
+    handleLine(l);
+    for (const w of [...lineWaiters]) if (w.done(l)) { lineWaiters.splice(lineWaiters.indexOf(w), 1); clearTimeout(w.timer); w.resolve(l); }
+  }
+}
+function handleLine(l) {
+  if (l[0] === '@') {
+    const sp = l.indexOf(' '), kind = sp > 0 ? l.slice(1, sp) : l.slice(1);
+    let obj = null;
+    if (sp > 0) { try { obj = JSON.parse(l.slice(sp + 1)); } catch (_) {} }
+    if (obj) onAt(kind, obj);
+    conPrint(l, 'at'); return;
+  }
+  if (l.startsWith('! TIPPED')) imuTipped = true;
+  else if (l.startsWith('# base level again')) imuTipped = false;
+  conPrint(l, l.startsWith('!') ? 'err' : l.startsWith('ok') ? 'ok' : '');
+}
+function conPrint(text, cls) {
+  const out = $('conOut'), s = document.createElement('span');
+  s.textContent = text.endsWith('\n') ? text : text + '\n'; if (cls) s.className = cls;
+  const stick = out.scrollTop + out.clientHeight >= out.scrollHeight - 4;
+  out.appendChild(s);
+  while (out.childNodes.length > 800) out.removeChild(out.firstChild);
+  if (stick) out.scrollTop = out.scrollHeight;
+}
+
+// ---------------------------------------------------------------- @kind {json} handlers
+const kv = (tbody, obj) => {
+  tbody.innerHTML = '';
+  const flat = (o, pre) => Object.entries(o).flatMap(([k, v]) => v && typeof v === 'object' && !Array.isArray(v) ? flat(v, pre + k + '.') : [[pre + k, v]]);
+  const rows = flat(obj, '');
+  if (!rows.length) { tbody.innerHTML = '<tr><td colspan="2" class="empty">Empty.</td></tr>'; return; }
+  for (const [k, v] of rows) {
+    const tr = document.createElement('tr'), a = document.createElement('td'), b = document.createElement('td');
+    a.textContent = k; b.textContent = Array.isArray(v) ? v.join(', ') : String(v); b.className = typeof v === 'number' ? 'num' : '';
+    tr.append(a, b); tbody.appendChild(tr);
+  }
+};
+// Find a value in a JSON object by any of several key spellings, at any depth.
+function pick(obj, names) {
+  if (!obj || typeof obj !== 'object') return undefined;
+  for (const n of names) if (obj[n] !== undefined && typeof obj[n] !== 'object') return obj[n];
+  for (const v of Object.values(obj)) if (v && typeof v === 'object') { const r = pick(v, names); if (r !== undefined) return r; }
+  return undefined;
+}
+function setIf(id, v) { if (v !== undefined && v !== null && document.activeElement !== $(id)) $(id).value = v; }
+function onAt(kind, o) {
+  if (kind === 'status') { kv($('statusRows'), o); onImu({ ok: o.imu, base_tilt: o.base_tilt, tipped: o.tipped, guard: o.tip_guard }); const vl = pick(o, ['vlim', 'v_lim']); if (vl !== undefined) $('tVlim').textContent = `limit ${vl} V`; }
+  else if (kind === 'cfg') {
+    kv($('cfgRows'), o);
+    setIf('gKp', pick(o, ['kp', 'fw_kp'])); setIf('gKi', pick(o, ['ki', 'fw_ki'])); setIf('gTf', pick(o, ['tf', 'tf_s', 'fw_tf']));
+    setIf('gVlim', pick(o, ['vlim', 'fw_vlim'])); setIf('gRamp', pick(o, ['ramp', 'ramp_rpm_s', 'fw_ramp'])); setIf('gTol', pick(o, ['tol', 'tol_rpm', 'fw_tol']));
+    if (o.imu && typeof o.imu.trip_deg === 'number') tipTripDeg = o.imu.trip_deg;
+    if (o.imu) onImu({ guard: o.imu.guard, trip_deg: o.imu.trip_deg });
+    setIf('fStroke', pick(o, ['stroke_ms'])); setIf('fDwell', pick(o, ['dwell_ms'])); setIf('fTol', pick(o, ['feed_tol', 'tol_deg', 'jam_tol']));
+    const vl = pick(o, ['vlim', 'fw_vlim']); if (vl !== undefined) $('tVlim').textContent = `limit ${vl} V`;
+  }
+  else if (kind === 'shot') addShot(o);
+  else if (kind === 'cal') {
+    $('encOut').innerHTML = o.ok ? `calibrated · zero <b>${(+o.zero_electric).toFixed(3)}</b> rad · dir <b>${o.sensor_dir}</b>${o.saved ? '' : ' · NOT saved'}`
+      : `calibration ${o.aborted ? 'aborted' : 'failed'}: ${o.why || ''}${o.kept_previous ? ' · previous calibration kept' : ''}`;
+  }
+  else if (kind === 'imu') onImu(o);
+  else if (kind === 'servo') onServo(o);
+  else if (kind === 'enc') {
+    const f = (v, d) => typeof v === 'number' ? v.toFixed(d) : '?';
+    $('encOut').innerHTML = `angle <b>${f(o.deg, 2)}°</b> · noise <b>${f(o.std_deg, 3)}°</b> std · <b>${f(o.rpm, 0)}</b> rpm`;
+  }
+}
+let imuGuard = true;
+function onImu(o) {
+  if (o.tipped !== undefined) imuTipped = !!o.tipped;
+  if (o.guard !== undefined) { imuGuard = !!o.guard; $('guardBtn').textContent = imuGuard ? 'Tip guard on' : 'Tip guard off'; }
+  if (o.ok === false) { $('imuOut').textContent = 'Tip guard: no IMU on this board.'; return; }
+  const t = typeof o.base_tilt === 'number' && Number.isFinite(o.base_tilt) ? o.base_tilt.toFixed(1) + '°' : '?';
+  $('imuOut').innerHTML = `Base tilt <b>${t}</b>${o.trip_deg ? ` · trips at ${(+o.trip_deg).toFixed(0)}°` : ''}${o.tipped ? ' · <b>TIPPED</b>' : ''}`;
+}
+// @servo: accept { pan: {counts, deg}, ... } or flat pan_counts / pan_deg style keys.
+function onServo(o) {
+  for (const [j, c, d] of [['pan', 'sPanC', 'sPanD'], ['tilt', 'sTiltC', 'sTiltD'], ['feed', 'sFeedC', 'sFeedD']]) {
+    const sub = o[j] && typeof o[j] === 'object' ? o[j] : null;
+    const counts = sub ? pick(sub, ['counts', 'pos', 'raw']) : pick(o, [j + '_counts', j + '_pos', j + '_raw']);
+    const deg = sub ? pick(sub, ['deg', 'angle']) : (typeof o[j] === 'number' ? o[j] : pick(o, [j + '_deg']));
+    $(c).textContent = counts === undefined || counts === null ? '?' : counts;
+    $(d).textContent = typeof deg === 'number' ? deg.toFixed(1) : (deg === undefined || deg === null ? '?' : deg);
+  }
+}
+let shots = [];
+function addShot(o) {
+  shots.unshift(o); shots = shots.slice(0, 12);
+  const tb = $('shotRows'); tb.innerHTML = '';
+  const n = (v, d) => typeof v === 'number' ? v.toFixed(d) : (v === undefined ? '?' : v);
+  for (const s of shots) {
+    const tr = document.createElement('tr');
+    for (const [v, d] of [[s.n, 0], [s.dir, 0], [s.rpm_before, 0], [s.dip_rpm, 0], [s.recover_ms, 0], [s.feed_err_deg, 1]]) {
+      const td = document.createElement('td'); td.className = 'num'; td.textContent = n(v, d); tr.appendChild(td);
+    }
+    tb.appendChild(tr);
+  }
+}
+
+// ---------------------------------------------------------------- telemetry
+const DEFAULT_CH = ['rpm_set', 'rpm', 'uq', 'pan_cmd', 'pan', 'tilt_cmd', 'tilt', 'feed_cmd', 'feed', 'servo_v', 'state', 'shots', 'base_tilt'];
+let channels = DEFAULT_CH.slice();
+let samples = [];      // { t (s, device clock), v: Float32Array }
+let tmLast = null;     // latest record
+let tmWrap = 0, tmPrevUs = null;
+const HIST_S = 10;
+function onTelemetry(f) {
+  const p = f.payload;
+  if (f.type === TM.SCHEMA && p.length >= 3) {
+    const n = p[2]; let i = 3; const names = [];
+    for (let k = 0; k < n && i + 2 <= p.length; k++) { i++; const len = p[i++]; names.push(dec.decode(p.subarray(i, i + len))); i += len; }
+    if (names.length) { channels = names; samples = []; }
+    return;
+  }
+  if (f.type !== TM.SAMPLE) return;
+  const rec = 4 + 4 * channels.length;
+  if (!p.length || p.length % rec) return;
+  const v = new DataView(p.buffer, p.byteOffset, p.byteLength);
+  for (let off = 0; off < p.length; off += rec) {
+    const us = v.getUint32(off, true);
+    if (tmPrevUs !== null && us < tmPrevUs) tmWrap += 4294967296;   // u32 microseconds wraps every 71.6 min
+    tmPrevUs = us;
+    const vals = new Float32Array(channels.length);
+    for (let k = 0; k < channels.length; k++) vals[k] = v.getFloat32(off + 4 + 4 * k, true);
+    const s = { t: (us + tmWrap) / 1e6, v: vals };
+    samples.push(s); tmLast = s;
+  }
+  const cut = tmLast.t - HIST_S - 0.5;
+  let drop = 0; while (drop < samples.length && samples[drop].t < cut) drop++;
+  if (drop) samples.splice(0, drop);
+}
+const ch = name => { const i = channels.indexOf(name); return i < 0 || !tmLast ? NaN : tmLast.v[i]; };
+const STATE = [['Off', ''], ['Calibrating', 'warning'], ['Open loop', 'warning'], ['Spin-up', 'warning'], ['At speed', 'good'], ['Firing', 'good'], ['Fault', 'critical']];
+function boardState() { const s = Math.round(ch('state')); return Number.isFinite(s) ? s : -1; }
+
+// Resample the last HIST_S seconds into N bins (sample-and-hold) for the charts.
+function series(names, N) {
+  const out = names.map(() => new Array(N).fill(NaN));
+  if (!tmLast) return out;
+  const idx = names.map(n => channels.indexOf(n)), t1 = tmLast.t, t0 = t1 - HIST_S;
+  let j = 0; const held = names.map(() => NaN);
+  for (let b = 0; b < N; b++) {
+    const tb = t0 + (b + 1) * HIST_S / N;
+    while (j < samples.length && samples[j].t <= tb) { idx.forEach((ix, k) => { if (ix >= 0) held[k] = samples[j].v[ix]; }); j++; }
+    held.forEach((h, k) => { out[k][b] = h; });
+  }
+  // Leading bins before the first sample copy the first held value so lines start flat, not at NaN.
+  out.forEach(arr => { const first = arr.find(Number.isFinite); for (let b = 0; b < arr.length && !Number.isFinite(arr[b]); b++) arr[b] = Number.isFinite(first) ? first : 0; });
+  return out;
+}
+function niceTicks(lo, hi, count) {
+  if (!(hi > lo)) { hi = lo + 1; }
+  const raw = (hi - lo) / count, mag = Math.pow(10, Math.floor(Math.log10(raw)));
+  const step = [1, 2, 2.5, 5, 10].map(m => m * mag).find(s => s >= raw);
+  const t = []; for (let v = Math.floor(lo / step) * step; v <= hi + step * 0.001; v += step) t.push(+v.toFixed(6));
+  if (t[t.length - 1] < hi) t.push(+(t[t.length - 1] + step).toFixed(6));
+  return t;
+}
+const N_BINS = 120, xLab = i => i === N_BINS - 1 ? 'now' : `-${(HIST_S * (N_BINS - 1 - i) / (N_BINS - 1)).toFixed(0)}`;
+const xTicks = [0, Math.round((N_BINS - 1) / 2), N_BINS - 1];
+function drawCharts() {
+  const [rpm, set] = series(['rpm', 'rpm_set'], N_BINS);
+  const hi = Math.max(1000, ...rpm.map(Math.abs), ...set.map(Math.abs));
+  const lo = Math.min(0, ...rpm, ...set);
+  axLine($('rpmChart'), { series: [{ name: 'rpm', values: rpm }, { name: 'rpm_set', values: set }], yTicks: niceTicks(lo, hi * 1.05, 4), unit: '',
+    x: xLab, xTicks, xLabel: 'Time before now, s', yLabel: 'Flywheel speed, rpm', height: 240 });
+  const [pc, p, tc, t] = series(['pan_cmd', 'pan', 'tilt_cmd', 'tilt'], N_BINS);
+  axLine($('aimChart'), { series: [{ name: 'pan_cmd', values: pc }, { name: 'pan', values: p }, { name: 'tilt_cmd', values: tc }, { name: 'tilt', values: t }],
+    yTicks: [-90, -45, 0, 45, 90], unit: '°', x: xLab, xTicks, xLabel: 'Time before now, s', yLabel: 'Joint angle, deg', height: 240 });
+}
+function drawAimViz() {
+  const css = v => getComputedStyle(document.documentElement).getPropertyValue('--ax-' + v).trim();
+  const cmdPan = Number.isFinite(ch('pan_cmd')) ? ch('pan_cmd') : +$('panIn').value, rdPan = ch('pan');
+  const cmdTilt = Number.isFinite(ch('tilt_cmd')) ? ch('tilt_cmd') : +$('tiltIn').value, rdTilt = ch('tilt');
+  const ray = (cx, cy, r, a, col, dash) => `<line x1="${cx}" y1="${cy}" x2="${(cx + r * Math.cos(a)).toFixed(1)}" y2="${(cy - r * Math.sin(a)).toFixed(1)}" stroke="${col}" stroke-width="2.5" stroke-linecap="round"${dash ? ' stroke-dasharray="4 3"' : ''}/>`;
+  // Pan, top view: 0° points up (forward), positive pan turns left (CCW seen from above).
+  const pr = d => (90 + d) * Math.PI / 180;
+  let s = `<path d="M 15 92 A 65 65 0 0 1 145 92" fill="none" stroke="${css('grid')}" stroke-dasharray="2 4"/>`;
+  s += `<line x1="80" y1="92" x2="80" y2="22" stroke="${css('grid')}" stroke-dasharray="2 4"/>`;
+  for (const d of [-90, 0, 90]) { const a = pr(d); s += `<text x="${(80 + 74 * Math.cos(a)).toFixed(0)}" y="${(96 - 74 * Math.sin(a)).toFixed(0)}" text-anchor="middle">${d}</text>`; }
+  s += ray(80, 92, 62, pr(cmdPan), css('s1'));
+  if (Number.isFinite(rdPan)) s += ray(80, 92, 50, pr(rdPan), css('s2'));
+  s += `<rect x="76" y="88" width="8" height="8" fill="${css('ink')}"/>`;
+  $('panViz').innerHTML = s;
+  // Tilt, side view: muzzle points right, 0° level.
+  const tr = d => d * Math.PI / 180;
+  let u = `<path d="M 85 20 A 75 75 0 0 1 145 95" fill="none" stroke="${css('grid')}" stroke-dasharray="2 4"/>`;
+  u += `<line x1="20" y1="95" x2="150" y2="95" stroke="${css('axis')}"/>`;
+  for (const d of [0, 45]) { const a = tr(d); u += `<text x="${(20 + 132 * Math.cos(a)).toFixed(0)}" y="${(99 - 82 * Math.sin(a)).toFixed(0)}" text-anchor="end">${d}</text>`; }
+  u += ray(20, 95, 110, tr(cmdTilt), css('s1'));
+  if (Number.isFinite(rdTilt)) u += ray(20, 95, 88, tr(rdTilt), css('s2'));
+  u += `<rect x="16" y="91" width="8" height="8" fill="${css('ink')}"/>`;
+  $('tiltViz').innerHTML = u;
+}
+let tipTripDeg = 20, imuTipped = false;
+function refreshTiles() {
+  if (!tmLast) return;
+  axSet($('tRpm'), Math.round(ch('rpm')));
+  axSet($('tSet'), Math.round(ch('rpm_set')));
+  axSet($('tUq'), ch('uq'), { digits: 2 });
+  axSet($('tSv'), ch('servo_v'), { digits: 1 });
+  axSet($('tShots'), Math.round(ch('shots')));
+  const bt = ch('base_tilt');
+  if (Number.isFinite(bt)) {
+    axSet($('tTilt'), bt, { digits: 1 });
+    const tipped = imuTipped;
+    $('tTipSq').className = 'ax-status ' + (tipped ? 'critical' : bt > 10 ? 'warning' : 'good');
+    $('tTipSq').textContent = tipped ? 'Tipped' : bt > 10 ? 'Leaning' : 'Level';
+  }
+  const st = boardState(), [word, cls] = STATE[st] || ['Unknown', ''];
+  if ($('tState').textContent !== word) { $('tState').textContent = word; $('tStateSq').textContent = word; $('tStateSq').className = 'ax-status ' + cls; }
+  refreshControls();
+}
+
+// ---------------------------------------------------------------- control enable state
+function refreshControls() {
+  const on = !!link && !busyFlow;
+  for (const id of ['spinBtn', 'spinDownBtn', 'openBtn', 'calBtn', 'encBtn', 'applyBtn', 'saveBtn', 'cfgBtn', 'centerBtn', 'servoReadBtn', 'unloadAllBtn', 'vbatBtn', 'feedApplyBtn', 'levelBtn', 'guardBtn', 'conIn', 'conBtn', 'resetBtn', 'stopBtn'])
+    if (!$(id).getAttribute('aria-busy')) $(id).disabled = id === 'stopBtn' ? !link : !on;
+  document.querySelectorAll('[data-unload],[data-zero]').forEach(b => { if (!b.getAttribute('aria-busy')) b.disabled = !on; });
+  const st = boardState();
+  if (!$('fireBtn').getAttribute('aria-busy')) $('fireBtn').disabled = !(on && st === 4);
+  $('fireHint').textContent = !link ? 'Connect, then spin up to enable Fire.' : st === 4 ? 'Flywheel at speed. Ready to fire.' : st === 6 ? 'Fault latched. Fix it, then send clear in the console.' : 'Spin up to the setpoint to enable Fire.';
+  fwUpdate(true);
+}
+
+// ---------------------------------------------------------------- connect / disconnect
+function setConnected(on, label) {
+  $('mLink').className = 'ax-status ' + (on ? 'live' : ''); $('mLink').textContent = label || (on ? 'Live' : 'Disconnected');
+  $('connectBtn').textContent = on ? 'Disconnect' : 'Connect';
+  refreshControls();
+}
+async function connect(transport) {
+  if (!navigator.usb) throw new Error('WebUSB is not available in this browser (use Chrome or Edge, over http://localhost or https)');
+  const t = transport || new UsbTransport();
+  axBusy($('connectBtn'), true, 'Connecting');
+  try {
+    await t.open();
+    link = { t, parser: new SfParser() };
+    samples = []; tmLast = null; tmWrap = 0; tmPrevUs = null; lineBuf = '';
+    t.readLoop(d => { for (const f of link.parser.feed(d)) onFrame(f); })
+      .catch(e => conPrint('link read error: ' + e.message, 'err'))
+      .finally(() => { if (link && link.t === t) disconnect(true); });
+    // Stdout only mirrors to the vendor stream while telemetry streams, so turn it on first.
+    const p = new Uint8Array(3); p[0] = 1; new DataView(p.buffer).setUint16(1, 20, true);
+    await tx(sfBuild(M_TM, TM.SET_STREAM, p));
+    await tx(sfBuild(M_TM, TM.GET_SCHEMA));
+    setConnected(true); conPrint(`connected: ${t.name()}`, 'sys');
+    await sendLine('wd 1500');
+    clearInterval(pingTimer); pingTimer = setInterval(() => { if (link && !busyFlow) sendLine('ping').catch(() => {}); }, 500);
+    await readInfo();
+    try { await cmd('status', 1500); } catch (_) {}
+    try { await cmd('cfg', 1500); } catch (_) {}
+  } catch (e) {
+    try { await t.close(); } catch (_) {}
+    link = null; setConnected(false); conPrint('connect failed: ' + e.message, 'err');
+    throw e;
+  } finally { axBusy($('connectBtn'), false); $('connectBtn').textContent = link ? 'Disconnect' : 'Connect'; refreshControls(); }
+}
+async function disconnect(lost) {
+  const l = link; clearInterval(pingTimer); pingTimer = null;
+  // Leaving on purpose: stop the wheel first, then disarm the watchdog, so a
+  // spinning flywheel is never left running with nobody watching (review R1-09).
+  if (l && !lost) {
+    try { await l.t.send(sfBuild(M_CON, 0x01, enc.encode('stop'))); } catch (_) {}
+    try { await l.t.send(sfBuild(M_CON, 0x01, enc.encode('wd 0'))); } catch (_) {}
+  }
+  link = null;
+  for (const w of waiters) { clearTimeout(w.timer); w.reject(new Error('disconnected')); } waiters = [];
+  for (const w of lineWaiters) clearTimeout(w.timer); lineWaiters = [];
+  if (l) { try { await l.t.close(); } catch (_) {} }
+  setConnected(false, lost ? 'Link lost' : 'Disconnected');
+  conPrint(lost ? 'link lost' : 'disconnected', lost ? 'err' : 'sys');
+}
+async function readInfo() {
+  try {
+    const f = await request(M_SYS, 0x02, null, [0x82], 3000); const j = JSON.parse(dec.decode(f.payload));
+    $('mFw').textContent = `fw ${j.version} (${j.built})`;
+    $('mPart').textContent = `${j.partition}${j.pending_verify ? ' PENDING VERIFY' : ''}`;
+    $('mUp').textContent = `up ${j.uptime_s} s · reset ${j.reset_reason}`;
+    $('validBtn').disabled = !j.pending_verify;
+    if (j.pending_verify) { $('fwStatus').textContent = 'Running image is pending verify'; $('fwStatus').className = 'ax-status warning'; }
+    if (j.core_dump) conPrint('the board has a core dump from a previous crash (module 4)', 'err');
+    return j;
+  } catch (e) { conPrint('info: ' + e.message, 'err'); return null; }
+}
+async function reconnectAfterReboot(timeoutMs) {
+  const deadline = Date.now() + (timeoutMs || 90000);
+  $('mLink').className = 'ax-status warning'; $('mLink').textContent = 'Rebooting';
+  await disconnect(true);
+  $('mLink').className = 'ax-status warning'; $('mLink').textContent = 'Rebooting';
+  await new Promise(r => setTimeout(r, 2500));
+  while (Date.now() < deadline) {
+    try {
+      const devs = (await navigator.usb.getDevices()).filter(d => d.vendorId === USB_VID && d.productId === USB_PID);
+      if (devs.length) { await connect(new UsbTransport(devs[0])); return true; }
+    } catch (_) {}
+    await new Promise(r => setTimeout(r, 1500));
+  }
+  conPrint('board did not come back', 'err'); return false;
+}
+
+// ---------------------------------------------------------------- actions
+async function busyCmd(btn, label, line, timeoutMs) {
+  axBusy(btn, true, label);
+  try { const r = await cmd(line, timeoutMs); return r; }
+  catch (e) { conPrint(`${line}: ${e.message}`, 'err'); return null; }
+  finally { axBusy(btn, false); refreshControls(); }
+}
+$('connectBtn').onclick = async () => { if (link) return disconnect(false); try { await connect(); } catch (_) {} };
+$('stopBtn').onclick = () => { if (link) sendLine('stop').catch(e => conPrint('stop: ' + e.message, 'err')); };
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && link) $('stopBtn').click(); });
+$('resetBtn').onclick = async e => {
+  if (!confirm('Reboot the board? The flywheel stops.')) return;
+  axBusy(e.currentTarget, true, 'Resetting');
+  try { await request(M_SYS, 0x01, null, [0x81], 3000); conPrint('reset acknowledged, board restarting', 'sys'); await reconnectAfterReboot(); }
+  catch (err) { conPrint('reset: ' + err.message, 'err'); }
+  finally { axBusy(e.currentTarget, false); refreshControls(); }
+};
+
+// Flywheel
+const clampRpm = v => Math.max(0, Math.min(7000, Math.round(+v || 0)));
+$('rpmRange').oninput = () => { $('rpmIn').value = $('rpmRange').value; };
+$('rpmIn').onchange = () => { $('rpmIn').value = clampRpm($('rpmIn').value); $('rpmRange').value = $('rpmIn').value; };
+$('spinBtn').onclick = e => busyCmd(e.currentTarget, 'Spinning up', `fw spin ${clampRpm($('rpmIn').value)}`);
+$('spinDownBtn').onclick = e => busyCmd(e.currentTarget, 'Stopping', 'fw stop');
+$('openBtn').onclick = e => busyCmd(e.currentTarget, 'Open loop', `fw open ${clampRpm($('rpmIn').value)}`);
+$('calBtn').onclick = e => {
+  if (!confirm('Calibrate the flywheel motor?\n\nThe motor is driven at the alignment voltage and the wheel turns about one revolution each way. Run this on a current-limited bench supply (1 to 2 A), with hands clear of the wheel.')) return;
+  const btn = e.currentTarget; axBusy(btn, true, 'Calibrating');
+  // 'ok fw cal started' arrives at once; the result follows as @cal (or a ! line).
+  cmdUntil('fw cal', l => l.startsWith('@cal') || l.startsWith('! fw cal'), 20000)
+    .then(l => { if (l.startsWith('!')) conPrint('fw cal: ' + l.slice(1).trim(), 'err'); })
+    .catch(err => conPrint('fw cal: ' + err.message, 'err'))
+    .finally(() => { axBusy(btn, false); refreshControls(); cmd('status', 1500).catch(() => {}); });
+};
+$('encBtn').onclick = e => busyCmd(e.currentTarget, 'Sampling', 'fw enc 1', 4000);
+$('applyBtn').onclick = async e => {
+  axBusy(e.currentTarget, true, 'Applying');
+  try {
+    await cmd(`fw gains ${+$('gKp').value} ${+$('gKi').value} ${+$('gTf').value}`);
+    await cmd(`fw vlim ${+$('gVlim').value}`);
+    await cmd(`fw ramp ${+$('gRamp').value}`);
+    await cmd(`fw tol ${+$('gTol').value}`);
+    await cmd('cfg', 1500);
+  } catch (err) { conPrint('apply: ' + err.message, 'err'); }
+  finally { axBusy(e.currentTarget, false); refreshControls(); }
+};
+$('saveBtn').onclick = e => busyCmd(e.currentTarget, 'Saving', 'save', 3000);
+$('cfgBtn').onclick = e => busyCmd(e.currentTarget, 'Reading', 'cfg', 1500);
+
+// Aim: throttled sends while dragging, one exact send on release
+const clampPan = v => Math.max(-90, Math.min(90, +v || 0)), clampTilt = v => Math.max(0, Math.min(45, +v || 0));
+let aimLast = 0, aimPending = null;
+function aimLine() { const ms = $('aimMs').value.trim(); return `aim ${clampPan($('panIn').value)} ${clampTilt($('tiltIn').value)}${ms ? ' ' + Math.max(0, Math.round(+ms)) : ''}`; }
+function aimNow() { clearTimeout(aimPending); aimPending = null; aimLast = Date.now(); if (link) sendLine(aimLine()).catch(e => conPrint('aim: ' + e.message, 'err')); drawAimViz(); }
+function aimThrottled() {
+  const wait = 100 - (Date.now() - aimLast);
+  if (wait <= 0) aimNow(); else if (!aimPending) aimPending = setTimeout(aimNow, wait);
+}
+for (const [r, i, clamp] of [['panRange', 'panIn', clampPan], ['tiltRange', 'tiltIn', clampTilt]]) {
+  $(r).oninput = () => { $(i).value = $(r).value; aimThrottled(); };
+  $(r).onchange = () => { $(i).value = $(r).value; aimNow(); };
+  $(i).onchange = () => { $(i).value = clamp($(i).value); $(r).value = $(i).value; aimNow(); };
+}
+$('centerBtn').onclick = () => { $('panRange').value = $('panIn').value = 0; $('tiltRange').value = $('tiltIn').value = 0; aimNow(); };
+
+// Servos
+$('servoReadBtn').onclick = e => busyCmd(e.currentTarget, 'Reading', 'servo read', 2000);
+$('unloadAllBtn').onclick = e => busyCmd(e.currentTarget, 'Unloading', 'servo unload all', 2000);
+$('vbatBtn').onclick = e => busyCmd(e.currentTarget, 'Reading', 'vbat', 2000);
+document.querySelectorAll('[data-unload]').forEach(b => { b.onclick = e => busyCmd(e.currentTarget, 'Unloading', `servo unload ${b.dataset.unload}`, 2000); });
+document.querySelectorAll('[data-zero]').forEach(b => {
+  b.onclick = e => {
+    const j = b.dataset.zero;
+    if (!confirm(`Store the current ${j} position as 0°?\n\nUnload the joint and place it by hand first. Press Save to NVS afterwards to keep it across reboots.`)) return;
+    busyCmd(e.currentTarget, 'Zeroing', `servo zero ${j}`, 2000).then(() => cmd('servo read', 2000).catch(() => {}));
+  };
+});
+
+// IMU tip guard
+$('levelBtn').onclick = e => {
+  if (!confirm('Store the current base orientation as level?\n\nStand the robot on its working surface first. Press Save to NVS afterwards to keep it.')) return;
+  busyCmd(e.currentTarget, 'Levelling', 'imu level', 2000).then(() => cmd('imu', 1500).catch(() => {}));
+};
+$('guardBtn').onclick = e => {
+  if (imuGuard && !confirm('Turn the tip guard off? Nothing will stop the flywheel if the robot is knocked over.')) return;
+  busyCmd(e.currentTarget, 'Setting', `imu guard ${imuGuard ? 'off' : 'on'}`, 1500).then(() => cmd('imu', 1500).catch(() => {}));
+};
+
+// Fire: busy until the n-th @shot line, a ! line, or a timeout
+$('fireBtn').onclick = async e => {
+  const n = Math.max(1, Math.min(20, Math.round(+$('fireN').value || 1))), btn = e.currentTarget;
+  axBusy(btn, true, 'Firing');
+  let seen = 0;
+  try {
+    // the firmware ends every accepted sequence with one '# fire done' line
+    const ends = l => /^!\s*(fire:|usage|TIPPED|watchdog)/.test(l) || l.startsWith('# fire done');
+    await cmdUntil(`fire ${n}`, l => ends(l) || (l.startsWith('@shot') && ++seen >= n), 4000 + n * 3000)
+      .then(l => { if (l.startsWith('!')) conPrint('fire: ' + l.slice(1).trim(), 'err'); });
+  } catch (err) { conPrint('fire: ' + err.message, 'err'); }
+  finally { axBusy(btn, false); refreshControls(); }
+};
+$('feedApplyBtn').onclick = async e => {
+  axBusy(e.currentTarget, true, 'Applying');
+  try { await cmd(`feed timing ${Math.round(+$('fStroke').value)} ${Math.round(+$('fDwell').value)}`); await cmd(`feed tol ${+$('fTol').value}`); }
+  catch (err) { conPrint('feed: ' + err.message, 'err'); }
+  finally { axBusy(e.currentTarget, false); refreshControls(); }
+};
+
+// Console
+$('conBtn').onclick = async () => {
+  const l = $('conIn').value.trim(); if (!l || !link) return;
+  $('conIn').value = ''; conPrint('> ' + l, 'sys');
+  try { await sendLine(l); } catch (e) { conPrint(e.message, 'err'); }
+};
+$('conIn').onkeydown = e => { if (e.key === 'Enter') $('conBtn').click(); };
+$('conClr').onclick = () => { $('conOut').textContent = ''; };
+
+// ---------------------------------------------------------------- firmware update (OTA flow from pace-racer dashboard.html)
+let fwPicked = null, flashAbort = false;
+const u32 = n => { const p = new Uint8Array(4); new DataView(p.buffer).setUint32(0, n >>> 0, true); return p; };
+function fwUpdate(keepStatus) {
+  const b = $('flashBtn');
+  if (b.getAttribute('aria-busy')) return;
+  b.disabled = busyFlow || !link || !fwPicked;
+  if (busyFlow || keepStatus) return;
+  $('fwStatus').className = 'ax-status';
+  $('fwStatus').textContent = !fwPicked ? 'No image chosen' : (link ? fwPicked.name : fwPicked.name + ' · connect to flash');
+}
+async function otaTransact(type, payload, timeout, progress) {
+  const f = await request(M_OTA, type, payload, [OTA.OK, OTA.ERROR, OTA.STATUS, OTA.PROGRESS], timeout, progress);
+  if (f.type === OTA.ERROR) { const v = new DataView(f.payload.buffer, f.payload.byteOffset); throw new Error(`device error ${v.getUint32(0, true)}: ${dec.decode(f.payload.subarray(4))}`); }
+  return f;
+}
+function parseStatus(f) { const p = f.payload; let i = 1; const rs = () => { if (i >= p.length) return ''; const n = p[i++]; const s = dec.decode(p.subarray(i, i + n)); i += n; return s; }; return { pending: !!(p[0] & 1), rollback: !!(p[0] & 2), version: rs(), project: rs() }; }
+$('fwFile').onchange = () => { fwPicked = $('fwFile').files[0] || null; fwUpdate(); };
+$('otaPanel').addEventListener('dragover', e => e.preventDefault());
+$('otaPanel').addEventListener('drop', e => { e.preventDefault(); const f = e.dataTransfer.files[0]; if (f) { fwPicked = f; fwUpdate(); } });
+$('flashBtn').onclick = async e => {
+  if (!fwPicked || !link) return fwUpdate();
+  const btn = e.currentTarget; axBusy(btn, true, 'Flashing'); $('abortBtn').disabled = false; busyFlow = true; flashAbort = false; refreshControls();
+  const bar = $('fwBar'); bar.className = 'bar'; bar.firstElementChild.style.width = '0';
+  const setP = (w, t) => { bar.firstElementChild.style.width = (100 * w / t).toFixed(1) + '%'; $('fwStatus').textContent = `${(w / 1024).toFixed(0)} / ${(t / 1024).toFixed(0)} KiB`; };
+  $('fwStatus').className = 'ax-status warning'; $('fwStatus').textContent = 'Reading ' + fwPicked.name;
+  const t0 = Date.now();
+  try {
+    const image = new Uint8Array(await fwPicked.arrayBuffer());
+    if (image[0] !== 0xE9) throw new Error('not an ESP app image (first byte is not 0xE9); pick the app .bin from build/');
+    $('fwStatus').textContent = 'BEGIN: erasing the update slot (the firmware stops the flywheel first)';
+    await otaTransact(OTA.BEGIN, u32(image.length), 60000);
+    let sent = 0;
+    while (sent < image.length) {
+      if (flashAbort) throw Object.assign(new Error('aborted'), { userAbort: true });
+      const chunk = image.subarray(sent, Math.min(sent + SF_MAX_PAYLOAD, image.length));
+      await otaTransact(OTA.DATA, chunk, 5000); sent += chunk.length; setP(sent, image.length);
+    }
+    $('fwStatus').textContent = 'FINISH: device verifying the image';
+    await otaTransact(OTA.FINISH, null, 60000);
+    bar.className = 'bar done'; const dt = (Date.now() - t0) / 1000;
+    $('fwStatus').className = 'ax-status good'; $('fwStatus').textContent = `Uploaded in ${dt.toFixed(1)} s, board rebooting`;
+    busyFlow = false;
+    const back = await reconnectAfterReboot(90000);
+    if (back) {
+      const st = parseStatus(await otaTransact(OTA.GET_STATUS, null, 3000));
+      if (st.pending) { await otaTransact(OTA.MARK_VALID, null, 3000); $('fwStatus').className = 'ax-status good'; $('fwStatus').textContent = `Running ${st.version}, marked valid`; }
+      else { $('fwStatus').className = 'ax-status good'; $('fwStatus').textContent = `Running ${st.version}, already confirmed`; }
+      await readInfo();
+    } else { $('fwStatus').className = 'ax-status critical'; $('fwStatus').textContent = 'Board did not come back; a power cycle boots the previous image'; }
+  } catch (err) {
+    bar.className = 'bar failed'; $('fwStatus').className = 'ax-status critical';
+    $('fwStatus').textContent = err.userAbort ? 'Aborted' : 'Failed: ' + err.message;
+    if (link) { try { await otaTransact(OTA.ABORT, null, 3000); } catch (_) {} }
+  } finally { busyFlow = false; axBusy(btn, false); $('abortBtn').disabled = true; refreshControls(); fwUpdate(true); }
+};
+$('abortBtn').onclick = () => { flashAbort = true; };
+$('validBtn').onclick = async e => {
+  axBusy(e.currentTarget, true, 'Marking');
+  try { await otaTransact(OTA.MARK_VALID, null, 3000); conPrint('running image marked valid', 'sys'); await readInfo(); }
+  catch (err) { conPrint('mark valid: ' + err.message, 'err'); }
+  finally { axBusy(e.currentTarget, false); }
+};
+
+// ---------------------------------------------------------------- render loop and startup
+if (navigator.usb) navigator.usb.addEventListener('disconnect', ev => { if (link && link.t.device === ev.device) disconnect(true); });
+if (!navigator.usb) conPrint('WebUSB is not available here. Open this page in Chrome or Edge from http://localhost (python3 -m http.server).', 'err');
+setInterval(() => { if (link) { refreshTiles(); drawAimViz(); } }, 250);
+setInterval(() => { if (link) drawCharts(); }, 200);
+drawCharts(); drawAimViz(); refreshControls(); fwUpdate();
+document.fonts.ready.then(() => { drawCharts(); drawAimViz(); });
+</script>
+<script type="module">
+// Live model: the v2 assembly exported per moving group by tools/export_model.py
+// (world coordinates at the rest pose, Blender Z-up, mm), re-hinged here on the
+// CAD pivots from model/pivots.json. Joint conventions match the firmware:
+// pan + is counter-clockwise seen from above (+Z), tilt + is muzzle up (+X),
+// feed is the disc angle (+Z). Gear couplings from DESIGN_LOG "Joints".
+// Imported dynamically so a failed three.js download (offline: it comes from
+// the jsDelivr CDN) lands in the catch below instead of leaving the spinner up.
+const host = document.getElementById('view3d');
+let v = null, THREE = null;
+const D2R = Math.PI / 180;
+const FEED_PINION_RATIO = -44 / 30, PAN_PINION_RATIO = -1;
+const SPIN_SLOWDOWN = 50;
+
+function hinge(parent, pivotWorld, parentPivotWorld) {
+  const g = new THREE.Group();
+  g.position.set(pivotWorld[0] - parentPivotWorld[0], pivotWorld[1] - parentPivotWorld[1], pivotWorld[2] - parentPivotWorld[2]);
+  parent.add(g);
+  return g;
+}
+async function part(file, parent, pivotWorld, color) {
+  const holder = await v.load('model/' + file, { parent, color });
+  holder.position.set(-pivotWorld[0], -pivotWorld[1], -pivotWorld[2]); // mesh is in world coords
+  return holder.children[0];
+}
+const focus = id => () => { const el = document.getElementById(id); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.focus(); };
+
+const joints = { pan: null, panPinion: null, tilt: null, feed: null, feedPinion: null, fly: null };
+let spin = 0;
+
+try {
+  const { axScene } = await import('./vendor/ax-three.js');
+  v = axScene(host, { units: 'mm', floor: 300, camera: [560, 430, 560], target: [0, 190, 0] });
+  THREE = v.THREE;
+  const man = await (await fetch('model/pivots.json')).json();
+  const P = name => man.pivots[name].loc;
+  const O = [0, 0, 0];
+  const root = new THREE.Group();
+  root.rotation.x = -Math.PI / 2; // Blender Z-up -> three Y-up
+  v.scene.add(root);
+
+  joints.pan = hinge(root, P('PIV_pan'), O);
+  joints.panPinion = hinge(root, P('PIV_pan_pinion'), O);
+  joints.tilt = hinge(joints.pan, P('PIV_tilt'), P('PIV_pan'));
+  joints.fly = hinge(joints.tilt, P('PIV_flywheel'), P('PIV_tilt'));
+  joints.feed = hinge(joints.pan, P('PIV_feeder'), P('PIV_pan'));
+  joints.feedPinion = hinge(joints.pan, P('PIV_feeder_pinion'), P('PIV_pan'));
+
+  const parts = await Promise.all([
+    part('base.stl', root, O, 'panel'),
+    part('pan.stl', joints.pan, P('PIV_pan'), 'panel'),
+    part('pan_pinion.stl', joints.panPinion, P('PIV_pan_pinion'), 'muted'),
+    part('tilt.stl', joints.tilt, P('PIV_tilt'), 'muted'),
+    part('flywheel.stl', joints.fly, P('PIV_flywheel'), 's1'),
+    part('feeder.stl', joints.feed, P('PIV_feeder'), 'muted'),
+    part('feeder_pinion.stl', joints.feedPinion, P('PIV_feeder_pinion'), 'muted'),
+  ]);
+  const [base, pan, panPin, tilt, fly, feed, feedPin] = parts;
+  const deg = n => { const x = ch(n); return Number.isFinite(x) ? x.toFixed(1) + '°' : '?'; };
+  v.pickable(base, 'Base · battery, buck, MotorGo, servo controller');
+  v.pickable(pan, () => `Pan stage · ${deg('pan')} read, ${deg('pan_cmd')} cmd`, focus('panRange'));
+  v.pickable(panPin, () => `Pan pinion 36T · ${deg('pan')}`, focus('panRange'));
+  v.pickable(tilt, () => `Launcher pod · tilt ${deg('tilt')} read, ${deg('tilt_cmd')} cmd`, focus('tiltRange'));
+  v.pickable(fly, () => `Flywheel · ${Number.isFinite(ch('rpm')) ? Math.round(ch('rpm')) : '?'} rpm`, focus('rpmIn'));
+  v.pickable(feed, () => `Feeder disc · ${deg('feed')}`, focus('fireN'));
+  v.pickable(feedPin, () => `Feeder pinion 30T · disc ${deg('feed')}`, focus('fireN'));
+
+  // aim ray: along the muzzle (+Y in the pod frame), from the tilt axis
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue('--ax-' + n).trim();
+  const rayGeo = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 40, -20), new THREE.Vector3(0, 900, -20)]);
+  const ray = new THREE.Line(rayGeo, new THREE.LineDashedMaterial({ color: css('s2'), dashSize: 14, gapSize: 10 }));
+  ray.computeLineDistances();
+  joints.tilt.add(ray);
+  v.label(ray, 'Aim');
+  host.removeAttribute('data-busy');
+} catch (e) {
+  host.removeAttribute('data-busy');
+  document.getElementById('viewReadout').textContent = 'Model not loaded: ' + e.message + '. three.js comes from the jsDelivr CDN (needs internet once), and web/ must be served over http (see README).';
+}
+
+// pose: read-back when present, else commanded, else the sliders (offline preview)
+const pick3 = (rd, cmd, slider) => Number.isFinite(rd) ? [rd, 'read'] : Number.isFinite(cmd) ? [cmd, 'cmd'] : [+document.getElementById(slider).value || 0, 'slider'];
+if (v) v.onFrame(dt => {
+  if (!joints.pan) return;
+  const [pan, ps] = pick3(ch('pan'), ch('pan_cmd'), 'panIn');
+  const [tilt, ts] = pick3(ch('tilt'), ch('tilt_cmd'), 'tiltIn');
+  const feedRd = ch('feed'), feedCmd = ch('feed_cmd');
+  const feed = Number.isFinite(feedRd) ? feedRd : Number.isFinite(feedCmd) ? feedCmd : 0;
+  joints.pan.rotation.z = pan * D2R;
+  joints.panPinion.rotation.z = PAN_PINION_RATIO * pan * D2R;
+  joints.tilt.rotation.x = tilt * D2R;
+  joints.feed.rotation.z = feed * D2R;
+  joints.feedPinion.rotation.z = FEED_PINION_RATIO * feed * D2R;
+  const rpm = Number.isFinite(ch('rpm')) ? ch('rpm') : 0;
+  spin = (spin + rpm / 60 * 2 * Math.PI * dt / SPIN_SLOWDOWN) % (2 * Math.PI);
+  joints.fly.rotation.x = spin;
+  const r = document.getElementById('viewReadout');
+  const t = `pan <b>${pan.toFixed(1)}°</b> (${ps}) · tilt <b>${tilt.toFixed(1)}°</b> (${ts}) · feed <b>${feed.toFixed(1)}°</b> · wheel <b>${Math.round(rpm)}</b> rpm`;
+  if (r.innerHTML !== t) r.innerHTML = t;
+});
+</script>
+<script type="module">
+// Gamepad aim (web/gamepad.js holds the tested mapping). Sends go through the
+// same aim throttle as the sliders; fire goes through the Fire button, so it
+// gets the same enable state (board at speed) and the firmware's checks.
+import { stepAim, pressedList, edges, decide, BTN } from './gamepad.js';
+const $ = id => document.getElementById(id);
+let prevHeld = [], last = performance.now(), aim = null;
+function firstPad() { for (const p of navigator.getGamepads ? navigator.getGamepads() : []) if (p && p.connected) return p; return null; }
+function frame(now) {
+  const dt = (now - last) / 1000; last = now;
+  const pad = firstPad();
+  const on = $('padOn').checked;
+  if (!pad) {
+    if ($('padSq').textContent !== 'No pad') { $('padSq').className = 'ax-status'; $('padSq').textContent = 'No pad'; }
+    prevHeld = []; aim = null;
+  } else {
+    const held = pressedList(pad.buttons);
+    const word = !on ? 'Pad idle' : held[BTN.LB] ? 'Deadman held' : 'Aiming';
+    if ($('padSq').textContent !== word) { $('padSq').className = 'ax-status ' + (!on ? '' : held[BTN.LB] ? 'warning' : 'live'); $('padSq').textContent = word; }
+    if (on && !document.hidden) {
+      if (!aim) aim = { pan: +$('panIn').value || 0, tilt: +$('tiltIn').value || 0 };
+      const next = stepAim(aim, pad.axes, dt);
+      if (next.moved) {
+        aim = { pan: next.pan, tilt: next.tilt };
+        const p = Math.round(aim.pan * 10) / 10, t = Math.round(aim.tilt * 10) / 10;
+        $('panIn').value = $('panRange').value = p; $('tiltIn').value = $('tiltRange').value = t;
+        aimThrottled();
+      }
+      const st = boardState();
+      for (const act of decide(edges(prevHeld, held), held, st)) {
+        if (act === 'stop') $('stopBtn').click();
+        else if (act === 'center') { $('centerBtn').click(); aim = { pan: 0, tilt: 0 }; }
+        else if (act === 'fire') { $('fireN').value = 1; if (!$('fireBtn').disabled) $('fireBtn').click(); }
+        else if (act === 'fire_refused') conPrint(held[BTN.LB] ? 'gamepad: fire refused, the flywheel is not at speed' : 'gamepad: hold LB (deadman) to fire', 'err');
+      }
+    } else {
+      aim = null; // re-sync from the sliders when aiming resumes
+      // B stops even while gamepad aim is unchecked: a pad in hand is a stop button.
+      if (edges(prevHeld, held).includes(BTN.B)) $('stopBtn').click();
+    }
+    prevHeld = held;
+  }
+  requestAnimationFrame(frame);
+}
+window.addEventListener('gamepadconnected', e => conPrint(`gamepad connected: ${e.gamepad.id}`, 'sys'));
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# Review attempt 2 notes
+- copy: /tmp/rv2/model.blend, checks.json, manifest.json; tools pin alex-3d-skills-pin 6b62667 (same as designer)
+- cadcheck re-run (/tmp/rv2/cadcheck.json, copied later): CADCHECK PASS 0 fail 44 warn; warn set identical to designer's (diff empty). coverage: parts 35, interference 172 objs 4 collections 4430 pair-poses, fasteners 102+4 nuts 15 poses 28 steps, service 8, drop 3, index 6, slide 10, stacks 3, stability 1 pose, cables 13. flexures: NONE declared (nip leaf is a spring).
+- distances: nip ray home 6.493, @hood1.315 5.294 (sq 2.21), @hood-0.558 7.003; hood-body 0.541 @1.315/2.315; hood-wheel 4.094 @2.315; pocket 14.4/14.4; feedmount-pinion 3.517; journal 0.156 @tilt22.5; ctrl wall rays 0.5x3
+- index: +60 1 window [50,60]; -60 1 window [-60,-50]; column 0 windows drift 0/5/10/15 -> matches BOM documented 0/+60/0, 0/-60/0
+- drop: 3 tests; warn gap5.3 tilt46 flattest 32.8 (stall 28, margin 4.8 <5 checklist)
+- stacks: magnet 0.30/0.30 (rss .122), band 2.4/3.0, pocket 0.67/0.8
+- finger slot tilt0: ray 19.5,-2.33,111.274 0,-0.316,0.949 -> nip_wheel 14.4 (reproduced). Reverse ray -> PRT_groove_cap 6.6. Vertical free gap wheel rim (z124.9) to FST_gcap/groove cap z105 = 19.0 mm; horizontal -Y open (no hit), +X post_R 20.5, +Y body 33. nip_cover lo z 124.70 vs rim hit z 124.94.
+- lentil probe (/tmp/rv2/probe/lentils.py -> model_mm.blend), edge-on pairs symmetric about pocket centre (10.5,18.187), floor z263 (housing): 13x7 overlaps disc 0.607 mm3 each (rim vs chord); 12.8x6.8 overlaps 0.016 (=fits within faceting); 12.5x6.5 clear 0.154. Pocket R7.2: pair fits if R^2 >= (T/2)^2+(D/2)^2 -> A1-03 PARTIAL, zero margin at nominal.
+- review rows /tmp/rv2/checks_review.json -> cadcheck_review.json (--only distances,slide,drop,flexures): 4F 8W
+  - gate +X 56: blocked by PRT_jar_adapter at 52.5 -> positive stop confirmed (BOM 52.35)
+  - jam-lift gap: fixed ray y37 gives 14.18 at hood -0.558/lift -1.493 (ray misses hood lip: artefact); y34 ray: hood 5.03 below + wheel ~3.3 -> ~8.3, claim 8.35 ok. nearest dist 7.056.
+  - drop at stops x tilt 45/46/-3: all 31/31 hit; flattest 33.8 @45 (margin 5.8), 32.8 @46 (4.8), 62.8 @-3
+  - flexures PRT_nip_leaf from/to: 2.2 deg to bed, no finding (row missing in designer config only)
+- hierarchy: PIV_tilt > PIV_nip_lift (thumbwheel, tw_nut) > PIV_hood (hood, stud, sleeve); both pivots at (21,-14.92,190.98)
+- index at jar drift 20/25/30: 0 windows (cadcheck_review_index.json) -> bayonet drift harmless to metering
+- jar band material opaque (M_4 alpha 1.0); translucent look = glass neck in front. not an issue.
+- FULL-LIFT nip gap (ray y34, cadcheck_review_lift.json): lift -1.493 at hood 1.315/1.0/0.75/0.5/0.25/0/-0.3/-0.558 -> 6.685/6.982/7.212/7.44/7.67/7.901/8.18/8.416. need 7.5 (7.0 candy + 0.5 tape). static y34: 5.284/6.052/6.518/7.043 at 1.315/0.5/0/-0.558. => settings < ~6.1 bottom the leaf: rigid crush 0.84 at the min stop (cadcheck warn '0.84 mm rigid squeeze'). 
+- lift limit vs geometry (sweep PIV_nip_lift, hood 0): nip_wheel-nip_cover 0.819@-1.5, 0.256@-2.0, -5.1mm3@-2.5; stud-cover 2.363@-2.0 (NOT the stop the param comment claims); hood-body 0.054@-2.5; tw_nut-leaf 0.032@-2.5. Real stop ~ -2.1 deg (thumbwheel on cover) -> at min stop eff -0.8 deg -> gap ~7.27, still < 7.5.
+- motor screws to flywheel 1.6 (>=1.5 rig rule); fw bolts symmetric z163.5/176.5 about axis z170, heads alternate; magnet-Plink 1.0
+- nip_cover overhang 171 mm2 (same as A1): 54.5 mm2 at (16,-12,128) slot end + ~65 at skirt z172 (probe/ovh.py)
+- assembly_order: PRT_nip_stop_sleeve and FST_valve_* in no step; 10a label 'M2 x 4' vs model 8
+- renders: r01 nip closeup (not useful), r02 feeder/gate closeup, r03 sec x21 nip exit at hood+1.315 with lentil

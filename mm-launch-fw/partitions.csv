@@ -1,0 +1,9 @@
+# Name,   Type, SubType,  Offset,   Size, Flags
+# 4 MB layout (the MotorGo Axis flash size is unconfirmed; 4 MB is the floor).
+# Two OTA slots so WebUSB updates roll back, plus a core dump partition.
+nvs,      data, nvs,      0x9000,   0x6000,
+otadata,  data, ota,      0xf000,   0x2000,
+phy_init, data, phy,      0x11000,  0x1000,
+ota_0,    app,  ota_0,    0x20000,  0x1C0000,
+ota_1,    app,  ota_1,    ,         0x1C0000,
+coredump, data, coredump, ,         64K,

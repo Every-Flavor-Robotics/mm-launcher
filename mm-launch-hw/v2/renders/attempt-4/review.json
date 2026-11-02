@@ -1,0 +1,57 @@
+{
+  "functionality": 8,
+  "manufacturability": 9,
+  "aesthetics": 9,
+  "anchors": {
+    "functionality": "8: Works. At most 2 major issues, each with a known fix under 1 hour of CAD and no reprint of a big part (one major: A2-01, the nip entry arc at full leaf lift; fix is PSI_C on the 10 g hood)",
+    "manufacturability": "9: Minor polish only; cadcheck 0 fails and every warn explained; 0 fastener fails, reach <= 58 straight (hinge 104 bit listed), no supports, P1S fit, BOM fasteners and steps match the manifest and assembly_order",
+    "aesthetics": "9: one item short of 10 (detent tab band-relief step and 1.4 proud pan head in close-up); one EB/CR set, colour B on the candy path, no PCB/wire/motor can in iso views"
+  },
+  "issues": [
+    {
+      "id": "A2-01",
+      "metric": "functionality",
+      "severity": "major",
+      "subsystem": "launcher nip",
+      "problem": "The full leaf lift opens the nip at BDC (8.28..9.12) but not on the entry arc: the hood is concentric to PSI_C 78 and pivots about HINGE at PSI_TOP 112, so the 2.19 deg lift opens psi 80 by only 1.14 (BDC 1.97). At full lift the gap is 7.50/7.72/7.94 at psi 80/70/60 (min stop), 7.67 at psi 80 (home), 7.95 (max stop), all < 8.0: the declared max 7.5 candy is rigidly squeezed 0.05-0.50 at every setting, and a nominal candy drives the leaf to (or within 13% of) solid, so the leaf cycles at ~32-35.5 MPa, not the BOM's 26.9. params.gap_bdc samples psi -2..+2 only, and the four full-lift rows are BDC rays.",
+      "evidence": "review/cadcheck_review.json distances (review_rows.json): PRT_hood-PRT_flywheel at hood=0.327, nip_lift=-2.19 = 7.94 (psi 60), 7.72 (70), 7.50 (80); hood=0 7.93 (70), 7.67 (80); hood=-0.558 7.95 (80), wanted >= 8.0; /tmp/rv4probe/gap_profile.py; review/r01_nip_x21_minstop_fulllift_psi80_lentil.png",
+      "fix": "PSI_C 78 -> 45 (analytic full-lift min at the min stop 7.49 -> 8.14 at psi 50, 8.89 at the max stop; rest gap psi 0..45 unchanged 6.2..7.0, 27 mm grip arc). Change the NIP_PASS assert to the minimum over psi 0..PSI_TOP at full lift >= NIP_PASS + 0.1. Adopt review/review_rows.json (psi 60/70/80 x 3 hood settings, min 8.0) plus a psi 50 row. Rebuild, re-run the drop rows (flattest >= 33) and the leaf flexures row, and quote the leaf stress at the lift a nominal candy needs.",
+      "tool_catchable": true
+    },
+    {
+      "id": "A4-01",
+      "metric": "aesthetics",
+      "severity": "minor",
+      "subsystem": "feeder gate detent",
+      "problem": "The detent clip tab's band relief (R37.25 above z 300) leaves a square step in the tab's top corner that reads as a notch, and the pan head stands 1.4 proud of the tab back face (1.0 of a 2.4 head sunk).",
+      "evidence": "review/r02_gate_detent_closeup.png; cad q list FST_detent_0 bbox y 27.5..39.9 vs tab back face y 38.5 (params GATE_DETENT plate_y 38.5)",
+      "fix": "Run the relief as a full-width 45 deg x 1.5 chamfer across the tab top. Optionally use an M3 x 10 wafer/button-head self-tap (head ~1.65) in the same 6.6 x 1.0 counterbore (0.65 proud, same tip position).",
+      "tool_catchable": false
+    },
+    {
+      "id": "A4-02",
+      "metric": "functionality",
+      "severity": "minor",
+      "subsystem": "BOM / manifest",
+      "problem": "The BOM's leaf operating numbers (thickest candy 30.4 MPa, nominal 26.9) and the 'NIP_PASS asserted' claim rest on the BDC-only gap helper, and PRT_nip_cover's manifest orient string still says 'finger slot 22 x 7.5' (geometry 22 x 8.3).",
+      "evidence": "BOM section 0 'Leaf numbers'; params.py gap_bdc() psi -2..+2; BOM section 8 (stale orient text acknowledged)",
+      "fix": "After the A2-01 change, regenerate the leaf numbers from the entry-arc minimum, and take the slot text in launcher.py from FINGER_SLOT.",
+      "tool_catchable": false
+    }
+  ],
+  "previous_issue_status": [
+    {"id": "A2-01", "status": "PARTIAL", "evidence": "BDC full-lift rays 8.282/8.593/8.782/9.124 pass (>= 8.0); entry arc at full lift 7.50 (psi 80) / 7.72 (70) / 7.94 (60) at the min stop, 7.67 (80) at home, 7.95 (80) at the max stop fail (review/cadcheck_review.json)"},
+    {"id": "A1-03", "status": "FIXED", "evidence": "Pocket 13.75 (4 rays); payload_fit MIN pair blocked margin 0.06/0.06, nominal pair 0.34, flat 13.5x7.5 fits 0.14; coupon stl/tools/test_pocket_coupon.stl + caliper procedure"},
+    {"id": "A2-02", "status": "FIXED", "evidence": "BOM item 15 one-piece twisted 5-wire >= 550; CAB_encoder 84.1 / 114.8 budget written by finish.py; CAB_bus_pan 290.5 / 350"},
+    {"id": "A3-01", "status": "FIXED", "evidence": "Tab EB 1.0, plate EB 0.4 (knife-edge reason agreed), R3 end, stock M3 x 10 pan self-tap in 6.6 x 1.0 counterbore, engagement 4.0, tip 2.652 to gate / 1.142 to spout; review/r02_gate_detent_closeup.png"},
+    {"id": "A3-02", "status": "FIXED", "evidence": "BOM, step 6c and manifest bom_item read M3 x 16 hex ISO 4017 AF 5.5 x 2.0 (hex pocket fit by section only: tool limit)"},
+    {"id": "A3-03", "status": "FIXED", "evidence": "Base-floor slide_out row not blocked; full-lift rows at 8.0; detent open notch has no row (no prismatic joint) but the re-run probe reads 0.10 at gate +52, 0.00 at the +52.35 stop (/tmp/rv4probe/gate_move.py)"}
+  ],
+  "check_config_disputes": [
+    "distances 'v2-A3-A2-01 bare gap at FULL leaf lift' rows measure only at BDC (ray y 34); add the review psi 60/70/80 rows (review/review_rows.json, 6 fails today)",
+    "params assert HOOD_GAP_LIFT = gap_bdc(...) samples psi -2..+2 only; the pass rule must take the minimum over the gripped arc psi 0..PSI_TOP",
+    "flexures nip leaf: the quoted operating stress (26.9 nominal) assumes BDC lift; at psi 80 a nominal candy needs ~87-100% of the travel",
+    "detent open notch (BOM refill) has no row: tool limit (no prismatic joint), review probe agrees (0.10 at +52)",
+    "fits PRT_post_R x PRT_journal_plate contact still hides the journal (0.156 audit row stands; tool limit, accepted)"
+  ]
+}

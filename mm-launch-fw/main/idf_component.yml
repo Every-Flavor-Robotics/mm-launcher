@@ -1,0 +1,18 @@
+dependencies:
+  idf:
+    version: '>=6.0'
+  # Board: 6-PWM driver, encoder pins, Qwiic/hidden I2C (MotorGo Axis BSP).
+  espp/motorgo-axis: '>=1.3.10'
+  espp/bldc_motor: '>=1.3.10'
+  espp/mt6701: '>=1.3.10'
+  espp/timer: '>=1.3.10'
+  espp/nvs: '>=1.3.10'
+  espp/task: '>=1.3.10'
+  # Native USB link, same set as pace-racer-fw atos-drive (demo_link.hpp):
+  # vendor + CDC device, framed stream multiplexer, OTA, telemetry, core dump.
+  espp/usb_device: '>=1.3.10'
+  espp/ota: '>=1.3.10'
+  espp/dispatcher: '>=1.3.10'
+  espp/telemetry: '>=1.3.10'
+  espp/coredump: '>=1.3.10'
+  espp/stream_frame: '>=1.3.10'

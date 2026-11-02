@@ -1,0 +1,55 @@
+{
+ "_about": "Plate plan for PRINT_PLAN.md. stl is relative to ../stl. Read by blender/tools/print_estimate.py (times, grams, footprint fit). Colour A = warm grey (structure, drivetrain), B = terracotta (candy path, touch points): params.COLOUR_B. Walls = wall loops.",
+ "beds": {"H2D": [325, 320], "P1S": [256, 256]},
+ "gap_mm": 6,
+ "plates": [
+  {"name": "1-pod-grey", "printer": "P1S", "colour": "A", "subsystem": "launcher pod", "items": [
+   {"stl": "nacelle", "infill": 25, "walls": 3},
+   {"stl": "launcher_cover", "infill": 25, "walls": 3},
+   {"stl": "journal_plate", "infill": 30, "walls": 3},
+   {"stl": "encoder_cap", "infill": 40, "walls": 3},
+   {"stl": "nip_cover", "infill": 30, "walls": 3},
+   {"stl": "nip_leaf", "qty": 2, "infill": 100, "walls": 3},
+   {"stl": "nip_stop", "infill": 100, "walls": 3},
+   {"stl": "nip_stop_sleeve", "infill": 100, "walls": 3},
+   {"stl": "tools/encoder_jig", "infill": 20, "walls": 3}]},
+  {"name": "2-pod-terracotta", "printer": "H2D", "colour": "B", "subsystem": "launcher pod", "items": [
+   {"stl": "launcher_body", "infill": 25, "walls": 3},
+   {"stl": "flywheel", "infill": 100, "walls": 3},
+   {"stl": "hood", "infill": 40, "walls": 3},
+   {"stl": "nip_wheel", "infill": 50, "walls": 3},
+   {"stl": "tools/test_pocket_coupon", "infill": 40, "walls": 3}]},
+  {"name": "3-feeder-jar-terracotta", "printer": "H2D", "colour": "B", "subsystem": "feeder and jar", "items": [
+   {"stl": "feeder_housing", "infill": 30, "walls": 3},
+   {"stl": "feeder_disc", "infill": 40, "walls": 3},
+   {"stl": "jar_adapter", "infill": 40, "walls": 3},
+   {"stl": "jar_valve", "infill": 40, "walls": 3},
+   {"stl": "jar_gate", "infill": 100, "walls": 3}]},
+  {"name": "4-feeder-grey", "printer": "P1S", "colour": "A", "subsystem": "feeder and jar", "items": [
+   {"stl": "feeder_crown", "infill": 25, "walls": 3},
+   {"stl": "feeder_cover", "infill": 20, "walls": 3},
+   {"stl": "feeder_pinion", "infill": 60, "walls": 3},
+   {"stl": "gate_detent", "infill": 100, "walls": 3}]},
+  {"name": "5-pan-turntable-beam", "printer": "H2D", "colour": "A", "subsystem": "pan stage", "items": [
+   {"stl": "turntable", "infill": 15, "walls": 3},
+   {"stl": "beam", "infill": 30, "walls": 3},
+   {"stl": "hub_gear", "infill": 40, "walls": 3},
+   {"stl": "thrust_ring", "infill": 100, "walls": 3},
+   {"stl": "tilt_horn_adapter", "infill": 60, "walls": 3}]},
+  {"name": "6-pan-posts", "printer": "P1S", "colour": "A", "subsystem": "pan stage", "items": [
+   {"stl": "post_L", "infill": 25, "walls": 3},
+   {"stl": "post_R", "infill": 25, "walls": 3},
+   {"stl": "post_R_cover", "infill": 25, "walls": 3},
+   {"stl": "groove_cap", "infill": 40, "walls": 3},
+   {"stl": "tools/tilt45_prop", "infill": 15, "walls": 3}]},
+  {"name": "7-base-shell", "printer": "H2D", "colour": "A", "subsystem": "base", "items": [
+   {"stl": "base_shell", "infill": 15, "walls": 3},
+   {"stl": "pan_pinion", "infill": 40, "walls": 3},
+   {"stl": "pan_servo_clamp", "infill": 30, "walls": 3}]},
+  {"name": "8-base-floor", "printer": "P1S", "colour": "A", "subsystem": "base", "items": [
+   {"stl": "base_floor", "infill": 15, "walls": 3}]},
+  {"name": "9-base-mounts", "printer": "P1S", "colour": "A", "subsystem": "base", "items": [
+   {"stl": "base_partition", "infill": 25, "walls": 3},
+   {"stl": "pan_servo_mount", "infill": 30, "walls": 3}]}
+ ]
+}

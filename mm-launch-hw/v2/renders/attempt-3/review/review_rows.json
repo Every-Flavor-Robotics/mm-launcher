@@ -1,0 +1,20 @@
+{
+  "distances": [
+    {"a": "PRT_hood", "b": "PRT_flywheel", "min": 8.0,
+     "ray": {"frame": "PIV_hood", "origin": [21.0, 34.0, 131.75], "dir": [0, 0, 1]},
+     "poses": [{"PIV_hood": 0.327, "PIV_nip_lift": -1.493}, {"PIV_hood": 0.0, "PIV_nip_lift": -1.493}, {"PIV_hood": -0.2, "PIV_nip_lift": -1.493}, {"PIV_hood": -0.558, "PIV_nip_lift": -1.493}],
+     "why": "review A3 (A2-01 recheck): params declare MM_T max 7.5, so the thickest candy on 0.5 tape needs a bare gap >= 8.0 at full leaf lift at every thumbwheel setting (NIP_PASS uses MM_T_NOM 7.0)"}
+  ],
+  "drop_tests": [
+    {"name": "review A3: thick candy (MM_T max 7.5) drop at the min-gap stop", "mode": "slide", "stall_deg": 28, "capture_mm": 0.5, "payload_mm": 7.5,
+     "emit": {"frame": "PIV_pan", "center": [21.0, 0.0, 262.5], "normal": [0, 0, 1], "radius": 6.5, "step": 2}, "dir": [0, 0, -1],
+     "poses": {"PIV_tilt": [-3, 0, 45, 46], "PIV_hood": [0.327, -0.558]},
+     "expect": {"hit": ["PRT_flywheel"], "angle": {"center": "PIV_flywheel", "frame": "PIV_tilt", "axis": "X", "zero": "-Z", "positive": "-Y", "range": [0, 112]}},
+     "home_only_ok": {"PIV_nip_lift": "leaf at rest between candies (designer's reason, agreed)"}}
+  ],
+  "slide_out": [
+    {"name": "review A3 (A2-F2): base floor plate with its electronics drops -Z after the 8 floor screws (BOM service 'Base floor')",
+     "objects": ["PRT_base_floor", "PRT_base_partition", "FST_partition_*", "BUY_motorgo_axis", "FST_mg_*", "BUY_buck_12v", "FST_buck_*", "BUY_servo_controller"],
+     "ignore": ["FST_floor_*", "CAB_*", "BUY_usbc_plug"], "dir": [0, 0, -1], "dist": 40, "step": 2, "min_clearance": 0.0}
+  ]
+}

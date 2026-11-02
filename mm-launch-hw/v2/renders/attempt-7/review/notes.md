@@ -1,0 +1,15 @@
+# Review 7 notes (reviewer)
+- Copy: /tmp/rv7/model.blend + /tmp/rv7/checks.json. Tools: alex-3d-skills-pin 6025133 (designer's pin).
+- Full cad check started -> review/cadcheck.json (log review/cadcheck.log)
+- Full check (183 s): CADCHECK PASS 0 F / 37 W (0 untriaged). All 16 sections identical to designer's renders/attempt-7/cadcheck.json except timing fields.
+- unbounded_allows: 5 (nip_wheel x leaf, motor x magnet, flywheel x motor, nip_wheel x stud, stud x tw_nut) -- all fastened/threaded/glued pairs, unchanged from A6.
+- cad q list: groove cap x -87.8..39.8 y -30..24 z 102..105, posts L x<=-88, R x>=36.9; cap 0.2 to each post. Above cap at tilt 45: nip_cover at z 159 (x30,y20), body 190, nacelle 204.
+- review_rows.json (6 cap-exit slides) -> cadcheck_review.json (--only slide --overlay-only): cap forward-up (0,-.707,.707) 160 at tilt 45 PASSES min 0.2 post_L; back-up 45 blocked nip_cover 54; shallow -Y blocked by BUY_bus_junction at 10 (cap spigot in bore); back shallow tilt45 passes 0.2; tilt 0 back blocked launcher_body 34.
+- cad q dist CAB_bus_tilt CAB_bus_feeder: -82.484 mm3 (coincident tubes from groove (2.7,-10.8,97.1) to splice top). tilt/feeder to cap underside 0.112/0.12.
+- BUS_HUB: leads cross splice top at z 100.5, then drop 1.5 to z 99 top face (90 deg turn, cap underside 102).
+- FST_gcap_5 access: blocked at every pose but tilt=45 (home: blocked 13.4 by PRT_launcher_body, L-key short leg blocked). At 11a the tilt servo is in (step 8), unpowered (splice not made; battery step 14) -> "tilt the pod to 45" = back-drive the servo. BOM gives no method. (A7-01 major)
+- cad q sweep tail vs launcher_base -92.5..92.5: 75 stations, min 1.236 @ -92.5, 1.362 @ -90 (matches designer).
+- A6-03: 9 swept rows, no missed_deg field on any.
+- cad bom: PASS 18 rows 0 disagree.
+- r02 section y 4.02 (keep +): splice top 3.0 under cap, lead stub turns in that gap. (r01 wasted: wrong keep side, deleted)
+- review.md / review.json written. Scores 9/8/9.

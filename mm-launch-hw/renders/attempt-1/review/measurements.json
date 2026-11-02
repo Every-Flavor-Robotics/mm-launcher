@@ -1,0 +1,2692 @@
+{
+ "hood_inner_r_by_phi": {
+  "-31": 56.11,
+  "-30": 55.63,
+  "-29": 55.67,
+  "-28": 56.27,
+  "-1": 48.35,
+  "0": 48.25,
+  "1": 48.35
+ },
+ "wheel_land_r": 31.0,
+ "wheel_flange_r": 36.0,
+ "min_hood_to_wheel_surface": 9.54,
+ "min_PRT_launcher_body_to_wheel": 3.49,
+ "min_PRT_launcher_cover_to_wheel": 5.68,
+ "feed_drop_first_hit": {
+  "0": {
+   "-6,-2": [
+    "PRT_flywheel",
+    171.2
+   ],
+   "-6,0": [
+    "PRT_flywheel",
+    175.0
+   ],
+   "-6,2": [
+    "PRT_flywheel",
+    178.0
+   ],
+   "-4,-4": [
+    "PRT_flywheel",
+    165.3
+   ],
+   "-4,-2": [
+    "PRT_flywheel",
+    171.2
+   ],
+   "-4,0": [
+    "PRT_flywheel",
+    175.0
+   ],
+   "-4,2": [
+    "PRT_flywheel",
+    178.0
+   ],
+   "-4,4": [
+    "PRT_flywheel",
+    180.4
+   ],
+   "-2,-6": [
+    "PRT_launcher_body",
+    140.8
+   ],
+   "-2,-4": [
+    "PRT_flywheel",
+    165.3
+   ],
+   "-2,-2": [
+    "PRT_flywheel",
+    171.2
+   ],
+   "-2,0": [
+    "PRT_flywheel",
+    175.0
+   ],
+   "-2,2": [
+    "PRT_flywheel",
+    178.0
+   ],
+   "-2,4": [
+    "PRT_flywheel",
+    180.4
+   ],
+   "-2,6": [
+    "PRT_flywheel",
+    182.5
+   ],
+   "0,-6": [
+    "PRT_launcher_body",
+    140.8
+   ],
+   "0,-4": [
+    "PRT_flywheel",
+    165.3
+   ],
+   "0,-2": [
+    "PRT_flywheel",
+    171.2
+   ],
+   "0,0": [
+    "PRT_flywheel",
+    175.0
+   ],
+   "0,2": [
+    "PRT_flywheel",
+    178.0
+   ],
+   "0,4": [
+    "PRT_flywheel",
+    180.4
+   ],
+   "0,6": [
+    "PRT_flywheel",
+    182.5
+   ],
+   "2,-6": [
+    "PRT_launcher_body",
+    140.8
+   ],
+   "2,-4": [
+    "PRT_flywheel",
+    165.3
+   ],
+   "2,-2": [
+    "PRT_flywheel",
+    171.2
+   ],
+   "2,0": [
+    "PRT_flywheel",
+    175.0
+   ],
+   "2,2": [
+    "PRT_flywheel",
+    178.0
+   ],
+   "2,4": [
+    "PRT_flywheel",
+    180.4
+   ],
+   "2,6": [
+    "PRT_flywheel",
+    182.5
+   ],
+   "4,-4": [
+    "PRT_flywheel",
+    165.3
+   ],
+   "4,-2": [
+    "PRT_flywheel",
+    171.2
+   ],
+   "4,0": [
+    "PRT_flywheel",
+    175.0
+   ],
+   "4,2": [
+    "PRT_flywheel",
+    178.0
+   ],
+   "4,4": [
+    "PRT_flywheel",
+    180.4
+   ],
+   "6,-2": [
+    "PRT_flywheel",
+    171.2
+   ],
+   "6,0": [
+    "PRT_flywheel",
+    175.0
+   ],
+   "6,2": [
+    "PRT_flywheel",
+    178.0
+   ]
+  },
+  "22.5": {
+   "-6,-2": [
+    "PRT_launcher_body",
+    194.6
+   ],
+   "-6,0": [
+    "PRT_launcher_body",
+    189.8
+   ],
+   "-6,2": [
+    "PRT_launcher_body",
+    185.0
+   ],
+   "-4,-4": [
+    "PRT_launcher_body",
+    199.4
+   ],
+   "-4,-2": [
+    "PRT_launcher_body",
+    194.6
+   ],
+   "-4,0": [
+    "PRT_launcher_body",
+    189.8
+   ],
+   "-4,2": [
+    "PRT_launcher_body",
+    185.0
+   ],
+   "-4,4": [
+    "PRT_launcher_body",
+    180.1
+   ],
+   "-2,-6": [
+    "PRT_launcher_body",
+    204.3
+   ],
+   "-2,-4": [
+    "PRT_launcher_body",
+    199.4
+   ],
+   "-2,-2": [
+    "PRT_launcher_body",
+    194.6
+   ],
+   "-2,0": [
+    "PRT_launcher_body",
+    189.8
+   ],
+   "-2,2": [
+    "PRT_launcher_body",
+    185.0
+   ],
+   "-2,4": [
+    "PRT_launcher_body",
+    180.1
+   ],
+   "-2,6": [
+    "PRT_launcher_body",
+    175.3
+   ],
+   "0,-6": [
+    "PRT_launcher_body",
+    204.3
+   ],
+   "0,-4": [
+    "PRT_launcher_body",
+    199.4
+   ],
+   "0,-2": [
+    "PRT_launcher_body",
+    194.6
+   ],
+   "0,0": [
+    "PRT_launcher_body",
+    189.8
+   ],
+   "0,2": [
+    "PRT_launcher_body",
+    185.0
+   ],
+   "0,4": [
+    "PRT_launcher_body",
+    180.1
+   ],
+   "0,6": [
+    "PRT_launcher_body",
+    175.3
+   ],
+   "2,-6": [
+    "PRT_launcher_body",
+    204.3
+   ],
+   "2,-4": [
+    "PRT_launcher_body",
+    199.4
+   ],
+   "2,-2": [
+    "PRT_launcher_body",
+    194.6
+   ],
+   "2,0": [
+    "PRT_launcher_body",
+    189.8
+   ],
+   "2,2": [
+    "PRT_launcher_body",
+    185.0
+   ],
+   "2,4": [
+    "PRT_launcher_body",
+    180.1
+   ],
+   "2,6": [
+    "PRT_launcher_body",
+    175.3
+   ],
+   "4,-4": [
+    "PRT_launcher_body",
+    199.4
+   ],
+   "4,-2": [
+    "PRT_launcher_body",
+    194.6
+   ],
+   "4,0": [
+    "PRT_launcher_body",
+    189.8
+   ],
+   "4,2": [
+    "PRT_launcher_body",
+    185.0
+   ],
+   "4,4": [
+    "PRT_launcher_body",
+    180.1
+   ],
+   "6,-2": [
+    "PRT_launcher_body",
+    194.6
+   ],
+   "6,0": [
+    "PRT_launcher_body",
+    189.8
+   ],
+   "6,2": [
+    "PRT_launcher_body",
+    185.0
+   ]
+  },
+  "45": {
+   "-6,-2": [
+    "PRT_launcher_body",
+    202.0
+   ],
+   "-6,0": [
+    "PRT_launcher_body",
+    200.0
+   ],
+   "-6,2": [
+    "PRT_launcher_body",
+    198.0
+   ],
+   "-4,-4": [
+    "PRT_launcher_body",
+    204.0
+   ],
+   "-4,-2": [
+    "PRT_launcher_body",
+    202.0
+   ],
+   "-4,0": [
+    "PRT_launcher_body",
+    200.0
+   ],
+   "-4,2": [
+    "PRT_launcher_body",
+    198.0
+   ],
+   "-4,4": [
+    "PRT_launcher_body",
+    196.0
+   ],
+   "-2,-6": [
+    "PRT_launcher_body",
+    206.0
+   ],
+   "-2,-4": [
+    "PRT_launcher_body",
+    204.0
+   ],
+   "-2,-2": [
+    "PRT_launcher_body",
+    202.0
+   ],
+   "-2,0": [
+    "PRT_launcher_body",
+    200.0
+   ],
+   "-2,2": [
+    "PRT_launcher_body",
+    198.0
+   ],
+   "-2,4": [
+    "PRT_launcher_body",
+    196.0
+   ],
+   "-2,6": [
+    "PRT_launcher_body",
+    233.0
+   ],
+   "0,-6": [
+    "PRT_launcher_body",
+    206.0
+   ],
+   "0,-4": [
+    "PRT_launcher_body",
+    204.0
+   ],
+   "0,-2": [
+    "PRT_launcher_body",
+    202.0
+   ],
+   "0,0": [
+    "PRT_launcher_body",
+    200.0
+   ],
+   "0,2": [
+    "PRT_launcher_body",
+    198.0
+   ],
+   "0,4": [
+    "PRT_launcher_body",
+    196.0
+   ],
+   "0,6": [
+    "PRT_launcher_body",
+    233.0
+   ],
+   "2,-6": [
+    "PRT_launcher_body",
+    206.0
+   ],
+   "2,-4": [
+    "PRT_launcher_body",
+    204.0
+   ],
+   "2,-2": [
+    "PRT_launcher_body",
+    202.0
+   ],
+   "2,0": [
+    "PRT_launcher_body",
+    200.0
+   ],
+   "2,2": [
+    "PRT_launcher_body",
+    198.0
+   ],
+   "2,4": [
+    "PRT_launcher_body",
+    196.0
+   ],
+   "2,6": [
+    "PRT_launcher_body",
+    233.0
+   ],
+   "4,-4": [
+    "PRT_launcher_body",
+    204.0
+   ],
+   "4,-2": [
+    "PRT_launcher_body",
+    202.0
+   ],
+   "4,0": [
+    "PRT_launcher_body",
+    200.0
+   ],
+   "4,2": [
+    "PRT_launcher_body",
+    198.0
+   ],
+   "4,4": [
+    "PRT_launcher_body",
+    196.0
+   ],
+   "6,-2": [
+    "PRT_launcher_body",
+    202.0
+   ],
+   "6,0": [
+    "PRT_launcher_body",
+    200.0
+   ],
+   "6,2": [
+    "PRT_launcher_body",
+    198.0
+   ]
+  }
+ },
+ "vertical_los_to_wheel": {
+  "0": [
+   0
+  ],
+  "22.5": [
+   0
+  ],
+  "45": [
+   0
+  ]
+ },
+ "magnet_x_range": [
+  -76.0,
+  -73.5
+ ],
+ "plink_x_levels": [
+  -80.25,
+  -78.65,
+  -77.15,
+  -77.0,
+  -76.4,
+  -75.65
+ ],
+ "min_magnet_to_plink": 1.335,
+ "battery_slide_overlaps": [
+  [
+   0,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   5,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   10,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   15,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   20,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   25,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   30,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   35,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   40,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   45,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   50,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   55,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   60,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   65,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   70,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   75,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   80,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   85,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   90,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   95,
+   {
+    "PRT_base_shell": 6,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   100,
+   {
+    "PRT_base_shell": 0,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   105,
+   {
+    "PRT_base_shell": 0,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   110,
+   {
+    "PRT_base_shell": 0,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   115,
+   {
+    "PRT_base_shell": 0,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   120,
+   {
+    "PRT_base_shell": 0,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   125,
+   {
+    "PRT_base_shell": 0,
+    "PRT_base_floor": 0
+   }
+  ],
+  [
+   130,
+   {
+    "PRT_base_shell": 0,
+    "PRT_base_floor": 0
+   }
+  ]
+ ],
+ "battery_to_shell_min": 1.0,
+ "battery_to_floor_min": 1.6,
+ "usb_plug_to_shell_min": 3.56,
+ "usb_plug_bbox": [
+  [
+   -91.1,
+   -150.0,
+   24.2
+  ],
+  [
+   -84.1,
+   -80.9,
+   36.8
+  ]
+ ],
+ "cross_pivot_cable_fastener_overlaps": {
+  "0_0": [
+   [
+    "FST_cap_R-1",
+    "PRT_feeder_disc",
+    15
+   ],
+   [
+    "FST_motor_0",
+    "PRT_flywheel",
+    26
+   ],
+   [
+    "FST_motor_1",
+    "PRT_flywheel",
+    28
+   ],
+   [
+    "FST_motor_2",
+    "PRT_flywheel",
+    26
+   ],
+   [
+    "FST_motor_3",
+    "PRT_flywheel",
+    24
+   ]
+  ],
+  "0_45": [
+   [
+    "FST_cap_R-1",
+    "PRT_feeder_disc",
+    15
+   ],
+   [
+    "FST_motor_0",
+    "PRT_flywheel",
+    26
+   ],
+   [
+    "FST_motor_1",
+    "PRT_flywheel",
+    28
+   ],
+   [
+    "FST_motor_2",
+    "PRT_flywheel",
+    26
+   ],
+   [
+    "FST_motor_3",
+    "PRT_flywheel",
+    24
+   ]
+  ],
+  "90_45": [
+   [
+    "CAB_encoder_tilt",
+    "PRT_arm_cover_L",
+    10
+   ],
+   [
+    "CAB_phase_tilt_0",
+    "PRT_arm_cover_L",
+    10
+   ],
+   [
+    "CAB_phase_tilt_1",
+    "PRT_arm_cover_L",
+    10
+   ],
+   [
+    "CAB_phase_tilt_2",
+    "PRT_arm_cover_L",
+    10
+   ],
+   [
+    "FST_cap_R-1",
+    "PRT_feeder_disc",
+    15
+   ],
+   [
+    "FST_motor_0",
+    "PRT_flywheel",
+    61
+   ],
+   [
+    "FST_motor_1",
+    "PRT_flywheel",
+    64
+   ],
+   [
+    "FST_motor_2",
+    "PRT_flywheel",
+    54
+   ],
+   [
+    "FST_motor_3",
+    "PRT_flywheel",
+    60
+   ]
+  ],
+  "-90_45": [
+   [
+    "CAB_encoder_tilt",
+    "PRT_arm_cover_L",
+    10
+   ],
+   [
+    "CAB_phase_tilt_0",
+    "PRT_arm_cover_L",
+    10
+   ],
+   [
+    "CAB_phase_tilt_1",
+    "PRT_arm_cover_L",
+    10
+   ],
+   [
+    "CAB_phase_tilt_2",
+    "PRT_arm_cover_L",
+    10
+   ],
+   [
+    "FST_cap_R-1",
+    "PRT_feeder_disc",
+    15
+   ],
+   [
+    "FST_motor_0",
+    "PRT_flywheel",
+    64
+   ],
+   [
+    "FST_motor_1",
+    "PRT_flywheel",
+    68
+   ],
+   [
+    "FST_motor_2",
+    "PRT_flywheel",
+    54
+   ],
+   [
+    "FST_motor_3",
+    "PRT_flywheel",
+    60
+   ]
+  ],
+  "0_-3": [
+   [
+    "FST_cap_R-1",
+    "PRT_feeder_disc",
+    15
+   ],
+   [
+    "FST_motor_0",
+    "PRT_flywheel",
+    26
+   ],
+   [
+    "FST_motor_1",
+    "PRT_flywheel",
+    28
+   ],
+   [
+    "FST_motor_2",
+    "PRT_flywheel",
+    26
+   ],
+   [
+    "FST_motor_3",
+    "PRT_flywheel",
+    24
+   ]
+  ],
+  "0_48": [
+   [
+    "FST_cap_R-1",
+    "PRT_feeder_disc",
+    15
+   ],
+   [
+    "FST_motor_0",
+    "PRT_flywheel",
+    26
+   ],
+   [
+    "FST_motor_1",
+    "PRT_flywheel",
+    28
+   ],
+   [
+    "FST_motor_2",
+    "PRT_flywheel",
+    26
+   ],
+   [
+    "FST_motor_3",
+    "PRT_flywheel",
+    24
+   ]
+  ]
+ },
+ "tilt_sweep": {
+  "-5.0": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.14
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.14
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.14
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.14
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.34
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.83
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     2.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     2.0
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     24
+    ]
+   ]
+  },
+  "-2.5": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.16
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.16
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.31
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.83
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     2.02
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     2.02
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     22
+    ]
+   ]
+  },
+  "0.0": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.2
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.2
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.2
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.82
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     2.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     2.0
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     21
+    ]
+   ]
+  },
+  "2.5": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.16
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.16
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.31
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.83
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     2.02
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     2.02
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     21
+    ]
+   ]
+  },
+  "5.0": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.14
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.14
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.14
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.14
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.34
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.83
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     2.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     2.0
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     24
+    ]
+   ]
+  },
+  "7.5": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.16
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.16
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.39
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.84
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_feeder_plate",
+     2.0
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     2.01
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     22
+    ]
+   ]
+  },
+  "10.0": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.2
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.2
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.34
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.84
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     2.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     2.0
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     21
+    ]
+   ]
+  },
+  "12.5": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.16
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.16
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.31
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.84
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     1.76
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     1.76
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     21
+    ]
+   ]
+  },
+  "15.0": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.14
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.14
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.14
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.14
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.84
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     1.53
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     1.53
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     24
+    ]
+   ]
+  },
+  "17.5": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.16
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.16
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.31
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.83
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     1.35
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     1.35
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     22
+    ]
+   ]
+  },
+  "20.0": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.2
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.2
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.34
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.83
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     1.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     1.2
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     21
+    ]
+   ]
+  },
+  "22.5": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.16
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.16
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.39
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.82
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     1.09
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     1.09
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     21
+    ]
+   ]
+  },
+  "25.0": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.14
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.14
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.14
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.14
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.34
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.83
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     1.03
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     1.03
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     24
+    ]
+   ]
+  },
+  "27.5": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.16
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.16
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.31
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.83
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     1.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     1.0
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     22
+    ]
+   ]
+  },
+  "30.0": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.2
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.2
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.2
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.84
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     1.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     1.0
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     21
+    ]
+   ]
+  },
+  "32.5": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.16
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.16
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.31
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.84
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     1.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     1.0
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     21
+    ]
+   ]
+  },
+  "35.0": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.14
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.14
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.14
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.14
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.34
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.84
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     1.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     1.0
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     24
+    ]
+   ]
+  },
+  "37.5": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.16
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.16
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.39
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.84
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     1.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     1.0
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     22
+    ]
+   ]
+  },
+  "40.0": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.2
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.2
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.34
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.83
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     1.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     1.0
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     21
+    ]
+   ]
+  },
+  "42.5": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.16
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.16
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.31
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.83
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     1.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     1.0
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     21
+    ]
+   ]
+  },
+  "45.0": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.14
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.14
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.14
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.14
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     0.37
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "PRT_servo_pocket_tilt",
+     0.7
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_hopper",
+     0.79
+    ],
+    [
+     "PRT_horn_adapter_tilt",
+     "BUY_servo_tilt",
+     0.82
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     24
+    ]
+   ]
+  },
+  "47.5": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     0.02
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_hopper",
+     0.03
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     0.04
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_hopper",
+     0.14
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.16
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.16
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.16
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.31
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     12
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_hopper",
+     27
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     14
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_hopper",
+     10
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     22
+    ]
+   ]
+  },
+  "50.0": {
+   "close": [
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     0.0
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     0.04
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     0.05
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_hopper",
+     0.09
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_hopper",
+     0.11
+    ],
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_arm_cap_R",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_yoke_arm_R",
+     0.2
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cap_L",
+     0.2
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_yoke_arm_L",
+     0.2
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_servo_pocket_tilt",
+     0.3
+    ],
+    [
+     "BUY_horn_tilt",
+     "PRT_servo_pocket_tilt",
+     0.34
+    ]
+   ],
+   "tri_overlaps": [
+    [
+     "BUY_horn_tilt",
+     "BUY_servo_tilt",
+     16
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_feeder_plate",
+     20
+    ],
+    [
+     "PRT_launcher_body",
+     "PRT_hopper",
+     42
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_feeder_plate",
+     20
+    ],
+    [
+     "PRT_launcher_cover",
+     "PRT_hopper",
+     24
+    ],
+    [
+     "PRT_trunnion_L",
+     "PRT_arm_cover_L",
+     21
+    ]
+   ]
+  }
+ }
+}

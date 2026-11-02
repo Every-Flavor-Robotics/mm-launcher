@@ -1,0 +1,245 @@
+00:00.479  blend            | Read blend: "/Users/alxchunlin/code-stuff/mmlauncher/mm-launcher/mm-launch-hw/blender/mm_launcher.blend"
+CHK parts done 0.6
+CHK interference done 8.9
+CHK cross-pivot done 10.8
+CHK same-pivot FST/BUY done 12.3
+CHK lkey done 13.3
+CHK sweep done 23.6
+CHK trace done 23.8
+CHK service done 36.6
+CHECKS_SUMMARY {
+ "printed_objects": 36,
+ "tool_objects": 1,
+ "unique_stls": 32,
+ "purchased_objects": 15,
+ "fasteners": 54,
+ "cables": 17,
+ "non_manifold_printed_parts": [],
+ "parts_not_fitting_any_printer": [],
+ "parts_not_fitting_P1S": [],
+ "unintended_interferences": 0,
+ "unintended_list": [],
+ "fastener_cable_cross_pivot_and_fst_vs_buy_overlaps": 0,
+ "fastener_cable_list": [],
+ "tilt_clearance_at_0_deg_excl_stop_mm": 2.46,
+ "tilt_clearance_at_45_deg_excl_stop_mm": 1.4,
+ "first_contact_tilt_up_deg": 47.5,
+ "first_contact_tilt_down_deg": -5.0,
+ "feeder_stack_clearance_mm_by_tilt": {
+  "-5.0": 0.73,
+  "-2.5": 2.12,
+  "0.0": 3.0,
+  "2.5": 3.02,
+  "5.0": 3.08,
+  "7.5": 3.17,
+  "10.0": 3.3,
+  "12.5": 3.47,
+  "15.0": 3.68,
+  "17.5": 3.93,
+  "20.0": 4.22,
+  "22.5": 4.61,
+  "25.0": 4.62,
+  "27.5": 4.62,
+  "30.0": 4.62,
+  "32.5": 4.62,
+  "35.0": 4.62,
+  "37.5": 4.62,
+  "40.0": 4.62,
+  "42.5": 4.16,
+  "45.0": 3.26,
+  "47.5": 2.49,
+  "50.0": 1.78
+ },
+ "feed_trace": [
+  {
+   "setting": "operating",
+   "tilt_deg": 0.0,
+   "rays": 37,
+   "first_contact_on_descending_rear_tape_psi_0_135": 37,
+   "psi_min": 66.3,
+   "psi_max": 84.4,
+   "stalled": 0,
+   "lost": 0
+  },
+  {
+   "setting": "operating",
+   "tilt_deg": 15.0,
+   "rays": 37,
+   "first_contact_on_descending_rear_tape_psi_0_135": 37,
+   "psi_min": 83.3,
+   "psi_max": 84.6,
+   "stalled": 0,
+   "lost": 0
+  },
+  {
+   "setting": "operating",
+   "tilt_deg": 22.5,
+   "rays": 37,
+   "first_contact_on_descending_rear_tape_psi_0_135": 37,
+   "psi_min": 83.4,
+   "psi_max": 84.4,
+   "stalled": 0,
+   "lost": 0
+  },
+  {
+   "setting": "operating",
+   "tilt_deg": 30.0,
+   "rays": 37,
+   "first_contact_on_descending_rear_tape_psi_0_135": 37,
+   "psi_min": 84.1,
+   "psi_max": 84.5,
+   "stalled": 0,
+   "lost": 0
+  },
+  {
+   "setting": "operating",
+   "tilt_deg": 45.0,
+   "rays": 37,
+   "first_contact_on_descending_rear_tape_psi_0_135": 37,
+   "psi_min": 84.2,
+   "psi_max": 84.2,
+   "stalled": 0,
+   "lost": 0
+  },
+  {
+   "setting": "uncompressed_9mm",
+   "tilt_deg": 0.0,
+   "rays": 37,
+   "first_contact_on_descending_rear_tape_psi_0_135": 0,
+   "psi_min": null,
+   "psi_max": null,
+   "stalled": 37,
+   "lost": 0
+  },
+  {
+   "setting": "uncompressed_9mm",
+   "tilt_deg": 15.0,
+   "rays": 37,
+   "first_contact_on_descending_rear_tape_psi_0_135": 0,
+   "psi_min": null,
+   "psi_max": null,
+   "stalled": 37,
+   "lost": 0
+  },
+  {
+   "setting": "uncompressed_9mm",
+   "tilt_deg": 22.5,
+   "rays": 37,
+   "first_contact_on_descending_rear_tape_psi_0_135": 0,
+   "psi_min": null,
+   "psi_max": null,
+   "stalled": 37,
+   "lost": 0
+  },
+  {
+   "setting": "uncompressed_9mm",
+   "tilt_deg": 30.0,
+   "rays": 37,
+   "first_contact_on_descending_rear_tape_psi_0_135": 0,
+   "psi_min": null,
+   "psi_max": null,
+   "stalled": 37,
+   "lost": 0
+  },
+  {
+   "setting": "uncompressed_9mm",
+   "tilt_deg": 45.0,
+   "rays": 37,
+   "first_contact_on_descending_rear_tape_psi_0_135": 0,
+   "psi_min": null,
+   "psi_max": null,
+   "stalled": 37,
+   "lost": 0
+  }
+ ],
+ "service": {
+  "cover_slide_90mm_in_plane_at_tilt45": "clear",
+  "flywheel_off_140mm_along_x_at_tilt45_cover_removed": "clear",
+  "encoder_cap_off_10mm_along_-x_at_tilt45": "clear"
+ },
+ "lkey_positions_blocked": [],
+ "lkey_positions_checked": 10,
+ "feeder_index": {
+  "park_0": {
+   "pockets_overlapping_outlet": 0,
+   "their_centre_offsets_mm": [],
+   "nearest_pocket_edge_to_outlet_edge_mm": 7.5
+  },
+  "fire_+30": {
+   "pockets_overlapping_outlet": 1,
+   "their_centre_offsets_mm": [
+    0.0
+   ],
+   "nearest_pocket_edge_to_outlet_edge_mm": -15.7
+  },
+  "fire_-30": {
+   "pockets_overlapping_outlet": 1,
+   "their_centre_offsets_mm": [
+    0.0
+   ],
+   "nearest_pocket_edge_to_outlet_edge_mm": -15.7
+  }
+ },
+ "nip_leaf_spring": {
+  "width_mm": 21.9,
+  "length_mm": 34.0,
+  "thickness_mm": 2.0,
+  "rate_N_per_mm": 3.9,
+  "preload_N": 9.0,
+  "root_stress_preload_MPa": 20.9,
+  "force_at_stop_N": 18.7,
+  "root_stress_at_stop_MPa": 43.6
+ },
+ "flywheel_pinch_bolts": {
+  "bolt": "M3 x 20 socket head",
+  "head_seat_t_mm": 8.53,
+  "tip_t_mm": -11.47,
+  "nut_t_mm": [
+   -8.53,
+   -10.93
+  ],
+  "tip_past_nut_mm": 0.54,
+  "tip_inside_hub_surface_mm": 0.36,
+  "note": "t = distance along the bolt from the point nearest the shaft axis; nut fully engaged when tip_past_nut > 0"
+ },
+ "parts_with_thin_wall_samples": [
+  [
+   "PRT_launcher_body",
+   14,
+   1.47
+  ],
+  [
+   "PRT_pan_hub",
+   72,
+   1.54
+  ],
+  [
+   "PRT_pan_pinion",
+   72,
+   1.54
+  ],
+  [
+   "TOOL_encoder_jig",
+   32,
+   0.86
+  ]
+ ],
+ "est_total_filament_g": 1505.0,
+ "est_total_print_h": 31.3,
+ "min_tip_angle_deg": 41.3,
+ "hopper_mms": 376,
+ "backplate_gap_mm": {
+  "nominal": 6.5,
+  "min_at_full_close": 5.5,
+  "max_at_full_open": 12.5,
+  "hinge_travel_deg": [
+   -5.71,
+   0.96
+  ]
+ },
+ "all_pass": true,
+ "runtime_s": 38.3
+}
+Blender 5.1.2 (hash ec6e62d40fa9 built 2026-05-19 01:30:33)
+
+Blender quit

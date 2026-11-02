@@ -1,0 +1,91 @@
+{
+ "units": "mm",
+ "up": "Z",
+ "groups": {
+  "base": {
+   "file": "base.stl",
+   "objects": 12,
+   "tris": 272418
+  },
+  "pan": {
+   "file": "pan.stl",
+   "objects": 21,
+   "tris": 83794
+  },
+  "feeder_pinion": {
+   "file": "feeder_pinion.stl",
+   "objects": 2,
+   "tris": 3832
+  },
+  "pan_pinion": {
+   "file": "pan_pinion.stl",
+   "objects": 2,
+   "tris": 4312
+  },
+  "tilt": {
+   "file": "tilt.stl",
+   "objects": 15,
+   "tris": 32080
+  },
+  "flywheel": {
+   "file": "flywheel.stl",
+   "objects": 3,
+   "tris": 6034
+  },
+  "feeder": {
+   "file": "feeder.stl",
+   "objects": 1,
+   "tris": 7988
+  }
+ },
+ "pivots": {
+  "PIV_flywheel": {
+   "loc": [
+    21.0,
+    37.0,
+    170.0
+   ],
+   "parent": "PIV_tilt"
+  },
+  "PIV_tilt": {
+   "loc": [
+    0.0,
+    0.0,
+    222.0
+   ],
+   "parent": "PIV_pan"
+  },
+  "PIV_feeder": {
+   "loc": [
+    0.0,
+    0.0,
+    263.0
+   ],
+   "parent": "PIV_pan"
+  },
+  "PIV_feeder_pinion": {
+   "loc": [
+    -55.5,
+    0.0,
+    263.0
+   ],
+   "parent": "PIV_pan"
+  },
+  "PIV_pan_pinion": {
+   "loc": [
+    0.0,
+    54.0,
+    90.0
+   ],
+   "parent": null
+  },
+  "PIV_pan": {
+   "loc": [
+    0.0,
+    0.0,
+    90.0
+   ],
+   "parent": null
+  }
+ }
+}

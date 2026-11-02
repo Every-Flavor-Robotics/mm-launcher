@@ -1,0 +1,14 @@
+# Review notes attempt 5 (tools: alex-3d-skills-pin dea6536, copy /tmp/rv5)
+- cad check: 0F/34W (0 untriaged, 34 accepted), 165 s -> review/cadcheck.json
+- review_rows.json -> cadcheck_review.json (--only distances --overlay-only): 1 fail (band-detent 0.322 < 0.7).
+  - full-lift entry arc psi 10/20/30/40/85/90/94/98/102 at min stop: 8.277/8.319/8.311/8.241/8.105/8.099/8.183/8.782/9.676; home min 8.219 (psi 90); max stop min 8.423 (psi 90). All >= 8.0.
+  - rest gap min stop psi 0/50/70/85/90/94: 6.197/6.225/6.674/7.13/7.288/7.479; max stop 7.003/6.987/7.253/7.525/7.618/7.765
+  - hood to BUY_tape psi 80 min stop full lift 7.607 (>= 7.5)
+  - BUY_jar_band to PRT_gate_detent 0.322 (other band rows min 2.0)
+- stacks row (review_rows.json): band -> detent tab, terms 1.0/0.75/0.15 (designer's band-housing stack): RSS 1.26, worst 1.90 > 0.455 radial -> FAIL
+- cad q list: PRT_gate_detent z 288.4..301.5 (tab top 1.0 above band face z 300.5); band R36.75 z 300.5..313.5; dist 0.322 at (10.67,35.17,300.5)
+- cad bom: 18 rows, 0 disagree. manifest PRT_nip_cover orient 'finger slot 22 x 8.3'. leaf operating table 28.1/34.2 min stop (0.68/0.94 lift)
+- FST_detent_0 bbox y max 39.9 = back face; standoff 0, engagement 4.0. FST_nip_stud M3_hex engagement 2.4 in FST_tw_nut, standoff 0
+- BUY_tape bbox x 14.1..27.9 (13.8 wide) vs BOM item 12 1/2 in (12.7) tape
+- renders: r01 nip section x21 min stop full lift, 13x7.5 lentils psi 85/90; r02 detent tab close-up (chamfer + flush head read deliberate)
+- all 16 check sections of review/cadcheck.json identical to designer renders/attempt-5/cadcheck.json (except runtime)

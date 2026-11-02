@@ -1,0 +1,13 @@
+# Review notes attempt 6 (tools: alex-3d-skills-pin 36189b8, copy /tmp/rv6)
+- cad check: PASS 0F/35W (0 untriaged, 35 accepted), 167 s -> review/cadcheck.json
+- cad q: junction bbox (0.73..10.73, -0.99..9.02, 74..99) PIV_pan; CAB_bus_pan static top z 72.8; detent z top 299.5; band-detent 1.0 at (4.8,36.44,300.5); sweep bus_pan-junction pan -92.5..92.5: 4.375/2.717/1.225/1.2.../2.372/3.951 (static riser end not attached at pan != 0)
+- designer vs review cadcheck: all 16 sections identical except runtime
+- cad bom: PASS 18 rows, 0 disagree
+- hub bore closure: ray +Z from (5.73,4.02,99.5) hits PRT_groove_cap at 102 (2.5); ray -Z from junction bottom (5.73,4.02,73.5) hits PRT_base_floor at z 3 (70.5); groove cap on in step 2c, floor in step 3, junction at 10d
+- review_rows.json -> cadcheck_review.json (--only slide,service --overlay-only): FAIL junction +Z blocked by PRT_groove_cap at 4 mm; groove cap screws FST_gcap_0..5 straight 14 at tilt 45; groove cap +Z 40 at tilt 45 min 0.2 (post_L); junction -Z 70 with the floor group off: min 1.0 (hub gear), not blocked
+- sweep CAB_bus_pan (static, top z 72.8) to BUY_bus_junction over pan -92.5..92.5: 4.375 / 2.717 / 1.225 / 1.2 ... 2.372 / 3.951: the static riser end is 1.2 below the junction only at |pan|<=45; at pan 90 the junction bottom centre is 9.9 from the riser end (r 7 chord)
+- swept rows re-run: full-lift 8.099@90 / 8.211@92 / 8.397@92; tape 7.599 / 7.711 / 7.897; rest 6.176@18 / 6.493@0 / 6.987@50; home+max psi 0 missed_deg [0]
+- band->detent 1.000; stack v2-A5-01 WC 0.8 RSS 0.418 vs 1.0
+- assembly.step_of: BUY_bus_junction 10d; PRT_groove_cap 2c; PRT_base_floor 2a (into shell step 3); CAB_bus_pan 3
+- renders: r01_detent_tab_flat_top_closeup.png (flat top + EB + flush head read deliberate); r02_sec_x5.73_hub_bore_junction_closed.png (groove cap over the bore, junction z 74..99, U-loops below)
+- interference: junction to CAB_launcher_base 3.536 @ pan -92.5, base shell 8.264, pan pinion 13.625

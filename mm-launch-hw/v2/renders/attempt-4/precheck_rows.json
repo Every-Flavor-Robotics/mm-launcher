@@ -1,0 +1,18 @@
+{
+  "payload_fit": [
+    {"name": "P1 pocket blocks an edge-on MIN pair 12.5x6.3", "against": ["PRT_feeder_disc"], "center": [10.5, 18.187, 263.0], "frame": "PIV_feeder", "up": [0,0,1], "across": [1,0,0], "place": "pair_edge_on", "size": [12.5, 6.3], "shape": "lens", "expect": "blocked", "margin": 0.15},
+    {"name": "P2 pocket blocks an edge-on MIN pair across y", "against": ["PRT_feeder_disc"], "center": [10.5, 18.187, 263.0], "frame": "PIV_feeder", "up": [0,0,1], "across": [0,1,0], "place": "pair_edge_on", "size": [12.5, 6.3], "shape": "lens", "expect": "blocked", "margin": 0.15},
+    {"name": "P3 pocket seats one flat MAX 13.5x7.5", "against": ["PRT_feeder_disc"], "center": [10.5, 18.187, 263.0], "frame": "PIV_feeder", "up": [0,0,1], "place": "flat", "size": [13.5, 7.5], "shape": "lens", "expect": "fits", "margin": 0.15},
+    {"name": "P4 pocket blocks a stacked flat MIN pair (DISC_T 8)", "against": ["PRT_feeder_disc", "PRT_jar_valve", "PRT_feeder_baffle*"], "center": [10.5, 18.187, 263.0], "frame": "PIV_feeder", "up": [0,0,1], "place": "stack_flat", "size": [12.5, 6.3], "shape": "lens", "expect": "blocked", "margin": 0.15}
+  ],
+  "sightlines": [
+    {"name": "S1 fingertip line reaches the thumbwheel rim first (tilt 0, 45)", "frame": "PIV_tilt", "poses": [{}, {"PIV_tilt": 45}],
+     "origins": [[17.5, -1.382, 111.593], [19.5, -1.382, 111.593], [21.5, -1.382, 111.593]], "dir": [0, -0.316, 0.949], "first_hit": "PRT_nip_wheel", "max_mm": 30}
+  ],
+  "distances": [
+    {"a": "PRT_hood", "b": "PRT_flywheel", "min": 8.0, "ray": {"frame": "PIV_hood", "origin": [21.0, 34.0, 131.75], "dir": [0, 0, 1]},
+     "poses": [{"PIV_hood": 0.327, "PIV_nip_lift": -1.493}, {"PIV_hood": 0.0, "PIV_nip_lift": -1.493}, {"PIV_hood": -0.2, "PIV_nip_lift": -1.493}, {"PIV_hood": -0.558, "PIV_nip_lift": -1.493}],
+     "why": "precheck at the A3 lift limit"},
+    {"a": "FST_detent_0", "b": "PRT_jar_gate", "min": 2.4, "why": "precheck detent screw tip"}
+  ]
+}

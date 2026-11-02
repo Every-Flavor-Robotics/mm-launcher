@@ -1,0 +1,9 @@
+CADCHECK PASS: 0 fail, 7 warn -> cadcheck.json
+  warn parts: PRT_flywheel: ceiling region needs a 72 mm bridge (limit 25)
+  warn parts: PRT_rig_cover: 41 wall samples < 1.6 mm (min 1.00)
+  warn parts: PRT_rig_guard: 22 wall samples < 1.6 mm (min 1.27)
+  warn clearance: PRT_rig_guard to FST_nip_stud 0.58 mm at hood=-5.2429
+  warn fasteners: FST_nip_stud thread protrudes 4.6 mm past the last part, visible from outside
+  warn stacks: encoder air gap (1.5 nominal, MT6701 wants 0.5..2.0): worst case 0.65 mm > 0.50 (RSS 0.31)
+  warn stacks: magnet-to-sensor centring: worst case 0.40 mm > 0.30 (RSS 0.20)
+  not checked: fasteners: pilot/clearance hole diameters (use cadlib.features for those); wrench access to nuts; stability: dynamic loads (recoil, pan acceleration), friction/sliding; cables: bend radius, slack across joints, connector positions (review by section render); not geometric: teardown step count, alignment-jig datums (declare stacks), aesthetics, BOM correctness

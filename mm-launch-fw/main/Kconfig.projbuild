@@ -1,0 +1,40 @@
+menu "M&M launcher"
+
+    config MM_FOC_HZ
+        int "FOC loop rate (Hz)"
+        range 1000 10000
+        default 4000
+        help
+            Encoder read + FOC update rate for the flywheel. At 6000 rpm with
+            2 pole pairs, 4 kHz is 18 electrical degrees per sample.
+
+    config MM_SUPPLY_MV
+        int "Motor supply voltage (mV)"
+        default 12000
+        help
+            The 12 V buck output feeding the MotorGo Axis.
+
+    config MM_SERVO_UART_NUM
+        int "Servo controller UART port"
+        range 1 2
+        default 1
+
+    config MM_SERVO_UART_TX
+        int "ESP TX -> controller board RX (GPIO)"
+        default 2
+        help
+            Default: Qwiic SCL (GPIO2). The firmware releases the Qwiic I2C
+            bus when the servo UART uses either Qwiic pin.
+
+    config MM_SERVO_UART_RX
+        int "ESP RX <- controller board TX (GPIO)"
+        default 1
+        help
+            Default: Qwiic SDA (GPIO1). Check the board's TX idle voltage
+            first; the ESP32-S3 is not 5 V tolerant.
+
+    config MM_SERVO_REPLY_TIMEOUT_MS
+        int "Controller board reply timeout (ms)"
+        default 120
+
+endmenu

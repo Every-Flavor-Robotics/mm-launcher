@@ -1,0 +1,451 @@
+{
+ "_generated_by": "build.py check_config(); edit the parameters there, not this file",
+ "overtravel_deg": 0.5,
+ "fits": [
+  {
+   "a": "PRT_backplate",
+   "b": "PRT_rig_guard",
+   "min_clearance": 0.3,
+   "why": "A3 bay: backplate band grown 0.5 all round, 0.5 to the inner wall face"
+  },
+  {
+   "a": "PRT_backplate",
+   "b": "PRT_rig_cover",
+   "min_clearance": 0.3,
+   "why": "A3: 0.5 to the cover face"
+  },
+  {
+   "a": "PRT_backplate",
+   "b": "FST_hinge",
+   "min_clearance": 0.1,
+   "why": "hinge axle: M3 shank running in the backplate's \u00d83.4 boss"
+  },
+  {
+   "a": "BUY_motor",
+   "b": "BUY_magnet",
+   "min_clearance": 0.8,
+   "why": "magnet sits in the end cap's \u00d88 access hole, 1 mm radial"
+  }
+ ],
+ "allow": [
+  {
+   "a": "PRT_rig_guard",
+   "b": "PRT_nip_wheel",
+   "why": "leaf pads are printed in the free state and stand 2.3 mm into the thumbwheel: that overlap is the 9 N preload (A3 whitelists the same pair)"
+  },
+  {
+   "a": "FST_nip_stud",
+   "b": "PRT_nip_wheel",
+   "why": "stud runs through the thumbwheel's \u00d83.4 bore; the wheel rocks on its seat with the stud's tilt (-5.2..+1.4 deg)"
+  },
+  {
+   "a": "FST_nip_stud",
+   "b": "FST_nip_nut",
+   "why": "the captive nut rides on the stud and tilts with it"
+  },
+  {
+   "a": "BUY_motor",
+   "b": "BUY_motor_shaft",
+   "why": "rotor in its own bearings"
+  },
+  {
+   "a": "CAB_*",
+   "b": "BUY_motorgo_axis",
+   "why": "leads end on the board's pads / header"
+  },
+  {
+   "a": "CAB_encoder",
+   "b": "BUY_plink_encoder",
+   "why": "JST plug on the Plink"
+  },
+  {
+   "a": "CAB_phase_*",
+   "b": "BUY_motor",
+   "why": "phase leads leave the motor's lead block"
+  }
+ ],
+ "fasteners": {
+  "captive": {
+   "FST_nip_stud": "hex head held in the backplate pocket and never driven; the thumbwheel's captive nut turns"
+  }
+ },
+ "assembly_order": [
+  {
+   "step": "rear cup on the bench: Plink on its pegs, MotorGo on its standoffs",
+   "objects": [
+    "PRT_rig_frame",
+    "BUY_plink_encoder",
+    "BUY_motorgo_axis",
+    "FST_mg_*"
+   ]
+  },
+  {
+   "step": "rear cup pressed onto the motor (magnet glued); guard onto the motor face",
+   "objects": [
+    "BUY_motor",
+    "BUY_motor_shaft",
+    "BUY_magnet",
+    "PRT_rig_guard",
+    "FST_motor_*"
+   ]
+  },
+  {
+   "step": "nip: thumbwheel onto the seat, stud threaded in from the bay, backplate slid onto the stud head",
+   "objects": [
+    "PRT_nip_wheel",
+    "FST_nip_*",
+    "PRT_backplate"
+   ]
+  },
+  {
+   "step": "flywheel with tape onto the D-shaft, pinch bolts",
+   "objects": [
+    "PRT_flywheel",
+    "BUY_tape",
+    "FST_fw_*"
+   ]
+  },
+  {
+   "step": "cover, then the hinge axle from the motor side",
+   "objects": [
+    "PRT_rig_cover",
+    "FST_cover_*",
+    "FST_hinge"
+   ]
+  }
+ ],
+ "service": [
+  {
+   "op": "re-tighten or swap the flywheel (re-tape)",
+   "remove": [
+    "PRT_rig_cover",
+    "FST_cover_*",
+    "FST_hinge"
+   ],
+   "fasteners": [
+    "FST_fw_bolt_*"
+   ]
+  },
+  {
+   "op": "re-seat the MotorGo",
+   "fasteners": [
+    "FST_mg_*"
+   ]
+  }
+ ],
+ "drop_tests": [
+  {
+   "name": "funnel_to_tape",
+   "mode": "slide",
+   "stall_deg": 20,
+   "capture_mm": 0.5,
+   "payload_mm": 7.0,
+   "emit": {
+    "frame": "world",
+    "center": [
+     22.25,
+     0.0,
+     152.0
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ],
+    "radius": 6.0,
+    "step": 2.0
+   },
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "poses": {
+    "PIV_hood": [
+     1.4396,
+     0.0,
+     -1.4571
+    ]
+   },
+   "expect": {
+    "hit": [
+     "PRT_flywheel",
+     "BUY_tape"
+    ],
+    "angle": {
+     "center": "PIV_flywheel",
+     "frame": "PIV_flywheel",
+     "zero": "-Z",
+     "positive": "-Y",
+     "range": [
+      10,
+      92
+     ]
+    }
+   }
+  },
+  {
+   "name": "funnel_wide_gap_report_only",
+   "mode": "slide",
+   "stall_deg": 20,
+   "capture_mm": 0.5,
+   "payload_mm": 7.0,
+   "emit": {
+    "frame": "world",
+    "center": [
+     22.25,
+     0.0,
+     152.0
+    ],
+    "normal": [
+     0,
+     0,
+     1
+    ],
+    "radius": 6.0,
+    "step": 2.0
+   },
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "poses": {
+    "PIV_hood": [
+     -3.3656,
+     -5.2429
+    ]
+   },
+   "expect": {}
+  }
+ ],
+ "slide_out": [
+  {
+   "name": "flywheel off along +X (cover off)",
+   "objects": [
+    "PRT_flywheel",
+    "BUY_tape",
+    "FST_fw_*"
+   ],
+   "ignore": [
+    "PRT_rig_cover",
+    "FST_cover_*",
+    "FST_hinge",
+    "BUY_motor_shaft",
+    "BUY_magnet"
+   ],
+   "dir": [
+    1,
+    0,
+    0
+   ],
+   "dist": 60,
+   "step": 4,
+   "min_clearance": 0.8
+  },
+  {
+   "name": "cover off along +X",
+   "objects": [
+    "PRT_rig_cover"
+   ],
+   "ignore": [
+    "FST_cover_*",
+    "FST_hinge"
+   ],
+   "dir": [
+    1,
+    0,
+    0
+   ],
+   "dist": 40,
+   "step": 4,
+   "min_clearance": 0.0
+  }
+ ],
+ "distances": [
+  {
+   "a": "PRT_backplate",
+   "b": "PRT_flywheel",
+   "pose": {
+    "PIV_hood": 1.4396
+   },
+   "min": 4.85,
+   "max": 5.15,
+   "why": "thumbwheel closed end: 5.0 bare at the plate's BDC point",
+   "ray": {
+    "origin": [
+     21.0,
+     67.379,
+     49.695
+    ],
+    "dir": [
+     0.0,
+     -0.37992,
+     0.92502
+    ]
+   }
+  },
+  {
+   "a": "PRT_backplate",
+   "b": "PRT_flywheel",
+   "pose": {},
+   "min": 6.35,
+   "max": 6.65,
+   "why": "A3 operating gap: 6.0 over tape: 6.5 bare at the plate's BDC point",
+   "ray": {
+    "origin": [
+     21.0,
+     66.405,
+     47.733
+    ],
+    "dir": [
+     0.0,
+     -0.34202,
+     0.93969
+    ]
+   },
+   "payload_mm": 7.0,
+   "tape_mm": 0.5,
+   "compliant": "PRT_rig_guard leaf spring: 3.9 N/mm, 9 N preload on the thumbwheel stop"
+  },
+  {
+   "a": "PRT_backplate",
+   "b": "PRT_flywheel",
+   "pose": {
+    "PIV_hood": -5.2429
+   },
+   "min": 11.85,
+   "max": 12.15,
+   "why": "thumbwheel open end: 12.0 bare at the plate's BDC point",
+   "ray": {
+    "origin": [
+     21.0,
+     62.438,
+     40.801
+    ],
+    "dir": [
+     0.0,
+     -0.21459,
+     0.9767
+    ]
+   }
+  },
+  {
+   "a": "BUY_magnet",
+   "b": "BUY_plink_encoder",
+   "min": 1.3,
+   "max": 1.7,
+   "why": "as-printed encoder air gap"
+  }
+ ],
+ "stacks": [
+  {
+   "name": "encoder air gap (1.5 nominal, MT6701 wants 0.5..2.0)",
+   "limit": 0.5,
+   "terms": [
+    {
+     "what": "cup print: shoulder (motor rear face) to Plink seat, 6.75 mm",
+     "tol": 0.1
+    },
+    {
+     "what": "motor rear face flatness where the shoulder lands",
+     "tol": 0.1
+    },
+    {
+     "what": "magnet face via the A3 jig (shaft end 0..1 mm recessed)",
+     "tol": 0.25
+    },
+    {
+     "what": "Plink IC height above PCB back",
+     "tol": 0.1
+    },
+    {
+     "what": "PCB seat on the pegs (hot glue)",
+     "tol": 0.05
+    },
+    {
+     "what": "cup pushed home on the shoulder",
+     "tol": 0.05
+    }
+   ],
+   "why": "measure the real gap at bring-up and shim; README step B3"
+  },
+  {
+   "name": "magnet-to-sensor centring",
+   "limit": 0.3,
+   "terms": [
+    {
+     "what": "Plink pegs to the cup bore axis (same printed part)",
+     "tol": 0.1
+    },
+    {
+     "what": "can in bore, 3 crush ribs",
+     "tol": 0.1
+    },
+    {
+     "what": "Plink IC to its PCB holes",
+     "tol": 0.1
+    },
+    {
+     "what": "magnet on shaft via the A3 jig spigot in the \u00d88 access hole",
+     "tol": 0.1
+    }
+   ]
+  }
+ ],
+ "flexures": [
+  {
+   "part": "PRT_rig_guard",
+   "name": "nip leaf spring",
+   "from": [
+    19.5,
+    -3.678,
+    55.047
+   ],
+   "to": [
+    19.5,
+    25.552,
+    24.887
+   ],
+   "stress_mpa": 40.2,
+   "why": "34 mm cantilever, 9 N preload; A3 printed it standing up (A3-F2)"
+  },
+  {
+   "part": "PRT_rig_guard",
+   "name": "over-travel stop beam",
+   "from": [
+    19.5,
+    -8.561,
+    50.314
+   ],
+   "to": [
+    19.5,
+    20.669,
+    20.154
+   ],
+   "stress_mpa": 7.0,
+   "why": "takes the leaf's 18.7 N at the stop"
+  }
+ ],
+ "exposure": {
+  "cables_ok": [
+   "CAB_*"
+  ]
+ },
+ "cable_leads": {
+  "CAB_phase_*": 80
+ },
+ "printers": {
+  "P1S": [
+   256,
+   256,
+   256
+  ],
+  "H2D": [
+   325,
+   320,
+   325
+  ]
+ },
+ "prefer_printer": "P1S"
+}

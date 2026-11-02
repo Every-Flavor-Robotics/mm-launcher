@@ -1,0 +1,43 @@
+{
+  "functionality": 9,
+  "manufacturability": 8,
+  "aesthetics": 9,
+  "anchors": {
+    "functionality": "9: Minor polish only; cadcheck 0 fails, every warn explained; every payload path drop-tested at both stops (31/31, flattest 34.5); entry arc swept with every station (8.098/8.222/8.415)",
+    "manufacturability": "8: Works. At most 2 major issues, each with a known fix under 1 hour of CAD and no reprint of a big part (A7-01: BOM text + prop STL)",
+    "aesthetics": "9: needs every item true; nothing visible changed since A6 (one EB 1.0 / CR 6 set, colour B on the candy path, no PCB/wire/motor can in iso views)"
+  },
+  "issues": [
+    {"id": "A7-01", "metric": "manufacturability", "severity": "major", "subsystem": "pan_stage / assembly step 11a",
+     "problem": "Step 11a begins 'Tilt the pod to 45' (FST_gcap_5 is reachable only at tilt 45), but the tilt servo has been engaged since step 8 and cannot be powered: the bus splice is not made until 11a.4 and the battery goes in at step 14. The pose means back-driving an unpowered Hiwonder servo through its gear train and holding the pod at 45 while 6 screws go in; the BOM gives no method or fixture.",
+     "evidence": "review/cadcheck.json fasteners.rows FST_gcap_5 access.home blocked_at_mm 13.4 by PRT_launcher_body (L-key short leg blocked); BOM steps 8, 11a.1, 14",
+     "fix": "BOM 11a.0: remove the post cover (4 x M3 x 14), slide the tilt servo +X ~10 (12 AF key engages 6.5; existing 'tilt servo out +X' row), swing the pod to 45 on a printed 45 deg prop (~40 x 30 x 30 wedge, stl/tools/tilt45_prop.stl), do 11a, lower, re-seat the key, refit the cover; add a service row for FST_gcap_* at tilt 45 with PRT_post_R_cover removed and a prop-to-cap distances row >= 1.0. Alternative: move FST_gcap_5 from (10, 16.2) to about (-30, 16.2) so all six go in at tilt 0 (reprint the 12.6 g cap, drill one Ø2.5 pilot).",
+     "tool_catchable": false},
+    {"id": "A7-02", "metric": "functionality", "severity": "minor", "subsystem": "cables / bus splice",
+     "problem": "CAB_bus_tilt and CAB_bus_feeder share one tube to the splice top (overlap -82.5 mm3); both cross the splice top at z 100.5, 0.11 from the cap underside, and turn 90 deg onto the face 1.5 below (zero-radius bend at the heat-shrink exit). Making the splice ~60 above the turntable (11a.3-4) needs ~85 extra pan lead and ~60 per tilt/feeder lead; that service length plus the stock spare (57.9 / 93.5 / 180.4) has no stated home after the splice is seated.",
+     "evidence": "cad q dist CAB_bus_tilt CAB_bus_feeder -82.484; cad q dist CAB_bus_tilt/feeder PRT_groove_cap 0.112/0.120; params.BUS_HUB; review/r02_sec_y4.02_splice_top_under_groove_cap.png; cables spare",
+     "fix": "BUS_JCT l 25 -> 20 (z 74..94, 8.0 under the cap for an ~R4 turn); offset BUS_HUB x ±1.5 per lead so tilt and feeder lie side by side; distances rows CAB_bus_tilt/feeder > PRT_groove_cap min 0.5; BOM 11a.4: trim tilt/feeder to route + 70 and pan to route + 90 before soldering, and state where the 60 mm service loop lies (e.g. groove x 10..60, left-post channel) with a section render.",
+     "tool_catchable": true},
+    {"id": "A6-02", "metric": "functionality", "severity": "minor", "subsystem": "cables / launcher bundle hand-over",
+     "problem": "PARTIAL: the bus lead now hands over on the pan axis, but the Ø6 launcher bundle still hands over at r 4 (-2.29, -3.28, 70), its moving end swinging a 5.66 chord over ±90. The v2-A2-02 'meet' row passes only on sleeve overlap and now reads 0.916 at pan -90 against max 1.0 (A6 0.133).",
+     "evidence": "review/cadcheck.json distances v2-A2-02 CAB_launcher_base>CAB_launcher_bundle 0.916 / 0.006 / 0.760",
+     "fix": "Put the bundle hand-over on the axis at about z 55 (below BUS_PAN_AX z 63) with a PIV_pan bundle tail and tighten the row to max 0.5; or keep r 4, state the 5.66 swing in the row's why and add a section at pan ±90 showing the sleeve bend.",
+     "tool_catchable": true},
+    {"id": "A7-03", "metric": "manufacturability", "severity": "minor", "subsystem": "check config / groove cap",
+     "problem": "The designer's cap-removal row lifts only +Z 40, leaving the cap between the posts under the pod (nip cover at z 159 above it at tilt 45), while the BOM says it comes off. The v2-A6-02 rows' why text says z 64 / r 6 (model 63 / 6.5).",
+     "evidence": "review/cadcheck_review.json 'R7 A7-01 groove cap leaves the machine forward-up' (0,-0.707,0.707) x 160 at tilt 45: not blocked, min 0.2 (post_L); back-up blocked at 54 by PRT_nip_cover",
+     "fix": "Adopt the forward-up row from review/review_rows.json into checks.json; correct the two why strings to z 63 / r 6.5.",
+     "tool_catchable": true}
+  ],
+  "previous_issue_status": [
+    {"id": "A6-01", "status": "FIXED", "evidence": "assembly.step_of: splice, tail, cap, FST_gcap_* at 11a, 0 findings; service 6/6 tilt=45 straight 14; cap +Z 40 min 0.2; splice +Z 40 min 1.000; captive blocked 3.5 by PRT_groove_cap; review exit row forward-up 160 not blocked"},
+    {"id": "A6-02", "status": "PARTIAL", "evidence": "bus: CAB_bus_pan>tail 0.011/0.008/0.013, tail>launcher_base 1.362/2.789/2.430 (sweep min 1.236 @ -92.5); bundle/base hand-over still r 4: v2-A2-02 0.916 @ pan -90 vs max 1.0"},
+    {"id": "A6-03", "status": "FIXED", "evidence": "9 swept row-poses psi 1..105, no missed_deg; 8.098 @ 63 / 8.222 @ 91 / 8.415 @ 91"}
+  ],
+  "check_config_disputes": [
+    "slide_out 'v2-A6-01 groove cap lifts +Z ... 40' proves only a 40 mm lift under the pod, not removal; adopt review row 'R7 A7-01 groove cap leaves the machine forward-up' (passes, min 0.2)",
+    "assembly_order step 11a / accepted warn 'FST_gcap_5 reachable only at tilt=45': no method or row for reaching tilt 45 with the tilt servo engaged and unpowered at that step (A7-01)",
+    "distances v2-A2-02 CAB_launcher_base>CAB_launcher_bundle max 1.0 passes on Ø6 sleeve overlap (0.916 at pan -90), not on the ends meeting (A6-02)",
+    "distances v2-A6-02 why text says z 64 / r 6; model BUS_PAN_AX z 63, LB_LEG_R 6.5"
+  ]
+}

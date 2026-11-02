@@ -1,0 +1,11 @@
+build/
+managed_components/
+sdkconfig
+sdkconfig.old
+dependencies.lock
+test/host/test_hiwonder
+test/host/test_joints
+test/host/*.dSYM
+test/host/test_tip_guard
+test/host/test_jsonf
+test/host/test_stop_rule

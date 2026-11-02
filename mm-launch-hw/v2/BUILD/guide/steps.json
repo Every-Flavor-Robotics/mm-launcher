@@ -1,0 +1,4598 @@
+{
+ "_about": "ASSEMBLY.md steps mapped to the GLB's objects (BUILD/guide/build_guide.py). new_objects: objects that first appear in the step, from checks.json assembly_order. focus_objects: what the viewer highlights (new objects, plus a merged bench sub-assembly). Directions are in the design frame: +X right, +Y front, +Z up. status 'flagged' lists the reason in flags.",
+ "summary": {
+  "steps": 33,
+  "clean": 32,
+  "flagged": 1,
+  "assembly_order_entries_unused": [],
+  "objects_never_placed": []
+ },
+ "steps": [
+  {
+   "index": 0,
+   "id": "0",
+   "title": "Before you start",
+   "group": "Before you start",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [],
+   "bench": null,
+   "merge": null,
+   "new_objects": [],
+   "focus_objects": [],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    1.3,
+    0.8
+   ],
+   "explode": {},
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No fasteners in this step."
+   },
+   "fields": [
+    {
+     "label": "Prints",
+     "html": "<p>all 9 plates (<code>PRINT_PLAN.md</code>), and the three tools: encoder jig, pocket coupon, 45 deg prop.</p>"
+    },
+    {
+     "label": "Measured",
+     "html": "<p><code>MEASURE_FIRST.md</code> done, and the model rebuilt if anything changed.</p>"
+    },
+    {
+     "label": "Pilots",
+     "html": "<p>clean every \u00d82.5 pilot with a \u00d82.5 drill if your printer prints holes small. A screw that has to be forced splits the boss.</p>"
+    },
+    {
+     "label": "Servos on the bench, through the controller",
+     "html": "<ul><li>give the pan, tilt and feeder servos different bus IDs (they all ship as ID 1, and after step 11a they share one bus);</li><li>label each servo with its ID;</li><li>command each servo to its mid position (500 on Hiwonder's 0..1000 scale) before its horn goes on, and don't turn the output by hand after that. Mid is pan 0, tilt 0 and the feeder's park position. Fine trim is done in firmware at step 15.</li></ul>"
+    },
+    {
+     "label": "Tape check",
+     "html": "<p>the hockey tape is 1 in wide (it is trimmed to 13.8 at step 6f).</p>"
+    }
+   ],
+   "check": "",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "critical",
+     "text": "All three servos ship as bus ID 1. Give pan, tilt and feeder different IDs and label each servo before anything else: after step 11a they share one bus.",
+     "source": "ASSEMBLY 0"
+    },
+    {
+     "level": "warning",
+     "text": "Command each servo to mid (500 on the 0..1000 scale) before its horn goes on, and don't turn the output by hand after that. Mid is pan 0, tilt 0 and the feeder's park position.",
+     "source": "ASSEMBLY 0"
+    },
+    {
+     "level": "warning",
+     "text": "Measure first: MEASURE_FIRST.md done and the model rebuilt if anything changed, before the plates that depend on it.",
+     "source": "ASSEMBLY 0"
+    },
+    {
+     "level": "warning",
+     "text": "Clean every \u00d82.5 pilot with a \u00d82.5 drill if your printer prints holes small. A forced screw splits the boss.",
+     "source": "ASSEMBLY 0"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 1,
+   "id": "1",
+   "title": "Base shell upside down; DeWalt adapter",
+   "group": "Base",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "1",
+     "index": 0,
+     "step": "1 base shell upside down: adapter into its fence, M3 x 20 self-tappers from the deck top",
+     "bench": null,
+     "merge": null
+    }
+   ],
+   "bench": null,
+   "merge": null,
+   "new_objects": [
+    "PRT_base_shell",
+    "BUY_dewalt_adapter",
+    "FST_adapter_0",
+    "FST_adapter_1",
+    "FST_adapter_2",
+    "FST_adapter_3"
+   ],
+   "focus_objects": [
+    "PRT_base_shell",
+    "BUY_dewalt_adapter",
+    "FST_adapter_0",
+    "FST_adapter_1",
+    "FST_adapter_2",
+    "FST_adapter_3"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    -0.8,
+    -0.35
+   ],
+   "explode": {
+    "PRT_base_shell": [
+     0,
+     0,
+     0
+    ],
+    "BUY_dewalt_adapter": [
+     0,
+     0,
+     -1
+    ],
+    "FST_adapter_0": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_adapter_1": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_adapter_2": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_adapter_3": [
+     -0.0,
+     -0.0,
+     1.4
+    ]
+   },
+   "tools": [
+    "2 mm hex or Phillips to suit the csk heads",
+    "straight bit"
+   ],
+   "fasteners": [
+    {
+     "qty": 4,
+     "text": "4 x M3 x 20 countersunk ST.",
+     "spec": "M3 x 20 countersunk ST."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 4 x M3 x 20"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>lay the base shell deck-down. Put the adapter into its fence, then drive the 4 screws from the deck top into the adapter's corner holes.</p>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the battery slides on and off the rail by hand. The screw tips sit 4.56 above the battery face (row FST_adapter-BUY_battery), so nothing scrapes the pack.</p>"
+    }
+   ],
+   "check": "the battery slides on and off the rail by hand. The screw tips sit 4.56 above the battery face (row FST_adapter-BUY_battery), so nothing scrapes the pack.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Measure first (item 6): the adapter's corner hole size is unknown. If the holes are \u00d83 or bigger the self-tappers won't bite; use machine screws and nuts, or epoxy. Screw tips must stay 3 or more above the battery face (4.56 now).",
+     "source": "MEASURE_FIRST 6"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 2,
+   "id": "1a",
+   "title": "Pan drive, bench: horn into the pan pinion",
+   "group": "Base",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "1a",
+     "index": 1,
+     "step": "1a pan drive on the bench: horn screwed into the pinion recess",
+     "bench": "pandrive",
+     "merge": null
+    }
+   ],
+   "bench": "pandrive",
+   "merge": null,
+   "new_objects": [
+    "PRT_pan_pinion",
+    "BUY_horn_pan",
+    "FST_pinion_0",
+    "FST_pinion_1",
+    "FST_pinion_2",
+    "FST_pinion_3"
+   ],
+   "focus_objects": [
+    "PRT_pan_pinion",
+    "BUY_horn_pan",
+    "FST_pinion_0",
+    "FST_pinion_1",
+    "FST_pinion_2",
+    "FST_pinion_3"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    1.0,
+    -0.3
+   ],
+   "explode": {
+    "PRT_pan_pinion": [
+     0,
+     0,
+     0
+    ],
+    "BUY_horn_pan": [
+     0,
+     0,
+     -1.2
+    ],
+    "FST_pinion_0": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_pinion_1": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_pinion_2": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_pinion_3": [
+     -0.0,
+     -0.0,
+     -1.4
+    ]
+   },
+   "tools": [
+    "Phillips #0",
+    "\u00d82 drill"
+   ],
+   "fasteners": [
+    {
+     "qty": 4,
+     "text": "4 x M2 x 8 pan.",
+     "spec": "M2 x 8 pan."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 4 x M2 x 8"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>press the horn disc into the pinion's 1.0 recess. Drill the 4 dimples through using the horn as the template, then screw it in. A dab of superglue under the disc is fine.</p>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the horn sits flat and centred; the pinion teeth spin true on the spline.</p>"
+    }
+   ],
+   "check": "the horn sits flat and centred; the pinion teeth spin true on the spline.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Measure first (item 3): check the horn's bolt circle against the dimples before drilling through.",
+     "source": "MEASURE_FIRST 3"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 3,
+   "id": "1b",
+   "title": "Pan drive, bench: servo into its mount",
+   "group": "Base",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "1b",
+     "index": 2,
+     "step": "1b pan drive on the bench: servo into the pocket + clamp, pinion onto the spline, centre screw through the pinion",
+     "bench": "pandrive",
+     "merge": null
+    }
+   ],
+   "bench": "pandrive",
+   "merge": null,
+   "new_objects": [
+    "PRT_pan_servo_mount",
+    "PRT_pan_servo_clamp",
+    "BUY_servo_pan",
+    "FST_panclamp_0",
+    "FST_panclamp_1",
+    "FST_pinion_ctr"
+   ],
+   "focus_objects": [
+    "PRT_pan_servo_mount",
+    "PRT_pan_servo_clamp",
+    "BUY_servo_pan",
+    "FST_panclamp_0",
+    "FST_panclamp_1",
+    "FST_pinion_ctr"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    1.0,
+    -0.3
+   ],
+   "explode": {
+    "PRT_pan_servo_mount": [
+     0,
+     0,
+     0
+    ],
+    "PRT_pan_servo_clamp": [
+     0,
+     0,
+     -2.0
+    ],
+    "BUY_servo_pan": [
+     0,
+     0,
+     -1.2
+    ],
+    "FST_panclamp_0": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_panclamp_1": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_pinion_ctr": [
+     -0.0,
+     -0.0,
+     1.4
+    ]
+   },
+   "tools": [
+    "2.5 mm hex"
+   ],
+   "fasteners": [
+    {
+     "qty": 2,
+     "text": "2 x M3 x 12 socket cap ST (clamp)",
+     "spec": "M3 x 12 socket cap ST (clamp)"
+    },
+    {
+     "qty": 1,
+     "text": "1 x M3 x 6 socket cap (centre screw).",
+     "spec": "M3 x 6 socket cap (centre screw)."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 2 x M3 x 12, 1 x M3 x 6"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>put the pan servo into the mount pocket and fit the clamp;</li><li>press the pinion onto the spline <b>with the servo still at mid</b>;</li><li>fit the centre screw through the pinion.</li></ul>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the servo can't rock in its pocket (0.3 clearance).</p>"
+    }
+   ],
+   "check": "the servo can't rock in its pocket (0.3 clearance).",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Press the pinion onto the spline with the servo still at mid.",
+     "source": "ASSEMBLY 1b"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 4,
+   "id": "1c",
+   "title": "Pan drive onto the deck posts",
+   "group": "Base",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "1c",
+     "index": 3,
+     "step": "1c pan drive onto the deck posts",
+     "bench": null,
+     "merge": "pandrive"
+    }
+   ],
+   "bench": null,
+   "merge": "pandrive",
+   "new_objects": [
+    "FST_panservo_0",
+    "FST_panservo_1",
+    "FST_panservo_2",
+    "FST_panservo_3"
+   ],
+   "focus_objects": [
+    "FST_panservo_0",
+    "FST_panservo_1",
+    "FST_panservo_2",
+    "FST_panservo_3",
+    "PRT_pan_pinion",
+    "BUY_horn_pan",
+    "FST_pinion_0",
+    "FST_pinion_1",
+    "FST_pinion_2",
+    "FST_pinion_3",
+    "PRT_pan_servo_mount",
+    "PRT_pan_servo_clamp",
+    "BUY_servo_pan",
+    "FST_panclamp_0",
+    "FST_panclamp_1",
+    "FST_pinion_ctr"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    1.2,
+    -0.3
+   ],
+   "explode": {
+    "FST_panservo_0": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_panservo_1": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_panservo_2": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_panservo_3": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "PRT_pan_pinion": [
+     0,
+     0,
+     -1.0
+    ],
+    "BUY_horn_pan": [
+     0,
+     0,
+     -1.0
+    ],
+    "FST_pinion_0": [
+     0,
+     0,
+     -1.0
+    ],
+    "FST_pinion_1": [
+     0,
+     0,
+     -1.0
+    ],
+    "FST_pinion_2": [
+     0,
+     0,
+     -1.0
+    ],
+    "FST_pinion_3": [
+     0,
+     0,
+     -1.0
+    ],
+    "PRT_pan_servo_mount": [
+     0,
+     0,
+     -1.0
+    ],
+    "PRT_pan_servo_clamp": [
+     0,
+     0,
+     -1.0
+    ],
+    "BUY_servo_pan": [
+     0,
+     0,
+     -1.0
+    ],
+    "FST_panclamp_0": [
+     0,
+     0,
+     -1.0
+    ],
+    "FST_panclamp_1": [
+     0,
+     0,
+     -1.0
+    ],
+    "FST_pinion_ctr": [
+     0,
+     0,
+     -1.0
+    ]
+   },
+   "tools": [
+    "2.5 mm hex",
+    "straight bit"
+   ],
+   "fasteners": [
+    {
+     "qty": 4,
+     "text": "4 x M3 x 12 socket cap ST.",
+     "spec": "M3 x 12 socket cap ST."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 4 x M3 x 12"
+   },
+   "fields": [
+    {
+     "label": "Check",
+     "html": "<p>the pinion is clear of the deck hole edge all the way round.</p>"
+    }
+   ],
+   "check": "the pinion is clear of the deck hole edge all the way round.",
+   "paragraphs": [],
+   "warnings": [],
+   "renders": []
+  },
+  {
+   "index": 5,
+   "id": "2a",
+   "title": "Floor plate, bench: partition and MotorGo",
+   "group": "Base",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "2a",
+     "index": 4,
+     "step": "2a floor plate on the bench: partition, MotorGo on its standoffs",
+     "bench": "floor",
+     "merge": null
+    }
+   ],
+   "bench": "floor",
+   "merge": null,
+   "new_objects": [
+    "PRT_base_floor",
+    "PRT_base_partition",
+    "FST_partition_0",
+    "FST_partition_1",
+    "BUY_motorgo_axis",
+    "FST_mg_0",
+    "FST_mg_1",
+    "FST_mg_2",
+    "FST_mg_3"
+   ],
+   "focus_objects": [
+    "PRT_base_floor",
+    "PRT_base_partition",
+    "FST_partition_0",
+    "FST_partition_1",
+    "BUY_motorgo_axis",
+    "FST_mg_0",
+    "FST_mg_1",
+    "FST_mg_2",
+    "FST_mg_3"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    -1.0,
+    -0.6,
+    0.7
+   ],
+   "explode": {
+    "PRT_base_floor": [
+     0,
+     0,
+     0
+    ],
+    "PRT_base_partition": [
+     0,
+     0,
+     1
+    ],
+    "FST_partition_0": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_partition_1": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "BUY_motorgo_axis": [
+     0,
+     1.4,
+     0
+    ],
+    "FST_mg_0": [
+     -0.0,
+     1.4,
+     -0.0
+    ],
+    "FST_mg_1": [
+     -0.0,
+     1.4,
+     -0.0
+    ],
+    "FST_mg_2": [
+     -0.0,
+     1.4,
+     -0.0
+    ],
+    "FST_mg_3": [
+     -0.0,
+     1.4,
+     -0.0
+    ]
+   },
+   "tools": [
+    "2 mm hex",
+    "straight bit"
+   ],
+   "fasteners": [
+    {
+     "qty": 2,
+     "text": "2 x M3 x 10 countersunk ST (partition, from below)",
+     "spec": "M3 x 10 countersunk ST (partition, from below)"
+    },
+    {
+     "qty": 4,
+     "text": "4 x M2.5 x 10 socket cap ST (MotorGo), or M3 x 10 if you changed <code>MG_*</code>.",
+     "spec": "M2.5 x 10 socket cap ST (MotorGo), or M3 x 10 if you changed <code>MG_*</code>."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 4 x M2.5 x 10, 2 x M3 x 10"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>screw the partition to the floor from below. Mount the MotorGo on the partition standoffs, components toward the partition and the USB-C receptacle toward the rear niche.</p>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the header pins under the board (7.25 long) clear the partition. The USB-C opening lines up with the niche.</p>"
+    }
+   ],
+   "check": "the header pins under the board (7.25 long) clear the partition. The USB-C opening lines up with the niche.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Measure first (item 4): the MotorGo STL shows \u00d82.5 holes, so the model uses M2.5. If your board's holes are \u00d83.2 or more, switch MG_* to M3 and rebuild before plate 9.",
+     "source": "MEASURE_FIRST 4"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s02_floor_plate_bench.png",
+     "key": "s02_floor_plate_bench",
+     "scope": "step"
+    }
+   ]
+  },
+  {
+   "index": 6,
+   "id": "2b",
+   "title": "Floor plate, bench: buck and servo controller",
+   "group": "Base",
+   "status": "flagged",
+   "flags": [
+    "FST_ctrl_*: The 4 x M3 x 8 controller screws are not in the model (SHOPPING_LIST says 'Not modelled'; they are drilled to fit). The viewer can't show them."
+   ],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "2b",
+     "index": 5,
+     "step": "2b floor plate on the bench: buck, servo controller",
+     "bench": "floor",
+     "merge": null
+    }
+   ],
+   "bench": "floor",
+   "merge": null,
+   "new_objects": [
+    "BUY_buck_12v",
+    "FST_buck_0",
+    "FST_buck_1",
+    "BUY_servo_controller"
+   ],
+   "focus_objects": [
+    "BUY_buck_12v",
+    "FST_buck_0",
+    "FST_buck_1",
+    "BUY_servo_controller"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    0.6,
+    -1.0,
+    0.6
+   ],
+   "explode": {
+    "BUY_buck_12v": [
+     0,
+     0,
+     1
+    ],
+    "FST_buck_0": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_buck_1": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "BUY_servo_controller": [
+     0,
+     0,
+     1
+    ]
+   },
+   "tools": [
+    "Phillips or 2 mm hex",
+    "\u00d82.5 drill"
+   ],
+   "fasteners": [
+    {
+     "qty": 2,
+     "text": "2 x M3 x 8 pan ST (buck)",
+     "spec": "M3 x 8 pan ST (buck)"
+    },
+    {
+     "qty": 4,
+     "text": "4 x M3 x 8 pan ST (controller, drill to fit).",
+     "spec": "M3 x 8 pan ST (controller, drill to fit)."
+    }
+   ],
+   "fastener_check": {
+    "state": "warning",
+    "text": "ASSEMBLY.md lists 6 x M3 x 8; the model has 2 x M3 x 8."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>screw the buck to its bosses, fins free;</li><li>lay the controller in its +0.4 pocket, slide switch and terminal toward the +X wall;</li><li>drill \u00d82.5 through the board's own holes into the solid bosses (the dimples are only a guess), then screw it down.</li></ul>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the switch and the terminal sit where the shell's two +X windows will be (<code>CTRL_SW</code>, <code>CTRL_TB</code>).</p>"
+    }
+   ],
+   "check": "the switch and the terminal sit where the shell's two +X windows will be (`CTRL_SW`, `CTRL_TB`).",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Measure first (items 5, 7): the controller's holes come from a photo. Drill \u00d82.5 through the board's own holes; the dimples are only a guess. Check the switch and terminal line up with the shell's two +X windows.",
+     "source": "MEASURE_FIRST 5"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 7,
+   "id": "2c",
+   "title": "Turntable, bench: posts",
+   "group": "Base",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "2c",
+     "index": 6,
+     "step": "2c turntable on the bench: posts from the turntable underside (v2-A6-01: the groove cap goes on at 11a, after every bus lead is in the groove)",
+     "bench": "turntable",
+     "merge": null
+    }
+   ],
+   "bench": "turntable",
+   "merge": null,
+   "new_objects": [
+    "PRT_turntable",
+    "PRT_post_L",
+    "PRT_post_R",
+    "FST_post_0",
+    "FST_post_1",
+    "FST_post_2",
+    "FST_post_3",
+    "FST_post_4",
+    "FST_post_5",
+    "FST_post_6"
+   ],
+   "focus_objects": [
+    "PRT_turntable",
+    "PRT_post_L",
+    "PRT_post_R",
+    "FST_post_0",
+    "FST_post_1",
+    "FST_post_2",
+    "FST_post_3",
+    "FST_post_4",
+    "FST_post_5",
+    "FST_post_6"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    1.2,
+    0.35
+   ],
+   "explode": {
+    "PRT_turntable": [
+     0,
+     0,
+     0
+    ],
+    "PRT_post_L": [
+     0,
+     0,
+     1
+    ],
+    "PRT_post_R": [
+     0,
+     0,
+     1
+    ],
+    "FST_post_0": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_post_1": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_post_2": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_post_3": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_post_4": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_post_5": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_post_6": [
+     -0.0,
+     -0.0,
+     -1.4
+    ]
+   },
+   "tools": [
+    "2 mm hex",
+    "straight bit"
+   ],
+   "fasteners": [
+    {
+     "qty": 7,
+     "text": "7 x M3 x 16 countersunk ST, up from the turntable's underside.",
+     "spec": "M3 x 16 countersunk ST, up from the turntable's underside."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 7 x M3 x 16"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>screw the left and right posts onto the turntable. <b>Leave the groove cap and its 6 screws in the bag</b>: the cap goes on at 11a, after every bus lead is in the groove.</p>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the posts stand square to the turntable, and the U-slots at their tops line up across.</p>"
+    }
+   ],
+   "check": "the posts stand square to the turntable, and the U-slots at their tops line up across.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Leave the groove cap and its 6 screws in the bag. The cap goes on at 11a, after every bus lead is in the groove.",
+     "source": "ASSEMBLY 2c"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 8,
+   "id": "2d",
+   "title": "Turntable into the deck; hub gear from below",
+   "group": "Base",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "FST_tt_*: Glob matches nothing; the 3 hub screws of this step are FST_hub_*, which do resolve."
+   ],
+   "assembly_order": [
+    {
+     "label": "2d",
+     "index": 7,
+     "step": "2d thrust ring on the hub, turntable assembly into the deck hole; hub gear meshed under the deck and screwed up into the hub (floor still off)",
+     "bench": null,
+     "merge": "turntable"
+    }
+   ],
+   "bench": null,
+   "merge": "turntable",
+   "new_objects": [
+    "PRT_thrust_ring",
+    "PRT_hub_gear",
+    "FST_hub_0",
+    "FST_hub_1",
+    "FST_hub_2"
+   ],
+   "focus_objects": [
+    "PRT_thrust_ring",
+    "PRT_hub_gear",
+    "FST_hub_0",
+    "FST_hub_1",
+    "FST_hub_2",
+    "PRT_turntable",
+    "PRT_post_L",
+    "PRT_post_R",
+    "FST_post_0",
+    "FST_post_1",
+    "FST_post_2",
+    "FST_post_3",
+    "FST_post_4",
+    "FST_post_5",
+    "FST_post_6"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    1.1,
+    -0.25
+   ],
+   "explode": {
+    "PRT_thrust_ring": [
+     0,
+     0,
+     0.6
+    ],
+    "PRT_hub_gear": [
+     0,
+     0,
+     -1.2
+    ],
+    "FST_hub_0": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_hub_1": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_hub_2": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "PRT_turntable": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_post_L": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_post_R": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_post_0": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_post_1": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_post_2": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_post_3": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_post_4": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_post_5": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_post_6": [
+     0,
+     0,
+     1.0
+    ]
+   },
+   "tools": [
+    "2.5 mm hex"
+   ],
+   "fasteners": [
+    {
+     "qty": 3,
+     "text": "3 x M3 x 12 socket cap ST.",
+     "spec": "M3 x 12 socket cap ST."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 3 x M3 x 12"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>slip the thrust ring over the hub and drop the turntable assembly into the deck hole;</li><li>from under the deck, mesh the hub gear with the pan pinion <b>with the pan servo at mid and the posts square across the base, so the pod will face +Y (pan 0)</b>, then screw it up into the hub. The floor is still off; the R28.5 gear is wider than the deck hole, so it can only go on from below.</li></ul>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the turntable turns smoothly by hand to both pan stops, with no gear bind.</p>"
+    }
+   ],
+   "check": "the turntable turns smoothly by hand to both pan stops, with no gear bind.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Mesh the hub gear with the pan servo at mid and the posts square across the base, so the pod faces +Y at pan 0.",
+     "source": "ASSEMBLY 2d"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 9,
+   "id": "3",
+   "title": "Floor into the shell; base cables",
+   "group": "Base",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "PRT_cable_clip*: Glob matches nothing; the model has no cable clips and ASSEMBLY.md doesn't call for any.",
+    "FST_clip_*: Glob matches nothing; no clip screws in the model or in ASSEMBLY.md."
+   ],
+   "assembly_order": [
+    {
+     "label": "3",
+     "index": 8,
+     "step": "3 floor into the shell, cables; v2-A2-02 launcher base lead (phase + encoder) from the MotorGo to the hub with its U-loop under the hub gear",
+     "bench": null,
+     "merge": "floor"
+    }
+   ],
+   "bench": null,
+   "merge": "floor",
+   "new_objects": [
+    "FST_floor_0",
+    "FST_floor_1",
+    "FST_floor_2",
+    "FST_floor_3",
+    "FST_floor_4",
+    "FST_floor_5",
+    "FST_floor_6",
+    "FST_floor_7",
+    "CAB_12v_in",
+    "CAB_12v_mg",
+    "CAB_12v_ctrl",
+    "CAB_uart",
+    "CAB_usb",
+    "CAB_bus_pan",
+    "BUY_usbc_plug",
+    "CAB_launcher_base"
+   ],
+   "focus_objects": [
+    "FST_floor_0",
+    "FST_floor_1",
+    "FST_floor_2",
+    "FST_floor_3",
+    "FST_floor_4",
+    "FST_floor_5",
+    "FST_floor_6",
+    "FST_floor_7",
+    "CAB_12v_in",
+    "CAB_12v_mg",
+    "CAB_12v_ctrl",
+    "CAB_uart",
+    "CAB_usb",
+    "CAB_bus_pan",
+    "BUY_usbc_plug",
+    "CAB_launcher_base",
+    "PRT_base_floor",
+    "PRT_base_partition",
+    "FST_partition_0",
+    "FST_partition_1",
+    "BUY_motorgo_axis",
+    "FST_mg_0",
+    "FST_mg_1",
+    "FST_mg_2",
+    "FST_mg_3",
+    "BUY_buck_12v",
+    "FST_buck_0",
+    "FST_buck_1",
+    "BUY_servo_controller"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    -1.0,
+    -0.25
+   ],
+   "explode": {
+    "FST_floor_0": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_floor_1": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_floor_2": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_floor_3": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_floor_4": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_floor_5": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_floor_6": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_floor_7": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "CAB_12v_in": [
+     0,
+     0,
+     0
+    ],
+    "CAB_12v_mg": [
+     0,
+     0,
+     0
+    ],
+    "CAB_12v_ctrl": [
+     0,
+     0,
+     0
+    ],
+    "CAB_uart": [
+     0,
+     0,
+     0
+    ],
+    "CAB_usb": [
+     0,
+     0,
+     0
+    ],
+    "CAB_bus_pan": [
+     0,
+     0,
+     0
+    ],
+    "BUY_usbc_plug": [
+     0,
+     0,
+     0
+    ],
+    "CAB_launcher_base": [
+     0,
+     0,
+     0
+    ],
+    "PRT_base_floor": [
+     0,
+     0,
+     -1.0
+    ],
+    "PRT_base_partition": [
+     0,
+     0,
+     -1.0
+    ],
+    "FST_partition_0": [
+     0,
+     0,
+     -1.0
+    ],
+    "FST_partition_1": [
+     0,
+     0,
+     -1.0
+    ],
+    "BUY_motorgo_axis": [
+     0,
+     0,
+     -1.0
+    ],
+    "FST_mg_0": [
+     0,
+     0,
+     -1.0
+    ],
+    "FST_mg_1": [
+     0,
+     0,
+     -1.0
+    ],
+    "FST_mg_2": [
+     0,
+     0,
+     -1.0
+    ],
+    "FST_mg_3": [
+     0,
+     0,
+     -1.0
+    ],
+    "BUY_buck_12v": [
+     0,
+     0,
+     -1.0
+    ],
+    "FST_buck_0": [
+     0,
+     0,
+     -1.0
+    ],
+    "FST_buck_1": [
+     0,
+     0,
+     -1.0
+    ],
+    "BUY_servo_controller": [
+     0,
+     0,
+     -1.0
+    ]
+   },
+   "tools": [
+    "2 mm hex",
+    "straight bit",
+    "soldering iron"
+   ],
+   "fasteners": [
+    {
+     "qty": 8,
+     "text": "8 x M3 x 12 countersunk ST, from below.",
+     "spec": "M3 x 12 countersunk ST, from below."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 8 x M3 x 12"
+   },
+   "fields": [
+    {
+     "label": "Do, before the floor closes",
+     "html": "<ul><li>run 12 V (adapter to buck, buck to MotorGo, buck to controller), the UART lead and the USB-C;</li><li>run the <b>pan bus lead</b>: from the controller up the riser, with its U-loop hanging under the hub gear, and up the pan axis. Leave its plug on, push the plug end up through the hub bore and coil it above the turntable;</li><li>run the <b>launcher base lead</b>: from the MotorGo J6/J8 phase pads and its encoder connector, through its own U-loop under the hub gear, up to the hand-over point in the hub bore.</li></ul>"
+    },
+    {
+     "label": "Check",
+     "html": "<ul><li>both U-loops hang free; they are the \u00b190 pan slack;</li><li>turn the turntable to both pan stops: nothing pulls tight or rubs the gears;</li><li>then fit the floor.</li></ul>"
+    }
+   ],
+   "check": "- both U-loops hang free; they are the \u00b190 pan slack; - turn the turntable to both pan stops: nothing pulls tight or rubs the gears; - then fit the floor.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Both U-loops must hang free under the hub gear: they are the \u00b190 pan slack. Turn the turntable to both stops before the floor closes.",
+     "source": "ASSEMBLY 3"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s03_base_turntable_done.png",
+     "key": "s03_base_turntable_done",
+     "scope": "step"
+    }
+   ]
+  },
+  {
+   "index": 10,
+   "id": "6a",
+   "title": "Motor into the nacelle; body on",
+   "group": "Launcher pod (bench)",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "6a",
+     "index": 9,
+     "step": "6a pod on the bench: motor into the nacelle bore (crush ribs), body onto the nacelle plate; motor + nacelle screws from inside the guard; phase leads into the journal bore",
+     "bench": "pod",
+     "merge": null
+    }
+   ],
+   "bench": "pod",
+   "merge": null,
+   "new_objects": [
+    "PRT_nacelle",
+    "PRT_launcher_body",
+    "BUY_motor",
+    "FST_motor_0",
+    "FST_motor_1",
+    "FST_motor_2",
+    "FST_motor_3",
+    "FST_nacelle_0",
+    "FST_nacelle_1",
+    "CAB_phase_0",
+    "CAB_phase_1",
+    "CAB_phase_2"
+   ],
+   "focus_objects": [
+    "PRT_nacelle",
+    "PRT_launcher_body",
+    "BUY_motor",
+    "FST_motor_0",
+    "FST_motor_1",
+    "FST_motor_2",
+    "FST_motor_3",
+    "FST_nacelle_0",
+    "FST_nacelle_1",
+    "CAB_phase_0",
+    "CAB_phase_1",
+    "CAB_phase_2"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    0.35,
+    1.0,
+    0.4
+   ],
+   "explode": {
+    "PRT_nacelle": [
+     0,
+     0,
+     0
+    ],
+    "PRT_launcher_body": [
+     1.2,
+     0,
+     0
+    ],
+    "BUY_motor": [
+     -1.3,
+     0,
+     0
+    ],
+    "FST_motor_0": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_motor_1": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_motor_2": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_motor_3": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_nacelle_0": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_nacelle_1": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "CAB_phase_0": [
+     0,
+     0,
+     0
+    ],
+    "CAB_phase_1": [
+     0,
+     0,
+     0
+    ],
+    "CAB_phase_2": [
+     0,
+     0,
+     0
+    ]
+   },
+   "tools": [
+    "2.5 mm hex / Phillips",
+    "side cutters",
+    "soldering iron",
+    "heat gun"
+   ],
+   "fasteners": [
+    {
+     "qty": 4,
+     "text": "4 x M3 x 10 pan (machine, into the motor face)",
+     "spec": "M3 x 10 pan (machine, into the motor face)"
+    },
+    {
+     "qty": 2,
+     "text": "2 x M3 x 12 pan ST (nacelle to body).",
+     "spec": "M3 x 12 pan ST (nacelle to body)."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 4 x M3 x 10, 2 x M3 x 12"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>push the motor into the nacelle bore (crush ribs; scrape a rib if it's too tight);</li><li>fit the body onto the nacelle plate and drive the 4 motor screws and 2 nacelle screws from inside the guard;</li><li>cut the motor leads to about 55 and solder them to the three 16 AWG extensions, joints staggered along the journal bore, each under 4.8 mm heat-shrink;</li><li>thread the leads out through the hollow journal.</li></ul>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the motor-screw heads sit below the wheel's web plane with daylight. This was 0 mm on attempt 3; the brief now asks for at least 1.5 to anything rotating.</p>"
+    }
+   ],
+   "check": "the motor-screw heads sit below the wheel's web plane with daylight. This was 0 mm on attempt 3; the brief now asks for at least 1.5 to anything rotating.",
+   "paragraphs": [],
+   "warnings": [],
+   "renders": [
+    {
+     "ref": "renders/s06_pod_bench.png",
+     "key": "s06_pod_bench",
+     "scope": "section"
+    },
+    {
+     "ref": "../renders/attempt-7/exploded.png",
+     "key": "exploded",
+     "scope": "section"
+    }
+   ]
+  },
+  {
+   "index": 11,
+   "id": "6b",
+   "title": "Magnet and encoder",
+   "group": "Launcher pod (bench)",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "6b",
+     "index": 10,
+     "step": "6b magnet glued on the rear shaft with the jig (spigot in the 8 mm access hole); Plink on the cap pegs; encoder cap into the bore",
+     "bench": "pod",
+     "merge": null
+    }
+   ],
+   "bench": "pod",
+   "merge": null,
+   "new_objects": [
+    "BUY_magnet",
+    "BUY_plink_encoder",
+    "PRT_encoder_cap",
+    "FST_enc_0",
+    "FST_enc_1",
+    "CAB_encoder"
+   ],
+   "focus_objects": [
+    "BUY_magnet",
+    "BUY_plink_encoder",
+    "PRT_encoder_cap",
+    "FST_enc_0",
+    "FST_enc_1",
+    "CAB_encoder"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    -0.5,
+    1.0,
+    0.4
+   ],
+   "explode": {
+    "BUY_magnet": [
+     -0.8,
+     0,
+     0
+    ],
+    "BUY_plink_encoder": [
+     -1.3,
+     0,
+     0
+    ],
+    "PRT_encoder_cap": [
+     -1.8,
+     0,
+     0
+    ],
+    "FST_enc_0": [
+     -1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_enc_1": [
+     -1.4,
+     -0.0,
+     -0.0
+    ],
+    "CAB_encoder": [
+     0,
+     0,
+     0
+    ]
+   },
+   "tools": [
+    "encoder jig (printed)",
+    "superglue",
+    "2 mm hex"
+   ],
+   "fasteners": [
+    {
+     "qty": 2,
+     "text": "2 x M3 x 12 countersunk ST.",
+     "spec": "M3 x 12 countersunk ST."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 2 x M3 x 12"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>put the magnet in the jig's pocket and the jig spigot in the motor's \u00d88 rear access hole, then glue the magnet to the rear shaft end. Wait 10 min;</li><li>press the Plink onto the encoder cap's pegs, then fit the cap into the bore.</li></ul>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the magnet is centred; the stack's worst case is 0.30 against 0.30. The air gap matches what you set on the rig. Plug in the long JST-SH encoder lead.</p>"
+    }
+   ],
+   "check": "the magnet is centred; the stack's worst case is 0.30 against 0.30. The air gap matches what you set on the rig. Plug in the long JST-SH encoder lead.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Glue the magnet with the printed jig and wait 10 min. The magnet stack's worst case is 0.30 against 0.30.",
+     "source": "ASSEMBLY 6b"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s06_pod_bench.png",
+     "key": "s06_pod_bench",
+     "scope": "section"
+    },
+    {
+     "ref": "../renders/attempt-7/exploded.png",
+     "key": "exploded",
+     "scope": "section"
+    }
+   ]
+  },
+  {
+   "index": 12,
+   "id": "6c",
+   "title": "Nip stud and nip stop",
+   "group": "Launcher pod (bench)",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "6c",
+     "index": 11,
+     "step": "6c hex stud head (M3 x 16 hex head ISO 4017, AF 5.5 x 2.0) dropped into the backplate pocket (captive hex, never driven); v2-A1-01 nip stop pad into its pocket under the muzzle floor, 1 x M3 x 6 up from the skin",
+     "bench": "pod",
+     "merge": null
+    }
+   ],
+   "bench": "pod",
+   "merge": null,
+   "new_objects": [
+    "FST_nip_stud",
+    "PRT_nip_stop",
+    "FST_nipstop"
+   ],
+   "focus_objects": [
+    "FST_nip_stud",
+    "PRT_nip_stop",
+    "FST_nipstop"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    0.6,
+    -0.2
+   ],
+   "explode": {
+    "FST_nip_stud": [
+     -0.0,
+     1.3270859479904173,
+     0.4459179580211639
+    ],
+    "PRT_nip_stop": [
+     0,
+     0,
+     -1.0
+    ],
+    "FST_nipstop": [
+     -0.0,
+     0.08125175014138221,
+     -1.3976402163505552
+    ]
+   },
+   "tools": [
+    "2.5 mm hex"
+   ],
+   "fasteners": [
+    {
+     "qty": 1,
+     "text": "the M3 x 16 hex-head stud (never driven)",
+     "spec": "the M3 x 16 hex-head stud (never driven)"
+    },
+    {
+     "qty": 1,
+     "text": "1 x M3 x 6 socket cap ST.",
+     "spec": "M3 x 6 socket cap ST."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 1 x M3 x 16, 1 x M3 x 6"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>drop the stud head into the hood's hex pocket, flats keyed;</li><li>press the nip stop pad into its pocket under the muzzle floor, top flush, and retain it with the M3 x 6 up from the skin.</li></ul>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the stud doesn't spin in the pocket.</p>"
+    }
+   ],
+   "check": "the stud doesn't spin in the pocket.",
+   "paragraphs": [],
+   "warnings": [],
+   "renders": [
+    {
+     "ref": "renders/s06_pod_bench.png",
+     "key": "s06_pod_bench",
+     "scope": "section"
+    },
+    {
+     "ref": "../renders/attempt-7/exploded.png",
+     "key": "exploded",
+     "scope": "section"
+    }
+   ]
+  },
+  {
+   "index": 13,
+   "id": "6d",
+   "title": "Backplate (hood), journal plate, hinge axle",
+   "group": "Launcher pod (bench)",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "6d",
+     "index": 12,
+     "step": "6d backplate into its bay, journal plate on (3 csk), hinge axle through wall + boss + plate into its trapped nut",
+     "bench": "pod",
+     "merge": null
+    }
+   ],
+   "bench": "pod",
+   "merge": null,
+   "new_objects": [
+    "PRT_hood",
+    "PRT_journal_plate",
+    "FST_jp_0",
+    "FST_jp_1",
+    "FST_jp_2",
+    "FST_hinge",
+    "FST_hinge_nut"
+   ],
+   "focus_objects": [
+    "PRT_hood",
+    "PRT_journal_plate",
+    "FST_jp_0",
+    "FST_jp_1",
+    "FST_jp_2",
+    "FST_hinge",
+    "FST_hinge_nut"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    0.5,
+    -0.6,
+    0.8
+   ],
+   "explode": {
+    "PRT_hood": [
+     1.0,
+     0,
+     0
+    ],
+    "PRT_journal_plate": [
+     1.8,
+     0,
+     0
+    ],
+    "FST_jp_0": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_jp_1": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_jp_2": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_hinge": [
+     -1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_hinge_nut": [
+     1.4,
+     0.0,
+     0.0
+    ]
+   },
+   "tools": [
+    "2 mm hex bit with <b>104 mm of reach</b> (accepted warn)",
+    "2 mm hex",
+    "5.5 mm nut driver"
+   ],
+   "fasteners": [
+    {
+     "qty": 3,
+     "text": "3 x M3 x 12 countersunk ST (journal plate)",
+     "spec": "M3 x 12 countersunk ST (journal plate)"
+    },
+    {
+     "qty": 1,
+     "text": "1 x M3 x 35 countersunk + 1 M3 nut (hinge).",
+     "spec": "M3 x 35 countersunk + 1 M3 nut (hinge)."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 1 x nut, 3 x M3 x 12, 1 x M3 x 35"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>put the hood into its bay and screw on the journal plate. Drive the hinge axle from -X through the wall, the hood boss and the plate into its trapped nut. Do it on the bench; there's no room for the bit later.</p>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the hood swings freely on the axle.</p>"
+    }
+   ],
+   "check": "the hood swings freely on the axle.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "The hinge axle needs a 2 mm hex bit with 104 mm of reach. Drive it here on the bench; there's no room for the bit later.",
+     "source": "ASSEMBLY 6d"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s06_pod_bench.png",
+     "key": "s06_pod_bench",
+     "scope": "section"
+    },
+    {
+     "ref": "../renders/attempt-7/exploded.png",
+     "key": "exploded",
+     "scope": "section"
+    }
+   ]
+  },
+  {
+   "index": 14,
+   "id": "6e",
+   "title": "Gap setting, leaf, nip cover",
+   "group": "Launcher pod (bench)",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "6e",
+     "index": 13,
+     "step": "6e stop sleeve over the stud, thumbwheel onto the stud (set the gap), leaf screwed under the nip cover from outside, cover onto the land",
+     "bench": "pod",
+     "merge": null
+    }
+   ],
+   "bench": "pod",
+   "merge": null,
+   "new_objects": [
+    "PRT_nip_wheel",
+    "FST_tw_nut",
+    "PRT_nip_leaf",
+    "PRT_nip_cover",
+    "FST_leaf_0",
+    "FST_leaf_1",
+    "FST_nipcover_0",
+    "FST_nipcover_1",
+    "PRT_nip_stop_sleeve"
+   ],
+   "focus_objects": [
+    "PRT_nip_wheel",
+    "FST_tw_nut",
+    "PRT_nip_leaf",
+    "PRT_nip_cover",
+    "FST_leaf_0",
+    "FST_leaf_1",
+    "FST_nipcover_0",
+    "FST_nipcover_1",
+    "PRT_nip_stop_sleeve"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    -0.35,
+    0.15
+   ],
+   "explode": {
+    "PRT_nip_wheel": [
+     0.0,
+     -1.14,
+     -0.384
+    ],
+    "FST_tw_nut": [
+     0.0,
+     -1.14,
+     -0.384
+    ],
+    "PRT_nip_leaf": [
+     0.0,
+     -1.615,
+     -0.544
+    ],
+    "PRT_nip_cover": [
+     0.0,
+     -2.1849999999999996,
+     -0.736
+    ],
+    "FST_leaf_0": [
+     -0.0,
+     -1.3270859479904173,
+     -0.4459179580211639
+    ],
+    "FST_leaf_1": [
+     -0.0,
+     -1.3270859479904173,
+     -0.4459179580211639
+    ],
+    "FST_nipcover_0": [
+     -0.0,
+     -1.3270859479904173,
+     -0.4459179580211639
+    ],
+    "FST_nipcover_1": [
+     -0.0,
+     -1.3270859479904173,
+     -0.4459179580211639
+    ],
+    "PRT_nip_stop_sleeve": [
+     0.0,
+     -0.6649999999999999,
+     -0.22399999999999998
+    ]
+   },
+   "tools": [
+    "2 mm hex",
+    "2.5 mm hex"
+   ],
+   "fasteners": [
+    {
+     "qty": 2,
+     "text": "2 x M3 x 10 countersunk ST (leaf)",
+     "spec": "M3 x 10 countersunk ST (leaf)"
+    },
+    {
+     "qty": 2,
+     "text": "2 x M3 x 14 socket cap ST (cover)",
+     "spec": "M3 x 14 socket cap ST (cover)"
+    },
+    {
+     "qty": 1,
+     "text": "the thumbwheel's captive M3 nut (superglue it into its trap first).",
+     "spec": "the thumbwheel's captive M3 nut (superglue it into its trap first)."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 1 x nut, 2 x M3 x 10, 2 x M3 x 14"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>slide the stop sleeve over the stud, then thread the thumbwheel on;</li><li>screw the leaf under the nip cover from outside;</li><li>fit the cover onto its land.</li></ul>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>with the cover on, a fingertip rolls the thumbwheel through the 22 x 8.3 slot between its two printed stops, gap 6.2..7.0. The spare leaf goes in the bag, unloaded, as the creep reference.</p>"
+    }
+   ],
+   "check": "with the cover on, a fingertip rolls the thumbwheel through the 22 x 8.3 slot between its two printed stops, gap 6.2..7.0. The spare leaf goes in the bag, unloaded, as the creep reference.",
+   "paragraphs": [],
+   "warnings": [],
+   "renders": [
+    {
+     "ref": "renders/s06_pod_bench.png",
+     "key": "s06_pod_bench",
+     "scope": "section"
+    },
+    {
+     "ref": "../renders/attempt-7/exploded.png",
+     "key": "exploded",
+     "scope": "section"
+    }
+   ]
+  },
+  {
+   "index": 15,
+   "id": "6f",
+   "title": "Tape and flywheel",
+   "group": "Launcher pod (bench)",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "6f",
+     "index": 14,
+     "step": "6f flywheel onto the D-shaft, two pinch bolts through their nuts (L-key from +X)",
+     "bench": "pod",
+     "merge": null
+    }
+   ],
+   "bench": "pod",
+   "merge": null,
+   "new_objects": [
+    "PRT_flywheel",
+    "FST_fw_bolt_0",
+    "FST_fw_bolt_1",
+    "FST_fw_nut_0",
+    "FST_fw_nut_1",
+    "BUY_tape"
+   ],
+   "focus_objects": [
+    "PRT_flywheel",
+    "FST_fw_bolt_0",
+    "FST_fw_bolt_1",
+    "FST_fw_nut_0",
+    "FST_fw_nut_1",
+    "BUY_tape"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    0.9,
+    0.6
+   ],
+   "explode": {
+    "PRT_flywheel": [
+     1.4,
+     0,
+     0
+    ],
+    "FST_fw_bolt_0": [
+     -0.0,
+     -1.4,
+     -0.0
+    ],
+    "FST_fw_bolt_1": [
+     -0.0,
+     1.4,
+     -0.0
+    ],
+    "FST_fw_nut_0": [
+     0.0,
+     1.4,
+     0.0
+    ],
+    "FST_fw_nut_1": [
+     0.0,
+     -1.4,
+     0.0
+    ],
+    "BUY_tape": [
+     1.4,
+     0,
+     0
+    ]
+   },
+   "tools": [
+    "knife",
+    "calipers",
+    "2.5 mm L-key"
+   ],
+   "fasteners": [
+    {
+     "qty": 2,
+     "text": "2 x M3 x 20 socket cap + 2 M3 nuts (pinch bolts).",
+     "spec": "M3 x 20 socket cap + 2 M3 nuts (pinch bolts)."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 2 x nut, 2 x M3 x 20"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>wrap the 1 in tape once round the land, sticky side down;</li><li>cut both ends square and <b>butt-join them, no overlap</b>;</li><li>trim both edges with the knife against the flanges to the 13.8 land;</li><li>slide the wheel onto the D-shaft and tighten the pinch bolts with the L-key from +X.</li></ul>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>caliper the tape at three places and at the seam: <b>0.5 or less</b> (<code>TAPE_T</code>). An overlap doubles it and eats the 0.098 entry-arc margin, so re-wrap if needed. The wheel spins with no rub; it is 1.594 from the guard.</p>"
+    }
+   ],
+   "check": "caliper the tape at three places and at the seam: **0.5 or less** (`TAPE_T`). An overlap doubles it and eats the 0.098 entry-arc margin, so re-wrap if needed. The wheel spins with no rub; it is 1.594 from the guard.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "critical",
+     "text": "Butt-join the tape, no overlap. It must caliper 0.5 or less (TAPE_T) at three places and at the seam: an overlap doubles it and eats the 0.098 entry-arc margin.",
+     "source": "ASSEMBLY 6f, MEASURE_FIRST 0"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s06_pod_bench.png",
+     "key": "s06_pod_bench",
+     "scope": "section"
+    },
+    {
+     "ref": "../renders/attempt-7/exploded.png",
+     "key": "exploded",
+     "scope": "section"
+    }
+   ]
+  },
+  {
+   "index": 16,
+   "id": "6g",
+   "title": "Wheel-side cover",
+   "group": "Launcher pod (bench)",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "6g",
+     "index": 15,
+     "step": "6g wheel-side cover (4 csk)",
+     "bench": "pod",
+     "merge": null
+    }
+   ],
+   "bench": "pod",
+   "merge": null,
+   "new_objects": [
+    "PRT_launcher_cover",
+    "FST_cover_0",
+    "FST_cover_1",
+    "FST_cover_2",
+    "FST_cover_3"
+   ],
+   "focus_objects": [
+    "PRT_launcher_cover",
+    "FST_cover_0",
+    "FST_cover_1",
+    "FST_cover_2",
+    "FST_cover_3"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    0.9,
+    0.5
+   ],
+   "explode": {
+    "PRT_launcher_cover": [
+     1.2,
+     0,
+     0
+    ],
+    "FST_cover_0": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_cover_1": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_cover_2": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_cover_3": [
+     1.4,
+     -0.0,
+     -0.0
+    ]
+   },
+   "tools": [
+    "2 mm hex"
+   ],
+   "fasteners": [
+    {
+     "qty": 4,
+     "text": "4 x M3 x 12 countersunk ST.",
+     "spec": "M3 x 12 countersunk ST."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 4 x M3 x 12"
+   },
+   "fields": [
+    {
+     "label": "Check",
+     "html": "<p>spin the wheel by hand: silent.</p>"
+    }
+   ],
+   "check": "spin the wheel by hand: silent.",
+   "paragraphs": [],
+   "warnings": [],
+   "renders": [
+    {
+     "ref": "renders/s06_pod_bench.png",
+     "key": "s06_pod_bench",
+     "scope": "section"
+    },
+    {
+     "ref": "../renders/attempt-7/exploded.png",
+     "key": "exploded",
+     "scope": "section"
+    }
+   ]
+  },
+  {
+   "index": 17,
+   "id": "7",
+   "title": "Pod into the post U-slots",
+   "group": "Pod, tilt and beam",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "7",
+     "index": 16,
+     "step": "7 pod drops into the post U-slots, held nose-up about 20 deg (v2-A1-06)",
+     "bench": null,
+     "merge": "pod"
+    }
+   ],
+   "bench": null,
+   "merge": "pod",
+   "new_objects": [],
+   "focus_objects": [
+    "PRT_nacelle",
+    "PRT_launcher_body",
+    "BUY_motor",
+    "FST_motor_0",
+    "FST_motor_1",
+    "FST_motor_2",
+    "FST_motor_3",
+    "FST_nacelle_0",
+    "FST_nacelle_1",
+    "CAB_phase_0",
+    "CAB_phase_1",
+    "CAB_phase_2",
+    "BUY_magnet",
+    "BUY_plink_encoder",
+    "PRT_encoder_cap",
+    "FST_enc_0",
+    "FST_enc_1",
+    "CAB_encoder",
+    "FST_nip_stud",
+    "PRT_nip_stop",
+    "FST_nipstop",
+    "PRT_hood",
+    "PRT_journal_plate",
+    "FST_jp_0",
+    "FST_jp_1",
+    "FST_jp_2",
+    "FST_hinge",
+    "FST_hinge_nut",
+    "PRT_nip_wheel",
+    "FST_tw_nut",
+    "PRT_nip_leaf",
+    "PRT_nip_cover",
+    "FST_leaf_0",
+    "FST_leaf_1",
+    "FST_nipcover_0",
+    "FST_nipcover_1",
+    "PRT_nip_stop_sleeve",
+    "PRT_flywheel",
+    "FST_fw_bolt_0",
+    "FST_fw_bolt_1",
+    "FST_fw_nut_0",
+    "FST_fw_nut_1",
+    "BUY_tape",
+    "PRT_launcher_cover",
+    "FST_cover_0",
+    "FST_cover_1",
+    "FST_cover_2",
+    "FST_cover_3"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    1.2,
+    0.3
+   ],
+   "explode": {
+    "PRT_nacelle": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_launcher_body": [
+     0,
+     0,
+     1.0
+    ],
+    "BUY_motor": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_motor_0": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_motor_1": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_motor_2": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_motor_3": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_nacelle_0": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_nacelle_1": [
+     0,
+     0,
+     1.0
+    ],
+    "CAB_phase_0": [
+     0,
+     0,
+     1.0
+    ],
+    "CAB_phase_1": [
+     0,
+     0,
+     1.0
+    ],
+    "CAB_phase_2": [
+     0,
+     0,
+     1.0
+    ],
+    "BUY_magnet": [
+     0,
+     0,
+     1.0
+    ],
+    "BUY_plink_encoder": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_encoder_cap": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_enc_0": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_enc_1": [
+     0,
+     0,
+     1.0
+    ],
+    "CAB_encoder": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_nip_stud": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_nip_stop": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_nipstop": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_hood": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_journal_plate": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_jp_0": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_jp_1": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_jp_2": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_hinge": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_hinge_nut": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_nip_wheel": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_tw_nut": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_nip_leaf": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_nip_cover": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_leaf_0": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_leaf_1": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_nipcover_0": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_nipcover_1": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_nip_stop_sleeve": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_flywheel": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_fw_bolt_0": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_fw_bolt_1": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_fw_nut_0": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_fw_nut_1": [
+     0,
+     0,
+     1.0
+    ],
+    "BUY_tape": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_launcher_cover": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_cover_0": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_cover_1": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_cover_2": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_cover_3": [
+     0,
+     0,
+     1.0
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No fasteners in this step."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>hold the pod nose-up about 20 deg and lower it straight down until both journals seat in the U-slots, then level it. Route the phase and encoder bundle out of the left journal.</p>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>both journals sit fully down in their slots. Lifting it out the same way clears with 0.2 [slide_out v2-A1-06].</p>"
+    }
+   ],
+   "check": "both journals sit fully down in their slots. Lifting it out the same way clears with 0.2 [slide_out v2-A1-06].",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Lower the pod nose-up about 20 deg, straight down, until both journals seat in the U-slots.",
+     "source": "ASSEMBLY 7"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 18,
+   "id": "8a, 8b",
+   "title": "Tilt drive, bench",
+   "group": "Pod, tilt and beam",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "8a",
+     "index": 17,
+     "step": "8a tilt drive on the bench: horn screwed to the adapter",
+     "bench": "tiltdrive",
+     "merge": null
+    },
+    {
+     "label": "8b",
+     "index": 18,
+     "step": "8b tilt drive on the bench: adapter + horn onto the servo spline, centre screw through the 6.5 key hole",
+     "bench": "tiltdrive",
+     "merge": null
+    }
+   ],
+   "bench": "tiltdrive",
+   "merge": null,
+   "new_objects": [
+    "PRT_tilt_horn_adapter",
+    "BUY_horn_tilt",
+    "FST_tilt_horn_0",
+    "FST_tilt_horn_1",
+    "FST_tilt_horn_2",
+    "FST_tilt_horn_3",
+    "BUY_servo_tilt",
+    "FST_tilt_horn_ctr"
+   ],
+   "focus_objects": [
+    "PRT_tilt_horn_adapter",
+    "BUY_horn_tilt",
+    "FST_tilt_horn_0",
+    "FST_tilt_horn_1",
+    "FST_tilt_horn_2",
+    "FST_tilt_horn_3",
+    "BUY_servo_tilt",
+    "FST_tilt_horn_ctr"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    0.5,
+    1.0,
+    0.5
+   ],
+   "explode": {
+    "PRT_tilt_horn_adapter": [
+     0,
+     0,
+     0
+    ],
+    "BUY_horn_tilt": [
+     1.0,
+     0,
+     0
+    ],
+    "FST_tilt_horn_0": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_tilt_horn_1": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_tilt_horn_2": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_tilt_horn_3": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "BUY_servo_tilt": [
+     2.2,
+     0,
+     0
+    ],
+    "FST_tilt_horn_ctr": [
+     -1.4,
+     -0.0,
+     -0.0
+    ]
+   },
+   "tools": [
+    "Phillips #0",
+    "\u00d82 drill",
+    "2.5 mm hex"
+   ],
+   "fasteners": [
+    {
+     "qty": 4,
+     "text": "4 x M2 x 8 pan (horn to adapter)",
+     "spec": "M2 x 8 pan (horn to adapter)"
+    },
+    {
+     "qty": 1,
+     "text": "1 x M3 x 6 socket cap (centre screw, through the \u00d86.5 key hole).",
+     "spec": "M3 x 6 socket cap (centre screw, through the \u00d86.5 key hole)."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 4 x M2 x 8, 1 x M3 x 6"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>fix the horn into the tilt horn adapter, drilling the dimples through the horn. Fit the adapter to the tilt servo's spline <b>with the servo at mid</b>, and fit the centre screw.</p>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the 12 AF hex key on the adapter is square to the servo body.</p>"
+    }
+   ],
+   "check": "the 12 AF hex key on the adapter is square to the servo body.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Fit the adapter to the tilt servo's spline with the servo at mid.",
+     "source": "ASSEMBLY 8a, 8b"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 19,
+   "id": "8",
+   "title": "Tilt servo into the right post; post cover",
+   "group": "Pod, tilt and beam",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "8",
+     "index": 19,
+     "step": "8 tilt servo + horn adapter slide in -X through the right post (key into the journal-plate socket), cover",
+     "bench": null,
+     "merge": "tiltdrive"
+    }
+   ],
+   "bench": null,
+   "merge": "tiltdrive",
+   "new_objects": [
+    "PRT_post_R_cover",
+    "FST_postcover_0",
+    "FST_postcover_1",
+    "FST_postcover_2",
+    "FST_postcover_3",
+    "CAB_bus_tilt"
+   ],
+   "focus_objects": [
+    "PRT_post_R_cover",
+    "FST_postcover_0",
+    "FST_postcover_1",
+    "FST_postcover_2",
+    "FST_postcover_3",
+    "CAB_bus_tilt",
+    "PRT_tilt_horn_adapter",
+    "BUY_horn_tilt",
+    "FST_tilt_horn_0",
+    "FST_tilt_horn_1",
+    "FST_tilt_horn_2",
+    "FST_tilt_horn_3",
+    "BUY_servo_tilt",
+    "FST_tilt_horn_ctr"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    0.6,
+    1.0,
+    0.4
+   ],
+   "explode": {
+    "PRT_post_R_cover": [
+     1.6,
+     0,
+     0
+    ],
+    "FST_postcover_0": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_postcover_1": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_postcover_2": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_postcover_3": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "CAB_bus_tilt": [
+     0,
+     0,
+     0
+    ],
+    "PRT_tilt_horn_adapter": [
+     1.0,
+     0,
+     0
+    ],
+    "BUY_horn_tilt": [
+     1.0,
+     0,
+     0
+    ],
+    "FST_tilt_horn_0": [
+     1.0,
+     0,
+     0
+    ],
+    "FST_tilt_horn_1": [
+     1.0,
+     0,
+     0
+    ],
+    "FST_tilt_horn_2": [
+     1.0,
+     0,
+     0
+    ],
+    "FST_tilt_horn_3": [
+     1.0,
+     0,
+     0
+    ],
+    "BUY_servo_tilt": [
+     1.0,
+     0,
+     0
+    ],
+    "FST_tilt_horn_ctr": [
+     1.0,
+     0,
+     0
+    ]
+   },
+   "tools": [
+    "2.5 mm hex",
+    "straight bit"
+   ],
+   "fasteners": [
+    {
+     "qty": 4,
+     "text": "4 x M3 x 14 socket cap ST (post cover).",
+     "spec": "M3 x 14 socket cap ST (post cover)."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 4 x M3 x 14"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>with the pod level (tilt 0), slide the servo, horn and adapter in -X through the right post until the hex key enters the journal plate's socket. Lead the tilt bus lead down the post channel to the turntable groove, plug on. Fit the post cover.</p>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the pod doesn't move unless the servo turns: there is no free play at the key.</p>"
+    }
+   ],
+   "check": "the pod doesn't move unless the servo turns: there is no free play at the key.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Slide the servo in with the pod level (tilt 0).",
+     "source": "ASSEMBLY 8"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s08_pod_in_posts_tilt_servo.png",
+     "key": "s08_pod_in_posts_tilt_servo",
+     "scope": "step"
+    }
+   ]
+  },
+  {
+   "index": 20,
+   "id": "9",
+   "title": "Beam",
+   "group": "Pod, tilt and beam",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "9",
+     "index": 20,
+     "step": "9 beam closes the journal U-slots",
+     "bench": null,
+     "merge": null
+    }
+   ],
+   "bench": null,
+   "merge": null,
+   "new_objects": [
+    "PRT_beam",
+    "FST_beam_0",
+    "FST_beam_1",
+    "FST_beam_2",
+    "FST_beam_3",
+    "FST_beam_4",
+    "FST_beam_5",
+    "FST_beam_6",
+    "CAB_launcher_bundle"
+   ],
+   "focus_objects": [
+    "PRT_beam",
+    "FST_beam_0",
+    "FST_beam_1",
+    "FST_beam_2",
+    "FST_beam_3",
+    "FST_beam_4",
+    "FST_beam_5",
+    "FST_beam_6",
+    "CAB_launcher_bundle"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    1.2,
+    0.4
+   ],
+   "explode": {
+    "PRT_beam": [
+     0,
+     0,
+     1
+    ],
+    "FST_beam_0": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_beam_1": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_beam_2": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_beam_3": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_beam_4": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_beam_5": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_beam_6": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "CAB_launcher_bundle": [
+     0,
+     0,
+     0
+    ]
+   },
+   "tools": [
+    "2 mm hex",
+    "straight bit"
+   ],
+   "fasteners": [
+    {
+     "qty": 7,
+     "text": "7 x M3 x 16 countersunk ST.",
+     "spec": "M3 x 16 countersunk ST."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 7 x M3 x 16"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>close the U-slots with the beam. Lay the launcher bundle (phases + encoder, in the 6 mm sleeve) down the left post channel to the turntable groove.</p>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the beam sits flat on both posts and the journals can't lift. <b>Don't swing the pod by hand from here on:</b> that back-drives the tilt servo's gears. The tilt range is checked under power at step 15 (designed clearances: beam to pod 4.9 or more, spout to drum 3.0, printed stops at -3 and +46).</p>"
+    }
+   ],
+   "check": "the beam sits flat on both posts and the journals can't lift. **Don't swing the pod by hand from here on:** that back-drives the tilt servo's gears. The tilt range is checked under power at step 15 (designed clearances: beam to pod 4.9 or more, spout to drum 3.0, printed stops at -3 and +46).",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "critical",
+     "text": "Don't swing the pod by hand from here on: that back-drives the tilt servo's gears. The tilt range is checked under power at step 15.",
+     "source": "ASSEMBLY 9"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 21,
+   "id": "10a",
+   "title": "Feeder drive, bench",
+   "group": "Feeder",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "10a",
+     "index": 21,
+     "step": "10a feeder drive on the bench: horn screwed into the pinion recess (M2 x 8)",
+     "bench": "feeder",
+     "merge": null
+    }
+   ],
+   "bench": "feeder",
+   "merge": null,
+   "new_objects": [
+    "PRT_feeder_pinion",
+    "BUY_horn_feeder",
+    "FST_fhorn_0",
+    "FST_fhorn_1",
+    "FST_fhorn_2",
+    "FST_fhorn_3"
+   ],
+   "focus_objects": [
+    "PRT_feeder_pinion",
+    "BUY_horn_feeder",
+    "FST_fhorn_0",
+    "FST_fhorn_1",
+    "FST_fhorn_2",
+    "FST_fhorn_3"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    -0.6,
+    1.0,
+    0.35
+   ],
+   "explode": {
+    "PRT_feeder_pinion": [
+     0,
+     0,
+     0
+    ],
+    "BUY_horn_feeder": [
+     0,
+     0,
+     1.2
+    ],
+    "FST_fhorn_0": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_fhorn_1": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_fhorn_2": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_fhorn_3": [
+     -0.0,
+     -0.0,
+     1.4
+    ]
+   },
+   "tools": [
+    "Phillips #0",
+    "\u00d82 drill"
+   ],
+   "fasteners": [
+    {
+     "qty": 4,
+     "text": "4 x M2 x 8 pan.",
+     "spec": "M2 x 8 pan."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 4 x M2 x 8"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>fix the horn into the feeder pinion's recess, drilling through the horn as the template.</p>"
+    }
+   ],
+   "check": "",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Measure first (item 3): check the horn's bolt circle before drilling.",
+     "source": "MEASURE_FIRST 3"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 22,
+   "id": "10b",
+   "title": "Crown upside down: pinion, then servo",
+   "group": "Feeder",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "10b",
+     "index": 22,
+     "step": "10b crown upside down: pinion + horn in from below; then servo #3 into its pocket from the top, spline pressed into the horn (v2-A1-04: no centre screw; the lobe cover in 10d holds the servo down)",
+     "bench": "feeder",
+     "merge": null
+    }
+   ],
+   "bench": "feeder",
+   "merge": null,
+   "new_objects": [
+    "PRT_feeder_crown",
+    "BUY_servo_feeder"
+   ],
+   "focus_objects": [
+    "PRT_feeder_crown",
+    "BUY_servo_feeder"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    -0.6,
+    1.0,
+    0.35
+   ],
+   "explode": {
+    "PRT_feeder_crown": [
+     0,
+     0,
+     0
+    ],
+    "BUY_servo_feeder": [
+     0,
+     0,
+     1.4
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No fasteners in this step."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>put the pinion and horn in from below. Then drop servo #3 into its pocket from the top, spline pressed into the horn, <b>servo at mid</b>. There is no centre screw: the lobe cover holds the servo down.</p>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the pinion turns with the servo and doesn't fall out.</p>"
+    }
+   ],
+   "check": "the pinion turns with the servo and doesn't fall out.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Servo #3 goes in at mid. There is no centre screw: the lobe cover holds it down.",
+     "source": "ASSEMBLY 10b"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 23,
+   "id": "10c",
+   "title": "Feeder disc and floor plate",
+   "group": "Feeder",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "10c",
+     "index": 23,
+     "step": "10c disc in from below (band meshes with the pinion), floor plate on with 2 csk from below",
+     "bench": "feeder",
+     "merge": null
+    }
+   ],
+   "bench": "feeder",
+   "merge": null,
+   "new_objects": [
+    "PRT_feeder_disc",
+    "PRT_feeder_housing",
+    "FST_fplate_0",
+    "FST_fplate_1"
+   ],
+   "focus_objects": [
+    "PRT_feeder_disc",
+    "PRT_feeder_housing",
+    "FST_fplate_0",
+    "FST_fplate_1"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    0.7,
+    1.0,
+    -0.25
+   ],
+   "explode": {
+    "PRT_feeder_disc": [
+     0,
+     0,
+     -1.0
+    ],
+    "PRT_feeder_housing": [
+     0,
+     0,
+     -1.8
+    ],
+    "FST_fplate_0": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_fplate_1": [
+     -0.0,
+     -0.0,
+     -1.4
+    ]
+   },
+   "tools": [
+    "2 mm hex"
+   ],
+   "fasteners": [
+    {
+     "qty": 2,
+     "text": "2 x M3 x 8 countersunk ST (from below).",
+     "spec": "M3 x 8 countersunk ST (from below)."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 2 x M3 x 8"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>fit the disc from below with its gear band meshed on the pinion, in the <b>park</b> position: solid over the outlet. Then fit the floor plate.</p>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>looking up through the outlet you see solid disc, not a pocket.</p>"
+    }
+   ],
+   "check": "looking up through the outlet you see solid disc, not a pocket.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Fit the disc in the park position: solid disc over the outlet.",
+     "source": "ASSEMBLY 10c"
+    },
+    {
+     "level": "warning",
+     "text": "Measure first (item 2): POCKET_D comes from the pocket coupon, before plate 3.",
+     "source": "MEASURE_FIRST 2"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 24,
+   "id": "10d",
+   "title": "Feeder upright: bus lead and lobe cover",
+   "group": "Feeder",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "10d",
+     "index": 24,
+     "step": "10d feeder upright: bus into the channel, servo cover (2 csk); the feeder bus hangs free until 11a (v2-A6-01)",
+     "bench": "feeder",
+     "merge": null
+    }
+   ],
+   "bench": "feeder",
+   "merge": null,
+   "new_objects": [
+    "PRT_feeder_cover",
+    "FST_fcover_0",
+    "FST_fcover_1",
+    "CAB_bus_feeder"
+   ],
+   "focus_objects": [
+    "PRT_feeder_cover",
+    "FST_fcover_0",
+    "FST_fcover_1",
+    "CAB_bus_feeder"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    -0.7,
+    1.0,
+    0.35
+   ],
+   "explode": {
+    "PRT_feeder_cover": [
+     0,
+     0,
+     1
+    ],
+    "FST_fcover_0": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_fcover_1": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "CAB_bus_feeder": [
+     0,
+     0,
+     0
+    ]
+   },
+   "tools": [
+    "2 mm hex"
+   ],
+   "fasteners": [
+    {
+     "qty": 2,
+     "text": "2 x M3 x 12 countersunk ST.",
+     "spec": "M3 x 12 countersunk ST."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 2 x M3 x 12"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>lay the feeder bus lead in its channel and fit the lobe cover. Leave the lead's plug end free; it is spliced at 11a.</p>"
+    }
+   ],
+   "check": "",
+   "paragraphs": [],
+   "warnings": [],
+   "renders": []
+  },
+  {
+   "index": 25,
+   "id": "11",
+   "title": "Feeder onto the beam",
+   "group": "Feeder",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "11",
+     "index": 25,
+     "step": "11 feeder onto the beam",
+     "bench": null,
+     "merge": "feeder"
+    }
+   ],
+   "bench": null,
+   "merge": "feeder",
+   "new_objects": [
+    "FST_feedmount_0",
+    "FST_feedmount_1",
+    "FST_feedmount_2",
+    "FST_feedmount_3"
+   ],
+   "focus_objects": [
+    "FST_feedmount_0",
+    "FST_feedmount_1",
+    "FST_feedmount_2",
+    "FST_feedmount_3",
+    "PRT_feeder_pinion",
+    "BUY_horn_feeder",
+    "FST_fhorn_0",
+    "FST_fhorn_1",
+    "FST_fhorn_2",
+    "FST_fhorn_3",
+    "PRT_feeder_crown",
+    "BUY_servo_feeder",
+    "PRT_feeder_disc",
+    "PRT_feeder_housing",
+    "FST_fplate_0",
+    "FST_fplate_1",
+    "PRT_feeder_cover",
+    "FST_fcover_0",
+    "FST_fcover_1",
+    "CAB_bus_feeder"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    1.1,
+    0.35
+   ],
+   "explode": {
+    "FST_feedmount_0": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_feedmount_1": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_feedmount_2": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "FST_feedmount_3": [
+     -0.0,
+     -0.0,
+     -1.4
+    ],
+    "PRT_feeder_pinion": [
+     0,
+     0,
+     1.0
+    ],
+    "BUY_horn_feeder": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_fhorn_0": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_fhorn_1": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_fhorn_2": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_fhorn_3": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_feeder_crown": [
+     0,
+     0,
+     1.0
+    ],
+    "BUY_servo_feeder": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_feeder_disc": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_feeder_housing": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_fplate_0": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_fplate_1": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_feeder_cover": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_fcover_0": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_fcover_1": [
+     0,
+     0,
+     1.0
+    ],
+    "CAB_bus_feeder": [
+     0,
+     0,
+     1.0
+    ]
+   },
+   "tools": [
+    "2 mm hex straight bit <b>and</b> a 2 mm L-key; pod at tilt 0"
+   ],
+   "fasteners": [
+    {
+     "qty": 4,
+     "text": "4 x M3 x 16 countersunk ST, up through the beam into the crown.",
+     "spec": "M3 x 16 countersunk ST, up through the beam into the crown."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 4 x M3 x 16"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>(-36, -21): straight bit, 58 mm reach;</li><li>(-36, +21): the L-key (the nacelle blocks a straight bit);</li><li>the (34, \u00b120) pair: the L-key.</li><li>Feed the feeder bus lead down the left post channel to the groove.</li></ul>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the spout keeps 3.0 to the pod drum through the full tilt range.</p>"
+    }
+   ],
+   "check": "the spout keeps 3.0 to the pod drum through the full tilt range.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Pod at tilt 0. Three of the four screws need the 2 mm L-key: the nacelle blocks a straight bit.",
+     "source": "ASSEMBLY 11"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s11_feeder_on_beam.png",
+     "key": "s11_feeder_on_beam",
+     "scope": "step"
+    }
+   ]
+  },
+  {
+   "index": 26,
+   "id": "11a.0",
+   "title": "Free the pod and set it on the 45 deg prop (new after review 7)",
+   "group": "Bus splice and groove cap",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "TOOL_tilt45_prop is a printed tool, not a design part: its placed mesh comes from the scratch blend tools/tilt45_prop.py --blend writes (the one the step renders used). The post cover and its 4 screws are hidden and the tilt servo, horn and adapter are shifted +X 10, as in the step render."
+   ],
+   "assembly_order": [],
+   "bench": null,
+   "merge": null,
+   "new_objects": [],
+   "focus_objects": [
+    "TOOL_tilt45_prop",
+    "BUY_servo_tilt",
+    "BUY_horn_tilt",
+    "PRT_tilt_horn_adapter"
+   ],
+   "extra_objects": [
+    "TOOL_tilt45_prop"
+   ],
+   "hide_objects": [
+    "PRT_post_R_cover",
+    "FST_postcover_0",
+    "FST_postcover_1",
+    "FST_postcover_2",
+    "FST_postcover_3"
+   ],
+   "shift": {
+    "objects": [
+     "BUY_servo_tilt",
+     "BUY_horn_tilt",
+     "PRT_tilt_horn_adapter",
+     "FST_tilt_horn_0",
+     "FST_tilt_horn_1",
+     "FST_tilt_horn_2",
+     "FST_tilt_horn_3",
+     "FST_tilt_horn_ctr"
+    ],
+    "mm": [
+     10,
+     0,
+     0
+    ]
+   },
+   "pose": {
+    "pan": 0,
+    "tilt": 45
+   },
+   "view": [
+    1.0,
+    1.0,
+    0.5
+   ],
+   "explode": {
+    "TOOL_tilt45_prop": [
+     0,
+     1.4,
+     0
+    ],
+    "BUY_servo_tilt": [
+     0,
+     0,
+     0
+    ],
+    "BUY_horn_tilt": [
+     0,
+     0,
+     0
+    ],
+    "PRT_tilt_horn_adapter": [
+     0,
+     0,
+     0
+    ]
+   },
+   "tools": [
+    "2.5 mm hex",
+    "printed <code>tilt45_prop</code>"
+   ],
+   "fasteners": [
+    {
+     "qty": 4,
+     "text": "remove the 4 x M3 x 14 from the post cover.",
+     "spec": "remove the 4 x M3 x 14 from the post cover."
+    }
+   ],
+   "fastener_check": {
+    "state": "na",
+    "text": "removes the 4 x M3 x 14 post-cover screws from step 8"
+   },
+   "fields": [
+    {
+     "label": "Why",
+     "html": "<p>the tilt servo can't be powered yet: its lead isn't spliced and the battery goes in at step 14. Forcing the pod round would back-drive the servo's gears.</p>"
+    },
+    {
+     "label": "Do",
+     "html": "<ol><li>Take the right post cover off (+X).</li><li>Slide the tilt servo, horn and adapter out +X about 10 mm. The hex key leaves its socket after 6.5. <b>Don't turn the servo output while it's out.</b></li><li>The pod swings free; unpowered it falls nose-down to the -3 stop. Lift the nose to the +46 stop and slide the prop in on the turntable from the front: the tall pad under the nip cover, the low foot along the turntable to the right post's front face.</li><li>Let the pod settle onto the pad.</li></ol>"
+    },
+    {
+     "label": "Check",
+     "html": "<ul><li>the pod sits steady at 45 with your hands off;</li><li>the pad bears on the nip cover's flat underside, not on the thumbwheel (8.5 clear), so the gap setting is untouched;</li><li>the prop is 8.5 from where the cap goes. Measured in a scratch model with the prop added: 6/6 cap screws take a straight bit at 14 with it in place.</li></ul>"
+    }
+   ],
+   "check": "- the pod sits steady at 45 with your hands off; - the pad bears on the nip cover's flat underside, not on the thumbwheel (8.5 clear), so the gap setting is untouched; - the prop is 8.5 from where the cap goes. Measured in a scratch model with the prop added: 6/6 cap screws take a straight bit at 14 with it in place.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "critical",
+     "text": "The tilt servo can't be powered yet. Don't force the pod round: that back-drives the servo's gears. Free it by sliding the servo out instead.",
+     "source": "ASSEMBLY 11a.0"
+    },
+    {
+     "level": "warning",
+     "text": "Don't turn the servo output while it's out, or the key won't go back in at the same flat.",
+     "source": "ASSEMBLY 11a.0"
+    },
+    {
+     "level": "warning",
+     "text": "The prop's pad must bear on the nip cover's flat underside, not the thumbwheel (8.5 clear), so the gap setting is untouched.",
+     "source": "ASSEMBLY 11a.0"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s11a0_pod_on_45_prop.png",
+     "key": "s11a0_pod_on_45_prop",
+     "scope": "step"
+    },
+    {
+     "ref": "renders/s11a0_prop_closeup.png",
+     "key": "s11a0_prop_closeup",
+     "scope": "step"
+    }
+   ]
+  },
+  {
+   "index": 27,
+   "id": "11a.1 to 11a.9",
+   "title": "Splice and cap",
+   "group": "Bus splice and groove cap",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "11a",
+     "index": 26,
+     "step": "11a pod at tilt 45, groove cap still off (v2-A6-01): tilt / feeder bus leads into the turntable groove; pan lead pulled up the hub bore; 3-way splice soldered and heat-shrunk above the turntable, then lowered into the hub bore to z 74 at az 35 (BUY_bus_junction, BOM 14a, with the PIV_pan tail of the pan lead, CAB_bus_pan_tail); groove cap on (6 x M3 x 10 csk)",
+     "bench": null,
+     "merge": null
+    }
+   ],
+   "bench": null,
+   "merge": null,
+   "new_objects": [
+    "BUY_bus_junction",
+    "CAB_bus_pan_tail",
+    "PRT_groove_cap",
+    "FST_gcap_0",
+    "FST_gcap_1",
+    "FST_gcap_2",
+    "FST_gcap_3",
+    "FST_gcap_4",
+    "FST_gcap_5"
+   ],
+   "focus_objects": [
+    "BUY_bus_junction",
+    "CAB_bus_pan_tail",
+    "PRT_groove_cap",
+    "FST_gcap_0",
+    "FST_gcap_1",
+    "FST_gcap_2",
+    "FST_gcap_3",
+    "FST_gcap_4",
+    "FST_gcap_5"
+   ],
+   "extra_objects": [
+    "TOOL_tilt45_prop"
+   ],
+   "hide_objects": [
+    "PRT_post_R_cover",
+    "FST_postcover_0",
+    "FST_postcover_1",
+    "FST_postcover_2",
+    "FST_postcover_3"
+   ],
+   "shift": {
+    "objects": [
+     "BUY_servo_tilt",
+     "BUY_horn_tilt",
+     "PRT_tilt_horn_adapter",
+     "FST_tilt_horn_0",
+     "FST_tilt_horn_1",
+     "FST_tilt_horn_2",
+     "FST_tilt_horn_3",
+     "FST_tilt_horn_ctr"
+    ],
+    "mm": [
+     10,
+     0,
+     0
+    ]
+   },
+   "pose": {
+    "pan": 0,
+    "tilt": 45
+   },
+   "view": [
+    1.0,
+    1.2,
+    1.0
+   ],
+   "explode": {
+    "BUY_bus_junction": [
+     0,
+     0,
+     1.6
+    ],
+    "CAB_bus_pan_tail": [
+     0,
+     0,
+     0
+    ],
+    "PRT_groove_cap": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_gcap_0": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_gcap_1": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_gcap_2": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_gcap_3": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_gcap_4": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_gcap_5": [
+     -0.0,
+     -0.0,
+     1.4
+    ]
+   },
+   "tools": [
+    "side cutters",
+    "wire strippers",
+    "soldering iron",
+    "heat gun",
+    "card or foil",
+    "cable tie",
+    "2 mm hex straight bit"
+   ],
+   "fasteners": [
+    {
+     "qty": 6,
+     "text": "6 x M3 x 10 countersunk ST (groove cap).",
+     "spec": "M3 x 10 countersunk ST (groove cap)."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 6 x M3 x 10"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ol><li>Pod at 45 on the prop.</li><li>Lay the tilt and feeder bus leads and the launcher bundle in the turntable groove, down to the hub bore.</li><li>Pull the pan lead up the hub bore until about 60 stands above the turntable; the 350 lead has 57.9 spare over its route. Bring the tilt and feeder ends to it.</li><li>Cut the three plugs off.<ul><li><b>Trim the tilt and feeder leads to route + 70:</b> hold each end at the bore centre at turntable-top level and cut it 70 beyond that point. That is about 23 off the tilt lead and 110 off the feeder lead.</li><li>Leave the pan lead long.</li><li>Strip the leads and solder like wires 3-to-1 (V+ to V+, GND to GND, signal to signal), with card or foil round the bore to shield the PLA.</li><li>Heat-shrink each joint (4.8 mm), then the three together (12.7 mm).</li><li><b>The finished splice must be \u00d810 x 20 or smaller.</b></li></ul></li><li>Lower the splice into the hub bore on the side away from the launcher bundle (az 35, toward front-right), bottom at the seat (z 74). It passes the hub gear with 1.0.</li><li>Tie it to the bundle sleeve with a small cable tie so it turns with the turntable.</li><li>Push the spare pan lead back down into its U-loop.</li><li><b>Dress the service loops:</b><ul><li>the tilt lead's spare as a flat S-fold in the groove between the hub and the right post (x 10..60; only the tilt lead runs there);</li><li>the feeder lead's spare pushed back up the left-post channel beside the bundle.</li></ul></li><li><b>Check the bundle hand-over (A6-02).</b> Its moving end swings 5.66 side to side over \u00b190 pan, so leave the sleeve loose there (no tie). Turn the turntable slowly to both pan stops and watch through the bore: nothing pulls tight.</li><li>Fit the groove cap over the posts (0.2 to the left post going down) and drive its 6 screws with a straight bit.</li></ol>"
+    },
+    {
+     "label": "Check",
+     "html": "<ul><li>the cap sits flat with no lead pinched under it. With a 20 splice there is 8 between the splice top and the cap, room for the leads to turn down (<code>../renders/attempt-7/review/r02_sec_y4.02_splice_top_under_groove_cap.png</code> shows the tight 25 case);</li><li>the splice can't climb out of the bore (the cap stops it).</li></ul>"
+    }
+   ],
+   "check": "- the cap sits flat with no lead pinched under it. With a 20 splice there is 8 between the splice top and the cap, room for the leads to turn down (`../renders/attempt-7/review/r02_sec_y4.02_splice_top_under_groove_cap.png` shows the tight 25 case); - the splice can't climb out of the bore (the cap stops it).",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "critical",
+     "text": "The finished splice must be \u00d810 x 20 or smaller.",
+     "source": "ASSEMBLY 11a.4"
+    },
+    {
+     "level": "warning",
+     "text": "Shield the PLA round the bore with card or foil while soldering.",
+     "source": "ASSEMBLY 11a.4"
+    },
+    {
+     "level": "warning",
+     "text": "Leave the bundle sleeve loose at the hand-over (no tie): it swings 5.66 over \u00b190 pan.",
+     "source": "ASSEMBLY 11a.9"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "../renders/attempt-7/review/r02_sec_y4.02_splice_top_under_groove_cap.png",
+     "key": "r02_sec_y4.02_splice_top_under_groove_cap",
+     "scope": "step"
+    }
+   ]
+  },
+  {
+   "index": 28,
+   "id": "11a.10",
+   "title": "Back to tilt 0",
+   "group": "Bus splice and groove cap",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Highlights the post cover and tilt drive going back in; they were placed at steps 8a, 8b and 8."
+   ],
+   "assembly_order": [],
+   "bench": null,
+   "merge": null,
+   "new_objects": [],
+   "focus_objects": [
+    "PRT_post_R_cover",
+    "FST_postcover_0",
+    "FST_postcover_1",
+    "FST_postcover_2",
+    "FST_postcover_3",
+    "BUY_servo_tilt",
+    "BUY_horn_tilt",
+    "PRT_tilt_horn_adapter"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    0.8,
+    0.5
+   ],
+   "explode": {
+    "PRT_post_R_cover": [
+     1.6,
+     0,
+     0
+    ],
+    "FST_postcover_0": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_postcover_1": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_postcover_2": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_postcover_3": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "BUY_servo_tilt": [
+     0,
+     0,
+     0
+    ],
+    "BUY_horn_tilt": [
+     0,
+     0,
+     0
+    ],
+    "PRT_tilt_horn_adapter": [
+     0,
+     0,
+     0
+    ]
+   },
+   "tools": [
+    "2.5 mm hex"
+   ],
+   "fasteners": [
+    {
+     "qty": 4,
+     "text": "4 x M3 x 14 socket cap ST (post cover).",
+     "spec": "M3 x 14 socket cap ST (post cover)."
+    }
+   ],
+   "fastener_check": {
+    "state": "na",
+    "text": "refits the 4 x M3 x 14 post-cover screws from step 8"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ol><li>Lift the pod nose to +46 and take the prop out. Lower the pod to the -3 stop.</li><li>Slide the tilt servo back -X until its hex key re-enters the journal-plate socket. Rock the pod a degree to line up the flats.</li><li>Refit the post cover.</li></ol>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the pod has no free play at the key. Keep the prop: it's also the service fixture for the splice.</p>"
+    }
+   ],
+   "check": "the pod has no free play at the key. Keep the prop: it's also the service fixture for the splice.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Lift the pod to +46, take the prop out, lower it to the -3 stop, then slide the servo back. Keep the prop: it's the service fixture for the splice.",
+     "source": "ASSEMBLY 11a.10"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 29,
+   "id": "12",
+   "title": "Jar, bench",
+   "group": "Jar, battery, power-up",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "12",
+     "index": 27,
+     "step": "12 jar on the bench: adapter in the band, gate laid closed on the valve floor (stop lug up), valve onto the spout (the spout tip captures the lug; v2-A1-09); v2-A2-A1-09 detent clip screwed on the +Y cheek, bump dropped into the closed notch",
+     "bench": "jar",
+     "merge": null
+    }
+   ],
+   "bench": "jar",
+   "merge": null,
+   "new_objects": [
+    "BUY_jar",
+    "BUY_jar_band",
+    "BUY_mm_fill",
+    "PRT_jar_adapter",
+    "PRT_jar_valve",
+    "PRT_jar_gate",
+    "FST_valve_0",
+    "FST_valve_1",
+    "FST_valve_2",
+    "PRT_gate_detent",
+    "FST_detent_0"
+   ],
+   "focus_objects": [
+    "BUY_jar",
+    "BUY_jar_band",
+    "BUY_mm_fill",
+    "PRT_jar_adapter",
+    "PRT_jar_valve",
+    "PRT_jar_gate",
+    "FST_valve_0",
+    "FST_valve_1",
+    "FST_valve_2",
+    "PRT_gate_detent",
+    "FST_detent_0"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    1.2,
+    0.3
+   ],
+   "explode": {
+    "BUY_jar": [
+     0,
+     0,
+     1.6
+    ],
+    "BUY_jar_band": [
+     0,
+     0,
+     1.0
+    ],
+    "BUY_mm_fill": [
+     0,
+     0,
+     1.6
+    ],
+    "PRT_jar_adapter": [
+     0,
+     0,
+     0
+    ],
+    "PRT_jar_valve": [
+     0,
+     0,
+     -1.0
+    ],
+    "PRT_jar_gate": [
+     0,
+     0,
+     -0.5
+    ],
+    "FST_valve_0": [
+     8.572527968096175e-17,
+     1.4,
+     -0.0
+    ],
+    "FST_valve_1": [
+     -1.4,
+     1.714505593619235e-16,
+     -0.0
+    ],
+    "FST_valve_2": [
+     -2.571758205140395e-16,
+     -1.4,
+     -0.0
+    ],
+    "PRT_gate_detent": [
+     0,
+     1.0,
+     0
+    ],
+    "FST_detent_0": [
+     -0.0,
+     1.4,
+     -0.0
+    ]
+   },
+   "tools": [
+    "2.5 mm hex",
+    "Phillips"
+   ],
+   "fasteners": [
+    {
+     "qty": 3,
+     "text": "3 x M3 x 10 socket cap ST (valve, radial)",
+     "spec": "M3 x 10 socket cap ST (valve, radial)"
+    },
+    {
+     "qty": 1,
+     "text": "1 x M3 x 10 pan self-tapping (detent clip).",
+     "spec": "M3 x 10 pan self-tapping (detent clip)."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 4 x M3 x 10"
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>put the printed adapter disc into the band in place of the flat lid;</li><li>lay the gate on the valve's gate floor, closed, stop lug up at the -X end;</li><li>fit the valve over the spout with its 3 radial screws. The gate is captive from now on;</li><li>hold the detent clip's tab on the +Y cheek, gate closed, so the bump drops into the closed notch. Drive the self-tapper -Y until its head is flush in the counterbore.</li></ul>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the gate clicks at closed and at open (52); it stops positively at both ends.</p>"
+    }
+   ],
+   "check": "the gate clicks at closed and at open (52); it stops positively at both ends.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Measure first (item 1): caliper the jar band and lid before plate 3. A band over about 74 OD eats the 3.0 gap to the feeder housing.",
+     "source": "MEASURE_FIRST 1"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "../renders/attempt-7/jar_unlocked.png",
+     "key": "jar_unlocked",
+     "scope": "step"
+    }
+   ]
+  },
+  {
+   "index": 30,
+   "id": "13",
+   "title": "Jar onto the feeder",
+   "group": "Jar, battery, power-up",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "13",
+     "index": 28,
+     "step": "13 jar onto the feeder: drop in at +30, twist to 0",
+     "bench": null,
+     "merge": "jar"
+    }
+   ],
+   "bench": null,
+   "merge": "jar",
+   "new_objects": [],
+   "focus_objects": [
+    "BUY_jar",
+    "BUY_jar_band",
+    "BUY_mm_fill",
+    "PRT_jar_adapter",
+    "PRT_jar_valve",
+    "PRT_jar_gate",
+    "FST_valve_0",
+    "FST_valve_1",
+    "FST_valve_2",
+    "PRT_gate_detent",
+    "FST_detent_0"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    1.2,
+    0.35
+   ],
+   "explode": {
+    "BUY_jar": [
+     0,
+     0,
+     1.0
+    ],
+    "BUY_jar_band": [
+     0,
+     0,
+     1.0
+    ],
+    "BUY_mm_fill": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_jar_adapter": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_jar_valve": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_jar_gate": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_valve_0": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_valve_1": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_valve_2": [
+     0,
+     0,
+     1.0
+    ],
+    "PRT_gate_detent": [
+     0,
+     0,
+     1.0
+    ],
+    "FST_detent_0": [
+     0,
+     0,
+     1.0
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No fasteners in this step."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ol><li>Close the gate and fill the jar.</li><li>Screw on the adapter and band.</li><li>Flip the jar, drop it into the bayonet at +30 and twist to 0.</li></ol>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the jar is locked; twisting it back to +30 lifts it off.</p>"
+    }
+   ],
+   "check": "the jar is locked; twisting it back to +30 lifts it off.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Close the gate before you fill the jar.",
+     "source": "ASSEMBLY 13"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 31,
+   "id": "14",
+   "title": "Battery",
+   "group": "Jar, battery, power-up",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [
+    {
+     "label": "14",
+     "index": 29,
+     "step": "14 battery slides onto the adapter rail +X -> -X (last; BOM step 14)",
+     "bench": null,
+     "merge": null
+    }
+   ],
+   "bench": null,
+   "merge": null,
+   "new_objects": [
+    "BUY_battery"
+   ],
+   "focus_objects": [
+    "BUY_battery"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    0.5,
+    -1.0,
+    0.45
+   ],
+   "explode": {
+    "BUY_battery": [
+     1.2,
+     0,
+     0
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No fasteners in this step."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>slide the pack onto the adapter rail from +X.</p>"
+    },
+    {
+     "label": "Check",
+     "html": "<p>it comes off again with no tool (1.6 to the floor along the way).</p>"
+    }
+   ],
+   "check": "it comes off again with no tool (1.6 to the floor along the way).",
+   "paragraphs": [],
+   "warnings": [],
+   "renders": []
+  },
+  {
+   "index": 32,
+   "id": "15",
+   "title": "First power-up (bench, wheel not spinning)",
+   "group": "Jar, battery, power-up",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [],
+   "bench": null,
+   "merge": null,
+   "new_objects": [],
+   "focus_objects": [],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0
+   },
+   "view": [
+    1.0,
+    1.3,
+    0.7
+   ],
+   "explode": {},
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No fasteners in this step."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ol><li>Power up with the flywheel motor disabled.</li><li>Ping each servo by ID.</li><li>Command tilt 0 and check the pod is level. If it isn't, set a tilt offset in firmware rather than moving the horn. After 11a.0 the key went back in at the same flat only if the servo wasn't turned.</li><li>Command pan 0 (pod facing +Y) and the feeder to park (solid disc over the outlet), and trim any offsets.</li><li>Clamp firmware tilt to 0..45; the printed stops are at -3 / +46.</li><li>Only then spin up the flywheel.</li></ol>"
+    },
+    {
+     "label": "Check",
+     "html": "<ul><li>one fire command (disc +60, back to 0) drops exactly one candy, and the next shot uses -60;</li><li>log the leaf preload on day 0 (BOM section 0, \"Leaf creep\").</li></ul>"
+    }
+   ],
+   "check": "- one fire command (disc +60, back to 0) drops exactly one candy, and the next shot uses -60; - log the leaf preload on day 0 (BOM section 0, \"Leaf creep\").",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "critical",
+     "text": "Power up with the flywheel motor disabled. Spin it up only after the servos are pinged, trimmed and the tilt is clamped to 0..45 in firmware.",
+     "source": "ASSEMBLY 15"
+    },
+    {
+     "level": "warning",
+     "text": "If the pod isn't level at tilt 0, set a firmware offset rather than moving the horn.",
+     "source": "ASSEMBLY 15"
+    }
+   ],
+   "renders": []
+  }
+ ]
+}

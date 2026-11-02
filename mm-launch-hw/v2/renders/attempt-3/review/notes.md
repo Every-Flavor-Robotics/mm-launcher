@@ -1,0 +1,21 @@
+# Review attempt 3 notes
+- tools: alex-3d-skills-pin f039205 (designer's pin). copy at /tmp/rv3
+- full cadcheck started -> review/cadcheck.json
+- full cadcheck (pin f039205) on /tmp/rv3: PASS 0 fail 34 warn (0 untriaged, 34 accepted), warn set identical to designer's renders/attempt-3/cadcheck.json -> review/cadcheck.json, 134 s
+- gate detent open notch: moved PRT_jar_gate +X in a copy (/tmp/rv3probe/gate_move.py), cad q dist PRT_gate_detent PRT_jar_gate: +0 0.10, +26 -0.43mm3 (riding), +51 -0.20, +52 0.10 (seated open), +52.35 0.00 -> both notches engage
+- renders r01 (valve/gate/detent +x+y), r02 (+x-y) close-ups
+- r03 nip thumbwheel close-up tilt 0
+- r03 first attempt camera inside solid (wasted, deleted); re-rendered from 60,-60,108
+- overlay review_rows.json -> cadcheck_review.json (--only drop,slide,distances --overlay-only): 2 FAIL
+  - full-lift bare gap min 8.0 (MM_T max 7.5 + tape): 7.613 @hood+0.327, 7.928 @0 FAIL; 8.12 @-0.2, 8.461 @-0.558 pass
+  - thick candy 7.5 drop at both stops x tilt -3/0/45/46: 31/31 hit, flattest 34.2 (tilt 46)
+  - base floor slide -Z 40 (BOM service 'Base floor', no slide row in checks.json): not blocked, closest base_shell 0.0 (seat)
+- lentil V probe (/tmp/rv3probe/lentil_tilt.py, knife lens, pair touching at pocket centre plane, leaning outward th):
+  12.5x6.3: th0 -0.016 mm3, th10 -0.095, th20 -1.28, th30 -16.9, th40 -58.6 ; 13x7: th0 -6.13, th20 -19.2, th35 -69.1. Upright is the best fit; top z 275.5 < ramp 276.8
+- params: NIP_PASS = MM_T_NOM 7.0 + TAPE_T (not MM_T[1] 7.5); HOOD_GAP_LIFT 7.55 asserted vs 7.5
+- leaf travel: (7.613-6.202)/1.5 = 0.94 gap/mm; nominal 7.0 candy at min stop uses 1.38 of 1.5 travel (0.12 left)
+- manifest FST_nip_stud "M3_cap x 16" vs BOM fastener table "M3 x 20 hex head (stud)"
+- CAB_encoder lead 150 routed 84 to the journal-bore end; bundle (265) + base lead (165) carry it on; BOM item 13 only lists 16 AWG x3 colours; no 5-wire lead for the ~430 mm beyond the journal
+- detent clip: EB 0.3 (params GATE_DETENT edge) on the whole clip incl. the 2.6-6 tab; FST_detent_0 head="none" (pan head proud); plate corner at r 48 from jar axis (valve R34) -> visible grey plate in iso.png
+- FST_detent_0 vs gate over travel 0..52.35: >= 2.652 mm (slide row ignore is harmless)
+- renders: r01, r02 (valve/gate/detent), r03 (nip thumbwheel; first try camera inside solid, re-rendered) = 4 used

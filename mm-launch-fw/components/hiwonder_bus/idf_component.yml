@@ -1,0 +1,4 @@
+description: "Hiwonder bus-servo controller board UART protocol (header-only, host-testable)"
+dependencies:
+  idf:
+    version: '>=5.0'

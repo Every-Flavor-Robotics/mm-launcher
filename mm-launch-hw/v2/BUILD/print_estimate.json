@@ -1,0 +1,502 @@
+{
+ "_label": "estimate from geometry, not sliced (launch-rig layer model, Bambu 0.20 mm Standard speeds)",
+ "_model": {
+  "layer": 0.2,
+  "outer": [
+   0.42,
+   200.0
+  ],
+  "inner": [
+   0.45,
+   300.0
+  ],
+  "solid": [
+   0.42,
+   250.0
+  ],
+  "sparse": [
+   0.45,
+   270.0
+  ],
+  "first_layer_v": [
+   50.0,
+   105.0
+  ],
+  "max_flow": 21.0,
+  "top": 5,
+  "bottom": 3,
+  "eff": 0.8,
+  "layer_s": 1.5,
+  "plate_min": 6.0
+ },
+ "stl": {
+  "nacelle": {
+   "layers": 499,
+   "min": 127.6,
+   "g": 137.6,
+   "infill": 25,
+   "walls": 3,
+   "cadcheck_g": 121.5,
+   "cadcheck_h": 2.37
+  },
+  "launcher_cover": {
+   "layers": 21,
+   "min": 22.8,
+   "g": 24.6,
+   "infill": 25,
+   "walls": 3,
+   "cadcheck_g": 25.1,
+   "cadcheck_h": 0.57
+  },
+  "journal_plate": {
+   "layers": 102,
+   "min": 12.6,
+   "g": 10.8,
+   "infill": 30,
+   "walls": 3,
+   "cadcheck_g": 10.2,
+   "cadcheck_h": 0.29
+  },
+  "encoder_cap": {
+   "layers": 43,
+   "min": 9.2,
+   "g": 8.7,
+   "infill": 40,
+   "walls": 3,
+   "cadcheck_g": 8.7,
+   "cadcheck_h": 0.26
+  },
+  "nip_cover": {
+   "layers": 281,
+   "min": 16.1,
+   "g": 8.6,
+   "infill": 30,
+   "walls": 3,
+   "cadcheck_g": 7.7,
+   "cadcheck_h": 0.24
+  },
+  "nip_leaf": {
+   "layers": 30,
+   "min": 3.6,
+   "g": 3.1,
+   "infill": 100,
+   "walls": 3,
+   "cadcheck_g": 3.1,
+   "cadcheck_h": 0.16
+  },
+  "nip_stop": {
+   "layers": 33,
+   "min": 1.8,
+   "g": 1.1,
+   "infill": 100,
+   "walls": 3,
+   "cadcheck_g": 1.1,
+   "cadcheck_h": 0.12
+  },
+  "nip_stop_sleeve": {
+   "layers": 47,
+   "min": 1.7,
+   "g": 0.4,
+   "infill": 100,
+   "walls": 3,
+   "cadcheck_g": 0.4,
+   "cadcheck_h": 0.11
+  },
+  "tools/encoder_jig": {
+   "layers": 57,
+   "min": 8.0,
+   "g": 7.4,
+   "infill": 20,
+   "walls": 3,
+   "cadcheck_g": null,
+   "cadcheck_h": null
+  },
+  "launcher_body": {
+   "layers": 138,
+   "min": 70.2,
+   "g": 77.0,
+   "infill": 25,
+   "walls": 3,
+   "cadcheck_g": 69.1,
+   "cadcheck_h": 1.39
+  },
+  "flywheel": {
+   "layers": 100,
+   "min": 37.6,
+   "g": 41.2,
+   "infill": 100,
+   "walls": 3,
+   "cadcheck_g": 41.2,
+   "cadcheck_h": 0.87
+  },
+  "hood": {
+   "layers": 113,
+   "min": 13.0,
+   "g": 11.8,
+   "infill": 40,
+   "walls": 3,
+   "cadcheck_g": 10.2,
+   "cadcheck_h": 0.29
+  },
+  "nip_wheel": {
+   "layers": 26,
+   "min": 1.6,
+   "g": 1.0,
+   "infill": 50,
+   "walls": 3,
+   "cadcheck_g": 1.0,
+   "cadcheck_h": 0.12
+  },
+  "tools/test_pocket_coupon": {
+   "layers": 40,
+   "min": 9.3,
+   "g": 9.5,
+   "infill": 40,
+   "walls": 3,
+   "cadcheck_g": null,
+   "cadcheck_h": null
+  },
+  "feeder_housing": {
+   "layers": 90,
+   "min": 26.7,
+   "g": 26.9,
+   "infill": 30,
+   "walls": 3,
+   "cadcheck_g": 27.0,
+   "cadcheck_h": 0.6
+  },
+  "feeder_disc": {
+   "layers": 70,
+   "min": 17.2,
+   "g": 17.6,
+   "infill": 40,
+   "walls": 3,
+   "cadcheck_g": 17.0,
+   "cadcheck_h": 0.42
+  },
+  "jar_adapter": {
+   "layers": 60,
+   "min": 10.1,
+   "g": 9.4,
+   "infill": 40,
+   "walls": 3,
+   "cadcheck_g": 8.6,
+   "cadcheck_h": 0.26
+  },
+  "jar_valve": {
+   "layers": 136,
+   "min": 24.0,
+   "g": 24.3,
+   "infill": 40,
+   "walls": 3,
+   "cadcheck_g": 21.2,
+   "cadcheck_h": 0.5
+  },
+  "jar_gate": {
+   "layers": 44,
+   "min": 9.3,
+   "g": 9.0,
+   "infill": 100,
+   "walls": 3,
+   "cadcheck_g": 9.0,
+   "cadcheck_h": 0.27
+  },
+  "feeder_crown": {
+   "layers": 115,
+   "min": 51.7,
+   "g": 57.5,
+   "infill": 25,
+   "walls": 3,
+   "cadcheck_g": 51.1,
+   "cadcheck_h": 1.05
+  },
+  "feeder_cover": {
+   "layers": 182,
+   "min": 20.6,
+   "g": 18.6,
+   "infill": 20,
+   "walls": 3,
+   "cadcheck_g": 14.7,
+   "cadcheck_h": 0.37
+  },
+  "feeder_pinion": {
+   "layers": 45,
+   "min": 11.3,
+   "g": 11.7,
+   "infill": 60,
+   "walls": 3,
+   "cadcheck_g": 11.5,
+   "cadcheck_h": 0.32
+  },
+  "gate_detent": {
+   "layers": 80,
+   "min": 3.6,
+   "g": 1.5,
+   "infill": 100,
+   "walls": 3,
+   "cadcheck_g": 1.5,
+   "cadcheck_h": 0.13
+  },
+  "turntable": {
+   "layers": 86,
+   "min": 125.3,
+   "g": 140.4,
+   "infill": 15,
+   "walls": 3,
+   "cadcheck_g": 137.1,
+   "cadcheck_h": 2.66
+  },
+  "beam": {
+   "layers": 145,
+   "min": 58.5,
+   "g": 63.9,
+   "infill": 30,
+   "walls": 3,
+   "cadcheck_g": 60.8,
+   "cadcheck_h": 1.23
+  },
+  "hub_gear": {
+   "layers": 38,
+   "min": 10.7,
+   "g": 11.0,
+   "infill": 40,
+   "walls": 3,
+   "cadcheck_g": 10.6,
+   "cadcheck_h": 0.3
+  },
+  "thrust_ring": {
+   "layers": 10,
+   "min": 11.2,
+   "g": 11.9,
+   "infill": 100,
+   "walls": 3,
+   "cadcheck_g": 11.9,
+   "cadcheck_h": 0.32
+  },
+  "tilt_horn_adapter": {
+   "layers": 67,
+   "min": 4.7,
+   "g": 3.6,
+   "infill": 60,
+   "walls": 3,
+   "cadcheck_g": 3.4,
+   "cadcheck_h": 0.16
+  },
+  "post_L": {
+   "layers": 750,
+   "min": 74.8,
+   "g": 66.4,
+   "infill": 25,
+   "walls": 3,
+   "cadcheck_g": 54.8,
+   "cadcheck_h": 1.12
+  },
+  "post_R": {
+   "layers": 750,
+   "min": 164.1,
+   "g": 175.4,
+   "infill": 25,
+   "walls": 3,
+   "cadcheck_g": 157.1,
+   "cadcheck_h": 3.03
+  },
+  "post_R_cover": {
+   "layers": 60,
+   "min": 15.8,
+   "g": 16.5,
+   "infill": 25,
+   "walls": 3,
+   "cadcheck_g": 15.5,
+   "cadcheck_h": 0.39
+  },
+  "groove_cap": {
+   "layers": 15,
+   "min": 11.5,
+   "g": 12.2,
+   "infill": 40,
+   "walls": 3,
+   "cadcheck_g": 12.6,
+   "cadcheck_h": 0.34
+  },
+  "tools/tilt45_prop": {
+   "layers": 255,
+   "min": 17.0,
+   "g": 12.4,
+   "infill": 15,
+   "walls": 3,
+   "cadcheck_g": null,
+   "cadcheck_h": null
+  },
+  "base_shell": {
+   "layers": 436,
+   "min": 421.0,
+   "g": 467.5,
+   "infill": 15,
+   "walls": 3,
+   "cadcheck_g": 374.5,
+   "cadcheck_h": 7.09
+  },
+  "pan_pinion": {
+   "layers": 46,
+   "min": 13.0,
+   "g": 13.5,
+   "infill": 40,
+   "walls": 3,
+   "cadcheck_g": 13.1,
+   "cadcheck_h": 0.34
+  },
+  "pan_servo_clamp": {
+   "layers": 20,
+   "min": 4.8,
+   "g": 4.8,
+   "infill": 30,
+   "walls": 3,
+   "cadcheck_g": 4.8,
+   "cadcheck_h": 0.19
+  },
+  "base_floor": {
+   "layers": 55,
+   "min": 122.8,
+   "g": 131.5,
+   "infill": 15,
+   "walls": 3,
+   "cadcheck_g": 135.4,
+   "cadcheck_h": 2.63
+  },
+  "base_partition": {
+   "layers": 78,
+   "min": 19.1,
+   "g": 18.6,
+   "infill": 25,
+   "walls": 3,
+   "cadcheck_g": 18.5,
+   "cadcheck_h": 0.45
+  },
+  "pan_servo_mount": {
+   "layers": 219,
+   "min": 34.9,
+   "g": 33.1,
+   "infill": 30,
+   "walls": 3,
+   "cadcheck_g": 29.0,
+   "cadcheck_h": 0.64
+  }
+ },
+ "plates": {
+  "1-pod-grey": {
+   "printer": "P1S",
+   "colour": "A",
+   "min": 213.0,
+   "h": 3.55,
+   "g": 205.4,
+   "fit": {
+    "H2D": "fits",
+    "P1S": "fits"
+   },
+   "bbox_area_mm2": 31707
+  },
+  "2-pod-terracotta": {
+   "printer": "H2D",
+   "colour": "B",
+   "min": 137.7,
+   "h": 2.3,
+   "g": 140.5,
+   "fit": {
+    "H2D": "fits",
+    "P1S": "fits"
+   },
+   "bbox_area_mm2": 28207
+  },
+  "3-feeder-jar-terracotta": {
+   "printer": "H2D",
+   "colour": "B",
+   "min": 93.3,
+   "h": 1.55,
+   "g": 87.2,
+   "fit": {
+    "H2D": "fits",
+    "P1S": "fits"
+   },
+   "bbox_area_mm2": 32440
+  },
+  "4-feeder-grey": {
+   "printer": "P1S",
+   "colour": "A",
+   "min": 93.2,
+   "h": 1.55,
+   "g": 89.3,
+   "fit": {
+    "H2D": "fits",
+    "P1S": "fits"
+   },
+   "bbox_area_mm2": 19451
+  },
+  "5-pan-turntable-beam": {
+   "printer": "H2D",
+   "colour": "A",
+   "min": 216.4,
+   "h": 3.61,
+   "g": 230.8,
+   "fit": {
+    "H2D": "fits",
+    "P1S": "no"
+   },
+   "bbox_area_mm2": 71278
+  },
+  "6-pan-posts": {
+   "printer": "P1S",
+   "colour": "A",
+   "min": 289.2,
+   "h": 4.82,
+   "g": 282.9,
+   "fit": {
+    "H2D": "fits",
+    "P1S": "fits"
+   },
+   "bbox_area_mm2": 15547
+  },
+  "7-base-shell": {
+   "printer": "H2D",
+   "colour": "A",
+   "min": 444.8,
+   "h": 7.41,
+   "g": 485.8,
+   "fit": {
+    "H2D": "fits",
+    "P1S": "no"
+   },
+   "bbox_area_mm2": 62954
+  },
+  "8-base-floor": {
+   "printer": "P1S",
+   "colour": "A",
+   "min": 128.8,
+   "h": 2.15,
+   "g": 131.5,
+   "fit": {
+    "H2D": "fits",
+    "P1S": "fits"
+   },
+   "bbox_area_mm2": 57600
+  },
+  "9-base-mounts": {
+   "printer": "P1S",
+   "colour": "A",
+   "min": 60.0,
+   "h": 1.0,
+   "g": 51.7,
+   "fit": {
+    "H2D": "fits",
+    "P1S": "fits"
+   },
+   "bbox_area_mm2": 12144
+  }
+ },
+ "total": {
+  "h": 27.94,
+  "g": 1705.1,
+  "g_A": 1477.4,
+  "g_B": 227.7,
+  "g_any": 0
+ }
+}

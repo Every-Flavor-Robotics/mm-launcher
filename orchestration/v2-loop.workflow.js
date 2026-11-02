@@ -1,0 +1,245 @@
+export const meta = {
+  name: 'mm-launcher-v2-loop',
+  description: 'M&M launcher v2: plan, build per subsystem, finish, independent review with alex-3d-skills tools; until 9/9/9 or 8 attempts',
+  whenToUse: 'Iterating a cadlib/Blender printable assembly against a design brief until review scores reach the target',
+  phases: [
+    { title: 'Plan', detail: 'designer plans the attempt, updates checks.json, writes progress.md' },
+    { title: 'Build', detail: 'one fresh agent per subsystem: edit, build, cad check, fix fails' },
+    { title: 'Finish', detail: 'final renders, BOM, design log, evidence summary' },
+    { title: 'Review', detail: 'independent reviewer with cad-design-review' },
+  ],
+}
+
+// ---------------------------------------------------------------------------------------------
+// Template. Copy it, edit CONFIG (or pass it as args), and run it with the Workflow tool.
+// Why this shape (evidence in alex-3d-skills/docs/FINDINGS.md):
+//  - Attempt 1 = one 64 min designer agent: 32 min of upfront thinking plus a single 78 KB Write
+//    before the first build, 522k peak context, 19M cache-read tokens (A1-T1, T4, T5). Here each
+//    subsystem is a fresh agent with a small context and a short generation.
+//  - A killed designer lost 44 min with nothing on disk (A1-T9). Every agent here appends to
+//    renders/attempt-N/progress.md and resumes from it. The loop resumes from args.start_attempt.
+//  - The designer reported checks_passed=true on partial checks (A1-F14). Schemas here ask for the
+//    cadcheck fail/warn counts and coverage, not a boolean.
+// No filesystem access in workflow scripts, so state crosses runs through args and files on disk.
+// To resume a killed run with cached agents, use Workflow({scriptPath, resumeFromRunId}).
+// ---------------------------------------------------------------------------------------------
+
+const CONFIG = Object.assign({
+  hw: '/Users/alxchunlin/code-stuff/mmlauncher/mm-launcher/mm-launch-hw/v2',
+  skills: '/Users/alxchunlin/code-stuff/alex-3d-skills-pin',   // pinned worktree; planner syncs it to main each attempt
+  skills_live: '/Users/alxchunlin/code-stuff/alex-3d-skills',
+  stop_after: 0,                             // >0: stop after this attempt's review
+  subsystems: ['base', 'pan_stage', 'feeder', 'launcher'],   // = parts/<name>.py modules, in build order
+  max_attempts: 8,
+  target: 9,
+  start_attempt: 1,                          // resume: set to the next attempt number
+  history: [],                               // resume: [{n, f, m, a}] from earlier runs
+  render_budget: 12,                         // preview renders per build agent
+}, typeof args === 'object' && args ? args : {})
+
+const HW = CONFIG.hw
+const PCB = `${CONFIG.skills}/skills/print-cad-blender`
+const REV = `${CONFIG.skills}/skills/cad-design-review`
+const CAD = `${PCB}/scripts/cad`
+const dir = n => `${HW}/renders/attempt-${n}`
+
+const CHECK_SUMMARY = {
+  type: 'object',
+  properties: {
+    fails: { type: 'integer' }, warns: { type: 'integer' },
+    fail_list: { type: 'array', items: { type: 'string' } },
+    coverage: { type: 'array', items: { type: 'string' } },
+    not_checked: { type: 'array', items: { type: 'string' } },
+  },
+  required: ['fails', 'warns', 'fail_list', 'coverage', 'not_checked'],
+}
+
+const PLAN_SCHEMA = {
+  type: 'object',
+  properties: {
+    plan: { type: 'string', description: 'What this attempt changes and why (<= 200 words)' },
+    work: {
+      type: 'array', description: 'One entry per subsystem that needs work this attempt, in build order',
+      items: {
+        type: 'object',
+        properties: {
+          subsystem: { type: 'string' },
+          changes: { type: 'array', items: { type: 'string' }, description: 'Concrete edits with dimensions' },
+          review_issues: { type: 'array', items: { type: 'string' }, description: 'Review issues this subsystem closes' },
+          acceptance: { type: 'array', items: { type: 'string' }, description: 'cadcheck rows or cad q measurements that prove it' },
+        },
+        required: ['subsystem', 'changes', 'review_issues', 'acceptance'],
+      },
+    },
+    deferred: { type: 'array', items: { type: 'string' }, description: 'Review issues not addressed, with the reason' },
+  },
+  required: ['plan', 'work', 'deferred'],
+}
+
+const BUILD_SCHEMA = {
+  type: 'object',
+  properties: {
+    subsystem: { type: 'string' },
+    done: { type: 'array', items: { type: 'string' } },
+    not_done: { type: 'array', items: { type: 'string' } },
+    check: CHECK_SUMMARY,
+  },
+  required: ['subsystem', 'done', 'not_done', 'check'],
+}
+
+const FINISH_SCHEMA = {
+  type: 'object',
+  properties: {
+    summary: { type: 'string' },
+    addressed: { type: 'array', items: { type: 'string' } },
+    deferred: { type: 'array', items: { type: 'string' } },
+    printed_parts: { type: 'array', items: { type: 'string' } },
+    check: CHECK_SUMMARY,
+    render_dir: { type: 'string' },
+  },
+  required: ['summary', 'addressed', 'deferred', 'printed_parts', 'check', 'render_dir'],
+}
+
+const REVIEW_SCHEMA = {
+  type: 'object',
+  properties: {
+    functionality: { type: 'integer', minimum: 1, maximum: 10 },
+    manufacturability: { type: 'integer', minimum: 1, maximum: 10 },
+    aesthetics: { type: 'integer', minimum: 1, maximum: 10 },
+    anchors: { type: 'object', properties: { functionality: { type: 'string' }, manufacturability: { type: 'string' }, aesthetics: { type: 'string' } }, required: ['functionality', 'manufacturability', 'aesthetics'] },
+    issues: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: {
+          id: { type: 'string', description: 'stable id, e.g. A2-03; reuse the previous id for a recurring issue' },
+          metric: { type: 'string', enum: ['functionality', 'manufacturability', 'aesthetics'] },
+          severity: { type: 'string', enum: ['blocker', 'major', 'minor'] },
+          subsystem: { type: 'string' },
+          problem: { type: 'string' },
+          evidence: { type: 'string', description: 'cadcheck row, cad q JSON line, or render path' },
+          fix: { type: 'string' },
+          tool_catchable: { type: 'boolean', description: 'could cadcheck/cadq have caught this before review?' },
+        },
+        required: ['id', 'metric', 'severity', 'subsystem', 'problem', 'evidence', 'fix', 'tool_catchable'],
+      },
+    },
+    previous_issue_status: {
+      type: 'array',
+      items: { type: 'object', properties: { id: { type: 'string' }, status: { type: 'string', enum: ['FIXED', 'PARTIAL', 'NOT FIXED'] }, evidence: { type: 'string' } }, required: ['id', 'status', 'evidence'] },
+    },
+    check_config_disputes: { type: 'array', items: { type: 'string' } },
+  },
+  required: ['functionality', 'manufacturability', 'aesthetics', 'anchors', 'issues', 'previous_issue_status', 'check_config_disputes'],
+}
+
+const common = n => `
+Project: ${HW} (brief: ${HW}/DESIGN_BRIEF.md). Attempt ${n}. Skill: read ${PCB}/SKILL.md and follow its conventions;
+cadlib API in ${PCB}/reference/api.md; check config in ${PCB}/reference/checks-config.md; purchased-part data in
+${CONFIG.skills}/components/components.json (use it instead of re-deriving dimensions from the PNGs).
+Tools: ${CAD} build|check|q|sheet (Blender starts in under 1 s; run checks freely).
+Progress file: ${dir(n)}/progress.md. Read it first; if your step is already marked done there, return its recorded result.
+After each build+check, append one line: "<time-free step label> | <what changed> | cadcheck <fails>F/<warns>W".
+Keep each generation short: edit one module, rebuild, check, repeat. Use the Edit tool for code changes.
+Don't run git commit.`
+
+const planPrompt = (n, history, reviewPath) => `
+You plan design attempt ${n} of up to ${CONFIG.max_attempts}. Scores so far (F/M/A): ${history || 'none'}.
+FIRST, sync the pinned tools: run \`git -C ${CONFIG.skills} checkout --detach $(git -C ${CONFIG.skills_live} rev-parse main)\`
+and write the resulting short sha as the first line of ${dir(n)}/progress.md ("tools: <sha>"). Never edit files in ${CONFIG.skills}
+or ${CONFIG.skills_live}. If a tool misbehaves, work around it and note it in progress.md under "## Tool issues".
+${common(n)}
+${reviewPath
+    ? `Latest review: ${reviewPath} (and review.json beside it). Plan fixes for every blocker and major; minors where cheap. Don't regress what it praised.`
+    : `First v2 attempt. Read ${HW}/DESIGN_BRIEF.md (it overrides ../DESIGN_BRIEF.md): the hopper is now an inverted regular-mouth pint mason jar, and the launcher must match the launch test rig in ${HW}/../test-prints/launch-rig/ (read its README/build.py if present).
+Read the v1 reviews ${HW}/../renders/attempt-1/review.md, attempt-2/review.md, attempt-3/review.md (if present) and ${HW}/../DESIGN_LOG.md: carry forward what reviewers praised and plan against every recurring v1 issue.
+You may reuse v1 geometry ideas from ${HW}/../blender/build_assembly.py (grep it; do not page through 84 KB).
+Write the architecture plan (world frame, subsystems = parts/ modules, the IF_* interface block, joints with ranges, load path, payload path from jar to muzzle, assembly order) to ${HW}/DESIGN_LOG.md, then scaffold from ${PCB}/templates/project/ into ${HW}/blender/ and write params.py with the JAR_*, IF_* and launcher (test-rig) parameters. Every subsystem goes in work[] this attempt.`}
+Before returning: update ${HW}/blender/checks.json so every review issue that is geometric has a check that would catch it
+(drop_tests, distances, fits, assembly_order); write the plan to ${dir(n)}/progress.md under "## Plan".
+Done when every blocker/major appears in some work[].review_issues or in deferred with a reason.`
+
+const buildPrompt = (n, w) => `
+You build subsystem "${w.subsystem}" for attempt ${n}.
+${common(n)}
+Changes to make: ${JSON.stringify(w.changes)}
+Review issues this closes: ${JSON.stringify(w.review_issues)}
+Acceptance (prove each with a cadcheck row or a cad q line): ${JSON.stringify(w.acceptance)}
+Edit ${HW}/blender/parts/${w.subsystem}.py (and params.py if needed). Loop: edit, ${CAD} build ${HW}/blender/build_assembly.py,
+${CAD} check ${HW}/blender/model.blend ${HW}/blender/checks.json, until no fail involves this subsystem's objects.
+Fails that belong to another subsystem: list them in not_done, don't fix them here.
+Render at most ${CONFIG.render_budget} previews (960 px); prefer cad q measurements over images.
+Return the final cadcheck summary numbers.`
+
+const finishPrompt = (n, plan, builds) => `
+You finish attempt ${n}.
+${common(n)}
+Plan: ${plan.plan}
+Subsystem results: ${JSON.stringify(builds.map(b => b && { s: b.subsystem, not_done: b.not_done, fails: b.check.fails }))}
+1. Fix remaining cadcheck fails that span subsystems, or list them in deferred.
+2. Final renders: CAD_RENDER_FINAL=1 ${CAD} build ${HW}/blender/build_assembly.py -- --render --out-renders ${dir(n)}
+   plus the sections the brief asks for (${CAD} q ... section), and ${CAD} sheet ${HW}/stl ${dir(n)}/stl_sheet.png.
+3. Copy the final cadcheck.json to ${dir(n)}/cadcheck.json.
+4. Update ${HW}/BOM_AND_ASSEMBLY.md (assembly steps must match checks.json assembly_order) and append "Attempt ${n}" to ${HW}/DESIGN_LOG.md.
+   Every claim cites a cadcheck row or cad q line; quote coverage and not_checked. Before writing a motion, timing or
+   service claim (index positions, "adjust without disassembly", "comes off at tilt 45"), add the matching
+   index_tests / service / slide_out entry to checks.json and re-run cad check (FINDINGS A2-F2, A2-F6).
+Return the evidence summary from ${dir(n)}/cadcheck.json, not your opinion of it.`
+
+const reviewPrompt = (n, prevReviewPath) => `
+Review attempt ${n} of ${HW}. Follow ${REV}/SKILL.md exactly (rubric ${REV}/rubric.md, checklist ${REV}/checklist.md).
+Work on a copy of the .blend under /tmp. Write extra renders to ${dir(n)}/review/ (budget 12), your review to
+${dir(n)}/review.md and the structured result to ${dir(n)}/review.json.
+${prevReviewPath ? `Previous review: ${prevReviewPath}. Re-measure every previous issue and keep its id if it recurs.` : 'First review: number issues A' + n + '-01, A' + n + '-02, ...'}
+Mark tool_catchable=true when cadcheck or cad q could have flagged the issue before review.\nReport at most 10 blocker/major issues and at most 8 minor ones (most impactful first). Fold related symptoms into one issue with one fix, so the next attempt converges instead of chasing a long tail.
+For every motion, timing or service claim in the BOM, check that checks.json has an index_tests / service / slide_out
+entry that matches the documented values. If it is missing, add it to your copy of checks.json and run it (A2-F2).`
+
+const attempts = []
+let history = CONFIG.history.map(h => `#${h.n}: ${h.f}/${h.m}/${h.a}`).join(', ')
+let prevReview = CONFIG.start_attempt > 1 ? `${dir(CONFIG.start_attempt - 1)}/review.md` : null
+let passed = false
+
+for (let n = CONFIG.start_attempt; n <= CONFIG.max_attempts && !passed; n++) {
+  phase('Plan')
+  const plan = await agent(planPrompt(n, history, prevReview), { label: `plan #${n}`, phase: 'Plan', schema: PLAN_SCHEMA })
+  if (!plan) { log(`attempt ${n}: planner returned nothing; stopping`); break }
+  log(`attempt ${n}: ${plan.work.length} subsystems to change, ${plan.deferred.length} deferred`)
+
+  phase('Build')
+  const builds = []
+  for (const w of plan.work) {          // sequential: subsystems share one assembly and one .blend
+    const b = await agent(buildPrompt(n, w), { label: `build #${n} ${w.subsystem}`, phase: 'Build', schema: BUILD_SCHEMA })
+    builds.push(b)
+    if (b) log(`attempt ${n} ${w.subsystem}: cadcheck ${b.check.fails}F/${b.check.warns}W`)
+  }
+
+  phase('Finish')
+  const design = await agent(finishPrompt(n, plan, builds), { label: `finish #${n}`, phase: 'Finish', schema: FINISH_SCHEMA })
+  if (!design) { log(`attempt ${n}: finisher returned nothing; stopping`); break }
+  log(`attempt ${n} designed: ${design.printed_parts.length} printed parts, cadcheck ${design.check.fails}F/${design.check.warns}W`)
+
+  phase('Review')
+  const review = await agent(reviewPrompt(n, prevReview), { label: `review #${n}`, phase: 'Review', schema: REVIEW_SCHEMA })
+  attempts.push({ n, plan, design, review })
+  if (!review) { log(`attempt ${n}: reviewer returned nothing; stopping`); break }
+  const { functionality: f, manufacturability: m, aesthetics: a } = review
+  const catchable = review.issues.filter(i => i.tool_catchable).length
+  log(`attempt ${n}: F${f} M${m} A${a}; ${review.issues.length} issues, ${catchable} tool-catchable; resume with start_attempt=${n + 1}`)
+  history = (history ? history + ', ' : '') + `#${n}: ${f}/${m}/${a}`
+  passed = f >= CONFIG.target && m >= CONFIG.target && a >= CONFIG.target
+  prevReview = `${dir(n)}/review.md`
+  if (CONFIG.stop_after && n >= CONFIG.stop_after) { log(`stopping after attempt ${n} (stop_after)`); break }
+}
+
+return {
+  passed,
+  history,
+  attempts: attempts.map(x => ({
+    n: x.n,
+    scores: x.review ? { f: x.review.functionality, m: x.review.manufacturability, a: x.review.aesthetics } : null,
+    check: x.design.check,
+    deferred: x.design.deferred,
+    open_issues: x.review ? x.review.issues.slice(0, 10) : [],
+  })),
+}

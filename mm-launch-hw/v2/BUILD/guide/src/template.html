@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>M&amp;M launcher v2 · assembly guide</title>
+<!-- Built by BUILD/guide/build_guide.py. Do not edit by hand: edit src/ and rebuild. -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>/*@TOKENS_CSS@*/</style>
+<style>/*@GUIDE_CSS@*/</style>
+<script>/*@AX_FX@*/</script>
+<script type="importmap">{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@@THREE@/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@@THREE@/examples/jsm/" } }</script>
+</head>
+<body class="ax">
+<header class="ax-mast g-mast">
+  <div>
+    <h1>M&amp;M launcher v2 assembly</h1>
+    <div class="ax-meta" id="meta"></div>
+  </div>
+  <div class="g-tabs" role="tablist">
+    <button class="ax-btn" role="tab" data-tab="steps">Build steps</button>
+    <button class="ax-btn" role="tab" data-tab="overview">Parts and plates</button>
+  </div>
+</header>
+
+<main class="g-main">
+  <aside class="ax-panel g-side" id="side"></aside>
+
+  <section class="g-center">
+    <div class="ax-panel g-view" id="view">
+      <div class="g-badge" id="badge"></div>
+      <div class="g-legend" id="legend"></div>
+      <div class="g-empty" id="empty"></div>
+      <div class="ax-viewport-hint">Drag to orbit · scroll to zoom · click a part</div>
+    </div>
+
+    <div class="ax-panel g-controls" id="controls">
+      <div class="g-row">
+        <div class="g-nav" data-steps-only>
+          <button class="ax-btn" id="prev" title="Previous step (left arrow)">&#9664; Prev</button>
+          <button class="ax-btn primary" id="next" data-fx="sparks" title="Next step (right arrow)">Next step &#9654;</button>
+          <div class="g-read"><span class="ax-label">Step</span><b id="stepNo">0</b><small id="stepOf">/ 0</small></div>
+        </div>
+        <label class="g-slider" data-steps-only title="Hold this step's parts apart, along the way they go in"><span class="ax-label">Hold apart</span>
+          <input class="ax-range" type="range" id="explode" min="0" max="100" value="0">
+          <b><span id="explodeOut">0</span><small>%</small></b></label>
+        <div class="g-btns">
+          <button class="ax-btn g-toggle" id="ghost" aria-pressed="false">Ghost the rest</button>
+          <button class="ax-btn g-toggle" id="follow" aria-pressed="false" title="Camera follows each step's parts; off = stationary main view">Follow parts</button>
+          <button class="ax-btn" id="mainview">Main view</button>
+        </div>
+      </div>
+      <div class="g-row">
+        <label class="g-slider"><span class="ax-label">Pan</span>
+          <input class="ax-range" type="range" id="pan" min="-90" max="90" step="1" value="0">
+          <b><span id="panOut">0</span><small>°</small></b></label>
+        <label class="g-slider"><span class="ax-label">Tilt</span>
+          <input class="ax-range" type="range" id="tilt" min="0" max="45" step="1" value="0">
+          <b><span id="tiltOut">0</span><small>°</small></b></label>
+        <div class="g-btns">
+          <button class="ax-btn g-toggle" id="spin" aria-pressed="false">Spin flywheel</button>
+          <button class="ax-btn g-toggle" id="feed" aria-pressed="false">Feeder index</button>
+          <div class="g-read"><span class="ax-label">Disc</span><b id="feedOut">0</b><small>°</small></div>
+          <button class="ax-btn" id="home">Home pose</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="ax-panel g-detail" id="detail"></aside>
+</main>
+
+<script type="application/json" id="guide-data">@DATA@</script>
+<script type="application/octet-stream" id="glb">@GLB@</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+
+// ── alex-style ax-three.js (inlined from the style guide, unmodified apart from the import/export lines) ──
+/*@AX_THREE@*/
+
+// ── assembly guide ──
+/*@APP@*/
+</script>
+</body>
+</html>

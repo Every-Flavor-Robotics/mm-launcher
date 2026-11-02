@@ -1,0 +1,3564 @@
+{
+ "tool": "cadcheck",
+ "blend": "/Users/alxchunlin/code-stuff/mmlauncher/mm-launcher/mm-launch-hw/test-prints/launch-rig/launch_rig.blend",
+ "generated": "2026-10-24 22:57:43",
+ "config": {
+  "collections": {
+   "printed": "Printed",
+   "purchased": "Purchased",
+   "fasteners": "Fasteners",
+   "cables": "Cables"
+  },
+  "printers": {
+   "P1S": [
+    256,
+    256,
+    256
+   ],
+   "H2D": [
+    325,
+    320,
+    325
+   ]
+  },
+  "prefer_printer": "P1S",
+  "min_wall": 1.6,
+  "overhang_deg": 45.0,
+  "joints": {},
+  "couplings": {},
+  "overtravel_deg": 0.5,
+  "max_poses_per_group": 48,
+  "allow": [
+   {
+    "a": "PRT_rig_guard",
+    "b": "PRT_nip_wheel",
+    "why": "leaf pads are printed in the free state and stand 2.3 mm into the thumbwheel: that overlap is the 9 N preload (A3 whitelists the same pair)"
+   },
+   {
+    "a": "FST_nip_stud",
+    "b": "PRT_nip_wheel",
+    "why": "stud runs through the thumbwheel's \u00d83.4 bore; the wheel rocks on its seat with the stud's tilt (-5.2..+1.4 deg)"
+   },
+   {
+    "a": "FST_nip_stud",
+    "b": "FST_nip_nut",
+    "why": "the captive nut rides on the stud and tilts with it"
+   },
+   {
+    "a": "BUY_motor",
+    "b": "BUY_motor_shaft",
+    "why": "rotor in its own bearings"
+   },
+   {
+    "a": "CAB_*",
+    "b": "BUY_motorgo_axis",
+    "why": "leads end on the board's pads / header"
+   },
+   {
+    "a": "CAB_encoder",
+    "b": "BUY_plink_encoder",
+    "why": "JST plug on the Plink"
+   },
+   {
+    "a": "CAB_phase_*",
+    "b": "BUY_motor",
+    "why": "phase leads leave the motor's lead block"
+   }
+  ],
+  "vol_tol": 0.5,
+  "moving_min_clearance": 0.5,
+  "moving_warn_clearance": 1.0,
+  "fasteners": {
+   "driver_r": 3.0,
+   "hand_r": 14.0,
+   "max_reach": 60.0,
+   "max_reach_ext": 150.0,
+   "min_engagement": 4.0,
+   "lkey_short": 18.0,
+   "lkey_insert": 2.5,
+   "lkey_long": 56.0,
+   "lkey_r": 1.25,
+   "lkey_swing_deg": 60.0,
+   "max_standoff": 2.0,
+   "max_protrusion": 3.0,
+   "captive": {
+    "FST_nip_stud": "hex head held in the backplate pocket and never driven; the thumbwheel's captive nut turns"
+   }
+  },
+  "service": [
+   {
+    "op": "re-tighten or swap the flywheel (re-tape)",
+    "remove": [
+     "PRT_rig_cover",
+     "FST_cover_*",
+     "FST_hinge"
+    ],
+    "fasteners": [
+     "FST_fw_bolt_*"
+    ]
+   },
+   {
+    "op": "re-seat the MotorGo",
+    "fasteners": [
+     "FST_mg_*"
+    ]
+   }
+  ],
+  "index_tests": [],
+  "stacks": [
+   {
+    "name": "encoder air gap (1.5 nominal, MT6701 wants 0.5..2.0)",
+    "limit": 0.5,
+    "terms": [
+     {
+      "what": "cup print: shoulder (motor rear face) to Plink seat, 6.75 mm",
+      "tol": 0.1
+     },
+     {
+      "what": "motor rear face flatness where the shoulder lands",
+      "tol": 0.1
+     },
+     {
+      "what": "magnet face via the A3 jig (shaft end 0..1 mm recessed)",
+      "tol": 0.25
+     },
+     {
+      "what": "Plink IC height above PCB back",
+      "tol": 0.1
+     },
+     {
+      "what": "PCB seat on the pegs (hot glue)",
+      "tol": 0.05
+     },
+     {
+      "what": "cup pushed home on the shoulder",
+      "tol": 0.05
+     }
+    ],
+    "why": "measure the real gap at bring-up and shim; README step B3"
+   },
+   {
+    "name": "magnet-to-sensor centring",
+    "limit": 0.3,
+    "terms": [
+     {
+      "what": "Plink pegs to the cup bore axis (same printed part)",
+      "tol": 0.1
+     },
+     {
+      "what": "can in bore, 3 crush ribs",
+      "tol": 0.1
+     },
+     {
+      "what": "Plink IC to its PCB holes",
+      "tol": 0.1
+     },
+     {
+      "what": "magnet on shaft via the A3 jig spigot in the \u00d88 access hole",
+      "tol": 0.1
+     }
+    ]
+   }
+  ],
+  "exposure": {
+   "max_cable_mm": 5.0,
+   "cables_ok": [
+    "CAB_*"
+   ],
+   "min_escape": 8,
+   "view_frac": 0.1,
+   "view_z": -0.2,
+   "nuts_ok": []
+  },
+  "carry": {},
+  "flexures": [
+   {
+    "part": "PRT_rig_guard",
+    "name": "nip leaf spring",
+    "from": [
+     19.5,
+     -3.678,
+     55.047
+    ],
+    "to": [
+     19.5,
+     25.552,
+     24.887
+    ],
+    "stress_mpa": 40.2,
+    "why": "34 mm cantilever, 9 N preload; A3 printed it standing up (A3-F2)"
+   },
+   {
+    "part": "PRT_rig_guard",
+    "name": "over-travel stop beam",
+    "from": [
+     19.5,
+     -8.561,
+     50.314
+    ],
+    "to": [
+     19.5,
+     20.669,
+     20.154
+    ],
+    "stress_mpa": 7.0,
+    "why": "takes the leaf's 18.7 N at the stop"
+   }
+  ],
+  "slide_out": [
+   {
+    "name": "flywheel off along +X (cover off)",
+    "objects": [
+     "PRT_flywheel",
+     "BUY_tape",
+     "FST_fw_*"
+    ],
+    "ignore": [
+     "PRT_rig_cover",
+     "FST_cover_*",
+     "FST_hinge",
+     "BUY_motor_shaft",
+     "BUY_magnet"
+    ],
+    "dir": [
+     1,
+     0,
+     0
+    ],
+    "dist": 60,
+    "step": 4,
+    "min_clearance": 0.8
+   },
+   {
+    "name": "cover off along +X",
+    "objects": [
+     "PRT_rig_cover"
+    ],
+    "ignore": [
+     "FST_cover_*",
+     "FST_hinge"
+    ],
+    "dir": [
+     1,
+     0,
+     0
+    ],
+    "dist": 40,
+    "step": 4,
+    "min_clearance": 0.0
+   }
+  ],
+  "distances": [
+   {
+    "a": "PRT_backplate",
+    "b": "PRT_flywheel",
+    "pose": {
+     "PIV_hood": 1.4396
+    },
+    "min": 4.85,
+    "max": 5.15,
+    "why": "thumbwheel closed end: 5.0 bare at the plate's BDC point",
+    "ray": {
+     "origin": [
+      21.0,
+      67.379,
+      49.695
+     ],
+     "dir": [
+      0.0,
+      -0.37992,
+      0.92502
+     ]
+    }
+   },
+   {
+    "a": "PRT_backplate",
+    "b": "PRT_flywheel",
+    "pose": {},
+    "min": 6.35,
+    "max": 6.65,
+    "why": "A3 operating gap: 6.0 over tape: 6.5 bare at the plate's BDC point",
+    "ray": {
+     "origin": [
+      21.0,
+      66.405,
+      47.733
+     ],
+     "dir": [
+      0.0,
+      -0.34202,
+      0.93969
+     ]
+    },
+    "payload_mm": 7.0,
+    "tape_mm": 0.5,
+    "compliant": "PRT_rig_guard leaf spring: 3.9 N/mm, 9 N preload on the thumbwheel stop"
+   },
+   {
+    "a": "PRT_backplate",
+    "b": "PRT_flywheel",
+    "pose": {
+     "PIV_hood": -5.2429
+    },
+    "min": 11.85,
+    "max": 12.15,
+    "why": "thumbwheel open end: 12.0 bare at the plate's BDC point",
+    "ray": {
+     "origin": [
+      21.0,
+      62.438,
+      40.801
+     ],
+     "dir": [
+      0.0,
+      -0.21459,
+      0.9767
+     ]
+    }
+   },
+   {
+    "a": "BUY_magnet",
+    "b": "BUY_plink_encoder",
+    "min": 1.3,
+    "max": 1.7,
+    "why": "as-printed encoder air gap"
+   }
+  ],
+  "masses_g": {},
+  "pla_density": 0.00124,
+  "flow_mm3_s": 12.0,
+  "cable_leads": {
+   "CAB_phase_*": 80
+  },
+  "_generated_by": "build.py check_config(); edit the parameters there, not this file",
+  "fits": [
+   {
+    "a": "PRT_backplate",
+    "b": "PRT_rig_guard",
+    "min_clearance": 0.3,
+    "why": "A3 bay: backplate band grown 0.5 all round, 0.5 to the inner wall face"
+   },
+   {
+    "a": "PRT_backplate",
+    "b": "PRT_rig_cover",
+    "min_clearance": 0.3,
+    "why": "A3: 0.5 to the cover face"
+   },
+   {
+    "a": "PRT_backplate",
+    "b": "FST_hinge",
+    "min_clearance": 0.1,
+    "why": "hinge axle: M3 shank running in the backplate's \u00d83.4 boss"
+   },
+   {
+    "a": "BUY_motor",
+    "b": "BUY_magnet",
+    "min_clearance": 0.8,
+    "why": "magnet sits in the end cap's \u00d88 access hole, 1 mm radial"
+   }
+  ],
+  "assembly_order": [
+   {
+    "step": "rear cup on the bench: Plink on its pegs, MotorGo on its standoffs",
+    "objects": [
+     "PRT_rig_frame",
+     "BUY_plink_encoder",
+     "BUY_motorgo_axis",
+     "FST_mg_*"
+    ]
+   },
+   {
+    "step": "rear cup pressed onto the motor (magnet glued); guard onto the motor face",
+    "objects": [
+     "BUY_motor",
+     "BUY_motor_shaft",
+     "BUY_magnet",
+     "PRT_rig_guard",
+     "FST_motor_*"
+    ]
+   },
+   {
+    "step": "nip: thumbwheel onto the seat, stud threaded in from the bay, backplate slid onto the stud head",
+    "objects": [
+     "PRT_nip_wheel",
+     "FST_nip_*",
+     "PRT_backplate"
+    ]
+   },
+   {
+    "step": "flywheel with tape onto the D-shaft, pinch bolts",
+    "objects": [
+     "PRT_flywheel",
+     "BUY_tape",
+     "FST_fw_*"
+    ]
+   },
+   {
+    "step": "cover, then the hinge axle from the motor side",
+    "objects": [
+     "PRT_rig_cover",
+     "FST_cover_*",
+     "FST_hinge"
+    ]
+   }
+  ]
+ },
+ "checks": {
+  "parts": {
+   "findings": [
+    {
+     "status": "warn",
+     "msg": "PRT_flywheel: ceiling region needs a 72 mm bridge (limit 25)",
+     "object": "PRT_flywheel"
+    },
+    {
+     "status": "warn",
+     "msg": "PRT_rig_cover: 41 wall samples < 1.6 mm (min 1.00)",
+     "object": "PRT_rig_cover",
+     "where": [
+      [
+       1.0,
+       [
+        32.6,
+        106.1,
+        49.2
+       ]
+      ],
+      [
+       1.03,
+       [
+        32.0,
+        105.8,
+        49.2
+       ]
+      ],
+      [
+       1.07,
+       [
+        32.0,
+        106.5,
+        49.4
+       ]
+      ],
+      [
+       1.12,
+       [
+        32.0,
+        117.0,
+        82.5
+       ]
+      ],
+      [
+       1.13,
+       [
+        32.0,
+        107.1,
+        48.5
+       ]
+      ]
+     ]
+    },
+    {
+     "status": "warn",
+     "msg": "PRT_rig_guard: 22 wall samples < 1.6 mm (min 1.27)",
+     "object": "PRT_rig_guard",
+     "where": [
+      [
+       1.27,
+       [
+        14.8,
+        21.3,
+        134.8
+       ]
+      ],
+      [
+       1.31,
+       [
+        25.3,
+        2.7,
+        81.9
+       ]
+      ],
+      [
+       1.31,
+       [
+        25.3,
+        3.7,
+        82.8
+       ]
+      ],
+      [
+       1.32,
+       [
+        17.5,
+        2.3,
+        82.3
+       ]
+      ],
+      [
+       1.32,
+       [
+        19.2,
+        3.3,
+        83.2
+       ]
+      ]
+     ]
+    }
+   ],
+   "rows": [
+    {
+     "object": "PRT_backplate",
+     "stl": "backplate",
+     "non_manifold_edges": 0,
+     "volume_mm3": 13310.8,
+     "print_bbox_mm": [
+      75.8,
+      66.1,
+      22.5
+     ],
+     "fits": {
+      "P1S": true,
+      "H2D": true
+     },
+     "has_print_rot": true,
+     "bed_contact_mm2": 599.2,
+     "overhang_gt_45_mm2": 0.0,
+     "ceiling_mm2": 0.0,
+     "max_bridge_span_mm": 1.3,
+     "supports": "no",
+     "min_wall_mm": 2.59,
+     "thin_wall_samples": 0,
+     "thin_wall_where": [],
+     "est_g": 10.7,
+     "est_h": 0.3
+    },
+    {
+     "object": "PRT_flywheel",
+     "stl": "flywheel",
+     "non_manifold_edges": 0,
+     "volume_mm3": 35415.6,
+     "print_bbox_mm": [
+      72.0,
+      72.0,
+      20.5
+     ],
+     "fits": {
+      "P1S": true,
+      "H2D": true
+     },
+     "has_print_rot": true,
+     "bed_contact_mm2": 3664.7,
+     "overhang_gt_45_mm2": 120.7,
+     "ceiling_mm2": 33.1,
+     "max_bridge_span_mm": 72.0,
+     "supports": "no",
+     "min_wall_mm": 1.66,
+     "thin_wall_samples": 0,
+     "thin_wall_where": [],
+     "est_g": 43.9,
+     "est_h": 0.92
+    },
+    {
+     "object": "PRT_nip_wheel",
+     "stl": "nip_wheel",
+     "non_manifold_edges": 0,
+     "volume_mm3": 945.0,
+     "print_bbox_mm": [
+      16.9,
+      16.9,
+      5.0
+     ],
+     "fits": {
+      "P1S": true,
+      "H2D": true
+     },
+     "has_print_rot": true,
+     "bed_contact_mm2": 184.1,
+     "overhang_gt_45_mm2": 0.0,
+     "ceiling_mm2": 0.0,
+     "max_bridge_span_mm": null,
+     "supports": "no",
+     "min_wall_mm": 1.8,
+     "thin_wall_samples": 0,
+     "thin_wall_where": [],
+     "est_g": 1.0,
+     "est_h": 0.12
+    },
+    {
+     "object": "PRT_rig_cover",
+     "stl": "rig_cover",
+     "non_manifold_edges": 0,
+     "volume_mm3": 17213.7,
+     "print_bbox_mm": [
+      146.0,
+      128.7,
+      7.6
+     ],
+     "fits": {
+      "P1S": true,
+      "H2D": true
+     },
+     "has_print_rot": true,
+     "bed_contact_mm2": 10539.5,
+     "overhang_gt_45_mm2": 0.0,
+     "ceiling_mm2": 0.0,
+     "max_bridge_span_mm": 6.5,
+     "supports": "no",
+     "min_wall_mm": 1.0,
+     "thin_wall_samples": 41,
+     "thin_wall_where": [
+      [
+       1.0,
+       [
+        32.6,
+        106.1,
+        49.2
+       ]
+      ],
+      [
+       1.03,
+       [
+        32.0,
+        105.8,
+        49.2
+       ]
+      ],
+      [
+       1.07,
+       [
+        32.0,
+        106.5,
+        49.4
+       ]
+      ],
+      [
+       1.12,
+       [
+        32.0,
+        117.0,
+        82.5
+       ]
+      ],
+      [
+       1.13,
+       [
+        32.0,
+        107.1,
+        48.5
+       ]
+      ]
+     ],
+     "est_g": 21.3,
+     "est_h": 0.5
+    },
+    {
+     "object": "PRT_rig_frame",
+     "stl": "rig_rear_cup",
+     "non_manifold_edges": 0,
+     "volume_mm3": 21146.6,
+     "print_bbox_mm": [
+      116.9,
+      94.3,
+      24.8
+     ],
+     "fits": {
+      "P1S": true,
+      "H2D": true
+     },
+     "has_print_rot": true,
+     "bed_contact_mm2": 2794.8,
+     "overhang_gt_45_mm2": 0.0,
+     "ceiling_mm2": 100.9,
+     "max_bridge_span_mm": 8.1,
+     "supports": "no",
+     "min_wall_mm": 1.6,
+     "thin_wall_samples": 0,
+     "thin_wall_where": [],
+     "est_g": 17.0,
+     "est_h": 0.42
+    },
+    {
+     "object": "PRT_rig_guard",
+     "stl": "rig_guard",
+     "non_manifold_edges": 0,
+     "volume_mm3": 159292.5,
+     "print_bbox_mm": [
+      185.8,
+      140.6,
+      31.5
+     ],
+     "fits": {
+      "P1S": true,
+      "H2D": true
+     },
+     "has_print_rot": true,
+     "bed_contact_mm2": 11625.8,
+     "overhang_gt_45_mm2": 9.8,
+     "ceiling_mm2": 173.5,
+     "max_bridge_span_mm": 8.1,
+     "supports": "no",
+     "min_wall_mm": 1.27,
+     "thin_wall_samples": 22,
+     "thin_wall_where": [
+      [
+       1.27,
+       [
+        14.8,
+        21.3,
+        134.8
+       ]
+      ],
+      [
+       1.31,
+       [
+        25.3,
+        2.7,
+        81.9
+       ]
+      ],
+      [
+       1.31,
+       [
+        25.3,
+        3.7,
+        82.8
+       ]
+      ],
+      [
+       1.32,
+       [
+        17.5,
+        2.3,
+        82.3
+       ]
+      ],
+      [
+       1.32,
+       [
+        19.2,
+        3.3,
+        83.2
+       ]
+      ]
+     ],
+     "est_g": 83.5,
+     "est_h": 1.66
+    }
+   ],
+   "unique_stls": 6,
+   "est_total_g": 177,
+   "est_total_h": 3.9,
+   "runtime_s": 0.1
+  },
+  "clearance": {
+   "findings": [
+    {
+     "status": "warn",
+     "msg": "PRT_rig_guard to FST_nip_stud 0.58 mm at hood=-5.2429",
+     "a": "PRT_rig_guard",
+     "b": "FST_nip_stud",
+     "mm": 0.584,
+     "pose": "hood=-5.2429",
+     "overtravel": false,
+     "at": [
+      19.5,
+      30.0,
+      36.6
+     ],
+     "fit": null,
+     "min": 0.5
+    }
+   ]
+  },
+  "interference": {
+   "findings": [],
+   "groups": [
+    {
+     "joints": [],
+     "poses": 1,
+     "pairs": 225
+    },
+    {
+     "joints": [
+      "PIV_flywheel"
+     ],
+     "poses": 8,
+     "pairs": 216
+    },
+    {
+     "joints": [
+      "PIV_hood"
+     ],
+     "poses": 10,
+     "pairs": 54
+    },
+    {
+     "joints": [
+      "PIV_flywheel",
+      "PIV_hood"
+     ],
+     "poses": 48,
+     "pairs": 16
+    }
+   ],
+   "collisions": [],
+   "contacts": [],
+   "solid_overlaps": [],
+   "cable_overlaps": [],
+   "min_clearance": [
+    {
+     "a": "PRT_backplate",
+     "b": "FST_hinge",
+     "mm": 0.171,
+     "pose": "hood=-5.2429",
+     "overtravel": false,
+     "at": [
+      23.5,
+      -12.2,
+      89.5
+     ],
+     "fit": "hinge axle: M3 shank running in the backplate's \u00d83.4 boss",
+     "min": 0.1
+    },
+    {
+     "a": "PRT_rig_guard",
+     "b": "PRT_backplate",
+     "mm": 0.318,
+     "pose": "hood=1.93964",
+     "overtravel": true,
+     "at": [
+      11.3,
+      3.6,
+      81.0
+     ],
+     "fit": "A3 bay: backplate band grown 0.5 all round, 0.5 to the inner wall face",
+     "min": 0.3
+    },
+    {
+     "a": "PRT_rig_cover",
+     "b": "PRT_backplate",
+     "mm": 0.5,
+     "pose": "hood=-5.74291",
+     "overtravel": true,
+     "at": [
+      31.5,
+      -13.9,
+      90.1
+     ],
+     "fit": "A3: 0.5 to the cover face",
+     "min": 0.3
+    },
+    {
+     "a": "PRT_rig_guard",
+     "b": "FST_nip_stud",
+     "mm": 0.584,
+     "pose": "hood=-5.2429",
+     "overtravel": false,
+     "at": [
+      19.5,
+      30.0,
+      36.6
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "BUY_motor",
+     "b": "BUY_magnet",
+     "mm": 0.982,
+     "pose": "flywheel=0",
+     "overtravel": false,
+     "at": [
+      -73.5,
+      52.8,
+      82.8
+     ],
+     "fit": "magnet sits in the end cap's \u00d88 access hole, 1 mm radial",
+     "min": 0.8
+    },
+    {
+     "a": "PRT_rig_guard",
+     "b": "PRT_flywheel",
+     "mm": 1.0,
+     "pose": "flywheel=0",
+     "overtravel": false,
+     "at": [
+      8.0,
+      37.7,
+      81.5
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "BUY_magnet",
+     "b": "BUY_plink_encoder",
+     "mm": 1.5,
+     "pose": "flywheel=0",
+     "overtravel": false,
+     "at": [
+      -76.0,
+      52.6,
+      85.8
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_rig_guard",
+     "b": "BUY_tape",
+     "mm": 1.994,
+     "pose": "flywheel=0",
+     "overtravel": false,
+     "at": [
+      14.1,
+      17.3,
+      90.1
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_backplate",
+     "b": "FST_cover_2",
+     "mm": 2.373,
+     "pose": "hood=-5.74291",
+     "overtravel": true,
+     "at": [
+      33.1,
+      -2.2,
+      74.7
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_flywheel",
+     "b": "PRT_backplate",
+     "mm": 3.332,
+     "pose": "flywheel=315, hood=1.93964",
+     "overtravel": true,
+     "at": [
+      9.0,
+      52.4,
+      49.8
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_rig_guard",
+     "b": "BUY_motor_shaft",
+     "mm": 3.385,
+     "pose": "flywheel=0",
+     "overtravel": false,
+     "at": [
+      7.0,
+      51.3,
+      88.0
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_backplate",
+     "b": "BUY_tape",
+     "mm": 3.831,
+     "pose": "flywheel=0, hood=1.93964",
+     "overtravel": true,
+     "at": [
+      14.1,
+      52.4,
+      50.3
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_flywheel",
+     "b": "FST_cover_3",
+     "mm": 4.209,
+     "pose": "flywheel=45",
+     "overtravel": false,
+     "at": [
+      29.0,
+      87.9,
+      79.1
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_backplate",
+     "b": "PRT_nip_wheel",
+     "mm": 4.473,
+     "pose": "hood=-5.74291",
+     "overtravel": true,
+     "at": [
+      18.9,
+      18.2,
+      39.9
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "BUY_tape",
+     "b": "FST_cover_3",
+     "mm": 4.709,
+     "pose": "flywheel=315",
+     "overtravel": false,
+     "at": [
+      21.1,
+      92.1,
+      78.4
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_rig_frame",
+     "b": "BUY_magnet",
+     "mm": 4.75,
+     "pose": "flywheel=0",
+     "overtravel": false,
+     "at": [
+      -76.0,
+      55.4,
+      86.8
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_backplate",
+     "b": "FST_nip_nut",
+     "mm": 5.907,
+     "pose": "hood=-5.74291",
+     "overtravel": true,
+     "at": [
+      19.5,
+      20.9,
+      36.0
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "BUY_tape",
+     "b": "FST_nip_stud",
+     "mm": 7.154,
+     "pose": "flywheel=45, hood=1.93964",
+     "overtravel": true,
+     "at": [
+      19.5,
+      33.2,
+      47.8
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_rig_frame",
+     "b": "BUY_motor_shaft",
+     "mm": 7.25,
+     "pose": "flywheel=0",
+     "overtravel": false,
+     "at": [
+      -73.5,
+      51.5,
+      83.5
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "BUY_magnet",
+     "b": "CAB_encoder",
+     "mm": 7.343,
+     "pose": "flywheel=45",
+     "overtravel": false,
+     "at": [
+      -76.0,
+      54.9,
+      83.9
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_flywheel",
+     "b": "FST_nip_stud",
+     "mm": 7.654,
+     "pose": "flywheel=45, hood=1.93964",
+     "overtravel": true,
+     "at": [
+      19.5,
+      33.2,
+      47.8
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_rig_guard",
+     "b": "FST_fw_bolt_0",
+     "mm": 8.75,
+     "pose": "flywheel=0",
+     "overtravel": false,
+     "at": [
+      16.8,
+      43.9,
+      75.7
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_rig_guard",
+     "b": "FST_fw_nut_0",
+     "mm": 8.75,
+     "pose": "flywheel=0",
+     "overtravel": false,
+     "at": [
+      16.8,
+      63.3,
+      81.1
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_rig_guard",
+     "b": "FST_fw_bolt_2",
+     "mm": 8.75,
+     "pose": "flywheel=0",
+     "overtravel": false,
+     "at": [
+      16.8,
+      61.2,
+      95.8
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_rig_guard",
+     "b": "FST_fw_nut_2",
+     "mm": 8.75,
+     "pose": "flywheel=0",
+     "overtravel": false,
+     "at": [
+      16.8,
+      41.8,
+      90.5
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_flywheel",
+     "b": "PRT_nip_wheel",
+     "mm": 21.516,
+     "pose": "flywheel=315",
+     "overtravel": false,
+     "at": [
+      14.1,
+      31.3,
+      56.8
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_nip_wheel",
+     "b": "BUY_tape",
+     "mm": 21.802,
+     "pose": "flywheel=45",
+     "overtravel": false,
+     "at": [
+      18.9,
+      18.2,
+      39.9
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "BUY_tape",
+     "b": "FST_nip_nut",
+     "mm": 23.509,
+     "pose": "flywheel=45",
+     "overtravel": false,
+     "at": [
+      19.5,
+      20.9,
+      36.0
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_flywheel",
+     "b": "FST_nip_nut",
+     "mm": 23.533,
+     "pose": "flywheel=135",
+     "overtravel": false,
+     "at": [
+      14.1,
+      33.6,
+      55.2
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_backplate",
+     "b": "FST_fw_bolt_0",
+     "mm": 24.606,
+     "pose": "flywheel=45, hood=1.93964",
+     "overtravel": true,
+     "at": [
+      19.5,
+      56.1,
+      71.4
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_backplate",
+     "b": "FST_fw_bolt_2",
+     "mm": 24.804,
+     "pose": "flywheel=180, hood=1.93964",
+     "overtravel": true,
+     "at": [
+      19.5,
+      44.9,
+      73.2
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_backplate",
+     "b": "FST_fw_nut_0",
+     "mm": 24.85,
+     "pose": "flywheel=270, hood=1.93964",
+     "overtravel": true,
+     "at": [
+      19.5,
+      47.2,
+      72.2
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_backplate",
+     "b": "FST_fw_nut_2",
+     "mm": 24.9,
+     "pose": "flywheel=135, hood=1.93964",
+     "overtravel": true,
+     "at": [
+      19.5,
+      58.4,
+      72.4
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_flywheel",
+     "b": "FST_cover_5",
+     "mm": 24.918,
+     "pose": "flywheel=315",
+     "overtravel": false,
+     "at": [
+      29.5,
+      82.4,
+      65.7
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "BUY_tape",
+     "b": "FST_cover_5",
+     "mm": 25.921,
+     "pose": "flywheel=45",
+     "overtravel": false,
+     "at": [
+      26.9,
+      82.0,
+      65.9
+     ],
+     "fit": null,
+     "min": 0.5
+    },
+    {
+     "a": "PRT_backplate",
+     "b": "BUY_motor_shaft",
+     "mm": 36.827,
+     "pose": "flywheel=0, hood=1.93964",
+     "overtravel": true,
+     "at": [
+      21.0,
+      52.6,
+      83.3
+     ],
+     "fit": null,
+     "min": 0.5
+    }
+   ],
+   "runtime_s": 3.8
+  },
+  "fasteners": {
+   "findings": [
+    {
+     "status": "warn",
+     "msg": "FST_nip_stud thread protrudes 4.6 mm past the last part, visible from outside",
+     "object": "FST_nip_stud"
+    }
+   ],
+   "rows": [
+    {
+     "object": "FST_motor_0",
+     "head": [
+      4.0,
+      40.3,
+      83.5
+     ],
+     "into": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "length_mm": 8.0,
+     "thread_host": "BUY_motor",
+     "engagement_mm": 4.0,
+     "head_buried_in": [],
+     "body": "static",
+     "passes_through": {
+      "BUY_motor": 4.0
+     },
+     "into_purchased": {},
+     "standoff_mm": 0.0,
+     "protrusion_mm": 0.0,
+     "tip_exposed": false,
+     "access": {
+      "home": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=60": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=120": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=180": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=240": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=300": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     },
+     "access_best": {
+      "pose": "home",
+      "reach_mm": 28.0,
+      "blocked": false,
+      "tool": "straight"
+     }
+    },
+    {
+     "object": "FST_motor_1",
+     "head": [
+      4.0,
+      54.8,
+      73.5
+     ],
+     "into": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "length_mm": 8.0,
+     "thread_host": "BUY_motor",
+     "engagement_mm": 4.0,
+     "head_buried_in": [],
+     "body": "static",
+     "passes_through": {
+      "BUY_motor": 4.0
+     },
+     "into_purchased": {},
+     "standoff_mm": 0.0,
+     "protrusion_mm": 0.0,
+     "tip_exposed": false,
+     "access": {
+      "home": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=60": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=120": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=180": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=240": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=300": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     },
+     "access_best": {
+      "pose": "home",
+      "reach_mm": 28.0,
+      "blocked": false,
+      "tool": "straight"
+     }
+    },
+    {
+     "object": "FST_motor_2",
+     "head": [
+      4.0,
+      64.8,
+      88.1
+     ],
+     "into": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "length_mm": 8.0,
+     "thread_host": "BUY_motor",
+     "engagement_mm": 4.0,
+     "head_buried_in": [],
+     "body": "static",
+     "passes_through": {
+      "BUY_motor": 4.0
+     },
+     "into_purchased": {},
+     "standoff_mm": 0.0,
+     "protrusion_mm": 0.0,
+     "tip_exposed": false,
+     "access": {
+      "home": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=60": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=120": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=180": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=240": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=300": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     },
+     "access_best": {
+      "pose": "home",
+      "reach_mm": 28.0,
+      "blocked": false,
+      "tool": "straight"
+     }
+    },
+    {
+     "object": "FST_motor_3",
+     "head": [
+      4.0,
+      50.3,
+      98.1
+     ],
+     "into": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "length_mm": 8.0,
+     "thread_host": "BUY_motor",
+     "engagement_mm": 4.0,
+     "head_buried_in": [],
+     "body": "static",
+     "passes_through": {
+      "BUY_motor": 4.0
+     },
+     "into_purchased": {},
+     "standoff_mm": 0.0,
+     "protrusion_mm": 0.0,
+     "tip_exposed": false,
+     "access": {
+      "home": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=60": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=120": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=180": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=240": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=300": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 28.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     },
+     "access_best": {
+      "pose": "home",
+      "reach_mm": 28.0,
+      "blocked": false,
+      "tool": "straight"
+     }
+    },
+    {
+     "object": "FST_cover_0",
+     "head": [
+      33.1,
+      -15.4,
+      129.2
+     ],
+     "into": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "length_mm": 12.0,
+     "thread_host": "PRT_rig_guard",
+     "engagement_mm": 10.0,
+     "head_buried_in": [],
+     "body": "static",
+     "passes_through": {
+      "PRT_rig_guard": 10.5
+     },
+     "into_purchased": {},
+     "standoff_mm": 0.0,
+     "protrusion_mm": 0.0,
+     "tip_exposed": false,
+     "access": {
+      "home": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=60": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=120": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=180": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=240": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=300": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     },
+     "access_best": {
+      "pose": "home",
+      "reach_mm": 14.0,
+      "blocked": false,
+      "tool": "straight"
+     }
+    },
+    {
+     "object": "FST_cover_1",
+     "head": [
+      33.1,
+      123.9,
+      56.4
+     ],
+     "into": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "length_mm": 12.0,
+     "thread_host": "PRT_rig_guard",
+     "engagement_mm": 10.0,
+     "head_buried_in": [],
+     "body": "static",
+     "passes_through": {
+      "PRT_rig_guard": 10.5
+     },
+     "into_purchased": {},
+     "standoff_mm": 0.0,
+     "protrusion_mm": 0.0,
+     "tip_exposed": false,
+     "access": {
+      "home": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=60": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=120": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=180": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=240": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=300": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     },
+     "access_best": {
+      "pose": "home",
+      "reach_mm": 14.0,
+      "blocked": false,
+      "tool": "straight"
+     }
+    },
+    {
+     "object": "FST_cover_2",
+     "head": [
+      33.1,
+      -4.3,
+      72.5
+     ],
+     "into": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "length_mm": 12.0,
+     "thread_host": "PRT_rig_guard",
+     "engagement_mm": 10.0,
+     "head_buried_in": [],
+     "body": "static",
+     "passes_through": {
+      "PRT_rig_guard": 10.5
+     },
+     "into_purchased": {},
+     "standoff_mm": 0.0,
+     "protrusion_mm": 0.0,
+     "tip_exposed": false,
+     "access": {
+      "home": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=60": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=120": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=180": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=240": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=300": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     },
+     "access_best": {
+      "pose": "home",
+      "reach_mm": 14.0,
+      "blocked": false,
+      "tool": "straight"
+     }
+    },
+    {
+     "object": "FST_cover_3",
+     "head": [
+      33.1,
+      93.6,
+      78.4
+     ],
+     "into": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "length_mm": 12.0,
+     "thread_host": "PRT_rig_guard",
+     "engagement_mm": 10.0,
+     "head_buried_in": [],
+     "body": "static",
+     "passes_through": {
+      "PRT_rig_guard": 10.5
+     },
+     "into_purchased": {},
+     "standoff_mm": 0.0,
+     "protrusion_mm": 0.0,
+     "tip_exposed": false,
+     "access": {
+      "home": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=60": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=120": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=180": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=240": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=300": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     },
+     "access_best": {
+      "pose": "home",
+      "reach_mm": 14.0,
+      "blocked": false,
+      "tool": "straight"
+     }
+    },
+    {
+     "object": "FST_cover_4",
+     "head": [
+      33.1,
+      115.9,
+      81.2
+     ],
+     "into": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "length_mm": 12.0,
+     "thread_host": "PRT_rig_guard",
+     "engagement_mm": 10.0,
+     "head_buried_in": [],
+     "body": "static",
+     "passes_through": {
+      "PRT_rig_guard": 10.5
+     },
+     "into_purchased": {},
+     "standoff_mm": 0.0,
+     "protrusion_mm": 0.0,
+     "tip_exposed": false,
+     "access": {
+      "home": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=60": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=120": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=180": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=240": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=300": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     },
+     "access_best": {
+      "pose": "home",
+      "reach_mm": 14.0,
+      "blocked": false,
+      "tool": "straight"
+     }
+    },
+    {
+     "object": "FST_cover_5",
+     "head": [
+      33.1,
+      105.7,
+      50.9
+     ],
+     "into": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "length_mm": 12.0,
+     "thread_host": "PRT_rig_guard",
+     "engagement_mm": 10.0,
+     "head_buried_in": [],
+     "body": "static",
+     "passes_through": {
+      "PRT_rig_guard": 10.5
+     },
+     "into_purchased": {},
+     "standoff_mm": 0.0,
+     "protrusion_mm": 0.0,
+     "tip_exposed": false,
+     "access": {
+      "home": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=60": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=120": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=180": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=240": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=300": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     },
+     "access_best": {
+      "pose": "home",
+      "reach_mm": 14.0,
+      "blocked": false,
+      "tool": "straight"
+     }
+    },
+    {
+     "object": "FST_hinge",
+     "head": [
+      0.0,
+      -11.4,
+      88.0
+     ],
+     "into": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "length_mm": 40.0,
+     "thread_host": "PRT_rig_cover",
+     "engagement_mm": 7.5,
+     "head_buried_in": [],
+     "body": "static",
+     "passes_through": {
+      "PRT_rig_cover": 7.5
+     },
+     "into_purchased": {},
+     "standoff_mm": 1.0,
+     "protrusion_mm": 1.0,
+     "tip_exposed": true,
+     "access": {
+      "home": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=60": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=120": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=180": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=240": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=300": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 14.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     },
+     "access_best": {
+      "pose": "home",
+      "reach_mm": 14.0,
+      "blocked": false,
+      "tool": "straight"
+     }
+    },
+    {
+     "object": "FST_nip_stud",
+     "nut": {
+      "name": "FST_nip_nut",
+      "from_mm": 13.0,
+      "to_mm": 15.4,
+      "len_mm": 2.4
+     },
+     "nut_gap_mm": 0.0,
+     "head": [
+      19.5,
+      32.5,
+      42.7
+     ],
+     "into": [
+      0.0,
+      -0.718,
+      -0.696
+     ],
+     "length_mm": 20.0,
+     "thread_host": "FST_nip_nut",
+     "engagement_mm": 2.4,
+     "head_buried_in": [],
+     "body": "PIV_hood",
+     "passes_through": {},
+     "into_purchased": {},
+     "standoff_mm": 10.5,
+     "protrusion_mm": 4.6,
+     "tip_exposed": true,
+     "access": {
+      "home": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 0.3,
+       "blocked_by": "PRT_backplate",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 1.9 mm out (elbow at 15.5)"
+      },
+      "flywheel=60": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 0.3,
+       "blocked_by": "PRT_backplate",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 1.9 mm out (elbow at 15.5)"
+      },
+      "flywheel=120": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 0.3,
+       "blocked_by": "PRT_backplate",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 1.9 mm out (elbow at 15.5)"
+      },
+      "flywheel=180": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 0.3,
+       "blocked_by": "PRT_backplate",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 1.9 mm out (elbow at 15.5)"
+      },
+      "flywheel=240": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 0.3,
+       "blocked_by": "PRT_backplate",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 1.9 mm out (elbow at 15.5)"
+      },
+      "flywheel=300": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 0.3,
+       "blocked_by": "PRT_backplate",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 1.9 mm out (elbow at 15.5)"
+      },
+      "hood=-5.24291": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 0.3,
+       "blocked_by": "PRT_backplate",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 1.9 mm out (elbow at 15.5)"
+      },
+      "hood=1.43964": {
+       "reach_mm": null,
+       "blocked": true,
+       "blocked_at_mm": 0.3,
+       "blocked_by": "PRT_backplate",
+       "lkey_ok": false,
+       "lkey_arc_deg": 0,
+       "lkey_why": "short leg blocked 1.9 mm out (elbow at 15.5)"
+      }
+     },
+     "access_best": null,
+     "captive": "hex head held in the backplate pocket and never driven; the thumbwheel's captive nut turns"
+    },
+    {
+     "object": "FST_fw_bolt_0",
+     "nut": {
+      "name": "FST_fw_nut_0",
+      "from_mm": 17.06,
+      "to_mm": 19.46,
+      "len_mm": 2.4
+     },
+     "nut_gap_mm": 0.0,
+     "head": [
+      19.5,
+      46.8,
+      76.8
+     ],
+     "into": [
+      0.0,
+      0.94,
+      0.342
+     ],
+     "length_mm": 20.0,
+     "thread_host": "FST_fw_nut_0",
+     "engagement_mm": 2.4,
+     "head_buried_in": [],
+     "body": "PIV_flywheel",
+     "passes_through": {},
+     "into_purchased": {},
+     "standoff_mm": 0.0,
+     "protrusion_mm": 0.5,
+     "tip_exposed": false,
+     "access": {
+      "home": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "flywheel=60": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "flywheel=120": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "flywheel=180": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "flywheel=240": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "flywheel=300": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "hood=1.43964": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      }
+     },
+     "access_best": {
+      "pose": "home",
+      "reach_mm": 15.5,
+      "blocked": false,
+      "blocked_at_mm": 21.2,
+      "blocked_by": "PRT_flywheel",
+      "lkey_ok": true,
+      "lkey_arc_deg": 100,
+      "lkey_why": "long leg clear over 100 deg (need 60)",
+      "tool": "L-key"
+     }
+    },
+    {
+     "object": "FST_fw_bolt_2",
+     "nut": {
+      "name": "FST_fw_nut_2",
+      "from_mm": 17.06,
+      "to_mm": 19.46,
+      "len_mm": 2.4
+     },
+     "nut_gap_mm": 0.0,
+     "head": [
+      19.5,
+      58.3,
+      94.8
+     ],
+     "into": [
+      0.0,
+      -0.94,
+      -0.342
+     ],
+     "length_mm": 20.0,
+     "thread_host": "FST_fw_nut_2",
+     "engagement_mm": 2.4,
+     "head_buried_in": [],
+     "body": "PIV_flywheel",
+     "passes_through": {},
+     "into_purchased": {},
+     "standoff_mm": 0.0,
+     "protrusion_mm": 0.5,
+     "tip_exposed": false,
+     "access": {
+      "home": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "flywheel=60": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "flywheel=120": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "flywheel=180": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "flywheel=240": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "flywheel=300": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "hood=1.43964": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      }
+     },
+     "access_best": {
+      "pose": "home",
+      "reach_mm": 15.5,
+      "blocked": false,
+      "blocked_at_mm": 21.2,
+      "blocked_by": "PRT_flywheel",
+      "lkey_ok": true,
+      "lkey_arc_deg": 100,
+      "lkey_why": "long leg clear over 100 deg (need 60)",
+      "tool": "L-key"
+     }
+    },
+    {
+     "object": "FST_mg_0",
+     "head": [
+      -69.0,
+      81.6,
+      9.0
+     ],
+     "into": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "length_mm": 8.0,
+     "thread_host": "PRT_rig_frame",
+     "engagement_mm": 6.0,
+     "head_buried_in": [],
+     "body": "static",
+     "passes_through": {
+      "PRT_rig_frame": 6.0
+     },
+     "into_purchased": {},
+     "standoff_mm": 0.0,
+     "protrusion_mm": 0.0,
+     "tip_exposed": false,
+     "access": {
+      "home": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=60": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=120": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=180": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=240": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=300": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     },
+     "access_best": {
+      "pose": "home",
+      "reach_mm": 22.0,
+      "blocked": false,
+      "tool": "straight"
+     }
+    },
+    {
+     "object": "FST_mg_1",
+     "head": [
+      -69.0,
+      23.6,
+      9.0
+     ],
+     "into": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "length_mm": 8.0,
+     "thread_host": "PRT_rig_frame",
+     "engagement_mm": 6.0,
+     "head_buried_in": [],
+     "body": "static",
+     "passes_through": {
+      "PRT_rig_frame": 6.0
+     },
+     "into_purchased": {},
+     "standoff_mm": 0.0,
+     "protrusion_mm": 0.0,
+     "tip_exposed": false,
+     "access": {
+      "home": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=60": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=120": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=180": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=240": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=300": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     },
+     "access_best": {
+      "pose": "home",
+      "reach_mm": 22.0,
+      "blocked": false,
+      "tool": "straight"
+     }
+    },
+    {
+     "object": "FST_mg_2",
+     "head": [
+      -69.0,
+      81.6,
+      58.0
+     ],
+     "into": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "length_mm": 8.0,
+     "thread_host": "PRT_rig_frame",
+     "engagement_mm": 6.0,
+     "head_buried_in": [],
+     "body": "static",
+     "passes_through": {
+      "PRT_rig_frame": 6.0
+     },
+     "into_purchased": {},
+     "standoff_mm": 0.0,
+     "protrusion_mm": 0.0,
+     "tip_exposed": false,
+     "access": {
+      "home": {
+       "reach_mm": 16.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=60": {
+       "reach_mm": 16.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=120": {
+       "reach_mm": 16.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=180": {
+       "reach_mm": 16.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=240": {
+       "reach_mm": 16.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=300": {
+       "reach_mm": 16.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 16.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 16.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     },
+     "access_best": {
+      "pose": "home",
+      "reach_mm": 16.0,
+      "blocked": false,
+      "tool": "straight"
+     }
+    },
+    {
+     "object": "FST_mg_3",
+     "head": [
+      -69.0,
+      23.6,
+      58.0
+     ],
+     "into": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "length_mm": 8.0,
+     "thread_host": "PRT_rig_frame",
+     "engagement_mm": 6.0,
+     "head_buried_in": [],
+     "body": "static",
+     "passes_through": {
+      "PRT_rig_frame": 6.0
+     },
+     "into_purchased": {},
+     "standoff_mm": 0.0,
+     "protrusion_mm": 0.0,
+     "tip_exposed": false,
+     "access": {
+      "home": {
+       "reach_mm": 18.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=60": {
+       "reach_mm": 18.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=120": {
+       "reach_mm": 18.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=180": {
+       "reach_mm": 18.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=240": {
+       "reach_mm": 18.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "flywheel=300": {
+       "reach_mm": 18.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 18.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 18.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     },
+     "access_best": {
+      "pose": "home",
+      "reach_mm": 18.0,
+      "blocked": false,
+      "tool": "straight"
+     }
+    }
+   ],
+   "nuts": [
+    {
+     "object": "FST_nip_nut",
+     "bolt": "FST_nip_stud",
+     "inside_purchased": {},
+     "exposed": false
+    },
+    {
+     "object": "FST_fw_nut_0",
+     "bolt": "FST_fw_bolt_0",
+     "inside_purchased": {},
+     "exposed": false
+    },
+    {
+     "object": "FST_fw_nut_2",
+     "bolt": "FST_fw_bolt_2",
+     "inside_purchased": {},
+     "exposed": false
+    }
+   ],
+   "runtime_s": 4.6
+  },
+  "service": {
+   "findings": [],
+   "rows": [
+    {
+     "op": "re-tighten or swap the flywheel (re-tape)",
+     "object": "FST_fw_bolt_0",
+     "access": {
+      "home": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "hood=1.43964": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      }
+     }
+    },
+    {
+     "op": "re-tighten or swap the flywheel (re-tape)",
+     "object": "FST_fw_bolt_2",
+     "access": {
+      "home": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      },
+      "hood=1.43964": {
+       "reach_mm": 15.5,
+       "blocked": false,
+       "blocked_at_mm": 21.2,
+       "blocked_by": "PRT_flywheel",
+       "lkey_ok": true,
+       "lkey_arc_deg": 100,
+       "lkey_why": "long leg clear over 100 deg (need 60)",
+       "tool": "L-key"
+      }
+     }
+    },
+    {
+     "op": "re-seat the MotorGo",
+     "object": "FST_mg_0",
+     "access": {
+      "home": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     }
+    },
+    {
+     "op": "re-seat the MotorGo",
+     "object": "FST_mg_1",
+     "access": {
+      "home": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 22.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     }
+    },
+    {
+     "op": "re-seat the MotorGo",
+     "object": "FST_mg_2",
+     "access": {
+      "home": {
+       "reach_mm": 16.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 16.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 16.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     }
+    },
+    {
+     "op": "re-seat the MotorGo",
+     "object": "FST_mg_3",
+     "access": {
+      "home": {
+       "reach_mm": 18.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=-5.24291": {
+       "reach_mm": 18.0,
+       "blocked": false,
+       "tool": "straight"
+      },
+      "hood=1.43964": {
+       "reach_mm": 18.0,
+       "blocked": false,
+       "tool": "straight"
+      }
+     }
+    }
+   ],
+   "runtime_s": 0.9
+  },
+  "drop": {
+   "findings": [],
+   "tests": [
+    {
+     "name": "funnel_to_tape",
+     "mode": "slide",
+     "rows": [
+      {
+       "pose": "hood=1.4396",
+       "rays": 29,
+       "first_hit": {
+        "BUY_tape": 22,
+        "PRT_flywheel": 7
+       },
+       "outcomes": {
+        "hit": 29
+       },
+       "stall_points": [],
+       "flattest_slide_deg": 44.9,
+       "angle_deg": [
+        68.9,
+        71.4
+       ]
+      },
+      {
+       "pose": "hood=0",
+       "rays": 29,
+       "first_hit": {
+        "BUY_tape": 22,
+        "PRT_flywheel": 7
+       },
+       "outcomes": {
+        "hit": 29
+       },
+       "stall_points": [],
+       "flattest_slide_deg": 46.3,
+       "angle_deg": [
+        66.1,
+        67.9
+       ]
+      },
+      {
+       "pose": "hood=-1.4571",
+       "rays": 29,
+       "first_hit": {
+        "BUY_tape": 22,
+        "PRT_flywheel": 7
+       },
+       "outcomes": {
+        "hit": 29
+       },
+       "stall_points": [],
+       "flattest_slide_deg": 46.7,
+       "angle_deg": [
+        60.6,
+        64.4
+       ]
+      }
+     ]
+    },
+    {
+     "name": "funnel_wide_gap_report_only",
+     "mode": "slide",
+     "rows": [
+      {
+       "pose": "hood=-3.3656",
+       "rays": 29,
+       "first_hit": {
+        "stall": 29
+       },
+       "outcomes": {
+        "stall": 29
+       },
+       "stall_points": [
+        [
+         22.2,
+         39.0,
+         42.8
+        ],
+        [
+         26.2,
+         39.0,
+         42.8
+        ],
+        [
+         24.2,
+         39.0,
+         42.8
+        ],
+        [
+         22.2,
+         39.0,
+         42.8
+        ],
+        [
+         20.2,
+         39.0,
+         42.8
+        ]
+       ]
+      },
+      {
+       "pose": "hood=-5.2429",
+       "rays": 29,
+       "first_hit": {
+        "stall": 29
+       },
+       "outcomes": {
+        "stall": 29
+       },
+       "stall_points": [
+        [
+         22.2,
+         38.9,
+         40.7
+        ],
+        [
+         26.2,
+         38.9,
+         40.7
+        ],
+        [
+         24.2,
+         38.9,
+         40.7
+        ],
+        [
+         22.2,
+         38.9,
+         40.7
+        ],
+        [
+         20.2,
+         38.9,
+         40.7
+        ]
+       ]
+      }
+     ]
+    }
+   ],
+   "runtime_s": 0.5
+  },
+  "index": {
+   "findings": [],
+   "runtime_s": 0.0
+  },
+  "slide": {
+   "findings": [],
+   "rows": [
+    {
+     "object": "flywheel off along +X (cover off)",
+     "members": [
+      "BUY_tape",
+      "FST_fw_bolt_0",
+      "FST_fw_bolt_2",
+      "FST_fw_nut_0",
+      "FST_fw_nut_2",
+      "PRT_flywheel"
+     ],
+     "dir": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "dist": 60,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 1.0,
+     "closest": "PRT_rig_guard",
+     "pose": "home",
+     "overlapping_at_rest": []
+    },
+    {
+     "object": "cover off along +X",
+     "members": [
+      "PRT_rig_cover"
+     ],
+     "dir": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "dist": 40,
+     "blocked_at_mm": null,
+     "blocked_by": null,
+     "min_clearance_mm": 0.0,
+     "closest": "PRT_rig_guard",
+     "pose": "home",
+     "overlapping_at_rest": []
+    }
+   ],
+   "runtime_s": 0.3
+  },
+  "distances": {
+   "findings": [],
+   "rows": [
+    {
+     "a": "PRT_backplate",
+     "b": "PRT_flywheel",
+     "pose": "hood=1.4396",
+     "mm": 5.016,
+     "how": "along ray",
+     "min": 4.85,
+     "max": 5.15,
+     "why": "thumbwheel closed end: 5.0 bare at the plate's BDC point"
+    },
+    {
+     "a": "PRT_backplate",
+     "b": "PRT_flywheel",
+     "pose": "home",
+     "mm": 6.493,
+     "how": "along ray",
+     "min": 6.35,
+     "max": 6.65,
+     "why": "A3 operating gap: 6.0 over tape: 6.5 bare at the plate's BDC point",
+     "squeeze_mm": 1.01
+    },
+    {
+     "a": "PRT_backplate",
+     "b": "PRT_flywheel",
+     "pose": "hood=-5.2429",
+     "mm": 12.062,
+     "how": "along ray",
+     "min": 11.85,
+     "max": 12.15,
+     "why": "thumbwheel open end: 12.0 bare at the plate's BDC point"
+    },
+    {
+     "a": "BUY_magnet",
+     "b": "BUY_plink_encoder",
+     "pose": "home",
+     "mm": 1.5,
+     "how": "nearest",
+     "min": 1.3,
+     "max": 1.7,
+     "why": "as-printed encoder air gap"
+    }
+   ],
+   "runtime_s": 0.0
+  },
+  "stacks": {
+   "findings": [
+    {
+     "status": "warn",
+     "msg": "encoder air gap (1.5 nominal, MT6701 wants 0.5..2.0): worst case 0.65 mm > 0.50 (RSS 0.31)",
+     "name": "encoder air gap (1.5 nominal, MT6701 wants 0.5..2.0)",
+     "limit": 0.5,
+     "worst_case": 0.65,
+     "rss": 0.312,
+     "terms": [
+      {
+       "what": "cup print: shoulder (motor rear face) to Plink seat, 6.75 mm",
+       "tol": 0.1
+      },
+      {
+       "what": "motor rear face flatness where the shoulder lands",
+       "tol": 0.1
+      },
+      {
+       "what": "magnet face via the A3 jig (shaft end 0..1 mm recessed)",
+       "tol": 0.25
+      },
+      {
+       "what": "Plink IC height above PCB back",
+       "tol": 0.1
+      },
+      {
+       "what": "PCB seat on the pegs (hot glue)",
+       "tol": 0.05
+      },
+      {
+       "what": "cup pushed home on the shoulder",
+       "tol": 0.05
+      }
+     ],
+     "why": "measure the real gap at bring-up and shim; README step B3"
+    },
+    {
+     "status": "warn",
+     "msg": "magnet-to-sensor centring: worst case 0.40 mm > 0.30 (RSS 0.20)",
+     "name": "magnet-to-sensor centring",
+     "limit": 0.3,
+     "worst_case": 0.4,
+     "rss": 0.2,
+     "terms": [
+      {
+       "what": "Plink pegs to the cup bore axis (same printed part)",
+       "tol": 0.1
+      },
+      {
+       "what": "can in bore, 3 crush ribs",
+       "tol": 0.1
+      },
+      {
+       "what": "Plink IC to its PCB holes",
+       "tol": 0.1
+      },
+      {
+       "what": "magnet on shaft via the A3 jig spigot in the \u00d88 access hole",
+       "tol": 0.1
+      }
+     ],
+     "why": null
+    }
+   ],
+   "rows": [
+    {
+     "name": "encoder air gap (1.5 nominal, MT6701 wants 0.5..2.0)",
+     "limit": 0.5,
+     "worst_case": 0.65,
+     "rss": 0.312,
+     "terms": [
+      {
+       "what": "cup print: shoulder (motor rear face) to Plink seat, 6.75 mm",
+       "tol": 0.1
+      },
+      {
+       "what": "motor rear face flatness where the shoulder lands",
+       "tol": 0.1
+      },
+      {
+       "what": "magnet face via the A3 jig (shaft end 0..1 mm recessed)",
+       "tol": 0.25
+      },
+      {
+       "what": "Plink IC height above PCB back",
+       "tol": 0.1
+      },
+      {
+       "what": "PCB seat on the pegs (hot glue)",
+       "tol": 0.05
+      },
+      {
+       "what": "cup pushed home on the shoulder",
+       "tol": 0.05
+      }
+     ],
+     "why": "measure the real gap at bring-up and shim; README step B3"
+    },
+    {
+     "name": "magnet-to-sensor centring",
+     "limit": 0.3,
+     "worst_case": 0.4,
+     "rss": 0.2,
+     "terms": [
+      {
+       "what": "Plink pegs to the cup bore axis (same printed part)",
+       "tol": 0.1
+      },
+      {
+       "what": "can in bore, 3 crush ribs",
+       "tol": 0.1
+      },
+      {
+       "what": "Plink IC to its PCB holes",
+       "tol": 0.1
+      },
+      {
+       "what": "magnet on shaft via the A3 jig spigot in the \u00d88 access hole",
+       "tol": 0.1
+      }
+     ],
+     "why": null
+    }
+   ],
+   "runtime_s": 0.0
+  },
+  "flexures": {
+   "findings": [],
+   "rows": [
+    {
+     "part": "PRT_rig_guard",
+     "beam_print_dir": [
+      0.913,
+      0.408,
+      0.0
+     ],
+     "angle_to_bed_deg": 0.0,
+     "stress_mpa": 40.2,
+     "interlayer_mpa": 15.0,
+     "why": "34 mm cantilever, 9 N preload; A3 printed it standing up (A3-F2)"
+    },
+    {
+     "part": "PRT_rig_guard",
+     "beam_print_dir": [
+      0.913,
+      0.408,
+      0.0
+     ],
+     "angle_to_bed_deg": 0.0,
+     "stress_mpa": 7.0,
+     "interlayer_mpa": 15.0,
+     "why": "takes the leaf's 18.7 N at the stop"
+    }
+   ],
+   "runtime_s": 0.0
+  },
+  "stability": {
+   "findings": [],
+   "rows": [
+    {
+     "pose": "hood=-5.2429",
+     "mass_g": 467,
+     "cg": [
+      -19.8,
+      48.7,
+      79.3
+     ],
+     "edge_margin_mm": 33.4,
+     "tip_angle_deg": 22.8
+    },
+    {
+     "pose": "hood=-3.2429",
+     "mass_g": 467,
+     "cg": [
+      -19.8,
+      48.7,
+      79.4
+     ],
+     "edge_margin_mm": 33.4,
+     "tip_angle_deg": 22.8
+    },
+    {
+     "pose": "hood=-1.2429",
+     "mass_g": 467,
+     "cg": [
+      -19.8,
+      48.7,
+      79.4
+     ],
+     "edge_margin_mm": 33.5,
+     "tip_angle_deg": 22.9
+    },
+    {
+     "pose": "hood=0.7571",
+     "mass_g": 467,
+     "cg": [
+      -19.8,
+      48.7,
+      79.4
+     ],
+     "edge_margin_mm": 33.5,
+     "tip_angle_deg": 22.9
+    },
+    {
+     "pose": "hood=1.43964",
+     "mass_g": 467,
+     "cg": [
+      -19.8,
+      48.8,
+      79.4
+     ],
+     "edge_margin_mm": 33.5,
+     "tip_angle_deg": 22.9
+    }
+   ],
+   "worst": {
+    "pose": "hood=-5.2429",
+    "mass_g": 467,
+    "cg": [
+     -19.8,
+     48.7,
+     79.3
+    ],
+    "edge_margin_mm": 33.4,
+    "tip_angle_deg": 22.8
+   },
+   "footprint_pts": 6,
+   "purchased_without_mass": [],
+   "runtime_s": 1.2
+  },
+  "cables": {
+   "findings": [],
+   "rows": [
+    {
+     "object": "CAB_phase_0",
+     "path_len": 19.86478054399174,
+     "lead_len": 80.0,
+     "exposed_samples": 163,
+     "samples": 163,
+     "exposed_spots": [
+      {
+       "extent_mm": 17.4,
+       "center": [
+        -66.1,
+        70.9,
+        64.3
+       ],
+       "samples": 163
+      }
+     ]
+    },
+    {
+     "object": "CAB_phase_1",
+     "path_len": 32.405508226900096,
+     "lead_len": 80.0,
+     "exposed_samples": 200,
+     "samples": 227,
+     "exposed_spots": [
+      {
+       "extent_mm": 25.1,
+       "center": [
+        -66.0,
+        68.0,
+        66.7
+       ],
+       "samples": 200
+      }
+     ]
+    },
+    {
+     "object": "CAB_phase_2",
+     "path_len": 45.11406723876719,
+     "lead_len": 80.0,
+     "exposed_samples": 283,
+     "samples": 291,
+     "exposed_spots": [
+      {
+       "extent_mm": 36.0,
+       "center": [
+        -66.1,
+        64.8,
+        67.2
+       ],
+       "samples": 283
+      }
+     ]
+    },
+    {
+     "object": "CAB_encoder",
+     "path_len": 86.81599782250277,
+     "lead_len": null,
+     "exposed_samples": 452,
+     "samples": 493,
+     "exposed_spots": [
+      {
+       "extent_mm": 58.2,
+       "center": [
+        -78.0,
+        56.9,
+        63.8
+       ],
+       "samples": 452
+      }
+     ]
+    }
+   ],
+   "runtime_s": 0.2
+  }
+ },
+ "coverage": [
+  "parts: 6 printed objects (6 unique STLs): manifold, bed fit ['P1S', 'H2D'], overhang, wall probe, bed contact",
+  "interference/clearance: 37 objects in ['Printed', 'Purchased', 'Fasteners', 'Cables'], 620 pair-pose tests, joints swept ['PIV_flywheel', 'PIV_hood'] with 0.5 deg overtravel",
+  "fasteners: 18 screws, 3 nuts; head-buried, thread engagement (bolt-to-nut pairing), shanks/nuts inside purchased parts, head stand-off, protruding thread, access (\u00d86 bit to 14 mm hand clearance, else a 18/56 mm L-key with a 60 deg swing) at 8 poses, parts present per assembly_order (5 steps)",
+  "service: 2 ops, 6 screw accesses with the built assembly present",
+  "drop: 2 tests (fall + slide on walls, no bounce or rolling)",
+  "slide: 2 slide-out sweeps",
+  "stacks: 2 tolerance stacks (declared terms only)",
+  "flexures: 2 declared springs or snap arms against print orientation",
+  "stability: CG and tip angle over 5 poses, footprint from static parts' lowest faces",
+  "cables: 4 routes, 4 with path length; exposure (>= 8 of 26 rays escape, or 10% of the directions toward a viewer) at home pose"
+ ],
+ "not_checked": [
+  "fasteners: pilot/clearance hole diameters (use cadlib.features for those); wrench access to nuts",
+  "stability: dynamic loads (recoil, pan acceleration), friction/sliding",
+  "cables: bend radius, slack across joints, connector positions (review by section render)",
+  "not geometric: teardown step count, alignment-jig datums (declare stacks), aesthetics, BOM correctness"
+ ],
+ "assembly": {
+  "unordered_solids_assumed_present": []
+ },
+ "summary": {
+  "pass": true,
+  "fails": 0,
+  "warns": 7,
+  "fail_list": [],
+  "warn_list": [
+   "parts: PRT_flywheel: ceiling region needs a 72 mm bridge (limit 25)",
+   "parts: PRT_rig_cover: 41 wall samples < 1.6 mm (min 1.00)",
+   "parts: PRT_rig_guard: 22 wall samples < 1.6 mm (min 1.27)",
+   "clearance: PRT_rig_guard to FST_nip_stud 0.58 mm at hood=-5.2429",
+   "fasteners: FST_nip_stud thread protrudes 4.6 mm past the last part, visible from outside",
+   "stacks: encoder air gap (1.5 nominal, MT6701 wants 0.5..2.0): worst case 0.65 mm > 0.50 (RSS 0.31)",
+   "stacks: magnet-to-sensor centring: worst case 0.40 mm > 0.30 (RSS 0.20)"
+  ],
+  "coverage": [
+   "parts: 6 printed objects (6 unique STLs): manifold, bed fit ['P1S', 'H2D'], overhang, wall probe, bed contact",
+   "interference/clearance: 37 objects in ['Printed', 'Purchased', 'Fasteners', 'Cables'], 620 pair-pose tests, joints swept ['PIV_flywheel', 'PIV_hood'] with 0.5 deg overtravel",
+   "fasteners: 18 screws, 3 nuts; head-buried, thread engagement (bolt-to-nut pairing), shanks/nuts inside purchased parts, head stand-off, protruding thread, access (\u00d86 bit to 14 mm hand clearance, else a 18/56 mm L-key with a 60 deg swing) at 8 poses, parts present per assembly_order (5 steps)",
+   "service: 2 ops, 6 screw accesses with the built assembly present",
+   "drop: 2 tests (fall + slide on walls, no bounce or rolling)",
+   "slide: 2 slide-out sweeps",
+   "stacks: 2 tolerance stacks (declared terms only)",
+   "flexures: 2 declared springs or snap arms against print orientation",
+   "stability: CG and tip angle over 5 poses, footprint from static parts' lowest faces",
+   "cables: 4 routes, 4 with path length; exposure (>= 8 of 26 rays escape, or 10% of the directions toward a viewer) at home pose"
+  ],
+  "not_checked": [
+   "fasteners: pilot/clearance hole diameters (use cadlib.features for those); wrench access to nuts",
+   "stability: dynamic loads (recoil, pan acceleration), friction/sliding",
+   "cables: bend radius, slack across joints, connector positions (review by section render)",
+   "not geometric: teardown step count, alignment-jig datums (declare stacks), aesthetics, BOM correctness"
+  ],
+  "runtime_s": 11.6
+ }
+}

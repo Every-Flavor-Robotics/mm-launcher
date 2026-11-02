@@ -1,0 +1,56 @@
+[cadcheck   0.0s] objects: 36 printed, 20 purchased, 107 fasteners, 15 cables; joints {'PIV_feeder': ('Z', -60.0, 60.0), 'PIV_feeder_pinion': ('Z', -88.0, 88.0), 'PIV_flywheel': ('X', None, None), 'PIV_gate': ('X', 0.0, 52.0), 'PIV_hood': ('X', -0.5581388667342698, 0.3271427281793169), 'PIV_jar': ('Z', 0.0, 30.0), 'PIV_nip_lift': ('X', -2.1897668041422764, 0.0), 'PIV_pan': ('Z', -90.0, 90.0), 'PIV_pan_pinion': ('Z', -90.0, 90.0), 'PIV_tilt': ('X', 0.0, 45.0)}
+[cadcheck   2.8s] parts done
+[cadcheck   3.5s] interference group static: 2130 pairs x 1 poses
+[cadcheck   4.1s] interference group ['PIV_pan']: 3043 pairs x 15 poses
+[cadcheck  16.2s] interference group ['PIV_tilt']: 2263 pairs x 21 poses
+[cadcheck  28.7s] interference group ['PIV_feeder']: 377 pairs x 27 poses
+[cadcheck  45.0s] interference group ['PIV_jar']: 530 pairs x 9 poses
+[cadcheck  46.5s] interference group ['PIV_nip_lift']: 86 pairs x 5 poses
+[cadcheck  46.7s] interference group ['PIV_flywheel']: 301 pairs x 6 poses
+[cadcheck  48.4s] interference group ['PIV_hood']: 6 pairs x 4 poses
+[cadcheck  48.5s] interference group ['PIV_gate']: 10 pairs x 7 poses
+[cadcheck  49.2s] interference group ['PIV_pan', 'PIV_tilt']: 2208 pairs x 35 poses
+[cadcheck  49.8s] interference group ['PIV_feeder', 'PIV_pan']: 364 pairs x 35 poses
+[cadcheck  50.1s] interference group ['PIV_jar', 'PIV_pan']: 520 pairs x 35 poses
+[cadcheck  50.5s] interference group ['PIV_nip_lift', 'PIV_tilt']: 106 pairs x 45 poses
+[cadcheck  50.6s] interference group ['PIV_flywheel', 'PIV_tilt']: 371 pairs x 42 poses
+[cadcheck  53.2s] interference group ['PIV_gate', 'PIV_jar']: 53 pairs x 35 poses
+[cadcheck  53.2s] interference group ['PIV_hood', 'PIV_nip_lift']: 129 pairs x 20 poses
+[cadcheck  57.7s] interference group ['PIV_feeder', 'PIV_tilt']: 301 pairs x 35 poses
+[cadcheck  60.5s] interference group ['PIV_jar', 'PIV_tilt']: 430 pairs x 35 poses
+[cadcheck  66.7s] interference group ['PIV_flywheel', 'PIV_nip_lift']: 14 pairs x 30 poses
+[cadcheck  67.6s] interference group ['PIV_feeder', 'PIV_jar']: 70 pairs x 35 poses
+[cadcheck  74.4s] interference group ['PIV_nip_lift', 'PIV_pan', 'PIV_tilt']: 104 pairs x 64 poses
+[cadcheck  74.7s] interference group ['PIV_flywheel', 'PIV_pan', 'PIV_tilt']: 364 pairs x 75 poses
+[cadcheck  75.1s] interference group ['PIV_gate', 'PIV_jar', 'PIV_pan']: 52 pairs x 64 poses
+[cadcheck  75.3s] interference group ['PIV_hood', 'PIV_nip_lift', 'PIV_tilt']: 159 pairs x 64 poses
+[cadcheck  76.4s] interference group ['PIV_gate', 'PIV_jar', 'PIV_tilt']: 43 pairs x 64 poses
+[cadcheck  77.9s] interference group ['PIV_flywheel', 'PIV_hood', 'PIV_nip_lift']: 21 pairs x 60 poses
+[cadcheck  85.2s] interference group ['PIV_feeder', 'PIV_nip_lift', 'PIV_tilt']: 14 pairs x 64 poses
+[cadcheck  85.5s] interference group ['PIV_jar', 'PIV_nip_lift', 'PIV_tilt']: 20 pairs x 64 poses
+[cadcheck  86.0s] interference group ['PIV_feeder', 'PIV_flywheel', 'PIV_tilt']: 49 pairs x 60 poses
+[cadcheck  86.8s] interference group ['PIV_flywheel', 'PIV_jar', 'PIV_tilt']: 70 pairs x 75 poses
+[cadcheck  87.6s] interference group ['PIV_feeder', 'PIV_gate', 'PIV_jar']: 7 pairs x 64 poses
+[cadcheck  88.0s] interference group ['PIV_hood', 'PIV_nip_lift', 'PIV_pan', 'PIV_tilt']: 156 pairs x 256 poses
+[cadcheck  88.8s] interference group ['PIV_feeder', 'PIV_hood', 'PIV_nip_lift', 'PIV_tilt']: 21 pairs x 256 poses
+[cadcheck  90.4s] interference group ['PIV_hood', 'PIV_jar', 'PIV_nip_lift', 'PIV_tilt']: 30 pairs x 256 poses
+[cadcheck  93.8s] interference group ['PIV_gate', 'PIV_jar', 'PIV_nip_lift', 'PIV_tilt']: 2 pairs x 256 poses
+[cadcheck  94.1s] interference group ['PIV_flywheel', 'PIV_gate', 'PIV_jar', 'PIV_tilt']: 7 pairs x 375 poses
+[cadcheck  95.6s] interference group ['PIV_gate', 'PIV_hood', 'PIV_jar', 'PIV_nip_lift', 'PIV_tilt']: 3 pairs x 1024 poses
+[cadcheck  98.0s] interference done
+[cadcheck 122.2s] fasteners done
+[cadcheck 134.2s] service done
+[cadcheck 139.6s] drop done
+[cadcheck 145.9s] index done
+[cadcheck 169.1s] slide done
+[cadcheck 172.0s] distances done
+[cadcheck 175.1s] payload done
+[cadcheck 175.7s] sightlines done
+[cadcheck 175.7s] assembly done
+[cadcheck 175.7s] stacks done
+[cadcheck 175.7s] flexures done
+[cadcheck 177.8s] stability done
+[cadcheck 181.6s] cables done
+CADCHECK PASS: 0 fail, 37 warn (0 untriaged, 37 accepted) -> /Users/alxchunlin/code-stuff/mmlauncher/mm-launcher/mm-launch-hw/v2/renders/attempt-7/review/cadcheck.json
+  allows that skip a pair across a joint with no max_mm3 (any clash there is hidden): BUY_motor x BUY_magnet; FST_nip_stud x FST_tw_nut; PRT_flywheel x BUY_motor; PRT_nip_wheel x FST_nip_stud; PRT_nip_wheel x PRT_nip_leaf
+  not checked: fasteners: pilot/clearance hole diameters (use cadlib.features for those); wrench access to nuts; stability: dynamic loads (recoil, pan acceleration), friction/sliding; cables: bend radius, slack across joints, connector positions (review by section render); not geometric: teardown step count, alignment-jig datums (declare stacks), aesthetics, BOM correctness
