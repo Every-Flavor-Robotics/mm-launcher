@@ -1,0 +1,3327 @@
+{
+ "_about": "ASSEMBLY.md steps mapped to the GLB's objects (BUILD/guide/build_guide.py). new_objects: objects that first appear in the step, from checks.json assembly_order. focus_objects: what the viewer highlights (new objects, plus a merged bench sub-assembly). explode: the direction each part flies in from. Directions are in the design frame: +X right, +Y front, +Z up. status 'flagged' lists the reason in flags.",
+ "summary": {
+  "steps": 25,
+  "clean": 25,
+  "flagged": 0,
+  "assembly_order_entries_unused": [],
+  "assembly_order_empty_entries": 0,
+  "objects_never_placed": []
+ },
+ "steps": [
+  {
+   "index": 0,
+   "id": "0",
+   "title": "Before you start",
+   "group": "Before you start",
+   "status": "clean",
+   "flags": [],
+   "notes": [],
+   "assembly_order": [],
+   "bench": null,
+   "merge": null,
+   "joint": null,
+   "new_objects": [],
+   "focus_objects": [],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    1.0,
+    1.3,
+    0.8
+   ],
+   "explode": {},
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": null,
+   "release": null,
+   "fields": [
+    {
+     "label": "Prints",
+     "html": "<p>plates 0a to 6 (<code>PRINT_PLAN.md</code>), and the two tools: the encoder jig (plate 1) and the pocket coupon (plate 0b). You don't need the v2 45 deg prop: no v3 step uses a tilt pose (<code>assembly.held_poses</code> <code>[]</code>).</p>",
+     "kind": null
+    },
+    {
+     "label": "Measured and fit-tested",
+     "html": "<p><code>MEASURE_FIRST.md</code> is done, including the fit coupons (item 2) and the early jar group (item 3). If anything changed, rebuild the model.</p>",
+     "kind": null
+    },
+    {
+     "label": "Servos on the bench, through the controller",
+     "html": "<ul><li>give the pan, tilt and feeder servos different bus IDs (they all ship as ID 1, and after step 11a they share one bus);</li><li>label each servo with its ID;</li><li>command each servo to its mid position (500 on Hiwonder's 0..1000 scale) before its horn goes on, and don't turn the output by hand after that. Mid is pan 0, tilt 0 and the feeder's park position. Fine trim is done in firmware at step 16.</li></ul>",
+     "kind": null
+    },
+    {
+     "label": "Horns",
+     "html": "<p>there are no horn screws in v3. Each horn presses into a 2.7-deep pocket over 8 printed \u00d82.0 pins that go into its 8 \u00d82.2 holes (BOM item 5). Keep the horns' own screws in the bag.</p>",
+     "kind": null
+    },
+    {
+     "label": "Tape check",
+     "html": "<p>the hockey tape is 1 in wide (it is trimmed to 13.8 at step 6f).</p>",
+     "kind": null
+    }
+   ],
+   "check": "",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "critical",
+     "text": "Lift and carry the machine by the base only, never by the jar, the crown or the beam. Lifted by the jar, the whole 4075 g hangs on three rows of snap fingers that all bend across layers, each with less than one layer of Z clearance. To move it: battery out, then both hands flat under the base shell.",
+     "source": "ASSEMBLY intro, line 13 \u00b7 ASSEMBLY intro, line 23"
+    },
+    {
+     "level": "critical",
+     "text": "All three servos ship as bus ID 1. Give pan, tilt and feeder different IDs and label each servo before anything else: after step 11a they share one bus.",
+     "source": "ASSEMBLY 0, line 46"
+    },
+    {
+     "level": "warning",
+     "text": "Command each servo to mid (500 on the 0..1000 scale) before its horn goes on, and don't turn the output by hand after that. Mid is pan 0, tilt 0 and the feeder's park position.",
+     "source": "ASSEMBLY 0, line 48"
+    },
+    {
+     "level": "warning",
+     "text": "Fit-test first: the beam, hub, crown and valve snaps have less than one layer of Z clearance (0.05 to 0.1). Print plate 0a and pass its coupons, and build the jar group from plate 0b, before the big plates.",
+     "source": "ASSEMBLY 0, line 43 \u00b7 MEASURE_FIRST 2, line 50"
+    },
+    {
+     "level": "warning",
+     "text": "There are no horn screws in v3: each horn presses over 8 printed pins. Keep the horns' own screws in the bag.",
+     "source": "ASSEMBLY 0, line 51"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "../renders/attempt-1/iso.png",
+     "key": "iso",
+     "scope": "design",
+     "note": "the finished machine (attempt 1; the hotfix changed the beam, jar adapter and gate)"
+    }
+   ]
+  },
+  {
+   "index": 1,
+   "id": "1",
+   "title": "Base shell upside down; DeWalt adapter",
+   "group": "Base",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: BUY_dewalt_adapter from -Z. Source: adapter up into its deck fences from below (cadcheck insertion -Z); screws from the deck top."
+   ],
+   "assembly_order": [
+    {
+     "label": "1",
+     "index": 0,
+     "step": "1 base shell upside down: DeWalt adapter into its 4 deck fences, 2 x M3 pan x 10 (diagonal corners, counterbored flush) from the deck top into the adapter's own holes",
+     "bench": null,
+     "merge": null,
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": null,
+   "merge": null,
+   "joint": "screws",
+   "new_objects": [
+    "PRT_base_shell",
+    "BUY_dewalt_adapter",
+    "FST_adapter_0",
+    "FST_adapter_1"
+   ],
+   "focus_objects": [
+    "PRT_base_shell",
+    "BUY_dewalt_adapter",
+    "FST_adapter_0",
+    "FST_adapter_1"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    1.0,
+    -0.8,
+    -0.35
+   ],
+   "explode": {
+    "PRT_base_shell": [
+     0,
+     0,
+     0
+    ],
+    "BUY_dewalt_adapter": [
+     0,
+     0,
+     -1
+    ],
+    "FST_adapter_0": [
+     -0.0,
+     -0.0,
+     1.4
+    ],
+    "FST_adapter_1": [
+     -0.0,
+     -0.0,
+     1.4
+    ]
+   },
+   "tools": [
+    "a driver to suit your M3 pan heads"
+   ],
+   "fasteners": [
+    {
+     "qty": 2,
+     "text": "2 x M3 pan x 10 (<code>FST_adapter_0/1</code>).",
+     "spec": "M3 pan x 10 (<code>FST_adapter_0/1</code>)."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 2 x M3 x 10"
+   },
+   "seats": null,
+   "release": null,
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>lay the base shell deck-down. Put the adapter into its 4 deck fences (0.4 clearance). Drive the 2 screws from the deck top, through the counterbores at the two diagonal corners, into the adapter's own holes. That gives 8.5 of thread in the adapter [fasteners: FST_adapter_0/1].</p>",
+     "kind": null
+    },
+    {
+     "label": "Check",
+     "html": "<ul><li>both heads sit flush in their 2.4 counterbores;</li><li>the battery slides on and off the rail by hand;</li><li>the screw tips sit 5.46 above the battery face, so nothing scrapes the pack [distances: FST_adapter_0/1-BUY_battery].</li></ul>",
+     "kind": null
+    }
+   ],
+   "check": "- both heads sit flush in their 2.4 counterbores; - the battery slides on and off the rail by hand; - the screw tips sit 5.46 above the battery face, so nothing scrapes the pack [distances: FST_adapter_0/1-BUY_battery].",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Measure first (item 9): the adapter's corner hole size is unknown. If the holes are \u00d83 or bigger, M3 won't self-tap: use machine screws with nuts, or epoxy. The tips must stay 3 or more above the battery face (5.46 now). These 2 screws carry the 620 g pack's hanging load.",
+     "source": "MEASURE_FIRST 9, line 198"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 2,
+   "id": "1a",
+   "title": "Pan drive, bench: horn, pinion, servo, mount",
+   "group": "Base",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: PRT_pan_pinion, BUY_horn_pan from +Z; BUY_servo_pan from -Z. Source: servo up into the mount pocket (cadcheck -Z); pinion and horn, pressed together, down onto the spline; centre screw down through the pinion.",
+    "Fly-in for BUY_horn_pan is from +Z; cadcheck's insertion found it free along -Z: the horn is pressed into the pinion first, so it goes onto the spline with the pinion, from above; cadcheck's -Z is the horn alone out of the pinion's pocket."
+   ],
+   "assembly_order": [
+    {
+     "label": "1a",
+     "index": 1,
+     "step": "1a pan drive on the bench: horn into the pinion's 2.7 horn pocket (8 printed pins in the horn holes), servo into the mount pocket (0.3 clearance), pinion + horn onto the spline, centre screw through the pinion's O6.5 hole (head on the horn disc)",
+     "bench": "pandrive",
+     "merge": null,
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": "pandrive",
+   "merge": null,
+   "joint": "press (8 printed pins)",
+   "new_objects": [
+    "PRT_pan_pinion",
+    "BUY_horn_pan",
+    "PRT_pan_servo_mount",
+    "BUY_servo_pan",
+    "FST_pinion_ctr"
+   ],
+   "focus_objects": [
+    "PRT_pan_pinion",
+    "BUY_horn_pan",
+    "PRT_pan_servo_mount",
+    "BUY_servo_pan",
+    "FST_pinion_ctr"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    1.0,
+    1.0,
+    -0.3
+   ],
+   "explode": {
+    "PRT_pan_pinion": [
+     0,
+     0,
+     1
+    ],
+    "BUY_horn_pan": [
+     0,
+     0,
+     1
+    ],
+    "PRT_pan_servo_mount": [
+     0,
+     0,
+     0
+    ],
+    "BUY_servo_pan": [
+     0.0,
+     0.0,
+     -1.2
+    ],
+    "FST_pinion_ctr": [
+     -0.0,
+     -0.0,
+     1.4
+    ]
+   },
+   "tools": [
+    "2.5 mm hex L-key"
+   ],
+   "fasteners": [
+    {
+     "qty": 1,
+     "text": "1 x M3 x 6 socket cap (<code>FST_pinion_ctr</code>, the centre screw).",
+     "spec": "M3 x 6 socket cap (<code>FST_pinion_ctr</code>, the centre screw)."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 1 x M3 x 6"
+   },
+   "seats": "with all 8 pins lined up, the horn drops the last 2.4 (the pin length) under thumb pressure and stops flat on the pocket floor, 0.2 below the mouth. If it rocks, a pin is outside its hole: lift it off and turn it a hole.",
+   "release": {
+    "label": "Release",
+    "text": "take the centre screw out and pull the pinion off the spline. Lever the horn out of its pocket with a thin blade; only friction holds it axially."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>press the horn into the pinion's 2.7 horn pocket, with its 8 holes over the 8 printed pins;</li><li>put the pan servo into the mount pocket (0.3 clearance);</li><li>press the pinion and horn onto the spline <b>with the servo still at mid</b>;</li><li>drive the centre screw through the pinion's \u00d86.5 hole. Its head bears on the horn disc and the screw gets 6.0 of engagement [fasteners: FST_pinion_ctr].</li></ul>",
+     "kind": null
+    },
+    {
+     "label": "Seats",
+     "html": "<p>with all 8 pins lined up, the horn drops the last 2.4 (the pin length) under thumb pressure and stops flat on the pocket floor, 0.2 below the mouth. If it rocks, a pin is outside its hole: lift it off and turn it a hole.</p>",
+     "kind": "seats"
+    },
+    {
+     "label": "Release",
+     "html": "<p>take the centre screw out and pull the pinion off the spline. Lever the horn out of its pocket with a thin blade; only friction holds it axially.</p>",
+     "kind": "release"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the servo can't rock in its pocket, and the pinion teeth spin true on the spline.</p>",
+     "kind": null
+    }
+   ],
+   "check": "the servo can't rock in its pocket, and the pinion teeth spin true on the spline.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Press the pinion and horn onto the spline with the servo still at mid.",
+     "source": "ASSEMBLY 1a, line 77"
+    },
+    {
+     "level": "warning",
+     "text": "Measure first (item 5): the 8 \u00d82.0 pins have 0.1 radial clearance in the horn's \u00d82.2 holes. A bolt circle off by more than about 0.2 stops the horn seating. The tilt_horn_adapter on plate 0a is the test.",
+     "source": "MEASURE_FIRST 5, line 151"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s01a_pan_drive_bench.png",
+     "key": "s01a_pan_drive_bench",
+     "scope": "step",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "index": 3,
+   "id": "1b",
+   "title": "Pan drive onto the deck posts (merge)",
+   "group": "Base",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: PRT_pan_pinion, BUY_horn_pan, PRT_pan_servo_mount, BUY_servo_pan from -Z. Source: pan drive pressed up onto the deck posts (slide row 'v3-A1 pan drive off the deck posts -Z').",
+    "Fly-in for group 'pandrive' is from -Z; cadcheck's insertion found it free along +Z: slide row 'v3-A1 pan drive off the deck posts -Z' and ASSEMBLY 1b ('press the mount plate up onto the 4 deck posts'); cadcheck's insertion reports +Z first for the group."
+   ],
+   "assembly_order": [
+    {
+     "label": "1b",
+     "index": 2,
+     "step": "1b shell right way up on its walls (floor off): pan drive pressed up onto the 4 deck posts (crush ribs); the pinion is trapped between the mount plate and the deck",
+     "bench": null,
+     "merge": "pandrive",
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": null,
+   "merge": "pandrive",
+   "joint": "press (crush-rib pins)",
+   "new_objects": [],
+   "focus_objects": [
+    "PRT_pan_pinion",
+    "BUY_horn_pan",
+    "PRT_pan_servo_mount",
+    "BUY_servo_pan",
+    "FST_pinion_ctr"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    1.0,
+    1.2,
+    -0.3
+   ],
+   "explode": {
+    "PRT_pan_pinion": [
+     0,
+     0,
+     -1
+    ],
+    "BUY_horn_pan": [
+     0,
+     0,
+     -1
+    ],
+    "PRT_pan_servo_mount": [
+     0,
+     0,
+     -1
+    ],
+    "BUY_servo_pan": [
+     0,
+     0,
+     -1
+    ],
+    "FST_pinion_ctr": [
+     0,
+     0,
+     -1
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": "a firm, even press with no click, ending in a dead stop on the shoulders. The ribs take 1.87 mm\u00b3 of crush [slide: v3-A1 pan drive off the deck posts -Z]. The pinion is now trapped between the mount plate and the deck.",
+   "release": {
+    "label": "Release (service \"pan servo swap\")",
+    "text": "with the floor off, pull the pan drive straight down (-Z) off the posts. It clears with 0.14 [slide: v3-A1 pan drive off the deck posts -Z]. With the floor in, the floor's servo column backs it, blocked at 0.5 [slide: v3-A1 pan drive captive]."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>stand the shell the right way up on its walls, with the floor off. Press the mount plate up onto the 4 deck posts. Each post-end pin (R2.0 x 3.5) goes into a plate hole with 3 crush ribs (<code>PAN_POST_RIB</code>, 0.15 interference). Push until the plate sits on all 4 post shoulders.</p>",
+     "kind": null
+    },
+    {
+     "label": "Seats",
+     "html": "<p>a firm, even press with no click, ending in a dead stop on the shoulders. The ribs take 1.87 mm\u00b3 of crush [slide: v3-A1 pan drive off the deck posts -Z]. The pinion is now trapped between the mount plate and the deck.</p>",
+     "kind": "seats"
+    },
+    {
+     "label": "Release (service \"pan servo swap\")",
+     "html": "<p>with the floor off, pull the pan drive straight down (-Z) off the posts. It clears with 0.14 [slide: v3-A1 pan drive off the deck posts -Z]. With the floor in, the floor's servo column backs it, blocked at 0.5 [slide: v3-A1 pan drive captive].</p>",
+     "kind": "release"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the pinion is clear of the deck hole edge all the way round.</p>",
+     "kind": null
+    }
+   ],
+   "check": "the pinion is clear of the deck hole edge all the way round.",
+   "paragraphs": [],
+   "warnings": [],
+   "renders": []
+  },
+  {
+   "index": 4,
+   "id": "2a",
+   "title": "Thrust ring and turntable",
+   "group": "Base",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: PRT_thrust_ring, PRT_turntable from +Z. Source: both laid on from above (cadcheck +Z)."
+   ],
+   "assembly_order": [
+    {
+     "label": "2a",
+     "index": 3,
+     "step": "2a thrust ring on the deck, turntable (posts integral, v3-A1) onto the ring",
+     "bench": null,
+     "merge": null,
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": null,
+   "merge": null,
+   "joint": "loose (laid on)",
+   "new_objects": [
+    "PRT_thrust_ring",
+    "PRT_turntable"
+   ],
+   "focus_objects": [
+    "PRT_thrust_ring",
+    "PRT_turntable"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    1.0,
+    1.2,
+    0.5
+   ],
+   "explode": {
+    "PRT_thrust_ring": [
+     0.0,
+     0.0,
+     0.6
+    ],
+    "PRT_turntable": [
+     0,
+     0,
+     1
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": null,
+   "release": null,
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>lay the thrust ring on the deck round the hole. Set the turntable (posts integral) on the ring, with its hub socket over the deck hole.</p>",
+     "kind": null
+    },
+    {
+     "label": "Check",
+     "html": "<p>the turntable sits flat on the ring and turns freely by hand.</p>",
+     "kind": null
+    }
+   ],
+   "check": "the turntable sits flat on the ring and turns freely by hand.",
+   "paragraphs": [],
+   "warnings": [],
+   "renders": []
+  },
+  {
+   "index": 5,
+   "id": "2b",
+   "title": "Hub gear up from below (permanent)",
+   "group": "Base",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: PRT_hub_gear from -Z. Source: pushed straight up (+Z) through the deck hole (ASSEMBLY 2b; insert_ok, not ray-tested)."
+   ],
+   "assembly_order": [
+    {
+     "label": "2b",
+     "index": 4,
+     "step": "2b hub gear (with the R20 hub tube) up from below through the deck hole into the turntable socket: 3 dogs aligned, 3 snap fingers click over the socket ledge (meshes the pan pinion axially)",
+     "bench": null,
+     "merge": null,
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": null,
+   "merge": null,
+   "joint": "snap (permanent)",
+   "new_objects": [
+    "PRT_hub_gear"
+   ],
+   "focus_objects": [
+    "PRT_hub_gear"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    1.0,
+    1.1,
+    -0.4
+   ],
+   "explode": {
+    "PRT_hub_gear": [
+     0.0,
+     0.0,
+     -1.2
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": "3 clicks, close together, as the finger barbs (0.45) flex through the socket and snap over its ledge (12.6 MPa, across layers [flexures: v3-A1 hub snap finger 1..3]). Afterwards the gear hangs from the turntable, its top 1.0 under the deck (gear top z 85, deck underside z 86, review \"Hub stack\").",
+   "release": {
+    "label": "Release",
+    "text": "**none.** The barbs sit inside the socket where no tool reaches them. checks.json calls this joint permanent (v3-A1-04). Taking the turntable off breaks the fingers; the hub gear is a 15.6 g reprint. That is why the c2 coupon (`MEASURE_FIRST.md` item 2) comes first."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>hold the turntable down on the ring and reach under the deck (or tip the shell onto its side, holding the turntable);</li><li>turn the hub gear so its 3 dogs line up with their pockets in the turntable socket;</li><li>mesh it with the pan pinion <b>with the pan servo at mid and the posts square across the base, so the pod will face +Y (pan 0)</b>;</li><li>push it straight up (+Z) through the deck hole and the ring into the socket.</li></ul>",
+     "kind": null
+    },
+    {
+     "label": "Seats",
+     "html": "<p>3 clicks, close together, as the finger barbs (0.45) flex through the socket and snap over its ledge (12.6 MPa, across layers [flexures: v3-A1 hub snap finger 1..3]). Afterwards the gear hangs from the turntable, its top 1.0 under the deck (gear top z 85, deck underside z 86, review \"Hub stack\").</p>",
+     "kind": "seats"
+    },
+    {
+     "label": "Release",
+     "html": "<p><b>none.</b> The barbs sit inside the socket where no tool reaches them. checks.json calls this joint permanent (v3-A1-04). Taking the turntable off breaks the fingers; the hub gear is a 15.6 g reprint. That is why the c2 coupon (<code>MEASURE_FIRST.md</code> item 2) comes first.</p>",
+     "kind": "release"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the turntable turns smoothly to both pan stops with no gear bind, and lifts no more than about 1.0 before the gear meets the deck.</p>",
+     "kind": null
+    }
+   ],
+   "check": "the turntable turns smoothly to both pan stops with no gear bind, and lifts no more than about 1.0 before the gear meets the deck.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "critical",
+     "text": "This snap can't be released: the barbs sit inside the socket where no tool reaches them, and taking the turntable off breaks the fingers (the hub gear is a 15.6 g reprint). Pass the c2 coupon first.",
+     "source": "ASSEMBLY 2b, line 117 \u00b7 MEASURE_FIRST 2, line 62"
+    },
+    {
+     "level": "warning",
+     "text": "Mesh the hub gear with the pan servo at mid and the posts square across the base, so the pod faces +Y at pan 0.",
+     "source": "ASSEMBLY 2b, line 111"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s02b_hub_gear_from_below.png",
+     "key": "s02b_hub_gear_from_below",
+     "scope": "step",
+     "note": ""
+    },
+    {
+     "ref": "../renders/attempt-1/sec_hub_roof_y4.0.png",
+     "key": "sec_hub_roof_y4.0",
+     "scope": "design",
+     "note": "section through the hub and the bore roof"
+    }
+   ]
+  },
+  {
+   "index": 6,
+   "id": "6a",
+   "title": "Motor into the nacelle; body on",
+   "group": "Launcher pod (bench)",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: PRT_launcher_body from +X; BUY_motor from -X. Source: motor into the nacelle bore from the rear (cadcheck -X); body onto the motor's front boss from +X; motor screws from inside the guard (-X).",
+    "ASSEMBLY.md gives no Seats or Release line for this press (crush ribs) + screws step.",
+    "Fly-in for PRT_launcher_body is from +X; cadcheck's insertion found it free along +Z: ASSEMBLY 6a fits the body after the motor, over the motor's front boss, so it goes on along the motor axis from +X; cadcheck's order put the body before the motor and found +Z."
+   ],
+   "assembly_order": [
+    {
+     "label": "6a",
+     "index": 5,
+     "step": "6a pod on the bench: motor into the nacelle bore (crush ribs); body onto the nacelle plate, both centred on the motor's front boss; 4 motor screws from inside the guard clamp body + nacelle to the motor face; phase leads into the journal bore",
+     "bench": "pod",
+     "merge": null,
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": "pod",
+   "merge": null,
+   "joint": "press (crush ribs) + screws",
+   "new_objects": [
+    "PRT_nacelle",
+    "PRT_launcher_body",
+    "BUY_motor",
+    "FST_motor_0",
+    "FST_motor_1",
+    "FST_motor_2",
+    "FST_motor_3",
+    "CAB_phase_0",
+    "CAB_phase_1",
+    "CAB_phase_2"
+   ],
+   "focus_objects": [
+    "PRT_nacelle",
+    "PRT_launcher_body",
+    "BUY_motor",
+    "FST_motor_0",
+    "FST_motor_1",
+    "FST_motor_2",
+    "FST_motor_3",
+    "CAB_phase_0",
+    "CAB_phase_1",
+    "CAB_phase_2"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    0.35,
+    1.0,
+    0.4
+   ],
+   "explode": {
+    "PRT_nacelle": [
+     0,
+     0,
+     0
+    ],
+    "PRT_launcher_body": [
+     1.2,
+     0.0,
+     0.0
+    ],
+    "BUY_motor": [
+     -1.3,
+     0.0,
+     0.0
+    ],
+    "FST_motor_0": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_motor_1": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_motor_2": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "FST_motor_3": [
+     1.4,
+     -0.0,
+     -0.0
+    ],
+    "CAB_phase_0": [
+     0,
+     0,
+     0
+    ],
+    "CAB_phase_1": [
+     0,
+     0,
+     0
+    ],
+    "CAB_phase_2": [
+     0,
+     0,
+     0
+    ]
+   },
+   "tools": [
+    "a driver for M3 pan heads",
+    "side cutters",
+    "soldering iron",
+    "heat gun"
+   ],
+   "fasteners": [
+    {
+     "qty": 4,
+     "text": "4 x M3 pan x 10 (<code>FST_motor_0..3</code>, machine screws into the motor face, 4.5 engagement [fasteners]).",
+     "spec": "M3 pan x 10 (<code>FST_motor_0..3</code>, machine screws into the motor face, 4.5 engagement [fasteners])."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 4 x M3 x 10"
+   },
+   "seats": null,
+   "release": null,
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>push the motor into the nacelle bore (crush ribs; scrape a rib if it's too tight);</li><li>fit the body onto the nacelle plate (both centre on the motor's front boss);</li><li>drive the 4 motor screws from inside the guard. They now clamp the body wall and the nacelle plate together; there are no other screws in this joint;</li><li>cut the motor leads to about 55 and solder them to the three 16 AWG extensions, with the joints staggered along the journal bore and each under 4.8 mm heat-shrink;</li><li>thread the leads out through the hollow journal.</li></ul>",
+     "kind": null
+    },
+    {
+     "label": "Check",
+     "html": "<p>the motor-screw heads sit below the wheel's web plane with daylight to the wheel (the brief asks for 1.5 or more to anything rotating).</p>",
+     "kind": null
+    }
+   ],
+   "check": "the motor-screw heads sit below the wheel's web plane with daylight to the wheel (the brief asks for 1.5 or more to anything rotating).",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Measure first (item 11): the \u00d86 bundle carries three 16 AWG phases and the encoder lead through the \u00d812 journal bore. If your wire is fatter than about 3.0 OD, try the bundle through a \u00d812 hole in scrap before the pod goes in.",
+     "source": "MEASURE_FIRST 11, line 220"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s06_pod_bench.png",
+     "key": "s06_pod_bench",
+     "scope": "section",
+     "note": ""
+    },
+    {
+     "ref": "../renders/attempt-1/exploded.png",
+     "key": "exploded",
+     "scope": "section",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "index": 7,
+   "id": "6b",
+   "title": "Magnet and encoder cap",
+   "group": "Launcher pod (bench)",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: BUY_magnet, BUY_plink_encoder, PRT_encoder_cap from -X. Source: the cap, with the Plink on its pegs, into the rear counterbore from -X (slide row 'v3-A1 encoder cap pulls off -X'); magnet glued on from the rear with the jig.",
+    "Fly-in for BUY_magnet is from -X; cadcheck's insertion found it free along +X: glued on through the rear access hole before the cap goes on (ASSEMBLY 6b); cadcheck's order put the magnet after the cap and found +X."
+   ],
+   "assembly_order": [
+    {
+     "label": "6b",
+     "index": 6,
+     "step": "6b magnet glued on the rear shaft with the jig; Plink on the cap pegs; encoder cap pushed -X into the nacelle counterbore until its 2 snap arms click (keyed)",
+     "bench": "pod",
+     "merge": null,
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": "pod",
+   "merge": null,
+   "joint": "snap (2 arms, in plane)",
+   "new_objects": [
+    "BUY_magnet",
+    "BUY_plink_encoder",
+    "PRT_encoder_cap",
+    "CAB_encoder"
+   ],
+   "focus_objects": [
+    "BUY_magnet",
+    "BUY_plink_encoder",
+    "PRT_encoder_cap",
+    "CAB_encoder"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    -0.6,
+    1.0,
+    0.4
+   ],
+   "explode": {
+    "BUY_magnet": [
+     -0.8,
+     0.0,
+     0.0
+    ],
+    "BUY_plink_encoder": [
+     -1.6,
+     0.0,
+     0.0
+    ],
+    "PRT_encoder_cap": [
+     -1.6,
+     0.0,
+     0.0
+    ],
+    "CAB_encoder": [
+     0,
+     0,
+     0
+    ]
+   },
+   "tools": [
+    "encoder jig (printed)",
+    "superglue"
+   ],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": "2 clicks. The arms' 0.6 barbs drop into the groove in the counterbore wall (14.6 MPa, in plane [flexures]). The flange then sits flat on the counterbore floor, and that sets the air gap (`ENC_GAP` 1.0).",
+   "release": {
+    "label": "Release (service \"encoder\", in the machine at tilt 45, powered)",
+    "text": "squeeze the 2 arms together and pull the cap -X [slide: v3-A1 encoder cap pulls off -X, arms 4.25 mm\u00b3 on an 8 mm\u00b3 allow]."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>put the magnet in the jig's pocket and the jig spigot in the motor's \u00d88 rear access hole, then glue the magnet to the rear shaft end. Wait 10 min;</li><li>press the Plink onto the encoder cap's pegs (\u00d82.4 pegs in its \u00d82.5 holes);</li><li>push the cap +X into the nacelle's rear counterbore (it comes off -X). Its lobe keys it, so it only goes in one way round. Push until both arms click.</li></ul>",
+     "kind": null
+    },
+    {
+     "label": "Seats",
+     "html": "<p>2 clicks. The arms' 0.6 barbs drop into the groove in the counterbore wall (14.6 MPa, in plane [flexures]). The flange then sits flat on the counterbore floor, and that sets the air gap (<code>ENC_GAP</code> 1.0).</p>",
+     "kind": "seats"
+    },
+    {
+     "label": "Release (service \"encoder\", in the machine at tilt 45, powered)",
+     "html": "<p>squeeze the 2 arms together and pull the cap -X [slide: v3-A1 encoder cap pulls off -X, arms 4.25 mm\u00b3 on an 8 mm\u00b3 allow].</p>",
+     "kind": "release"
+    },
+    {
+     "label": "Check",
+     "html": "<ul><li>the magnet is centred; the stack's worst case is 0.30 against 0.30 [stacks: magnet centring];</li><li>the flange is flat all the way round. The model still has 0.18 mm\u00b3 of cap/nacelle overlap at rest (hotfix review, \"Carried\"). If a gap shows under the flange, the barb is riding the groove edge: ease the groove's outer edge with a knife rather than forcing the cap.</li><li>Plug in the long JST-SH encoder lead.</li></ul>",
+     "kind": null
+    }
+   ],
+   "check": "- the magnet is centred; the stack's worst case is 0.30 against 0.30 [stacks: magnet centring]; - the flange is flat all the way round. The model still has 0.18 mm\u00b3 of cap/nacelle overlap at rest (hotfix review, \"Carried\"). If a gap shows under the flange, the barb is riding the groove edge: ease the groove's outer edge with a knife rather than forcing the cap. - Plug in the long JST-SH encoder lead.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Glue the magnet with the printed jig and wait 10 min. The magnet stack's worst case is 0.30 against 0.30.",
+     "source": "ASSEMBLY 6b, line 147 \u00b7 ASSEMBLY 6b, line 156"
+    },
+    {
+     "level": "warning",
+     "text": "If a gap shows under the cap's flange, the barb is riding the groove edge: ease the groove's outer edge with a knife rather than forcing the cap.",
+     "source": "ASSEMBLY 6b, line 158"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s06_pod_bench.png",
+     "key": "s06_pod_bench",
+     "scope": "section",
+     "note": ""
+    },
+    {
+     "ref": "../renders/attempt-1/exploded.png",
+     "key": "exploded",
+     "scope": "section",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "index": 8,
+   "id": "6c/6d",
+   "title": "Hood, nip stud, journal plate",
+   "group": "Launcher pod (bench)",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: PRT_hood, PRT_journal_plate from +X. Source: hood -X onto its hinge stub and journal plate -X onto its pegs, both from +X (cadcheck +X); stud head-first into the hood's hex pocket, so it comes from its tip side."
+   ],
+   "assembly_order": [
+    {
+     "label": "6c/6d",
+     "index": 7,
+     "step": "6c/6d hood onto the body's -X hinge stub (in -X through the open +X side of the bay); hex stud (M3 x 16 ISO 4017) passed head-first through the guard slot into the hood's hex pocket (captive, never driven); journal plate pressed -X onto the body's 3 crush-rib pegs, its bore over the hood's +X stub (replaces FST_jp x3, FST_hinge + nut)",
+     "bench": "pod",
+     "merge": null,
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": "pod",
+   "merge": null,
+   "joint": "slide + press (crush-rib pegs)",
+   "new_objects": [
+    "PRT_hood",
+    "PRT_journal_plate",
+    "FST_nip_stud"
+   ],
+   "focus_objects": [
+    "PRT_hood",
+    "PRT_journal_plate",
+    "FST_nip_stud"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    1.0,
+    -0.4,
+    0.6
+   ],
+   "explode": {
+    "PRT_hood": [
+     1,
+     0,
+     0
+    ],
+    "PRT_journal_plate": [
+     1.8,
+     0.0,
+     0.0
+    ],
+    "FST_nip_stud": [
+     0.0,
+     -1.1374799999999998,
+     -0.3822
+    ]
+   },
+   "tools": [],
+   "fasteners": [
+    {
+     "qty": 1,
+     "text": "the M3 x 16 hex-head stud (<code>FST_nip_stud</code>, captive, never driven).",
+     "spec": "the M3 x 16 hex-head stud (<code>FST_nip_stud</code>, captive, never driven)."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 1 x M3 x 16"
+   },
+   "seats": "the pegs take a firm, even press and stop dead on the body face, with no click. The hood swings on its \u00d85 stubs with 0.15 radial clearance (`PIN_CLR`).",
+   "release": {
+    "label": "Release",
+    "text": "none in the plan. checks.json calls the journal plate \"not serviced\" (DESIGN_LOG joint table, FST_jp). In the machine the right post holds it on (+X blocked at 0.4, review row R1 v3-A1-04). On the bench, pry it off evenly."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>slide the hood -X onto the body's \u00d85 hinge stub, through the open +X side of its bay;</li><li>pass the stud head-first through the guard slot into the hood's hex pocket, with the flats keyed;</li><li>press the journal plate -X onto the body's 3 crush-rib pegs (\u00d85, 0.1 interference, <code>JP_PEG</code>), with its bore over the hood's +X stub.</li></ul>",
+     "kind": null
+    },
+    {
+     "label": "Seats",
+     "html": "<p>the pegs take a firm, even press and stop dead on the body face, with no click. The hood swings on its \u00d85 stubs with 0.15 radial clearance (<code>PIN_CLR</code>).</p>",
+     "kind": "seats"
+    },
+    {
+     "label": "Release",
+     "html": "<p>none in the plan. checks.json calls the journal plate \"not serviced\" (DESIGN_LOG joint table, FST_jp). In the machine the right post holds it on (+X blocked at 0.4, review row R1 v3-A1-04). On the bench, pry it off evenly.</p>",
+     "kind": "release"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the hood swings freely and the stud doesn't spin in its pocket.</p>",
+     "kind": null
+    }
+   ],
+   "check": "the hood swings freely and the stud doesn't spin in its pocket.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "The journal plate has no planned release (checks.json: not serviced). On the bench, pry it off evenly.",
+     "source": "ASSEMBLY 6c/6d, line 173"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s06_pod_bench.png",
+     "key": "s06_pod_bench",
+     "scope": "section",
+     "note": ""
+    },
+    {
+     "ref": "../renders/attempt-1/exploded.png",
+     "key": "exploded",
+     "scope": "section",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "index": 9,
+   "id": "6e",
+   "title": "Thumbwheel, leaf, nip cover",
+   "group": "Launcher pod (bench)",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: PRT_nip_wheel from (0.00, -0.95, -0.32); PRT_nip_leaf, PRT_nip_cover from (0.00, -0.32, 0.95). Source: thumbwheel and its nut along the stud (cadcheck 'along FST_nip_stud'); leaf in the cover's T-slot, both along the 45 deg dovetail (6e insert_dirs; slide row 'nip cover + leaf slide off the land's dovetail along +V').",
+    "Fly-in for PRT_nip_leaf is from (0.00, -0.32, 0.95); cadcheck's insertion found it free along -Z: the leaf rides in the cover's T-slot, so it goes on with the cover along the dovetail (slide row 'nip cover + leaf ... along +V'); cadcheck's -Z is the leaf alone, before the cover."
+   ],
+   "assembly_order": [
+    {
+     "label": "6e",
+     "index": 8,
+     "step": "6e thumbwheel (integral max-gap spigot, nut slid into its side slot) onto the stud, set the gap; leaf dropped into the nip cover (root block between roof and land, stud in its fork); nip cover slid -V along the land's 45 deg dovetail until the detent clicks at the rebate stops",
+     "bench": "pod",
+     "merge": null,
+     "insert_dirs": [
+      [
+       0.0,
+       -0.3185,
+       0.9479
+      ]
+     ],
+     "pose": null
+    }
+   ],
+   "bench": "pod",
+   "merge": null,
+   "joint": "slide (dovetail) + snap (detent)",
+   "new_objects": [
+    "PRT_nip_wheel",
+    "FST_tw_nut",
+    "PRT_nip_leaf",
+    "PRT_nip_cover"
+   ],
+   "focus_objects": [
+    "PRT_nip_wheel",
+    "FST_tw_nut",
+    "PRT_nip_leaf",
+    "PRT_nip_cover"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    1.0,
+    -0.35,
+    0.15
+   ],
+   "explode": {
+    "PRT_nip_wheel": [
+     0.0,
+     -1.1374799999999998,
+     -0.3822
+    ],
+    "FST_tw_nut": [
+     0.0,
+     -1.1374799999999998,
+     -0.3822
+    ],
+    "PRT_nip_leaf": [
+     0.0,
+     -0.5096,
+     1.51664
+    ],
+    "PRT_nip_cover": [
+     0.0,
+     -0.5096,
+     1.51664
+    ]
+   },
+   "tools": [],
+   "fasteners": [
+    {
+     "qty": 1,
+     "text": "1 M3 nut (<code>FST_tw_nut</code>).",
+     "spec": "1 M3 nut (<code>FST_tw_nut</code>)."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 1 x nut"
+   },
+   "seats": "one click from the detent arm's 0.45 bump (13.8 MPa, in plane [flexures]). The leaf preload bears on the dovetail faces, never on the detent (DESIGN_LOG joint table, FST_nipcover).",
+   "release": {
+    "label": "Release (service \"nip leaf\", in the machine at tilt 45, powered)",
+    "text": "press the detent, slide the cover +V off its dovetail, then slide the leaf out of the T-slot [slide: v3-A1 nip cover + leaf slide off the land's dovetail]. While the cover is on, the leaf is captive (blocked at 1.0 [slide: v3-A1 nip leaf captive])."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>slide the nut into the thumbwheel's radial side slot (it sits under a 0.5 skin). A drop of superglue keeps it there;</li><li>thread the thumbwheel onto the stud and set the gap;</li><li>drop the leaf into the nip cover's T-slot, root block between the roof and the land, stud in its fork;</li><li>slide the nip cover -V along the land's 45 deg dovetail until the detent clicks at the rebate stops.</li></ul>",
+     "kind": null
+    },
+    {
+     "label": "Seats",
+     "html": "<p>one click from the detent arm's 0.45 bump (13.8 MPa, in plane [flexures]). The leaf preload bears on the dovetail faces, never on the detent (DESIGN_LOG joint table, FST_nipcover).</p>",
+     "kind": "seats"
+    },
+    {
+     "label": "Release (service \"nip leaf\", in the machine at tilt 45, powered)",
+     "html": "<p>press the detent, slide the cover +V off its dovetail, then slide the leaf out of the T-slot [slide: v3-A1 nip cover + leaf slide off the land's dovetail]. While the cover is on, the leaf is captive (blocked at 1.0 [slide: v3-A1 nip leaf captive]).</p>",
+     "kind": "release"
+    },
+    {
+     "label": "Check",
+     "html": "<p>with the cover on, a fingertip rolls the thumbwheel through the 22 x 8.3 slot between its two printed stops, gap 6.2..7.0. The spare leaf goes in the bag, unloaded, as the creep reference.</p>",
+     "kind": null
+    }
+   ],
+   "check": "with the cover on, a fingertip rolls the thumbwheel through the 22 x 8.3 slot between its two printed stops, gap 6.2..7.0. The spare leaf goes in the bag, unloaded, as the creep reference.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "The spare leaf goes in the bag, unloaded: it's the creep reference.",
+     "source": "ASSEMBLY 6e, line 190"
+    },
+    {
+     "level": "warning",
+     "text": "Measure first (item 4): if MM_T max is over 7.3, run the thumbwheel at home or above, not at the min stop.",
+     "source": "MEASURE_FIRST 4, line 133"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s06_pod_bench.png",
+     "key": "s06_pod_bench",
+     "scope": "section",
+     "note": ""
+    },
+    {
+     "ref": "../renders/attempt-1/exploded.png",
+     "key": "exploded",
+     "scope": "section",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "index": 10,
+   "id": "6f",
+   "title": "Tape and flywheel",
+   "group": "Launcher pod (bench)",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: PRT_flywheel, BUY_tape from +X. Source: wheel and tape onto the D-shaft from +X (cadcheck +X; slide row 'flywheel off +X at tilt 45')."
+   ],
+   "assembly_order": [
+    {
+     "label": "6f",
+     "index": 9,
+     "step": "6f flywheel onto the D-shaft, two pinch bolts through their nuts (L-key from +X)",
+     "bench": "pod",
+     "merge": null,
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": "pod",
+   "merge": null,
+   "joint": "screws (pinch bolts)",
+   "new_objects": [
+    "PRT_flywheel",
+    "FST_fw_bolt_0",
+    "FST_fw_bolt_1",
+    "FST_fw_nut_0",
+    "FST_fw_nut_1",
+    "BUY_tape"
+   ],
+   "focus_objects": [
+    "PRT_flywheel",
+    "FST_fw_bolt_0",
+    "FST_fw_bolt_1",
+    "FST_fw_nut_0",
+    "FST_fw_nut_1",
+    "BUY_tape"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    1.0,
+    0.9,
+    0.6
+   ],
+   "explode": {
+    "PRT_flywheel": [
+     1.4,
+     0.0,
+     0.0
+    ],
+    "FST_fw_bolt_0": [
+     -0.0,
+     -1.4,
+     -0.0
+    ],
+    "FST_fw_bolt_1": [
+     -0.0,
+     1.4,
+     -0.0
+    ],
+    "FST_fw_nut_0": [
+     0.0,
+     1.4,
+     0.0
+    ],
+    "FST_fw_nut_1": [
+     0.0,
+     -1.4,
+     0.0
+    ],
+    "BUY_tape": [
+     1.4,
+     0.0,
+     0.0
+    ]
+   },
+   "tools": [
+    "knife",
+    "calipers",
+    "2.5 mm L-key"
+   ],
+   "fasteners": [
+    {
+     "qty": 2,
+     "text": "2 x M3 x 20 socket cap + 2 M3 nuts (<code>FST_fw_bolt_0/1</code>, <code>FST_fw_nut_0/1</code>, the pinch bolts).",
+     "spec": "M3 x 20 socket cap + 2 M3 nuts (<code>FST_fw_bolt_0/1</code>, <code>FST_fw_nut_0/1</code>, the pinch bolts)."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 2 x nut, 2 x M3 x 20"
+   },
+   "seats": null,
+   "release": null,
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>wrap the 1 in tape once round the land, sticky side down;</li><li>cut both ends square and <b>butt-join them, no overlap</b>;</li><li>trim both edges with the knife against the flanges to the 13.8 land;</li><li>slide the wheel onto the D-shaft and tighten the pinch bolts through their nuts with the L-key from +X.</li></ul>",
+     "kind": null
+    },
+    {
+     "label": "Check",
+     "html": "<p>caliper the tape at three places and at the seam: <b>0.5 or less</b> (<code>TAPE_T</code>). An overlap doubles it and eats the 0.098 entry-arc margin (8.098 against 8.0 at the min stop [distances]), so re-wrap if needed. The wheel spins with no rub; it comes off +X at tilt 45 with 1.59 to spare [slide: flywheel off +X at tilt 45].</p>",
+     "kind": null
+    }
+   ],
+   "check": "caliper the tape at three places and at the seam: **0.5 or less** (`TAPE_T`). An overlap doubles it and eats the 0.098 entry-arc margin (8.098 against 8.0 at the min stop [distances]), so re-wrap if needed. The wheel spins with no rub; it comes off +X at tilt 45 with 1.59 to spare [slide: flywheel off +X at tilt 45].",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "critical",
+     "text": "Butt-join the tape, no overlap. It must caliper 0.5 or less (TAPE_T) at three places and at the seam: an overlap doubles it and eats the 0.098 entry-arc margin.",
+     "source": "ASSEMBLY 6f, line 198 \u00b7 MEASURE_FIRST 0, line 32"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s06_pod_bench.png",
+     "key": "s06_pod_bench",
+     "scope": "section",
+     "note": ""
+    },
+    {
+     "ref": "../renders/attempt-1/exploded.png",
+     "key": "exploded",
+     "scope": "section",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "index": 11,
+   "id": "6g",
+   "title": "Wheel-side cover",
+   "group": "Launcher pod (bench)",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: PRT_launcher_cover from (0.00, 0.71, -0.71). Source: 6g insert_dirs (0, 0.71, -0.71), the way out at tilt 0; slide row 'wheel-side cover slides off +Y at tilt 45' is the same direction with the pod tilted."
+   ],
+   "assembly_order": [
+    {
+     "label": "6g",
+     "index": 10,
+     "step": "6g wheel-side cover on the body rim: its 2 hook tabs and latch hook slid under the journal plate's edge (launcher -S = world -Y at tilt 45) until the in-plane latch clicks (replaces FST_cover x4)",
+     "bench": "pod",
+     "merge": null,
+     "insert_dirs": [
+      [
+       0.0,
+       0.7071,
+       -0.7071
+      ]
+     ],
+     "pose": null
+    }
+   ],
+   "bench": "pod",
+   "merge": null,
+   "joint": "slide (hook tabs) + snap (latch)",
+   "new_objects": [
+    "PRT_launcher_cover"
+   ],
+   "focus_objects": [
+    "PRT_launcher_cover"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    1.0,
+    0.6,
+    0.15
+   ],
+   "explode": {
+    "PRT_launcher_cover": [
+     0.0,
+     0.91923,
+     -0.91923
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": "one click from the 0.8 latch hook (13.0 MPa, in plane [flexures]).",
+   "release": {
+    "label": "Release (service \"tape / flywheel\", tilt 45)",
+    "text": "press the latch and slide the cover +Y off its hook tabs [slide: v3-A1 wheel-side cover slides off +Y]. Then loosen the pinch bolts with the 2.5 L-key (15.5 of reach at tilt 45 [service])."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>slide the cover's 2 hook tabs and its latch hook under the journal plate's edge. On the bench at tilt 0 that means moving the cover backward and up together (-Y +Z; it comes out along <code>insert_dirs</code> (0, 0.71, -0.71)). Keep going until the latch clicks.</p>",
+     "kind": null
+    },
+    {
+     "label": "Seats",
+     "html": "<p>one click from the 0.8 latch hook (13.0 MPa, in plane [flexures]).</p>",
+     "kind": "seats"
+    },
+    {
+     "label": "Release (service \"tape / flywheel\", tilt 45)",
+     "html": "<p>press the latch and slide the cover +Y off its hook tabs [slide: v3-A1 wheel-side cover slides off +Y]. Then loosen the pinch bolts with the 2.5 L-key (15.5 of reach at tilt 45 [service]).</p>",
+     "kind": "release"
+    },
+    {
+     "label": "Check",
+     "html": "<p>spin the wheel by hand: silent.</p>",
+     "kind": null
+    }
+   ],
+   "check": "spin the wheel by hand: silent.",
+   "paragraphs": [],
+   "warnings": [],
+   "renders": [
+    {
+     "ref": "renders/s06_pod_bench.png",
+     "key": "s06_pod_bench",
+     "scope": "section",
+     "note": ""
+    },
+    {
+     "ref": "../renders/attempt-1/exploded.png",
+     "key": "exploded",
+     "scope": "section",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "index": 12,
+   "id": "7",
+   "title": "Pod into the post U-slots (merge)",
+   "group": "Pod, tilt and beam",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: PRT_nacelle, PRT_launcher_body, BUY_motor, CAB_phase_0, CAB_phase_1, CAB_phase_2, BUY_magnet, BUY_plink_encoder, PRT_encoder_cap, CAB_encoder, PRT_hood, PRT_journal_plate, PRT_nip_wheel, PRT_nip_leaf, PRT_nip_cover, PRT_flywheel, BUY_tape, PRT_launcher_cover from (0.00, 0.34, 0.94). Source: lowered straight down, nose-up 20 deg (slide row 'v2-A1-06 step 7 reversed: pod lifts +Z'); the pod flies in at tilt 20 and is then levelled.",
+    "ASSEMBLY.md gives no Seats or Release line for this slide (journals into U-slots) step."
+   ],
+   "assembly_order": [
+    {
+     "label": "7",
+     "index": 11,
+     "step": "7 pod drops into the post U-slots, held nose-up about 20 deg (v2-A1-06)",
+     "bench": null,
+     "merge": "pod",
+     "insert_dirs": null,
+     "pose": {
+      "PIV_tilt": 20
+     }
+    }
+   ],
+   "bench": null,
+   "merge": "pod",
+   "joint": "slide (journals into U-slots)",
+   "new_objects": [],
+   "focus_objects": [
+    "PRT_nacelle",
+    "PRT_launcher_body",
+    "BUY_motor",
+    "FST_motor_0",
+    "FST_motor_1",
+    "FST_motor_2",
+    "FST_motor_3",
+    "CAB_phase_0",
+    "CAB_phase_1",
+    "CAB_phase_2",
+    "BUY_magnet",
+    "BUY_plink_encoder",
+    "PRT_encoder_cap",
+    "CAB_encoder",
+    "PRT_hood",
+    "PRT_journal_plate",
+    "FST_nip_stud",
+    "PRT_nip_wheel",
+    "FST_tw_nut",
+    "PRT_nip_leaf",
+    "PRT_nip_cover",
+    "PRT_flywheel",
+    "FST_fw_bolt_0",
+    "FST_fw_bolt_1",
+    "FST_fw_nut_0",
+    "FST_fw_nut_1",
+    "BUY_tape",
+    "PRT_launcher_cover"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": {
+    "tilt": 20
+   },
+   "view": [
+    1.0,
+    1.2,
+    0.3
+   ],
+   "explode": {
+    "PRT_nacelle": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "PRT_launcher_body": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "BUY_motor": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "FST_motor_0": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "FST_motor_1": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "FST_motor_2": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "FST_motor_3": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "CAB_phase_0": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "CAB_phase_1": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "CAB_phase_2": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "BUY_magnet": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "BUY_plink_encoder": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "PRT_encoder_cap": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "CAB_encoder": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "PRT_hood": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "PRT_journal_plate": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "FST_nip_stud": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "PRT_nip_wheel": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "FST_tw_nut": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "PRT_nip_leaf": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "PRT_nip_cover": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "PRT_flywheel": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "FST_fw_bolt_0": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "FST_fw_bolt_1": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "FST_fw_nut_0": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "FST_fw_nut_1": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "BUY_tape": [
+     0,
+     0.342,
+     0.9397
+    ],
+    "PRT_launcher_cover": [
+     0,
+     0.342,
+     0.9397
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": null,
+   "release": null,
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>hold the pod nose-up about 20 deg and lower it straight down until both journals seat in the U-slots, then level it. Nothing is back-driven: the tilt servo isn't in yet (step <code>pose_how</code>). Route the phase and encoder bundle out of the left journal.</p>",
+     "kind": null
+    },
+    {
+     "label": "Check",
+     "html": "<p>both journals sit fully down in their slots. Lifting it out the same way clears with 0.2 [slide: v2-A1-06 step 7 reversed].</p>",
+     "kind": null
+    }
+   ],
+   "check": "both journals sit fully down in their slots. Lifting it out the same way clears with 0.2 [slide: v2-A1-06 step 7 reversed].",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Hold the pod nose-up about 20 deg and lower it straight down until both journals seat in the U-slots, then level it.",
+     "source": "ASSEMBLY 7, line 218"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 13,
+   "id": "8a",
+   "title": "Tilt drive, bench",
+   "group": "Pod, tilt and beam",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: BUY_horn_tilt, BUY_servo_tilt from +X. Source: horn into the adapter's pocket from +X (cadcheck +X); adapter and horn onto the servo's spline, along its axis; centre screw from -X through the key hole.",
+    "ASSEMBLY.md gives no Release line for this press (8 printed pins) + screw step.",
+    "Fly-in for BUY_servo_tilt is from +X; cadcheck's insertion found it free along +Z: a spline only engages along its axis (X); cadcheck allows the servo x horn spline pair, so its ray test reports +Z first."
+   ],
+   "assembly_order": [
+    {
+     "label": "8a",
+     "index": 12,
+     "step": "8a tilt drive on the bench: horn into the adapter's horn pocket (8 pins), adapter + horn onto the servo spline, centre screw through the 6.5 key hole",
+     "bench": "tiltdrive",
+     "merge": null,
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": "tiltdrive",
+   "merge": null,
+   "joint": "press (8 printed pins) + screw",
+   "new_objects": [
+    "PRT_tilt_horn_adapter",
+    "BUY_horn_tilt",
+    "BUY_servo_tilt",
+    "FST_tilt_horn_ctr"
+   ],
+   "focus_objects": [
+    "PRT_tilt_horn_adapter",
+    "BUY_horn_tilt",
+    "BUY_servo_tilt",
+    "FST_tilt_horn_ctr"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    0.5,
+    1.0,
+    0.5
+   ],
+   "explode": {
+    "PRT_tilt_horn_adapter": [
+     0,
+     0,
+     0
+    ],
+    "BUY_horn_tilt": [
+     1,
+     0,
+     0
+    ],
+    "BUY_servo_tilt": [
+     2.2,
+     0.0,
+     0.0
+    ],
+    "FST_tilt_horn_ctr": [
+     -1.4,
+     -0.0,
+     -0.0
+    ]
+   },
+   "tools": [
+    "2.5 mm hex L-key"
+   ],
+   "fasteners": [
+    {
+     "qty": 1,
+     "text": "1 x M3 x 6 socket cap (<code>FST_tilt_horn_ctr</code>, the centre screw, through the \u00d86.5 key hole).",
+     "spec": "M3 x 6 socket cap (<code>FST_tilt_horn_ctr</code>, the centre screw, through the \u00d86.5 key hole)."
+    }
+   ],
+   "fastener_check": {
+    "state": "good",
+    "text": "Model agrees: 1 x M3 x 6"
+   },
+   "seats": "as at 1a: the horn drops flat once all 8 pins line up.",
+   "release": null,
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>press the horn into the tilt horn adapter's pocket (8 pins), as at 1a. Fit the adapter to the tilt servo's spline <b>with the servo at mid</b>, then drive the centre screw.</p>",
+     "kind": null
+    },
+    {
+     "label": "Seats",
+     "html": "<p>as at 1a: the horn drops flat once all 8 pins line up.</p>",
+     "kind": "seats"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the double-D key's flats (12 AF) are square to the servo body, so they stand vertical at tilt 0.</p>",
+     "kind": null
+    }
+   ],
+   "check": "the double-D key's flats (12 AF) are square to the servo body, so they stand vertical at tilt 0.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Fit the adapter to the tilt servo's spline with the servo at mid.",
+     "source": "ASSEMBLY 8a, line 228"
+    },
+    {
+     "level": "warning",
+     "text": "Measure first (item 2): press a horn into the real tilt_horn_adapter from plate 0a first. If the 8 pins don't all go in, fix servo_horn_disc before plates 3 and 5.",
+     "source": "MEASURE_FIRST 2, line 65"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 14,
+   "id": "8",
+   "title": "Tilt servo dropped into the right post (merge)",
+   "group": "Pod, tilt and beam",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: PRT_tilt_horn_adapter, BUY_horn_tilt, BUY_servo_tilt from +Z. Source: servo, horn and adapter lowered -Z into the open-top pocket (slide row 'v3-A1 tilt servo + adapter lift +Z')."
+   ],
+   "assembly_order": [
+    {
+     "label": "8",
+     "index": 13,
+     "step": "8 tilt servo + adapter dropped -Z into the right post's open-top pocket, pod held level by hand (no servo in yet, so nothing is back-driven), key into the journal plate's top-open fork; bus lead down the right post channel and through the turntable tunnel to the hub bore (pull cord)",
+     "bench": null,
+     "merge": "tiltdrive",
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": null,
+   "merge": "tiltdrive",
+   "joint": "slide (drop-in)",
+   "new_objects": [
+    "CAB_bus_tilt"
+   ],
+   "focus_objects": [
+    "CAB_bus_tilt",
+    "PRT_tilt_horn_adapter",
+    "BUY_horn_tilt",
+    "BUY_servo_tilt",
+    "FST_tilt_horn_ctr"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    0.6,
+    1.0,
+    0.5
+   ],
+   "explode": {
+    "CAB_bus_tilt": [
+     0,
+     0,
+     0
+    ],
+    "PRT_tilt_horn_adapter": [
+     0,
+     0,
+     1
+    ],
+    "BUY_horn_tilt": [
+     0,
+     0,
+     1
+    ],
+    "BUY_servo_tilt": [
+     0,
+     0,
+     1
+    ],
+    "FST_tilt_horn_ctr": [
+     0,
+     0,
+     1
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": "it slides down freely and stops on the pocket floor, with no click. The beam holds it in at step 9.",
+   "release": {
+    "label": "Release (service \"tilt servo swap\")",
+    "text": "jar, crown and beam off; the servo, horn and adapter lift out +Z at tilt 0 with 0.15 to spare [slide: v3-A1 tilt servo + adapter lift +Z]. Undo the centre screw on the bench."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>hold the pod level by hand (tilt 0);</li><li>lower the servo, horn and adapter straight down (-Z) into the right post's open-top pocket, with the key going into the journal plate's top-open fork (12.3 slot, 0.15 a side);</li><li>pull the tilt bus lead down the right post channel and through the turntable tunnel to the hub bore. The tunnels are closed, so push a stiff wire or nylon line through first and draw the lead after it.</li></ul>",
+     "kind": null
+    },
+    {
+     "label": "Seats",
+     "html": "<p>it slides down freely and stops on the pocket floor, with no click. The beam holds it in at step 9.</p>",
+     "kind": "seats"
+    },
+    {
+     "label": "Release (service \"tilt servo swap\")",
+     "html": "<p>jar, crown and beam off; the servo, horn and adapter lift out +Z at tilt 0 with 0.15 to spare [slide: v3-A1 tilt servo + adapter lift +Z]. Undo the centre screw on the bench.</p>",
+     "kind": "release"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the pod doesn't move unless the servo turns: there is no free play at the key.</p>",
+     "kind": null
+    }
+   ],
+   "check": "the pod doesn't move unless the servo turns: there is no free play at the key.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Hold the pod level (tilt 0) while the servo goes in.",
+     "source": "ASSEMBLY 8, line 238"
+    },
+    {
+     "level": "warning",
+     "text": "The tunnels are closed: push a stiff wire or nylon line through first and draw the lead after it.",
+     "source": "ASSEMBLY 8, line 242"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s08_tilt_servo_in_post.png",
+     "key": "s08_tilt_servo_in_post",
+     "scope": "step",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "index": 15,
+   "id": "9",
+   "title": "Beam (hotfix reprint)",
+   "group": "Pod, tilt and beam",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: PRT_beam from +Z. Source: beam pushed down onto the posts (slide row 'v3-A1 beam + feeder lift +Z'; insert_ok, not ray-tested).",
+    "CAB_launcher* also matches CAB_launcher_base, which step 13 names more exactly (CAB_launcher_base*); it is placed there."
+   ],
+   "assembly_order": [
+    {
+     "label": "9",
+     "index": 14,
+     "step": "9 beam (feed floor + spout integral) down onto the posts: tongues close both U-slots and the servo pocket, 4 hooks click; launcher bundle down the left post channel and through the tunnel",
+     "bench": null,
+     "merge": null,
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": null,
+   "merge": null,
+   "joint": "snap (4 hooks, across layers)",
+   "new_objects": [
+    "PRT_beam",
+    "CAB_launcher_bundle"
+   ],
+   "focus_objects": [
+    "PRT_beam",
+    "CAB_launcher_bundle"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    1.0,
+    1.2,
+    0.5
+   ],
+   "explode": {
+    "PRT_beam": [
+     0,
+     0,
+     1
+    ],
+    "CAB_launcher_bundle": [
+     0,
+     0,
+     0
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": "4 clicks, two per post. The barbs flex 0.5 past the post-top ledges (9.2 MPa, across layers [flexures: v3-A1 beam hook post L/R front/rear]). With the hotfix hooks (2.2 wide, 0.3 clear of the release-slot jambs [distances: A2 hotfix (v3-A1-01) beam-hook barb]) each barb drops under its ledge. The beam then rests on the post tops (beam to turntable 0.0, hotfix review).",
+   "release": {
+    "label": "Release (service \"tilt servo swap\"; jar and crown off; pod at tilt 0)",
+    "text": "- each post has a 2.8-wide release slot in its inner face at each hook (2 per post, 39 apart); - push each barb outboard 0.7 with a flat screwdriver no wider than 2.5 (12.9 MPa at release), holding both hooks on one post released while you lift that end; - the beam and feeder lift +Z [slide: v3-A1 beam + feeder lift +Z, flexed 5.84 mm\u00b3]; - do it at tilt 0: from the front and rear openings, a straight line reaches every barb at tilt 0, but at tilt 45 the nacelle blocks the right-front one (review v3-A1-05, sightlines)."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>lower the beam (feed floor and spout integral) onto the posts. Its tongues go into both U-slots and over the servo pocket, and its 4 hooks go into the slots in the post tops;</li><li>push down evenly over both posts until all 4 hooks click;</li><li>lay the launcher bundle (phases + encoder, in the 6 mm sleeve) down the left post channel and through the tunnel, with the pull line.</li></ul>",
+     "kind": null
+    },
+    {
+     "label": "Seats",
+     "html": "<p>4 clicks, two per post. The barbs flex 0.5 past the post-top ledges (9.2 MPa, across layers [flexures: v3-A1 beam hook post L/R front/rear]). With the hotfix hooks (2.2 wide, 0.3 clear of the release-slot jambs [distances: A2 hotfix (v3-A1-01) beam-hook barb]) each barb drops under its ledge. The beam then rests on the post tops (beam to turntable 0.0, hotfix review).</p>",
+     "kind": "seats"
+    },
+    {
+     "label": "Release (service \"tilt servo swap\"; jar and crown off; pod at tilt 0)",
+     "html": "<ul><li>each post has a 2.8-wide release slot in its inner face at each hook (2 per post, 39 apart);</li><li>push each barb outboard 0.7 with a flat screwdriver no wider than 2.5 (12.9 MPa at release), holding both hooks on one post released while you lift that end;</li><li>the beam and feeder lift +Z [slide: v3-A1 beam + feeder lift +Z, flexed 5.84 mm\u00b3];</li><li>do it at tilt 0: from the front and rear openings, a straight line reaches every barb at tilt 0, but at tilt 45 the nacelle blocks the right-front one (review v3-A1-05, sightlines).</li></ul>",
+     "kind": "release"
+    },
+    {
+     "label": "Check",
+     "html": "<ul><li>lift each end of the beam gently: it rises no more than about 0.1 [slide: A2 hotfix (v3-A1-01) beam hooks hold, blocked at 0.1];</li><li>the tilt servo is captive: the beam's tongue stops it at 0.75 [slide: v3-A1 the beam keeps the tilt servo captive].</li><li><b>Don't swing the pod by hand from here on:</b> that back-drives the tilt servo's gears. The tilt range is checked under power at step 16 (printed stops at -3 and +46).</li></ul>",
+     "kind": null
+    }
+   ],
+   "check": "- lift each end of the beam gently: it rises no more than about 0.1 [slide: A2 hotfix (v3-A1-01) beam hooks hold, blocked at 0.1]; - the tilt servo is captive: the beam's tongue stops it at 0.75 [slide: v3-A1 the beam keeps the tilt servo captive]. - **Don't swing the pod by hand from here on:** that back-drives the tilt servo's gears. The tilt range is checked under power at step 16 (printed stops at -3 and +46).",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "critical",
+     "text": "Don't swing the pod by hand from here on: that back-drives the tilt servo's gears. The tilt range is checked under power at step 16.",
+     "source": "ASSEMBLY 9, line 271"
+    },
+    {
+     "level": "warning",
+     "text": "Release the hooks only at tilt 0, with a flat screwdriver no wider than 2.5 in the 2.8 release slots. At tilt 45 the nacelle blocks the line to the right-front barb.",
+     "source": "ASSEMBLY 9, line 262 \u00b7 ASSEMBLY 9, line 265"
+    },
+    {
+     "level": "warning",
+     "text": "Fit-test first (item 2, c1): if the beam-hook coupon won't click, or is slack after the click, don't print plates 3 and 4.",
+     "source": "MEASURE_FIRST 2, line 61"
+    },
+    {
+     "level": "warning",
+     "text": "From here on, never lift the machine by the beam. Lift by the base only.",
+     "source": "ASSEMBLY intro, line 19"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "../renders/attempt-1/sec_beam_hook_y18_xR.png",
+     "key": "sec_beam_hook_y18_xR",
+     "scope": "design",
+     "note": "attempt-1 hook: the hotfix narrowed it to 2.2 (v3-A1-01)"
+    }
+   ]
+  },
+  {
+   "index": 16,
+   "id": "10a",
+   "title": "Disc",
+   "group": "Feeder",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: PRT_feeder_disc from +Z. Source: laid on the feed floor from above (cadcheck +Z)."
+   ],
+   "assembly_order": [
+    {
+     "label": "10a",
+     "index": 15,
+     "step": "10a disc laid on the beam's feed floor",
+     "bench": null,
+     "merge": null,
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": null,
+   "merge": null,
+   "joint": "loose (laid on)",
+   "new_objects": [
+    "PRT_feeder_disc"
+   ],
+   "focus_objects": [
+    "PRT_feeder_disc"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    0.7,
+    1.0,
+    0.8
+   ],
+   "explode": {
+    "PRT_feeder_disc": [
+     0,
+     0,
+     1
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": null,
+   "release": null,
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>lay the feeder disc on the beam's feed floor, gear band down, in the <b>park</b> position: solid disc over the outlet, with the pockets at \u00b160 from it (<code>FEED_FIRE</code>).</p>",
+     "kind": null
+    },
+    {
+     "label": "Check",
+     "html": "<p>looking down the outlet at the drop axis (x 21, y 0), you see solid disc, not a pocket.</p>",
+     "kind": null
+    }
+   ],
+   "check": "looking down the outlet at the drop axis (x 21, y 0), you see solid disc, not a pocket.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Lay the disc in the park position: solid disc over the outlet.",
+     "source": "ASSEMBLY 10a, line 278"
+    },
+    {
+     "level": "warning",
+     "text": "Measure first (item 4): POCKET_D comes from the pocket coupon, before plate 2.",
+     "source": "MEASURE_FIRST 4, line 139"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 17,
+   "id": "10b",
+   "title": "Crown upside down, bench: servo and pinion",
+   "group": "Feeder",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: BUY_servo_feeder, BUY_horn_feeder, PRT_feeder_pinion from -Z. Source: servo and horn up into the closed lobe pocket from below, then the pinion onto the horn (slide row 'v3-A1 feeder servo + horn + pinion out of the lobe -Z')."
+   ],
+   "assembly_order": [
+    {
+     "label": "10b",
+     "index": 16,
+     "step": "10b crown upside down on the bench: feeder servo + horn up into the closed lobe pocket from below (crush ribs), pinion pressed on the horn (8 pins); feeder bus lead out of the lobe",
+     "bench": "feeder",
+     "merge": null,
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": "feeder",
+   "merge": null,
+   "joint": "press (crush ribs, 8 pins)",
+   "new_objects": [
+    "PRT_feeder_crown",
+    "BUY_servo_feeder",
+    "BUY_horn_feeder",
+    "PRT_feeder_pinion",
+    "CAB_bus_feeder"
+   ],
+   "focus_objects": [
+    "PRT_feeder_crown",
+    "BUY_servo_feeder",
+    "BUY_horn_feeder",
+    "PRT_feeder_pinion",
+    "CAB_bus_feeder"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    0.7,
+    1.0,
+    -0.25
+   ],
+   "explode": {
+    "PRT_feeder_crown": [
+     0,
+     0,
+     0
+    ],
+    "BUY_servo_feeder": [
+     0.0,
+     0.0,
+     -1.2
+    ],
+    "BUY_horn_feeder": [
+     0.0,
+     0.0,
+     -1.2
+    ],
+    "PRT_feeder_pinion": [
+     0.0,
+     0.0,
+     -1.8
+    ],
+    "CAB_bus_feeder": [
+     0,
+     0,
+     0
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": "a firm push over the ribs and a dead stop on the roof. The pinion presses on with no click. The pinion has no centre screw: spline friction holds it, and if it slips it can only drop 0.3, onto the feed floor (review v3-A1-08).",
+   "release": {
+    "label": "Release",
+    "text": "with the crown off the machine, the servo, horn and pinion come out of the lobe -Z, min 0.35, 9.62 mm\u00b3 of rib crush [slide: v3-A1 feeder servo + horn + pinion out of the lobe -Z]."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>turn the crown upside down;</li><li>push feeder servo #3, horn on, up into the closed lobe pocket from below, past the 4 crush ribs (0.1 interference, <code>CRUSH_RIB</code>), until its top meets the lobe roof (0.05);</li><li>press the feeder pinion onto the horn (8 pins), <b>servo at mid</b>;</li><li>lead the feeder bus lead out of the lobe.</li></ul>",
+     "kind": null
+    },
+    {
+     "label": "Seats",
+     "html": "<p>a firm push over the ribs and a dead stop on the roof. The pinion presses on with no click. The pinion has no centre screw: spline friction holds it, and if it slips it can only drop 0.3, onto the feed floor (review v3-A1-08).</p>",
+     "kind": "seats"
+    },
+    {
+     "label": "Release",
+     "html": "<p>with the crown off the machine, the servo, horn and pinion come out of the lobe -Z, min 0.35, 9.62 mm\u00b3 of rib crush [slide: v3-A1 feeder servo + horn + pinion out of the lobe -Z].</p>",
+     "kind": "release"
+    }
+   ],
+   "check": "",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Press the pinion onto the horn with the servo at mid. It has no centre screw: spline friction holds it.",
+     "source": "ASSEMBLY 10b, line 288"
+    },
+    {
+     "level": "warning",
+     "text": "Measure first (item 6): the servo seats against the lobe roof with 0.05 to spare, and a servo 0.2 over 20.14 wide will be very tight in the crown's crush ribs.",
+     "source": "MEASURE_FIRST 6, line 164"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 18,
+   "id": "11",
+   "title": "Crown onto the beam (merge)",
+   "group": "Feeder",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: PRT_feeder_crown, BUY_servo_feeder, BUY_horn_feeder, PRT_feeder_pinion from +Z. Source: crown group lowered straight onto the beam (slide row 'v3-A1 crown group lifts +Z')."
+   ],
+   "assembly_order": [
+    {
+     "label": "11",
+     "index": 17,
+     "step": "11 crown lowered onto the beam (pinion meshes the disc band, disc land enters the crown lip), 3 hooks click through the beam; feeder bus through the beam and down the left post channel + tunnel",
+     "bench": null,
+     "merge": "feeder",
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": null,
+   "merge": "feeder",
+   "joint": "snap (3 hooks, across layers)",
+   "new_objects": [],
+   "focus_objects": [
+    "PRT_feeder_crown",
+    "BUY_servo_feeder",
+    "BUY_horn_feeder",
+    "PRT_feeder_pinion",
+    "CAB_bus_feeder"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    1.0,
+    1.2,
+    0.4
+   ],
+   "explode": {
+    "PRT_feeder_crown": [
+     0,
+     0,
+     1
+    ],
+    "BUY_servo_feeder": [
+     0,
+     0,
+     1
+    ],
+    "BUY_horn_feeder": [
+     0,
+     0,
+     1
+    ],
+    "PRT_feeder_pinion": [
+     0,
+     0,
+     1
+    ],
+    "CAB_bus_feeder": [
+     0,
+     0,
+     0
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": "3 clicks as the 0.55 barbs snap out under the beam's pocket roofs (10.3 MPa, across layers [flexures: v3-A1 crown hook]). The crown then can't lift: the review's captive row stops it at 0.15.",
+   "release": {
+    "label": "Release (service \"feeder servo swap\", jar off)",
+    "text": "from under the beam (about 10 mm over the pod), press each of the 3 barbs inward 0.6 with the flat screwdriver (12.3 MPa), and lift the crown group +Z. It clears with 0.14, and the disc stays on the feed floor [slide: v3-A1 crown group lifts +Z]. The line to the +X hook reaches at tilt 0 and at tilt 45 (review sightlines)."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>lower the crown straight onto the beam: the pinion meshes the disc band (disc at park, servo at mid), the disc land goes into the crown lip, and the 3 hooks go through their slots in the beam;</li><li>push down until all 3 hooks click;</li><li>feed the feeder bus lead down through the beam, then the left post channel and the tunnel.</li></ul>",
+     "kind": null
+    },
+    {
+     "label": "Seats",
+     "html": "<p>3 clicks as the 0.55 barbs snap out under the beam's pocket roofs (10.3 MPa, across layers [flexures: v3-A1 crown hook]). The crown then can't lift: the review's captive row stops it at 0.15.</p>",
+     "kind": "seats"
+    },
+    {
+     "label": "Release (service \"feeder servo swap\", jar off)",
+     "html": "<p>from under the beam (about 10 mm over the pod), press each of the 3 barbs inward 0.6 with the flat screwdriver (12.3 MPa), and lift the crown group +Z. It clears with 0.14, and the disc stays on the feed floor [slide: v3-A1 crown group lifts +Z]. The line to the +X hook reaches at tilt 0 and at tilt 45 (review sightlines).</p>",
+     "kind": "release"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the crown sits flat on the beam all round, and the disc turns with the servo.</p>",
+     "kind": null
+    }
+   ],
+   "check": "the crown sits flat on the beam all round, and the disc turns with the servo.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Disc at park and servo at mid when the pinion meshes the disc band.",
+     "source": "ASSEMBLY 11, line 300"
+    },
+    {
+     "level": "warning",
+     "text": "Never lift the machine by the crown: its 3 hooks bend across layers. Lift by the base only.",
+     "source": "ASSEMBLY intro, line 19"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s11_crown_on_beam.png",
+     "key": "s11_crown_on_beam",
+     "scope": "step",
+     "note": ""
+    },
+    {
+     "ref": "../renders/attempt-1/sec_crown_hook_y0_xR.png",
+     "key": "sec_crown_hook_y0_xR",
+     "scope": "design",
+     "note": "section through a crown hook"
+    }
+   ]
+  },
+  {
+   "index": 19,
+   "id": "11a",
+   "title": "Bus splice from below",
+   "group": "Bus splice from below",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: BUY_bus_junction, CAB_bus_pan_tail from -Z. Source: splice pushed up the hub-gear bore (cadcheck -Z; slide row 'v3-A1 bus splice pulls -Z')."
+   ],
+   "assembly_order": [
+    {
+     "label": "11a",
+     "index": 18,
+     "step": "11a bus splice from below (v3-A1, no groove cap, no tilt pose): shell on its side, floor still off; pull the tilt, feeder and pan leads down out of the hub-gear bore, solder the 3-way splice below the deck, push it up the bore to its seat",
+     "bench": null,
+     "merge": null,
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": null,
+   "merge": null,
+   "joint": "slide (splice up the bore)",
+   "new_objects": [
+    "BUY_bus_junction",
+    "CAB_bus_pan_tail"
+   ],
+   "focus_objects": [
+    "BUY_bus_junction",
+    "CAB_bus_pan_tail"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    1.0,
+    1.0,
+    -0.5
+   ],
+   "explode": {
+    "BUY_bus_junction": [
+     0.0,
+     0.0,
+     -1.2
+    ],
+    "CAB_bus_pan_tail": [
+     0.0,
+     0.0,
+     -1.2
+    ]
+   },
+   "tools": [
+    "side cutters",
+    "wire strippers",
+    "soldering iron",
+    "heat gun",
+    "card or foil",
+    "pull line"
+   ],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": "the splice can't climb more than 8.0, because the printed bore roof at z 100 stops it [slide: v3-A1 the turntable's bore roof keeps the splice captive, blocked at 8.1].",
+   "release": {
+    "label": "Release (service \"bus splice\")",
+    "text": "with the floor off, the splice pulls -Z out of the hub-gear bore with 1.0 to spare [slide: v3-A1 bus splice pulls -Z]."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ol><li>Jar not fitted yet, floor off. Lay the shell on its side.</li><li>Pull the tilt, feeder and pan leads down out of the hub-gear bore.</li><li>Cut the hub-end plug off each lead.<ul><li><b>Trim the tilt and feeder leads to route + 70</b> (BOM item 14). Their routes are 203.7 on the 300 lead and 324.6 on the 500 lead [cables].</li><li>The pan lead uses 290.2 of its 350 (U-loop 277.5 + tail 12.7) [cables.chains: pan bus lead]. Leave it long.</li><li>Strip the leads and solder like wires 3-to-1: V+ to V+, GND to GND, signal to signal. Shield the PLA with card or foil.</li><li>Heat-shrink each joint (4.8 mm), then the three together (12.7 mm).</li><li><b>The finished splice must be \u00d810 x 20 or smaller</b> (BOM 14a).</li></ul></li><li>Push the splice up the hub-gear bore to its seat: bottom z 72, top z 92 (<code>BUS_JCT</code>). It passes the hub-gear bore with 1.0 and the bore wall with 6.574 [distances: v2-A5-03].</li><li><b>Service length:</b> the model gives no home to the 2 x 70 of trimmed spare (review v3-A1-07, still open). Push the tilt lead's spare back up toward the right post channel and the feeder lead's toward the left, so the bore under the splice stays clear.</li><li><b>Bundle hand-over:</b> where the launcher bundle sleeve meets the base-lead sleeve (az 235, r 4, z 70), overlap the sleeves loosely, with no tie. It swings a 5.7 chord over \u00b190 pan (BOM section 1, accepted warn).</li></ol>",
+     "kind": null
+    },
+    {
+     "label": "Seats",
+     "html": "<p>the splice can't climb more than 8.0, because the printed bore roof at z 100 stops it [slide: v3-A1 the turntable's bore roof keeps the splice captive, blocked at 8.1].</p>",
+     "kind": "seats"
+    },
+    {
+     "label": "Release (service \"bus splice\")",
+     "html": "<p>with the floor off, the splice pulls -Z out of the hub-gear bore with 1.0 to spare [slide: v3-A1 bus splice pulls -Z].</p>",
+     "kind": "release"
+    },
+    {
+     "label": "Check",
+     "html": "<p>turn the turntable slowly to both pan stops and watch from below: nothing pulls tight.</p>",
+     "kind": null
+    }
+   ],
+   "check": "turn the turntable slowly to both pan stops and watch from below: nothing pulls tight.",
+   "paragraphs": [
+    "No tilt pose and no cover to remove: the turntable's closed tunnels and printed bore roof replace v2's groove cap (review: V2 A7-01 FIXED)."
+   ],
+   "warnings": [
+    {
+     "level": "critical",
+     "text": "The finished splice must be \u00d810 x 20 or smaller.",
+     "source": "ASSEMBLY 11a, line 327"
+    },
+    {
+     "level": "warning",
+     "text": "Shield the PLA with card or foil while soldering.",
+     "source": "ASSEMBLY 11a, line 325"
+    },
+    {
+     "level": "warning",
+     "text": "Trim the tilt and feeder leads to route + 70; leave the pan lead long.",
+     "source": "ASSEMBLY 11a, line 322 \u00b7 ASSEMBLY 11a, line 324"
+    },
+    {
+     "level": "warning",
+     "text": "The 2 x 70 of trimmed spare has no home in the model (review v3-A1-07, open). Push the tilt spare toward the right post channel and the feeder spare toward the left, so the bore under the splice stays clear.",
+     "source": "ASSEMBLY 11a, line 330"
+    },
+    {
+     "level": "warning",
+     "text": "Overlap the sleeves loosely at the hand-over, with no tie: it swings a 5.7 chord over \u00b190 pan.",
+     "source": "ASSEMBLY 11a, line 334"
+    },
+    {
+     "level": "warning",
+     "text": "The shell goes on its side here: hold it by the base shell, never by the beam or the crown. (On a later service, take the jar off first.)",
+     "source": "ASSEMBLY intro, line 24"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 20,
+   "id": "12",
+   "title": "Floor, bench: MotorGo, buck, controller",
+   "group": "Base floor",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: BUY_motorgo_axis, BUY_servo_controller from +Z; BUY_buck_12v from -X. Source: MotorGo down its card guides (cadcheck +Z); buck +X under its hook rails, so from -X (cadcheck -X); controller pressed down into its fences."
+   ],
+   "assembly_order": [
+    {
+     "label": "12",
+     "index": 19,
+     "step": "12 floor on the bench: MotorGo down its 2 card guides to the slot-bottom stop, buck slid +X under its 2 hook rails to the end stops, servo controller pressed into its fences until the 2 tongues click over its short edges",
+     "bench": "floor",
+     "merge": null,
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": "floor",
+   "merge": null,
+   "joint": "slide (card guides, hook rails) + snap (2 tongues)",
+   "new_objects": [
+    "PRT_base_floor",
+    "BUY_motorgo_axis",
+    "BUY_buck_12v",
+    "BUY_servo_controller"
+   ],
+   "focus_objects": [
+    "PRT_base_floor",
+    "BUY_motorgo_axis",
+    "BUY_buck_12v",
+    "BUY_servo_controller"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    0.6,
+    -1.0,
+    0.7
+   ],
+   "explode": {
+    "PRT_base_floor": [
+     0,
+     0,
+     0
+    ],
+    "BUY_motorgo_axis": [
+     0,
+     0,
+     1
+    ],
+    "BUY_buck_12v": [
+     -1.2,
+     0.0,
+     0.0
+    ],
+    "BUY_servo_controller": [
+     0,
+     0,
+     1
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": "- MotorGo: it slides with light friction and stops on the slot bottom, with no click; - buck: it slides freely and stops on the end stops [slide: v3-A1 buck +X, blocked at 0.4]; - controller: 2 clicks as the 1.0 lips pass the PCB edges (12.8 MPa, in plane [flexures]). It is then held down within 0.3 [slide: v3-A1 servo controller held down].",
+   "release": {
+    "label": "Release, on the bench",
+    "text": "- MotorGo: unplug the USB-C and slide it +Z out of the guides (min 0.15 [slide: v3-A1 MotorGo slides +Z]); - buck: slide it -X off its rails [slide: v3-A1 buck slides -X]; - controller: press both tongues outward (15.4 MPa at release) and lift it. No slide row covers this (BOM section 5)."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ul><li>slide the MotorGo down its 2 card guides (1.77 PCB in a 2.07 slot, <code>MG_GUIDE</code>) to the slot-bottom stop. Its components face -Y and the USB-C receptacle points up;</li><li>slide the buck +X under its 2 hook rails (45 deg lips over its two fin-free flange strips) to the end stops;</li><li>lay the servo controller in its +0.4 fences on its 4 seat bosses, and press it down until both tongues click over its short edges. Don't drill the bosses: in v3 the board has no screws (BOM item 6);</li><li>press the UART lead into the 2 floor clips (<code>UART_CLIPS</code>), with a dab of hot glue.</li></ul>",
+     "kind": null
+    },
+    {
+     "label": "Seats",
+     "html": "<ul><li>MotorGo: it slides with light friction and stops on the slot bottom, with no click;</li><li>buck: it slides freely and stops on the end stops [slide: v3-A1 buck +X, blocked at 0.4];</li><li>controller: 2 clicks as the 1.0 lips pass the PCB edges (12.8 MPa, in plane [flexures]). It is then held down within 0.3 [slide: v3-A1 servo controller held down].</li></ul>",
+     "kind": "seats"
+    },
+    {
+     "label": "Release, on the bench",
+     "html": "<ul><li>MotorGo: unplug the USB-C and slide it +Z out of the guides (min 0.15 [slide: v3-A1 MotorGo slides +Z]);</li><li>buck: slide it -X off its rails [slide: v3-A1 buck slides -X];</li><li>controller: press both tongues outward (15.4 MPa at release) and lift it. No slide row covers this (BOM section 5).</li></ul>",
+     "kind": "release"
+    }
+   ],
+   "check": "",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Don't drill the controller's bosses: in v3 the board has no screws.",
+     "source": "ASSEMBLY 12, line 352 \u00b7 MEASURE_FIRST 8, line 190"
+    },
+    {
+     "level": "warning",
+     "text": "Measure first (item 7): nothing on the MotorGo's component face may sit closer than 0.5 to either side edge, where the card guides run.",
+     "source": "MEASURE_FIRST 7, line 174"
+    },
+    {
+     "level": "warning",
+     "text": "Measure first (item 10): fins inside the buck's 3.4 flange strips stop the slide.",
+     "source": "MEASURE_FIRST 10, line 211"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s12_floor_bench.png",
+     "key": "s12_floor_bench",
+     "scope": "step",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "index": 21,
+   "id": "13",
+   "title": "Base cables, floor into the shell (merge)",
+   "group": "Base floor",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: BUY_usbc_plug from -Y; PRT_base_floor, BUY_motorgo_axis, BUY_buck_12v, BUY_servo_controller from -Z. Source: floor pushed straight up into the shell (slide row 'v3-A1 base floor + electronics drop -Z'); USB-C plug in from the rear (cadcheck -Y).",
+    "PRT_cable_clip*: Glob matches nothing; the 2 UART clips are printed into the floor (UART_CLIPS), so there is no separate part.",
+    "FST_clip_*: Glob matches nothing; v3 has no clip screws (manifest fastener_summary: 11 screws)."
+   ],
+   "assembly_order": [
+    {
+     "label": "13",
+     "index": 20,
+     "step": "13 base cables plugged, floor up into the shell (straight +Z): the 2 -Y detents and the 2 +Y latches click into the wall-foot keepers; the shell's -X ribs now hold the buck, the deck ribs the MotorGo, and the floor column backs the pan servo",
+     "bench": null,
+     "merge": "floor",
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": null,
+   "merge": "floor",
+   "joint": "snap (2 latches, 2 detents, in plane)",
+   "new_objects": [
+    "CAB_12v_in",
+    "CAB_12v_mg",
+    "CAB_12v_ctrl",
+    "CAB_uart",
+    "CAB_usb",
+    "CAB_bus_pan",
+    "BUY_usbc_plug",
+    "CAB_launcher_base"
+   ],
+   "focus_objects": [
+    "CAB_12v_in",
+    "CAB_12v_mg",
+    "CAB_12v_ctrl",
+    "CAB_uart",
+    "CAB_usb",
+    "CAB_bus_pan",
+    "BUY_usbc_plug",
+    "CAB_launcher_base",
+    "PRT_base_floor",
+    "BUY_motorgo_axis",
+    "BUY_buck_12v",
+    "BUY_servo_controller"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    1.0,
+    -1.0,
+    -0.35
+   ],
+   "explode": {
+    "CAB_12v_in": [
+     0,
+     0,
+     0
+    ],
+    "CAB_12v_mg": [
+     0,
+     0,
+     0
+    ],
+    "CAB_12v_ctrl": [
+     0,
+     0,
+     0
+    ],
+    "CAB_uart": [
+     0,
+     0,
+     0
+    ],
+    "CAB_usb": [
+     0,
+     0,
+     0
+    ],
+    "CAB_bus_pan": [
+     0,
+     0,
+     0
+    ],
+    "BUY_usbc_plug": [
+     0.0,
+     -1.0,
+     0.0
+    ],
+    "CAB_launcher_base": [
+     0,
+     0,
+     0
+    ],
+    "PRT_base_floor": [
+     0,
+     0,
+     -1
+    ],
+    "BUY_motorgo_axis": [
+     0,
+     0,
+     -1
+    ],
+    "BUY_buck_12v": [
+     0,
+     0,
+     -1
+    ],
+    "BUY_servo_controller": [
+     0,
+     0,
+     -1
+    ]
+   },
+   "tools": [
+    "soldering iron"
+   ],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": "4 clicks: the 2 +Y latches (16.1 MPa engage, in plane) and the 2 -Y detents (14.0 MPa, in plane) [flexures]. When it is home: - the deck ribs sit 0.75 over the MotorGo [slide: v3-A1 MotorGo captive]; - the shell's -X ribs hold the buck at 0.4 [slide: v3-A1 buck captive -X]; - the floor's column backs the pan servo at 0.5 [slide: v3-A1 pan drive captive].",
+   "release": {
+    "label": "Release (service \"base floor\")",
+    "text": "press the 2 +Y latches through their finger holes (21.4 MPa at release). The -Y detents have 45/45 barbs and pop out on the pull. The floor drops -Z with the electronics, with 1.6 to spare [slide: v3-A1 base floor + electronics drop -Z]. The phases are soldered, so lower it gently on its leads and unplug the rest as it comes down."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<ol><li>With the floor held under the open shell, connect the base cables:<ul><li>12 V: adapter to buck, buck to MotorGo, buck to controller;</li><li>UART, USB-C and the pan bus lead to the controller;</li><li>the launcher base lead: the three phases soldered to the MotorGo J6/J8 pads (BOM item 13), and the encoder JST.</li></ul></li><li>Check that both U-loops hang free under the hub gear. They are the \u00b190 pan slack.</li><li>Push the floor straight up (+Z) into the shell until all 4 arms click into the wall-foot keepers.</li></ol>",
+     "kind": null
+    },
+    {
+     "label": "Seats",
+     "html": "<p>4 clicks: the 2 +Y latches (16.1 MPa engage, in plane) and the 2 -Y detents (14.0 MPa, in plane) [flexures]. When it is home:</p><ul><li>the deck ribs sit 0.75 over the MotorGo [slide: v3-A1 MotorGo captive];</li><li>the shell's -X ribs hold the buck at 0.4 [slide: v3-A1 buck captive -X];</li><li>the floor's column backs the pan servo at 0.5 [slide: v3-A1 pan drive captive].</li></ul>",
+     "kind": "seats"
+    },
+    {
+     "label": "Release (service \"base floor\")",
+     "html": "<p>press the 2 +Y latches through their finger holes (21.4 MPa at release). The -Y detents have 45/45 barbs and pop out on the pull. The floor drops -Z with the electronics, with 1.6 to spare [slide: v3-A1 base floor + electronics drop -Z]. The phases are soldered, so lower it gently on its leads and unplug the rest as it comes down.</p>",
+     "kind": "release"
+    },
+    {
+     "label": "Check",
+     "html": "<p>the floor sits flush all round. Turn the turntable to both pan stops: nothing pulls tight or rubs the gears.</p>",
+     "kind": null
+    }
+   ],
+   "check": "the floor sits flush all round. Turn the turntable to both pan stops: nothing pulls tight or rubs the gears.",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "warning",
+     "text": "Both U-loops must hang free under the hub gear: they are the \u00b190 pan slack.",
+     "source": "ASSEMBLY 13, line 372"
+    },
+    {
+     "level": "warning",
+     "text": "The phases are soldered to the MotorGo: when the floor comes off, lower it gently on its leads.",
+     "source": "ASSEMBLY 13, line 381"
+    }
+   ],
+   "renders": []
+  },
+  {
+   "index": 22,
+   "id": "14",
+   "title": "Jar, bench (gate and adapter are hotfix reprints)",
+   "group": "Jar, battery, power-up",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: BUY_jar_band, PRT_jar_adapter, PRT_jar_valve from -Z; PRT_jar_gate from (0.58, 0.00, -0.81). Source: machine frame (the jar hangs mouth-down): band and adapter disc onto the jar mouth (cadcheck -Z for the band); gate slid -X into the valve, so from +X, riding with the valve; valve and gate pushed onto the adapter spout."
+   ],
+   "assembly_order": [
+    {
+     "label": "14",
+     "index": 21,
+     "step": "14 jar on the bench: adapter in the band, band on the jar; gate slid -X into the valve's slot under the cheek pads until its finger clicks into the closed notch (stop lug up); jar group pushed straight down onto the valve (spout tip notch over the stop lug, key rib in the spout's key groove) until the 2 cheek snap fingers click into the spout groove and the spout shoulder sits on the cheek tops (no screws, FST_valve x3 deleted)",
+     "bench": "jar",
+     "merge": null,
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": "jar",
+   "merge": null,
+   "joint": "slide (gate) + snap (2 valve fingers, across layers)",
+   "new_objects": [
+    "BUY_jar",
+    "BUY_jar_band",
+    "BUY_mm_fill",
+    "PRT_jar_adapter",
+    "PRT_jar_valve",
+    "PRT_jar_gate"
+   ],
+   "focus_objects": [
+    "BUY_jar",
+    "BUY_jar_band",
+    "BUY_mm_fill",
+    "PRT_jar_adapter",
+    "PRT_jar_valve",
+    "PRT_jar_gate"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    1.0,
+    1.2,
+    0.2
+   ],
+   "explode": {
+    "BUY_jar": [
+     0,
+     0,
+     0
+    ],
+    "BUY_jar_band": [
+     0.0,
+     0.0,
+     -0.6
+    ],
+    "BUY_mm_fill": [
+     0,
+     0,
+     0
+    ],
+    "PRT_jar_adapter": [
+     0.0,
+     0.0,
+     -0.6
+    ],
+    "PRT_jar_valve": [
+     0.0,
+     0.0,
+     -1.4
+    ],
+    "PRT_jar_gate": [
+     1.0,
+     0,
+     -1.4
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": "- gate: one click at closed (the finger's 0.4 bump, 14.0 MPa, in plane; about 0.7 N to walk out, hotfix review); - valve: 2 clicks from the cheek fingers (0.4 deflection, 11.0 MPa, across layers [flexures: v3-A1 valve snap finger \u00b1Y]). The adapter stops when its shoulder lands on the cheek tops. The key groove runs 1.0 past the rib, so the rib can't hold it up [distances: A2 hotfix (v3-A1-01) valve key rib top].",
+   "release": {
+    "label": "Release",
+    "text": "none in the plan. The gate is captive once the adapter is on, and no service row separates the adapter from the valve. For a refill, unscrew the glass from the band: the band, adapter, valve and gate stay together as one group."
+   },
+   "fields": [
+    {
+     "label": "Do, in this order",
+     "html": "<p>(the gate can't go in once the adapter is on, DESIGN_LOG feeder item)</p><ol><li><b>Gate:</b> check its slots first (<code>MEASURE_FIRST.md</code> item 3a). Slide it -X into the valve's slot under the cheek pads, stop lug up, until its closed finger clicks into the closed notch.</li><li><b>Jar:</b> fill it upright, put the printed adapter disc into the band in place of the flat lid, and screw the band on.</li><li><b>Valve onto the spout:</b> hold the valve and gate upside down over the upright jar (gate closed). Push them straight down onto the adapter spout: the spout-tip notch goes over the gate's stop lug and the valve's key rib goes into the spout's key groove. With the gate closed, its open-detent bump sits in the adapter's widened closed notch with 0.35 clear (BOM hotfix notes). Push until both cheek fingers click into the spout groove and the spout shoulder sits on the cheek tops. Then turn the whole group over. (BOM step 14 describes the same joint the other way up, with the jar pushed down onto the valve; with the jar already filled, this way round spills nothing.)</li></ol>",
+     "kind": null
+    },
+    {
+     "label": "Seats",
+     "html": "<ul><li>gate: one click at closed (the finger's 0.4 bump, 14.0 MPa, in plane; about 0.7 N to walk out, hotfix review);</li><li>valve: 2 clicks from the cheek fingers (0.4 deflection, 11.0 MPa, across layers [flexures: v3-A1 valve snap finger \u00b1Y]). The adapter stops when its shoulder lands on the cheek tops. The key groove runs 1.0 past the rib, so the rib can't hold it up [distances: A2 hotfix (v3-A1-01) valve key rib top].</li></ul>",
+     "kind": "seats"
+    },
+    {
+     "label": "Release",
+     "html": "<p>none in the plan. The gate is captive once the adapter is on, and no service row separates the adapter from the valve. For a refill, unscrew the glass from the band: the band, adapter, valve and gate stay together as one group.</p>",
+     "kind": "release"
+    },
+    {
+     "label": "Check",
+     "html": "<ul><li><b>shoulder contact (hotfix review N1):</b> press the group together and look at the \u00b1Y cheek pads from the side, against a light. There must be no daylight between the shoulder and the pad tops, and a 0.1 feeler mustn't go in. The group mustn't rock on the valve. The shoulder's underside is a 45 deg chamfer, so the jar's weight bears on a line at the pads' inner top edge (r 27.65). If that contact is lost, the weight goes onto the 2 cross-layer valve fingers. Don't run it like that: see <code>MEASURE_FIRST.md</code> item 3b;</li><li><b>gate open (hotfix, v3-A1-03):</b> pull the tab +X. About 1 mm before the hard stop you feel a light click, and the gate stays open [slide: A2 hotfix (v3-A1-03) gate held open, blocked at 0.2]. It stops hard at 52.35 [slide: v3-A1 gate open stop]. The open click is lighter than the closed one: about 0.4-0.5 N to walk out (hotfix review hand calc);</li><li><b>gate closed:</b> push it -X past the open click until the closed finger clicks into its notch [distances: v3-A1 gate detent finger seated, 0.1].</li></ul>",
+     "kind": null
+    }
+   ],
+   "check": "- **shoulder contact (hotfix review N1):** press the group together and look at the \u00b1Y cheek pads from the side, against a light. There must be no daylight between the shoulder and the pad tops, and a 0.1 feeler mustn't go in. The group mustn't rock on the valve. The shoulder's underside is a 45 deg chamfer, so the jar's weight bears on a line at the pads' inner top edge (r 27.65). If that contact is lost, the weight goes onto the 2 cross-layer valve fingers. Don't run it like that: see `MEASURE_FIRST.md` item 3b; - **gate open (hotfix, v3-A1-03):** pull the tab +X. About 1 mm before the hard stop you feel a light click, and the gate stays open [slide: A2 hotfix (v3-A1-03) gate held open, blocked at 0.2]. It stops hard at 52.35 [slide: v3-A1 gate open stop]. The open click is lighter than the closed one: about 0.4-0.5 N to walk out (hotfix review hand calc); - **gate closed:** push it -X past the open click until the closed finger clicks into its notch [distances: v3-A1 gate detent finger seated, 0.1].",
+   "paragraphs": [
+    "If you did <code>MEASURE_FIRST.md</code> item 3, this group is already built; skip to step 15."
+   ],
+   "warnings": [
+    {
+     "level": "critical",
+     "text": "Carry the jar group by itself, and never the machine by the jar. The 2 valve fingers bend across layers: about 32 N and 12.3 MPa when it hangs, and a 1.5 g jolt takes them to about 19 MPa, past the 15 MPa interlayer limit.",
+     "source": "ASSEMBLY 15, line 426 \u00b7 ASSEMBLY intro, line 17 \u00b7 ASSEMBLY intro, line 13"
+    },
+    {
+     "level": "critical",
+     "text": "Shoulder contact: no daylight between the spout shoulder and the \u00b1Y cheek-pad tops, and a 0.1 feeler mustn't go in. If either pad shows a gap, the jar's weight goes onto the 2 valve fingers: don't fill or mount the jar.",
+     "source": "ASSEMBLY 14, line 410 \u00b7 MEASURE_FIRST 3b, line 116"
+    },
+    {
+     "level": "warning",
+     "text": "Gate first: it can't go in once the adapter is on.",
+     "source": "ASSEMBLY 14, line 392"
+    },
+    {
+     "level": "warning",
+     "text": "Measure first (item 3a): every 0.5 finger slot in the gate must show daylight along its whole length before it goes into the valve. First-layer squish can bridge them and lock a finger.",
+     "source": "MEASURE_FIRST 3a, line 76"
+    },
+    {
+     "level": "warning",
+     "text": "Measure first (item 1): a band over about 74 OD eats the 3.0 gap to the feed floor.",
+     "source": "MEASURE_FIRST 1, line 41"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "renders/s14_jar_bench_from_below.png",
+     "key": "s14_jar_bench_from_below",
+     "scope": "step",
+     "note": ""
+    },
+    {
+     "ref": "../renders/attempt-1/sec_gate_finger_z325.png",
+     "key": "sec_gate_finger_z325",
+     "scope": "design",
+     "note": "attempt-1 gate: the hotfix added the open detent (v3-A1-03)"
+    }
+   ]
+  },
+  {
+   "index": 23,
+   "id": "15",
+   "title": "Jar onto the feeder (merge)",
+   "group": "Jar, battery, power-up",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: BUY_jar, BUY_jar_band, BUY_mm_fill, PRT_jar_adapter, PRT_jar_valve, PRT_jar_gate from +Z. Source: dropped in at +30 and twisted to 0 (pose PIV_jar 30; slide row 'jar group lifts off when unlocked' +Z).",
+    "ASSEMBLY.md gives no Seats line for this bayonet (drop in at +30, twist to 0) step."
+   ],
+   "assembly_order": [
+    {
+     "label": "15",
+     "index": 22,
+     "step": "15 jar onto the feeder: drop in at +30, twist to 0",
+     "bench": null,
+     "merge": "jar",
+     "insert_dirs": null,
+     "pose": {
+      "PIV_jar": 30
+     }
+    }
+   ],
+   "bench": null,
+   "merge": "jar",
+   "joint": "bayonet (drop in at +30, twist to 0)",
+   "new_objects": [],
+   "focus_objects": [
+    "BUY_jar",
+    "BUY_jar_band",
+    "BUY_mm_fill",
+    "PRT_jar_adapter",
+    "PRT_jar_valve",
+    "PRT_jar_gate"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": {
+    "jar": 30
+   },
+   "view": [
+    1.0,
+    1.2,
+    0.4
+   ],
+   "explode": {
+    "BUY_jar": [
+     0,
+     0,
+     1
+    ],
+    "BUY_jar_band": [
+     0,
+     0,
+     1
+    ],
+    "BUY_mm_fill": [
+     0,
+     0,
+     1
+    ],
+    "PRT_jar_adapter": [
+     0,
+     0,
+     1
+    ],
+    "PRT_jar_valve": [
+     0,
+     0,
+     1
+    ],
+    "PRT_jar_gate": [
+     0,
+     0,
+     1
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": null,
+   "release": {
+    "label": "Release (service \"refill\")",
+    "text": "close the gate (closed click), twist to +30 and lift. Unscrew the glass from the band, refill, screw it back on. Carry the jar group by itself, never the machine by the jar."
+   },
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>close the gate. Drop the jar group into the crown socket at +30 and twist it to 0 (<code>PIV_jar</code> 30).</p>",
+     "kind": null
+    },
+    {
+     "label": "Check",
+     "html": "<p>the jar is locked. Twisting it back to +30 lifts it off [slide: jar group lifts off when unlocked].</p>",
+     "kind": null
+    },
+    {
+     "label": "Release (service \"refill\")",
+     "html": "<p>close the gate (closed click), twist to +30 and lift. Unscrew the glass from the band, refill, screw it back on. Carry the jar group by itself, never the machine by the jar.</p>",
+     "kind": "release"
+    }
+   ],
+   "check": "the jar is locked. Twisting it back to +30 lifts it off [slide: jar group lifts off when unlocked].",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "critical",
+     "text": "Lift and carry the machine by the base only, never by the jar, the crown or the beam. Lifted by the jar, the whole 4075 g hangs on three rows of snap fingers that all bend across layers, each with less than one layer of Z clearance. To move it: battery out, then both hands flat under the base shell. The jar is now on: it is the part most likely to be grabbed.",
+     "source": "ASSEMBLY intro, line 13 \u00b7 ASSEMBLY intro, line 23 \u00b7 ASSEMBLY intro, line 15"
+    },
+    {
+     "level": "warning",
+     "text": "Close the gate before you drop the jar group in.",
+     "source": "ASSEMBLY 15, line 423"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "../renders/attempt-1/jar_unlocked.png",
+     "key": "jar_unlocked",
+     "scope": "design",
+     "note": "the jar at +30, unlocked"
+    }
+   ]
+  },
+  {
+   "index": 24,
+   "id": "16",
+   "title": "Battery and first power-up (bench, wheel not spinning)",
+   "group": "Jar, battery, power-up",
+   "status": "clean",
+   "flags": [],
+   "notes": [
+    "Fly-in: BUY_battery from +X. Source: slid onto the rail from +X (cadcheck +X; slide row 'battery out +X').",
+    "ASSEMBLY.md gives no Seats or Release line for this slide (battery rail) step."
+   ],
+   "assembly_order": [
+    {
+     "label": "16",
+     "index": 23,
+     "step": "16 battery slides onto the adapter rail +X -> -X (last); first power",
+     "bench": null,
+     "merge": null,
+     "insert_dirs": null,
+     "pose": null
+    }
+   ],
+   "bench": null,
+   "merge": null,
+   "joint": "slide (battery rail)",
+   "new_objects": [
+    "BUY_battery"
+   ],
+   "focus_objects": [
+    "BUY_battery"
+   ],
+   "extra_objects": [],
+   "hide_objects": [],
+   "shift": null,
+   "pose": {
+    "pan": 0,
+    "tilt": 0,
+    "jar": 0
+   },
+   "pose_in": null,
+   "view": [
+    0.5,
+    -1.0,
+    0.45
+   ],
+   "explode": {
+    "BUY_battery": [
+     1.2,
+     0.0,
+     0.0
+    ]
+   },
+   "tools": [],
+   "fasteners": [],
+   "fastener_check": {
+    "state": "na",
+    "text": "No metal fasteners in this step."
+   },
+   "seats": null,
+   "release": null,
+   "fields": [
+    {
+     "label": "Do",
+     "html": "<p>slide the pack onto the adapter rail from +X. It comes off again with no tool, with 1.6 to the floor along the way [slide: battery out +X].</p>",
+     "kind": null
+    },
+    {
+     "label": "First power-up",
+     "html": "<ol><li>Power up with the flywheel motor disabled.</li><li>Ping each servo by ID.</li><li>Command tilt 0 and check the pod is level. If it isn't, set a tilt offset in firmware rather than moving the horn.</li><li>Command pan 0 (pod facing +Y) and the feeder to park (solid disc over the outlet), and trim any offsets.</li><li>Clamp firmware tilt to 0..45; the printed stops are at -3 / +46.</li><li>Only then spin up the flywheel.</li></ol>",
+     "kind": null
+    },
+    {
+     "label": "Check",
+     "html": "<ul><li>one fire command (disc +60, back to 0) drops exactly one candy, and the next shot uses -60 [index: one window at +60 and one at -60];</li><li>log the leaf preload on day 0 (v2 BOM section 0, \"Leaf creep\").</li></ul>",
+     "kind": null
+    }
+   ],
+   "check": "- one fire command (disc +60, back to 0) drops exactly one candy, and the next shot uses -60 [index: one window at +60 and one at -60]; - log the leaf preload on day 0 (v2 BOM section 0, \"Leaf creep\").",
+   "paragraphs": [],
+   "warnings": [
+    {
+     "level": "critical",
+     "text": "Power up with the flywheel motor disabled. Spin it up only after the servos are pinged and trimmed and the tilt is clamped to 0..45 in firmware.",
+     "source": "ASSEMBLY 16, line 433 \u00b7 ASSEMBLY 16, line 437"
+    },
+    {
+     "level": "warning",
+     "text": "If the pod isn't level at tilt 0, set a firmware offset rather than moving the horn.",
+     "source": "ASSEMBLY 16, line 435"
+    },
+    {
+     "level": "critical",
+     "text": "To move the finished machine: battery out, then both hands flat under the base shell. Never by the jar, the crown or the beam.",
+     "source": "ASSEMBLY intro, line 13 \u00b7 ASSEMBLY intro, line 23"
+    }
+   ],
+   "renders": [
+    {
+     "ref": "../renders/attempt-1/side.png",
+     "key": "side",
+     "scope": "design",
+     "note": "the finished machine from the side (attempt 1)"
+    }
+   ]
+  }
+ ]
+}

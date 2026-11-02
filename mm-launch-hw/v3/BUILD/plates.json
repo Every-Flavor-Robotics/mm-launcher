@@ -1,0 +1,49 @@
+{
+ "_about": "Plate plan for PRINT_PLAN.md (v3 attempt 1 + attempt-2 hotfix). stl is relative to ../stl (fit coupons: ../BUILD/plates/0a-fit-coupons-grey, written by BUILD/tools/fit_coupons.py). Read by blender/tools/print_estimate.py (times, grams, footprint fit). Colour A = warm grey (structure, drivetrain), B = terracotta (candy path, touch points): params.COLOUR_B. Infill = manifest.json parts.<PRT>.infill (coupons: their parent part's). Walls = wall loops. hotfix: true = the STL changed in the attempt-2 hotfix (DESIGN_LOG 'Attempt 2', reprint list).",
+ "beds": {"H2D": [325, 320], "P1S": [256, 256]},
+ "gap_mm": 6,
+ "plates": [
+  {"name": "0a-fit-coupons-grey", "printer": "P1S", "colour": "A", "subsystem": "fit tests", "items": [
+   {"stl": "../BUILD/plates/0a-fit-coupons-grey/c1_beam_hook_post", "infill": 20, "walls": 3},
+   {"stl": "../BUILD/plates/0a-fit-coupons-grey/c1_beam_hook_beam", "infill": 30, "walls": 3},
+   {"stl": "../BUILD/plates/0a-fit-coupons-grey/c2_hub_socket", "infill": 20, "walls": 3},
+   {"stl": "../BUILD/plates/0a-fit-coupons-grey/c3_crown_hook_crown", "infill": 20, "walls": 3},
+   {"stl": "../BUILD/plates/0a-fit-coupons-grey/c3_crown_hook_beam", "infill": 30, "walls": 3},
+   {"stl": "../BUILD/plates/0a-fit-coupons-grey/c4_card_guides", "infill": 15, "walls": 3},
+   {"stl": "hub_gear", "infill": 40, "walls": 3, "note": "test copy for c2 (stays in the coupon); the fitted hub gear is on plate 5"},
+   {"stl": "tilt_horn_adapter", "infill": 60, "walls": 3}]},
+  {"name": "0b-fit-jar-terracotta", "printer": "H2D", "colour": "B", "subsystem": "fit tests: jar group", "items": [
+   {"stl": "jar_gate", "infill": 100, "walls": 3, "hotfix": true},
+   {"stl": "jar_adapter", "infill": 40, "walls": 3, "hotfix": true},
+   {"stl": "jar_valve", "infill": 40, "walls": 3},
+   {"stl": "tools/test_pocket_coupon", "infill": 40, "walls": 3}]},
+  {"name": "1-pod-grey", "printer": "P1S", "colour": "A", "subsystem": "launcher pod", "items": [
+   {"stl": "nacelle", "infill": 25, "walls": 3},
+   {"stl": "launcher_cover", "infill": 25, "walls": 3},
+   {"stl": "journal_plate", "infill": 30, "walls": 3},
+   {"stl": "encoder_cap", "infill": 40, "walls": 3},
+   {"stl": "nip_cover", "infill": 30, "walls": 3},
+   {"stl": "nip_leaf", "qty": 2, "infill": 100, "walls": 3},
+   {"stl": "tools/encoder_jig", "infill": 20, "walls": 3}]},
+  {"name": "2-pod-feeder-terracotta", "printer": "H2D", "colour": "B", "subsystem": "launcher pod, feeder disc", "items": [
+   {"stl": "launcher_body", "infill": 25, "walls": 3},
+   {"stl": "flywheel", "infill": 100, "walls": 3},
+   {"stl": "hood", "infill": 40, "walls": 3},
+   {"stl": "nip_wheel", "infill": 50, "walls": 3},
+   {"stl": "feeder_disc", "infill": 40, "walls": 3}]},
+  {"name": "3-beam-crown", "printer": "H2D", "colour": "A", "subsystem": "pan stage top, feeder", "items": [
+   {"stl": "beam", "infill": 30, "walls": 3, "hotfix": true},
+   {"stl": "feeder_crown", "infill": 20, "walls": 3},
+   {"stl": "feeder_pinion", "infill": 60, "walls": 3},
+   {"stl": "thrust_ring", "infill": 100, "walls": 3}]},
+  {"name": "4-turntable", "printer": "P1S", "colour": "A", "subsystem": "pan stage", "items": [
+   {"stl": "turntable", "infill": 20, "walls": 3}]},
+  {"name": "5-base-shell", "printer": "H2D", "colour": "A", "subsystem": "base", "items": [
+   {"stl": "base_shell", "infill": 15, "walls": 3},
+   {"stl": "pan_servo_mount", "infill": 30, "walls": 3},
+   {"stl": "pan_pinion", "infill": 40, "walls": 3},
+   {"stl": "hub_gear", "infill": 40, "walls": 3}]},
+  {"name": "6-base-floor", "printer": "P1S", "colour": "A", "subsystem": "base", "items": [
+   {"stl": "base_floor", "infill": 15, "walls": 3}]}
+ ]
+}
